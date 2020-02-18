@@ -13,10 +13,10 @@ branches:
 addons:
   apt:
     packages:
-      - python3-pip
+      - pip
 
 install:
-  - pip3 install sphinx sphinxcontrib.images
+  - pip install sphinx sphinxcontrib.images
 
 
 # script to execute
