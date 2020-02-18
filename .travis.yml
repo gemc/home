@@ -13,7 +13,7 @@ branches:
 addons:
   apt:
     packages:
-      - sphinx-docs
+      - sphinxsearch
 
 # script to execute
 script:
