@@ -16,7 +16,6 @@ addons:
       - python3-pip
 
 install:
-  - pip3 install --upgrade pip3
   - pip3 install sphinx sphinxcontrib.images
 
 
