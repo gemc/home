@@ -8,13 +8,15 @@
 echo " "
 echo " Sphinx version: "$(sphinx-build --version)
 echo " "
-ddir='build/html'
+ddir='html'
 
 if [ -d $ddir ]
 then
 	rm -rf $ddir
 fi
+mkdir -p $ddir
 
 echo " "
 make html
+mv *.html main.css build $ddir
 echo " "
