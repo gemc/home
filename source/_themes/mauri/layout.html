@@ -1,0 +1,23 @@
+{%- extends "basic/layout.html" %}
+
+{% block content %}
+
+<div class="content-wrapper">
+	<div class="content">
+		<div class="document">
+			{%- block document %}
+			{{ super() }}
+			{%- endblock %}
+		</div>
+		<div class="clearer"></div>
+	</div>
+</div>
+{% endblock %}
+
+
+
+{%- include "footer.html" %}
+
+{# Omit the top navigation bar. #}
+{% block relbar1 %}{% endblock %}
+{% block relbar2 %}{% endblock %}

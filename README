@@ -1,0 +1,74 @@
+README
+------
+
+When starting sphinx from scratch the command:
+
+sphinx-quickstart
+
+will create a directory with the configuration file.
+I used "separate source and build" to have a nice separation.
+Also:
+
+> imgmath: include math, rendered as PNG or SVG images (y/n) [n]: y
+> mathjax: include math, rendered in the browser by MathJax (y/n) [n]: y
+
+
+All this can be changed in the file conf.py
+
+Packages to be installed:
+
+pip install sphinxcontrib-images
+
+
+Sphinx version
+--------------
+
+Careful the very latest versions of sphinx (installed from github or pip) may not work.
+To install a previous version:
+1. get the releases: https://github.com/sphinx-doc/sphinx/releases
+2. untar, and type sudo pip install .
+
+
+Themes
+------
+
+Some themes here: https://sphinx-themes.org
+Get the theme from the "download" section (usually inside pyPy)
+locate the relevant files that have "layout.html", theme.conf and static.
+For crate: src/crate/theme/rtd/crate/*
+Copy them in a directory created  source/_themes/mauri
+
+html_theme = 'mauri'
+html_theme_path = ['_themes']
+
+
+
+
+
+GEMC Website
+------------
+
+Local server is in
+
+/group/clas/www/gemc/html
+
+
+
+
+To not include a doc in the tocree, add
+
+:orphan:
+
+at its top.
+
+
+
+
+To document:
+
+geantino and record_passby
+
+
+- ideas:
+
+ https://crate.io  (nice footer, software page)
