@@ -20,6 +20,20 @@ Packages to be installed:
 pip install sphinxcontrib-images
 
 
+
+DOC TO SAVE SOMEWHERE ELSE:
+
+
+for ubuntu, in a docker image:
+
+apt-get update   < will get repos infos
+
+apt install python3-sphinx
+python3-sphinxcontrib.blockdiag
+
+
+
+
 Sphinx version
 --------------
 

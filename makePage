@@ -16,10 +16,9 @@ then
 fi
 mkdir -p $ddir
 
-apt-get search sphinx
-apt-get search sphinxcontrib
+pip install sphinxcontrib-images
 
 echo " "
-#make html
-#cp -r *.html main.css build $ddir
+make html
+cp -r *.html main.css build $ddir
 echo " "
