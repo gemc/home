@@ -16,7 +16,7 @@ addons:
       - python-pip
 
 install:
-  - pip install sphinx sphinxcontrib.images
+  - sudo pip install sphinx sphinxcontrib.images
 
 
 # script to execute
