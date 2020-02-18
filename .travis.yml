@@ -14,7 +14,6 @@ addons:
   apt:
     packages:
       - python3-sphinx
-      - py3-sphinxcontrib-images
 
 # script to execute
 script:
