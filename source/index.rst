@@ -1,6 +1,22 @@
-.. GEMC documentation master file
+.. gemc documentation master file, created by
+   sphinx-quickstart on Tue Dec 15 08:52:12 2015.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
 
-:orphan:
 
 
+
+
+
+
+GEant4 Monte-Carlo
+==================
+
+GEMC  is a c++ framework that uses `geant4 <https://geant4.cern.ch>`_  to simulate the passage of
+particles through matter. It provides:
+
+
+ * application independent geometry description
+ * easy interface to build / run experiments
+ * cad/gdml imports
 

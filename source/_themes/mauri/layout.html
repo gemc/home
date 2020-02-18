@@ -1,5 +1,7 @@
 {%- extends "basic/layout.html" %}
 
+
+
 {% block content %}
 
 <div class="content-wrapper">
@@ -9,15 +11,28 @@
 			{{ super() }}
 			{%- endblock %}
 		</div>
-		<div class="clearer"></div>
 	</div>
+	<div class="clearer"></div>
 </div>
 {% endblock %}
 
 
 
-{%- include "footer.html" %}
+
 
 {# Omit the top navigation bar. #}
 {% block relbar1 %}{% endblock %}
 {% block relbar2 %}{% endblock %}
+
+
+
+{% block footer %}
+{%- include "footer.html" %}
+<div class="footer-wrapper">
+	<div class="footer">
+		<div class="center">
+			{{ _('2020 GEMC - Maurizio Ungaro') }}
+		</div>
+	</div>
+</div>
+{% endblock %}
