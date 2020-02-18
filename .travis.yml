@@ -10,6 +10,8 @@ branches:
     - master
 
 # Install dependencies
+# Notice: all this is for python2.
+# Not sure how to do python3
 addons:
   apt:
     packages:
