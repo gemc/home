@@ -13,7 +13,7 @@ branches:
 addons:
   apt:
     packages:
-      - pip
+      - python-pip
 
 install:
   - pip install sphinx sphinxcontrib.images
