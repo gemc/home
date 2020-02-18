@@ -18,5 +18,5 @@ mkdir -p $ddir
 
 echo " "
 make html
-mv *.html main.css build $ddir
+cp -r *.html main.css build $ddir
 echo " "
