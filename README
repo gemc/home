@@ -28,6 +28,9 @@ for ubuntu, in a docker image:
 
 apt-get update   < will get repos infos
 
+
+Currentluy using python2 we'll need to go to python 3 eventually.
+
 apt install python3-sphinx
 python3-sphinxcontrib.blockdiag
 
