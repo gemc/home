@@ -20,7 +20,6 @@ Packages to be installed:
 pip install sphinxcontrib-images
 
 
-
 DOC TO SAVE SOMEWHERE ELSE:
 
 
@@ -41,9 +40,11 @@ Sphinx version
 --------------
 
 Careful the very latest versions of sphinx (installed from github or pip) may not work.
+
 To install a previous version:
 1. get the releases: https://github.com/sphinx-doc/sphinx/releases
 2. untar, and type sudo pip install .
+
 
 
 Themes
@@ -65,11 +66,7 @@ html_theme_path = ['_themes']
 GEMC Website
 ------------
 
-Local server is in
-
-/group/clas/www/gemc/html
-
-
+It is build by travis when any commit of this repo is pushed
 
 
 To not include a doc in the tocree, add
@@ -78,14 +75,3 @@ To not include a doc in the tocree, add
 
 at its top.
 
-
-
-
-To document:
-
-geantino and record_passby
-
-
-- ideas:
-
- https://crate.io  (nice footer, software page)

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Purpose: creates the doxygen documentation for all the glibraries
+# Purpose: create the gemc web page
 # This script is used by TRAVIS
 #
 # Arguments: none
