@@ -31,7 +31,6 @@ echo " >> MAKEPAGE: Making HTML"
 echo " "
 make html
 cp -r *.html main.css build $ddir
-rm -rf build
 echo " >> MAKEPAGE: HTML Completed and copied"
 echo " "
 
