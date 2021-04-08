@@ -4,22 +4,34 @@
 # This script is used by TRAVIS
 #
 # Arguments: none
+#
+# Notice: this script copies index.html, main.css and build onto the installation dir.
+#         in other words: "make" alone will not produce the correct webpage
+#
+# Sphinx Requirements:
+# pip install sphinxcontrib-images
 
 echo " "
-echo " Sphinx version: "$(sphinx-build --version)
+echo " >> MAKEPAGE: Sphinx version: "$(sphinx-build --version)
 echo " "
 ddir='html'
 
 if [ -d $ddir ]
 then
+	echo " >> MAKEPAGE: removing existing dir"
+	echo " "
+	make clean
 	rm -rf $ddir
 fi
+
 mkdir -p $ddir
 
-pip install sphinxcontrib-images
 
-echo " Making HTML"
+echo " >> MAKEPAGE: Making HTML"
+echo " "
 make html
 cp -r *.html main.css build $ddir
-echo " HTML Completed and copied"
+rm -rf build
+echo " >> MAKEPAGE: HTML Completed and copied"
+echo " "
 

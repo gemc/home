@@ -1,6 +1,6 @@
 language: sh
 
-# latest ubuntu
+# latest distribution
 # https://docs.travis-ci.com/user/reference/overview/
 dist: focal
 
@@ -9,24 +9,15 @@ branches:
   only:
     - master
 
-# Install dependencies
-# Notice: all this is for python2.
-# Not sure how to do python3
-# addons:
-#   apt:
-#     packages:
-#      - python-pip
-
+# dependencies:
 install:
   - sudo pip install sphinx sphinxcontrib.images
-
 
 # script to execute
 script:
  - ./makePage
 
-# Generate and deploy documentation
-#
+# Generate and deploy documentation to github pages
 deploy:
   provider: pages
   skip_cleanup: true
