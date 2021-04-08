@@ -7,10 +7,6 @@ import os
 import shlex
 
 
-
-
-
-
 # -- General configuration ---------------------------------------------------
 
 extensions = [
@@ -38,7 +34,7 @@ master_doc = 'index'
 # -- Project information -----------------------------------------------------
 
 project = u'GEMC'
-copyright = u'2020, Maurizio Ungaro'
+copyright = u'2021, Maurizio Ungaro'
 author = u'Maurizio Ungaro'
 
 

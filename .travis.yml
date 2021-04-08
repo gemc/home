@@ -12,10 +12,10 @@ branches:
 # Install dependencies
 # Notice: all this is for python2.
 # Not sure how to do python3
-addons:
-  apt:
-    packages:
-      - python-pip
+# addons:
+#   apt:
+#     packages:
+#      - python-pip
 
 install:
   - sudo pip install sphinx sphinxcontrib.images
