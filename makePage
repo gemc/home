@@ -18,7 +18,8 @@ mkdir -p $ddir
 
 pip install sphinxcontrib-images
 
-echo " "
+echo " Making HTML"
 make html
 cp -r *.html main.css build $ddir
-echo " "
+echo " HTML Completed and copied"
+
