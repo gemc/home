@@ -9,6 +9,9 @@
 GEant4 Monte-Carlo
 ==================
 
+The site is under construction.
+GEMC version 3, with MT and plugins mechanism, is ongoin development.
+
 GEMC  is a c++ framework that uses `geant4 <https://geant4.cern.ch>`_  to simulate the passage of
 particles through matter. It provides:
 
@@ -16,4 +19,5 @@ particles through matter. It provides:
  * application independent geometry description
  * easy interface to build / run experiments
  * cad/gdml imports
+ * digitization and output plugins mechanism 
 
