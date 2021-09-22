@@ -1,0 +1,43 @@
+:orphan:
+
+.. _download:
+
+.. |br| raw:: html
+
+   <br>
+
+The GEMC software comes with the  `geant4 <https://geant4.cern.ch>`_ libraries adn the python API to create custom geometry.
+
+Mac OS
+------
+
+Gemc can be downloaded and installed using DMG images:
+
+* `3.0beta <https://www.jlab.org/12gev_phys/packages/dmg/gemc-3.0.dmg>`_
+
+
+
+|br|
+
+
+Linux and Mac OS
+----------------
+
+Linux user can use `docker <https://www.docker.com>`_ images to get gemc images from the
+`Jefferson Lab Gemc Docker Hub <https://hub.docker.com/repository/docker/jeffersonlab/gemc>`_ ::
+
+ docker pull jeffersonlab/gemc:3.0
+
+
+|br|
+|br|
+|br|
+|br|
+|br|
+|br|
+|br|
+|br|
+|br|
+|br|
+
+

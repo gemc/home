@@ -1,0 +1,124 @@
+/*Sticky top navigation from https://csswizardry.com/2011/01/create-a-centred-horizontal-navigation/ */
+
+@import url("https://www.w3schools.com/w3css/4/w3.css");
+
+/* top navigation style */
+#nav{
+	border:1px solid #ccc;
+	border-width:1px 0;
+	list-style:none;
+	margin:0;
+	padding:0;
+	text-align:center;
+	z-index:500;
+	background-color: #fff;
+	overflow: hidden;
+}
+
+/* navigation links placed horizontally */
+#nav li{
+	position:relative;
+	display:inline;
+}
+
+/* padding to top navigation links */
+#nav a{
+	display:inline-block;
+	padding:10px;
+}
+
+
+/* links: bold, black, underline when hover */
+a{
+	color:#000;
+	text-decoration:none;
+	font-weight:bold;
+}
+a:hover{
+	text-decoration:underline;
+	background:#fff;
+}
+a.headerlink {
+	visibility: hidden;
+	color: #dddddd;
+	padding-left: .3em;
+}
+
+body,h1,h2,h3,h4 {
+	font-family: "Avenir", Helvetica, sans-serif;
+	padding-left: 1.2em;
+}
+
+h1 {
+	letter-spacing: 6px;
+	padding-left: 0em;
+}
+
+
+.footer {
+	padding-top: 40px;
+	padding-bottom: 24px;
+	border-top: 1px solid #e7e7e7;
+}
+
+
+/* this align the footer colors and remove the button style from the list */
+.vertical-menu {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+/* this will organize the footer in columns and set proper spacing */
+.w-col {
+	position: relative;
+	float: left;
+	width: 100%;
+	min-height: 1px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.w-col .w-col {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* this will set the footer columns widths */
+.w-col-1 {
+	width: 10%;
+}
+
+/* 100 / number of columns */
+.w-col-2 {
+	width: 33%;
+}
+
+
+/* this will put the footer in the right place */
+.w-clearfix:before,
+.w-clearfix:after {
+	content: " ";
+	display: table;
+}
+.w-clearfix:after {
+	clear: both;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
