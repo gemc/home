@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Geant4 Physics | Home</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="Geant4 Physics" />
+<meta name="author" content="Maurizio Ungaro" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="The Geant4 Physics is determined with the option physicsList. By default, gemc uses FTFP_BERT ." />
+<meta property="og:description" content="The Geant4 Physics is determined with the option physicsList. By default, gemc uses FTFP_BERT ." />
+<link rel="canonical" href="http://localhost:4000/home/documentation/physistExtList.html" />
+<meta property="og:url" content="http://localhost:4000/home/documentation/physistExtList.html" />
+<meta property="og:site_name" content="Home" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Geant4 Physics" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Maurizio Ungaro"},"description":"The Geant4 Physics is determined with the option physicsList. By default, gemc uses FTFP_BERT .","headline":"Geant4 Physics","url":"http://localhost:4000/home/documentation/physistExtList.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/home/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/home/feed.xml" title="Home" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/home/">Home</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/home/b_installation.html">Installation</a><a class="page-link" href="/home/Examples/">Examples</a><a class="page-link" href="/home/Documentation/">Documentation</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <p>The Geant4 Physics is determined with the option <strong>physicsList</strong>. By default, gemc uses <strong>FTFP_BERT</strong> .</p>
+
+<p><br /></p>
+<h3 id="usage">Usage:</h3>
+
+<p><br />
+In the jcard, add this line to select the desired physics:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"physicsList": "your choice of physics"
+</code></pre></div></div>
+<p>The option can be composed by:</p>
+
+<ul>
+  <li>The main geant4 module (mandatory field). For example: <strong>QGSP_BIC</strong></li>
+  <li>Optional: a replacement for the default electro-magnetic physics list, specified by adding its code</li>
+  <li>Optional: physics constructor(s) can be added using the <strong>+</strong> sign</li>
+</ul>
+
+<p><br /></p>
+<h3 id="examples">Examples:</h3>
+<p><br /></p>
+<ul>
+  <li>“<strong>QGSP_BIC_EMX</strong>” will use the <strong>QGSP_BIC</strong> module but replace its e.m. physics with the <strong>G4EmStandardPhysics_option2</strong></li>
+  <li>“<strong>FTFP_BERT_HP + G4OpticalPhysics</strong>” will use the <strong>FTFP_BERT_HP</strong> module and add <strong>G4OpticalPhysics</strong> on top of it</li>
+  <li>“<strong>QGSP_BIC_PEN + G4OpticalPhysics + G4RadioactiveDecayPhysics</strong>” will use the <strong>QGSP_BIC</strong> module,    replace its e.m. physics with the <strong>G4EmPenelopePhysics</strong>, and add G4OpticalPhysics and G4RadioactiveDecayPhysics</li>
+</ul>
+
+<p><br /></p>
+<h3 id="geant4-version-name-geant4-11-00-patch-03-mt--16-september-2022">Geant4 Version Name: geant4-11-00-patch-03 [MT]  (16-September-2022)</h3>
+
+<p><br /></p>
+<h4 id="modules">Modules:</h4>
+<ul>
+  <li>FTFP_BERT</li>
+  <li>FTFP_BERT_ATL</li>
+  <li>FTFP_BERT_HP</li>
+  <li>FTFP_BERT_TRV</li>
+  <li>FTFP_INCLXX</li>
+  <li>FTFP_INCLXX_HP</li>
+  <li>FTFQGSP_BERT</li>
+  <li>FTF_BIC</li>
+  <li>G4GenericPhysicsList</li>
+  <li>LBE</li>
+  <li>NuBeam</li>
+  <li>QBBC</li>
+  <li>QGSP_BERT</li>
+  <li>QGSP_BERT_HP</li>
+  <li>QGSP_BIC</li>
+  <li>QGSP_BIC_AllHP</li>
+  <li>QGSP_BIC_HP</li>
+  <li>QGSP_FTFP_BERT</li>
+  <li>QGSP_INCLXX</li>
+  <li>QGSP_INCLXX_HP</li>
+  <li>QGS_BIC</li>
+  <li>Shielding</li>
+  <li>ShieldingLEND</li>
+  <li>ShieldingM</li>
+</ul>
+
+<p><br /></p>
+<h5 id="em-replacement-codes">E.m. replacement codes:</h5>
+<ul>
+  <li>_EM0: G4EmStandardPhysics</li>
+  <li>_EMV: G4EmStandardPhysics_option1</li>
+  <li>_EMX: G4EmStandardPhysics_option2</li>
+  <li>_EMY: G4EmStandardPhysics_option3</li>
+  <li>_EMZ: G4EmStandardPhysics_option4</li>
+  <li>_GS: G4EmStandardPhysicsGS</li>
+  <li>_LE: G4EmLowEPPhysics</li>
+  <li>_LIV: G4EmLivermorePhysics</li>
+  <li>_PEN: G4EmPenelopePhysics</li>
+  <li>_SS: G4EmStandardPhysicsSS</li>
+  <li>_WVI: G4EmStandardPhysicsWVI</li>
+</ul>
+
+<p><br /><br /></p>
+<h5 id="physics-constructors">Physics Constructors:</h5>
+<ul>
+  <li>G4ChargeExchangePhysics</li>
+  <li>G4DecayPhysics</li>
+  <li>G4EmDNAChemistry</li>
+  <li>G4EmDNAChemistry_option1</li>
+  <li>G4EmDNAChemistry_option2</li>
+  <li>G4EmDNAChemistry_option3</li>
+  <li>G4EmDNAPhysics</li>
+  <li>G4EmDNAPhysics_option1</li>
+  <li>G4EmDNAPhysics_option2</li>
+  <li>G4EmDNAPhysics_option3</li>
+  <li>G4EmDNAPhysics_option4</li>
+  <li>G4EmDNAPhysics_option5</li>
+  <li>G4EmDNAPhysics_option6</li>
+  <li>G4EmDNAPhysics_option7</li>
+  <li>G4EmDNAPhysics_option8</li>
+  <li>G4EmDNAPhysics_stationary</li>
+  <li>G4EmDNAPhysics_stationary_option2</li>
+  <li>G4EmDNAPhysics_stationary_option4</li>
+  <li>G4EmDNAPhysics_stationary_option6</li>
+  <li>G4EmExtraPhysics</li>
+  <li>G4EmLivermorePhysics</li>
+  <li>G4EmLivermorePolarizedPhysics</li>
+  <li>G4EmLowEPPhysics</li>
+  <li>G4EmPenelopePhysics</li>
+  <li>G4EmStandardPhysics</li>
+  <li>G4EmStandardPhysicsGS</li>
+  <li>G4EmStandardPhysicsSS</li>
+  <li>G4EmStandardPhysicsWVI</li>
+  <li>G4EmStandardPhysics_option1</li>
+  <li>G4EmStandardPhysics_option2</li>
+  <li>G4EmStandardPhysics_option3</li>
+  <li>G4EmStandardPhysics_option4</li>
+  <li>G4FastSimulationPhysics</li>
+  <li>G4GenericBiasingPhysics</li>
+  <li>G4HadronDElasticPhysics</li>
+  <li>G4HadronElasticPhysics</li>
+  <li>G4HadronElasticPhysicsHP</li>
+  <li>G4HadronElasticPhysicsLEND</li>
+  <li>G4HadronElasticPhysicsPHP</li>
+  <li>G4HadronElasticPhysicsXS</li>
+  <li>G4HadronHElasticPhysics</li>
+  <li>G4HadronInelasticQBBC</li>
+  <li>G4HadronPhysicsFTFP_BERT</li>
+  <li>G4HadronPhysicsFTFP_BERT_ATL</li>
+  <li>G4HadronPhysicsFTFP_BERT_HP</li>
+  <li>G4HadronPhysicsFTFP_BERT_TRV</li>
+  <li>G4HadronPhysicsFTFQGSP_BERT</li>
+  <li>G4HadronPhysicsFTF_BIC</li>
+  <li>G4HadronPhysicsINCLXX</li>
+  <li>G4HadronPhysicsNuBeam</li>
+  <li>G4HadronPhysicsQGSP_BERT</li>
+  <li>G4HadronPhysicsQGSP_BERT_HP</li>
+  <li>G4HadronPhysicsQGSP_BIC</li>
+  <li>G4HadronPhysicsQGSP_BIC_AllHP</li>
+  <li>G4HadronPhysicsQGSP_BIC_HP</li>
+  <li>G4HadronPhysicsQGSP_FTFP_BERT</li>
+  <li>G4HadronPhysicsQGS_BIC</li>
+  <li>G4HadronPhysicsShielding</li>
+  <li>G4HadronPhysicsShieldingLEND</li>
+  <li>G4ImportanceBiasing</li>
+  <li>G4IonBinaryCascadePhysics</li>
+  <li>G4IonElasticPhysics</li>
+  <li>G4IonINCLXXPhysics</li>
+  <li>G4IonPhysics</li>
+  <li>G4IonPhysicsPHP</li>
+  <li>G4IonPhysicsXS</li>
+  <li>G4IonQMDPhysics</li>
+  <li>G4MuonicAtomDecayPhysics</li>
+  <li>G4NeutronCrossSectionXS</li>
+  <li>G4NeutronTrackingCut</li>
+  <li>G4OpticalPhysics</li>
+  <li>G4ParallelWorldPhysics</li>
+  <li>G4RadioactiveDecayPhysics</li>
+  <li>G4SpinDecayPhysics</li>
+  <li>G4StepLimiterPhysics</li>
+  <li>G4StoppingPhysics</li>
+  <li>G4StoppingPhysicsFritiofWithBinaryCascade</li>
+  <li>G4UnknownDecayPhysics</li>
+  <li>G4WeightWindowBiasing</li>
+</ul>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/home/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Home</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Maurizio Ungaro</li><li><a class="u-email" href="mailto:ungaro@jlab.org">ungaro@jlab.org</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/maureeungaro"><svg class="svg-icon"><use xlink:href="/home/assets/minima-social-icons.svg#github"></use></svg> <span class="username">maureeungaro</span></a></li><li><a href="https://www.twitter.com/maurizio_ungaro"><svg class="svg-icon"><use xlink:href="/home/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">maurizio_ungaro</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Maurizio Ungaro is a researcher at Jefferson Lab</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

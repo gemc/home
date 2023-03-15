@@ -1,0 +1,76 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+#
+# If you need help with YAML syntax, here are some quick references for you: 
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+#
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+# For customization check https://github.com/jekyll/minima/blob/master/README.md
+
+title: Home
+author: Maurizio Ungaro
+email: ungaro@jlab.org
+description: >- # this means to ignore newlines until "baseurl:"
+  Maurizio Ungaro is a researcher at Jefferson Lab
+
+baseurl: /home # the subpath of your site, e.g. /blog - this is important cause of the file feed.xml
+domain: maureeungaro.github.io       # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
+url: "https://maureeungaro.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+
+twitter_username: maurizio_ungaro
+github_username:  maureeungaro
+
+
+# Build settings
+theme: minima
+plugins:
+  - jekyll-feed
+
+exclude:
+   - .jekyll-cache/
+   - .idea/
+   - Gemfile
+   - Gemfile.lock
+   - README.md
+   - todo
+
+# this adds content to the website from the local dirs starting with _
+collections:
+  documentation:
+    output: true
+  examples:
+    output: true
+  installation:
+    output: true
+
+
+# shortcuts to symbols, accessible with {{ site.symbol_name }}
+
+
+pi: "&pi;"
+pi0: "&pi;<sup>0</sup>"
+pim: "&pi;<sup>-</sup>"
+pip: "&pi;<sup>+</sup>"
+q2: "Q<sup>2</sup>"
+w2: "W<sup>2</sup>"
+gev2: "GeV<sup>2</sup>"
+rarr: "&rarr;"
+delta: "&Delta;"
+deltaM: "&Delta;(1232)"
+
+mauriPlotsUrl: 'https://raw.githubusercontent.com/MauriPlots'
+mauriPubs: 'https://raw.githubusercontent.com/maureeungaro/pubs/585b32bd516546e14de489a8b4178a2e24b6764f/pdfs'
+
+
