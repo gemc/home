@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Exit Codes
+description: gemc exit codes with one string description
 order: 10
-description: Exit codes for gemc3
 ---
 
  <ul>

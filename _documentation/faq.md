@@ -2,7 +2,7 @@
 layout: default
 title: Frequently Asked Questions
 order: 3
-description: Frequently Asked Questions
+description: Q&A
 ---
 
 

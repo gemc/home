@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Geant4 Physics
+description: Explore and select Geant4 Physics modules
 order: 2
 ---
 

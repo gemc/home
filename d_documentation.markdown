@@ -12,8 +12,7 @@ permalink: /Documentation/
 			{% continue %}
 		{% endif %}
 	<li>
-		<h5><a href="/home/{{ post.url }}">{{ post.title }}</a></h5>
-		{{ post.description }}<br/><br/>
+		<h4><a href="/home/{{ post.url }}">{{ post.title }}</a>: {{ post.description }}</h4>
 	</li>
 	{% endfor %}
 	
