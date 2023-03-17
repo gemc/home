@@ -1,8 +1,13 @@
 ---
 layout: default
 title: Materials
-directory: $SCIG/examples/scintillator_array
+directory: $SCIG/examples/simple_mats
 ---
+
+<span style="color: #220088; font-family: Avenir">Location: {{ page.directory }}</span>
+
+___
+<br/>
 
 The setup is 5 different targets with materials built using diffent methods.
 
@@ -50,5 +55,13 @@ Defines `my_carbonFiber` using fractional masses of `my_epoxy`and from the Geant
 ##### Target 5:
 
 Defines `my_resistPaste` which uses a material from the Geant4 Material database, but with a different density.
+
+---
+<br/>
+
+The code that produce the geometry:
+
+<script src="https://gist.github.com/maureeungaro/6bbddd23f01630d779a8889b11c13223.js"></script>
+
 
 [mats]:       /home/assets/images/examples/materials/five_targets_geo.png

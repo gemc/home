@@ -39,7 +39,9 @@ brew install chruby ruby-install
 
 ---
 
+## Gist:
 
+https://gist.github.com
 
 ## GH-PAGES
 

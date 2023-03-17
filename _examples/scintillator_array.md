@@ -4,6 +4,11 @@ title: Sensitive Scintillator Array
 directory: $SCIG/examples/scintillator_array
 ---
 
+<span style="color: #220088; font-family: Avenir">Location: {{ page.directory }}</span>
+
+___
+<br/>
+
 The setup is an array of scintillator bars in a cylindrical configuration.
 The bars are trapezoids to maximize the surface area.
 
@@ -30,7 +35,7 @@ The geometry looks like this:
 
 <br/>
 
-Another picture with 1000 events leaving hit in the sensitive bars:
+Another picture with 1000 events, with hits in the sensitive bars:
 
 ![scint_hits]{:width="70%"}
 
@@ -59,10 +64,14 @@ will show the energy deposited in the bars versus bar id and the hit positions i
 
 [![avgy_vs_avgx]{:width="70%"}]
 
+---
+<br/>
 
 The code that produce the geometry:
 
 <script src="https://gist.github.com/maureeungaro/2a3f64a684f2d9d1891b4bf5a0edcc60.js"></script>
+
+
 
 [scint_array]: /home/assets/images/examples/scintillator_array/geometry.png
 [scint_hits]: /home/assets/images/examples/scintillator_array/geometry_and_hits.png
