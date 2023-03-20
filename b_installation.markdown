@@ -106,7 +106,16 @@ To install gemc3:
 install_gemc3 1.0
 ```
 
-This will install gemc and the  [sci-g python api](https://github.com/gemc/sci-g).
+This will install gemc and the  [sci-g](https://github.com/gemc/sci-g)  python api.
+
+#### Put in your .shellrc file to load the env at login:
+
+```
+  export SIM_HOME=/opt/sim
+  source $SIM_HOME/ceInstall/setup.(c)sh
+  module load gemc3/1.0
+```
+
 
 For more details and system requirements check the [Common Environment Install](https://github.com/JeffersonLab/ceInstall) repository.
 

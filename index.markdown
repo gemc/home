@@ -48,11 +48,11 @@ It provides:<br/><br/>
 
 <br/><br/>
 
-| Python API        |                                            |
-|-------------------|--------------------------------------------|
-| {{ page.p1 }}     | [Scig repo](https://github.com/gemc/sci-g) |
-| ![gemcExamplePic] | ![gemcCodeExample]                         |
-| {{ page.p2 }}     | *{{ page.p3 }}*                            |
+| Python API        |                                                                                 |
+|-------------------|---------------------------------------------------------------------------------|
+| {{ page.p1 }}     | See the [sci-g](https://github.com/gemc/sci-g) python api, [examples](Examples) |
+| ![gemcExamplePic] | ![gemcCodeExample]                                                              |
+| {{ page.p2 }}     | *{{ page.p3 }}*                                                                 |
 
 <br/><br/>
 
@@ -63,6 +63,7 @@ It provides:<br/><br/>
 
 
 <br/><br/>
+
 
 
 

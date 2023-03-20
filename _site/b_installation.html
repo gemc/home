@@ -134,7 +134,14 @@ modules using the <a href="https://github.com/JeffersonLab/ceInstall">Common Env
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>install_gemc3 1.0
 </code></pre></div></div>
 
-<p>This will install gemc and the  <a href="https://github.com/gemc/sci-g">sci-g python api</a>.</p>
+<p>This will install gemc and the  <a href="https://github.com/gemc/sci-g">sci-g</a>  python api.</p>
+
+<h4 id="put-in-your-shellrc-file-to-load-the-env-at-login">Put in your .shellrc file to load the env at login:</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  export SIM_HOME=/opt/sim
+  source $SIM_HOME/ceInstall/setup.(c)sh
+  module load gemc3/1.0
+</code></pre></div></div>
 
 <p>For more details and system requirements check the <a href="https://github.com/JeffersonLab/ceInstall">Common Environment Install</a> repository.</p>
 
