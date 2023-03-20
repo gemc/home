@@ -15,6 +15,5 @@ permalink: /Documentation/
 		<h4><a href="/home/{{ post.url }}">{{ post.title }}</a>: {{ post.description }}</h4>
 	</li>
 	{% endfor %}
-	
-	
+		
 </ul>

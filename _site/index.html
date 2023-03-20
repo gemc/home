@@ -37,17 +37,18 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <p><strong>GE</strong>ant <strong>M</strong>onte-<strong>C</strong>arlo 
+        <p><strong>GEMC</strong> (<strong>GE</strong>ant <strong>M</strong>onte-<strong>C</strong>arlo)
 is a program based on <a href="https://geant4.web.cern.ch">geant4</a> 
 to simulate the passage of particles through matter.
 It provides:<br /><br /></p>
 
 <ul>
-  <li>Database sources for geometry, materials, calibration constants, and more: nothing is hard-coded</li>
+  <li>Database sources for geometry, materials, calibration constants, digitization</li>
   <li>Detector variations</li>
   <li>Emulation of hardware electronics, time windows</li>
-  <li>Pre-defined digitization types such as flux and dosimeter</li>
+  <li>Pre-defined digitization such as flux and dosimeter</li>
   <li>Plugins mechanism for generators, fields, digitization, inefficiencies, output</li>
+  <li>Built-in text and <a href="https://root.cern">ROOT</a> output</li>
 </ul>
 
 <p><br /><br /></p>
@@ -60,13 +61,13 @@ It provides:<br /><br /></p>
   </thead>
   <tbody>
     <tr>
-      <td><br/> GEMC databases (txt, mysql) to store simulation parameters like geometry, materials, etc. In addition:<br/><br/> <li>Complex geometries can be created and uploaded to the databases and without programming knowledge</li> <li>Models can be imported from CAD and/or GDML</li> <li>The geometry can be modded at run time, for example by applying tilts / displacements</li><br/></td>
+      <td><br/> GEMC databases (txt, mysql) to store simulation parameters like geometry, materials, etc. No quantity is hard-coded: systems can be created w/o re-compiling the code.  In addition:<br/><br/><li>Complex geometries can be built and uploaded to the databases without programming knowledge thanks to an intuitive python API</li> <li>Models can be imported from CAD and/or GDML and mixed with the pyton API's.</li> <li>The geometry can be modded at run time, for example by applying tilts / displacements</li><br/></td>
     </tr>
     <tr>
       <td><img src="/home/assets/images/gemcArchitecture.png" alt="gemcArch" /></td>
     </tr>
     <tr>
-      <td><em>A typical GEMC usage: detector geometries and materials are loaded from various databases. The Geant4 world is formed, particles are swam through materials, hits are digitized, and output(s) are created.</em></td>
+      <td><em>A typical GEMC usage: detector geometries and materials are loaded from various databases and the world is formed. Particles are swam through materials by Geant4, hits are digitized, and output(s) are created.</em></td>
     </tr>
   </tbody>
 </table>
@@ -108,7 +109,7 @@ It provides:<br /><br /></p>
   <tbody>
     <tr>
       <td><img src="/home/assets/images/clas12v.gif" alt="clas12v" /></td>
-      <td><br /> A detector can be re-used in multiple experiments, often with changes such as a shift of some components, a change of materials, the addition or removal of certain volumes.<br /><br /> In GEMC this is controlled by a variables called variations. This has the advantages: <li>Multiple versions of the geometry are indexed using variations</li> <li>The desired geometry variation is selected by using the corresponding string</li></td>
+      <td><br /> A detector can be re-used in multiple experiments, often with changes such as a shift of some components, a change of materials, the addition or removal of certain volumes.<br /><br /> In GEMC this is controlled by a string variable called <code class="language-plaintext highlighter-rouge">variation</code>. This has the advantages: <li>Multiple versions of the geometry are organized  using a single string</li> <li>The desired geometry variation is selected by using the corresponding string</li></td>
     </tr>
     <tr>
       <td>In the above animation two variations of the CLAS12 Central Detector (clas12CD) are shown. The geometries are identical except for the position of the target. <br />In the JSON steering card the two variations of clas12CD are loaded by specifying the variation name.</td>

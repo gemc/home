@@ -2,7 +2,7 @@
 layout: default
 title: Geometry
 order: 1
-description: Build detectors, assign sensitivity.
+description: Build detectors, create materials, assign sensitivity.
 ---
 
 A detector in gemc is composed by one or more *sytems*, each a hierarchical collection of volumes. 

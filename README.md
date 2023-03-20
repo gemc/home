@@ -6,9 +6,7 @@
 
 (put all these in a single script please)
 ```
-./grabErrorCodes
-cd $SCIG; ./scigTemplate.py -swl; cd-
-cd $GLIBRARY/gphysics ; ./formatPhysList.py -web ; cd -
+./scripts/periodic.sh
 ```
 
 ## To install [jekyll](https://jekyllrb.com):
