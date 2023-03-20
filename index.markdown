@@ -26,7 +26,6 @@ v6: "JSON lines that select the variations shown: <br/><br/> <font size=\"2\"> {
 
 ---
 
-
 **GEMC** (**GE**ant **M**onte-**C**arlo)
 is a program based on [geant4](https://geant4.web.cern.ch) 
 to simulate the passage of particles through matter.
@@ -42,10 +41,10 @@ It provides:<br/><br/>
 <br/><br/>
 
 | Database sources: code-independent experiment description |             
-|----------------------------------------------------------|
-| {{ page.c1 }} {{ page.c2 }} {{ page.c3 }} {{ page.c4 }}  |
-| ![gemcArch]                                              |
-| *{{ page.c5 }}*                                          |
+|-----------------------------------------------------------|
+| {{ page.c1 }} {{ page.c2 }} {{ page.c3 }} {{ page.c4 }}   |
+| ![gemcArch]                                               |
+| *{{ page.c5 }}*                                           |
 
 <br/><br/>
 

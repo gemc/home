@@ -4,16 +4,13 @@ title: Documentation
 permalink: /Documentation/
 ---
 
-<ul>
 
-	{% assign pages_list = site.documentation | sort: 'order' %}
-	{% for post in pages_list %}
-		{% if post.url contains 'Docs' %}
-			{% continue %}
-		{% endif %}
-	<li>
-		<h4><a href="/home/{{ post.url }}">{{ post.title }}</a>: {{ post.description }}</h4>
-	</li>
-	{% endfor %}
-		
-</ul>
+
+| Geometry Documentation                                     |                                              |
+|------------------------------------------------------------|----------------------------------------------|
+| [![scint_array]](../documentation/system)                  | [![geometry]](../documentation/geometry)     |
+| [A sensitive scintillator array](../documentation/system)  | [Volumes howto](../documentation/geometry)   |
+
+
+
+[geometry]: /home/assets/images/examples/scintillator_array/geometry.png

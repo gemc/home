@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Geometry
-order: 5
-description: Build detectors, create materials, assign sensitivity.
+title: System
+order: 1
+description: How to create a system, a hierarchical collection of volumes.
 ---
 
 A detector in gemc is composed by one or more *systems*, each a hierarchical collection of volumes.
