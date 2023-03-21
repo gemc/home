@@ -1,5 +1,5 @@
 ---
-layout: documentation
+layout: default
 title: Build Volumes from Solid Types
 description: use python to create volumes based on geant4 solids
 ---

@@ -78,16 +78,9 @@ docker run -it --rm  -v ~/mywork:/mywork  -p 8080:8080  {{ page.gemc_container_t
 
 <br/>
 
-# Compilation
+# Compilation Quickstart[^3]
 
 <br/>
-
-geant4 and gemc3 can be installed[^3] and setup with 
-modules using the [Common Environment Install](https://github.com/JeffersonLab/ceInstall).
-
-<br/>
-
-#### Quickstart
 
 Point the environment variable SIM_HOME to an installation location (for example: `/opt/sim`)
 

@@ -13,8 +13,8 @@ c4: "<li>The geometry can be modded at run time, for example by applying tilts /
 c5: "A typical GEMC usage: detector geometries and materials are loaded from various databases and the world is formed. Particles are swam through materials by Geant4, hits are digitized, and output(s) are created."
 
 p1:  "Geant4 volumes are built using the sci-g python API."
-p2:  "An example geometry: an Aluminum beamdump is placed inside a flux-sensitive vacuumDetector mother volume."
-p3:  "The above snippet is the only code needed to build the geometry and record all tracks in the vacuumDetector in the output."
+p2:  "An example geometry: a flux box collects hits from protons impinging on a liquid hydrogen target"
+p3:  "The [above snippet](https://gist.github.com/maureeungaro/8e8616b388d65df0c8168a6b205f0c43) is the only code needed to build the geometry and record all tracks in the vacuumDetector in the output."
 
 v1: "<br/> A detector can be re-used in multiple experiments, often with changes such as a shift of some components, a change of materials, the addition or removal of certain volumes.<br/><br/>"
 v2: "In GEMC this is controlled by a string variable called `variation`. This has the advantages:"
@@ -27,9 +27,9 @@ v6: "JSON lines that select the variations shown: <br/><br/> <font size=\"2\"> {
 ---
 
 **GEMC** (**GE**ant **M**onte-**C**arlo)
-is a program based on [geant4](https://geant4.web.cern.ch) 
+is a program based on [Geant4](https://geant4.web.cern.ch) 
 to simulate the passage of particles through matter.
-It provides:<br/><br/>
+It provides:<br/>
 
 - Database sources for geometry, materials, calibration constants, digitization
 - Detector variations
@@ -38,7 +38,7 @@ It provides:<br/><br/>
 - Plugins mechanism for generators, fields, digitization, inefficiencies, output
 - Built-in text and [ROOT](https://root.cern) output
 
-<br/><br/>
+<br/>
 
 | Database sources: code-independent experiment description |             
 |-----------------------------------------------------------|
@@ -48,11 +48,10 @@ It provides:<br/><br/>
 
 <br/><br/>
 
-| Python API        |                                                                                 |
-|-------------------|---------------------------------------------------------------------------------|
-| {{ page.p1 }}     | See the [sci-g](https://github.com/gemc/sci-g) python api, [examples](Examples) |
-| ![gemcExamplePic] | ![gemcCodeExample]                                                              |
-| {{ page.p2 }}     | *{{ page.p3 }}*                                                                 |
+| Python API                   |                                                                                 |
+|------------------------------|---------------------------------------------------------------------------------|
+| ![gemcExamplePic]            | ![gemcCodeExample]                                                              |
+| {{ page.p1 }}  {{ page.p2 }} | *{{ page.p3 }}*                                                                 |
 
 <br/><br/>
 
