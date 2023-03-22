@@ -13,8 +13,8 @@ c4: "<li>The geometry can be modded at run time, for example by applying tilts /
 c5: "A typical GEMC usage: detector geometries and materials are loaded from various databases and the world is formed. Particles are swam through materials by Geant4, hits are digitized, and output(s) are created."
 
 p1:  "Geant4 volumes are built using the sci-g python API."
-p2:  "An example geometry: a flux box collects hits from protons impinging on a liquid hydrogen target"
-p3:  "The [above snippet](https://gist.github.com/maureeungaro/8e8616b388d65df0c8168a6b205f0c43) is the only code needed to build the geometry and record all tracks in the vacuumDetector in the output."
+p2:  "An example geometry: a flux scintillator paddle collects hits from protons impinging on a liquid hydrogen target"
+p3:  "The [above snippet](https://gist.github.com/maureeungaro/8e8616b388d65df0c8168a6b205f0c43) is the only code needed to build the geometry and record all tracks hitting the paddle."
 
 v1: "<br/> A detector can be re-used in multiple experiments, often with changes such as a shift of some components, a change of materials, the addition or removal of certain volumes.<br/><br/>"
 v2: "In GEMC this is controlled by a string variable called `variation`. This has the advantages:"

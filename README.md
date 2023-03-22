@@ -1,6 +1,8 @@
 ## Run from 'home' directory:
 
-`bundle exec jekyll serve`
+```
+bundle exec jekyll serve
+```
 
 ### Run Periodically:
 
