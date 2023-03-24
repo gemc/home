@@ -1,4 +1,4 @@
 #!/bin/zsh
 
 
-cd $SCIG; ./scigTemplate.py -swl; cd -
+cd $SCIG; ./solids_map.py; cd -

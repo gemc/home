@@ -11,6 +11,16 @@ bundle exec jekyll serve
 ./scripts/periodic.sh
 ```
 
+### Asciinema recording:
+
+asciinema rec -t title
+
+then login into asciinema.org to get the embed code - add 
+
+`data-autoplay="true" data-loop="true"`
+
+when needed.
+
 ## To install [jekyll](https://jekyllrb.com):
 
 It can be done with ruby. 
