@@ -13,6 +13,13 @@ bundle exec jekyll serve
 
 ### Asciinema recording:
 
+Remember to load the environment in .zshrc cause asciinema starts a new shell. 
+Remember to set the prompt to $:
+
+PROMPT='$ '
+
+Remember to use the same version of module load as it is in the container.
+
 asciinema rec -t title
 
 then login into asciinema.org to get the embed code - add 

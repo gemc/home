@@ -88,7 +88,7 @@ Point the environment variable SIM_HOME to an installation location (for example
   export SIM_HOME=/opt/sim
   mkdir -p $SIM_HOME
   cd $SIM_HOME
-  git clone https://github.com/jeffersonlab/ceInstall
+  git clone https://github.com/jeffersonlab/ceInstall3
   source $SIM_HOME/ceInstall/setup.(c)sh install
   module load gemc3/1.0
 ```
@@ -118,4 +118,4 @@ For more details and system requirements check the [Common Environment Install](
 
 [^1]: on linux permissions problems for /var/run/docker.sock may be solved with  ```sudo chmod 666 /var/run/docker.sock```
 [^2]: recommended: <a href='https://www.realvnc.com/en/connect/download/viewer/'>realvnc vnc viewer</a>
-[^3]: tested on Macos Ventura and Linux Fedora 36
+[^3]: tested on macOS Ventura, Linux Fedora 36

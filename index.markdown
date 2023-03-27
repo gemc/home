@@ -31,10 +31,10 @@ is a program based on [Geant4](https://geant4.web.cern.ch)
 to simulate the passage of particles through matter.
 It provides:<br/>
 
-- Database sources for geometry, materials, calibration constants, digitization
+- MYSQL / Text Databases for geometry, materials, calibration constants, digitization
 - Detector variations
 - Emulation of hardware electronics, time windows
-- Pre-defined digitization such as flux and dosimeter
+- Pre-defined digitizations such as flux and dosimeter
 - Plugins mechanism for generators, fields, digitization, inefficiencies, output
 - Built-in text and [ROOT](https://root.cern) output
 

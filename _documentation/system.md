@@ -32,33 +32,49 @@ For example, to create a 'forward' system:
 scigTemplate.py -s forward
 ```
 
-In the directory `forward`, the following files are created:
-
+In the directory `forward`, the following files appear:
 
 - `README.md`:  a template markdown file   
 - `forward.py`: the main python script that calls geometry and material builders    
-- `geometry.py`: the geometry builder script. It has a box and a tube as example volumes.
-- `materials.py`: the materials builder script. It shows two different ways to define materials.
-- `forward.jcard`: the steering card that loads the detector and defines the event generator. the output and the options.
+- `geometry.py`: the geometry builder; has a box and a tube as example volumes
+- `materials.py`: the materials' builder; shows two different ways to define materials
+- `forward.jcard`: the steering card that loads the detector and defines the event generator, the output and the options
 
-To build the detector, run `forward.py`.  
+To build the detector, execute `forward.py`.  This will create the databases for the geometry and materials. The default 
+database format is `text` and the default variation is `default`, so the files 
+`forward__geometry_default.txt` and `forward__materials_default.txt` will appear.
 
+The steering card has one pi0 / event is generated and two outputs are defined: a root file and a text file. Modify as 
+needed and run gemc:
 
+```
+gemc forward.jcard
+```
 
+These steps have been summarized in the following asciinema recording:
 
-
-<script async id="asciicast-GFIOlrFZFpvc34kzifugdQuUE" src="https://asciinema.org/a/GFIOlrFZFpvc34kzifugdQuUE.js" data-autoplay="true" data-loop="true"></script>
-
+<script async id="asciicast-4nuMuc9ggqPoGk9Ntpz43Xer7" src="https://asciinema.org/a/4nuMuc9ggqPoGk9Ntpz43Xer7.js" data-autoplay="true" data-loop="true"></script>
     
         
-			
-                
+			 
                    
-  ## Variations
-                      
-			
+# Variations
 
-		
+The `scigTemplate` script accepts a `-v` option to create one or more variations of the system.  
+For example, to create a 'forward' system with two variations, `default` and `lead_target`:
+
+```
+scigTemplate.py -s forward -v default lead_target
+```
+
+The directory `forward` looks very similar to the one created above, but now the file forward.py contains two elements 
+in the `VARIATIONS` list: `default` and `lead_target`. This will cause the script to build two versions of the geometry
+and material databases: both files `forward__geometry_default.txt` and `forward__geometry_lead_target.txt` will appear 
+for the geometry and the same for the materials.
+
+
+
+  ## Database factories		
     
 
 
