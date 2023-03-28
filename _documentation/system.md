@@ -51,10 +51,9 @@ needed and run gemc:
 gemc forward.jcard
 ```
 
-These steps have been summarized in the following asciinema recording:
+These steps have been summarized in the following recording:
 
-<script async id="asciicast-4nuMuc9ggqPoGk9Ntpz43Xer7" src="https://asciinema.org/a/4nuMuc9ggqPoGk9Ntpz43Xer7.js" data-autoplay="true" data-loop="true"></script>
-    
+<script async id="asciicast-SpUemseRehIc8QRpoUXlTl7lI" src="https://asciinema.org/a/SpUemseRehIc8QRpoUXlTl7lI.js" data-autoplay="true" data-loop="true"></script>    
         
 			 
                    
