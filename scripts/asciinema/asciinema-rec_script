@@ -12,6 +12,11 @@ set -uo pipefail
 
 REC_ARGS="${RECORD_ARGS:---idle-time-limit 1 --overwrite}"
 
+# if the env variable GEMC does not exist print a warning
+if [[ -z ${GEMC:-} ]]; then
+  echo "WARNING: GEMC is not set.  Use module load gemc3 to set it."
+  exit 1
+fi
 
 # Nb. these can all be overriden from the command line if you don't like the defaults..
 export PROMPT="${PROMPT:-"[32;1m❯[0m "}"
