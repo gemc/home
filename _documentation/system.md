@@ -13,6 +13,7 @@ s6: "<li>shield </li> <li> paddles <ul style='list-style-type: \" ⌙ ︎ \" '> 
 s7: "<li>light guides  <ul style='list-style-type: \" ⌙ ︎ \" '> <li> lg 1   </li> <li> ... </li> </ul> </li> "
 s8: "<li>pmts          <ul style='list-style-type: \" ⌙ ︎ \" '> <li> pmt 1  </li> <li> ... </li> </ul> </li> </ul> </li>"
 s9: "</li></ul>{:/}"
+pi0: "&pi;<sup>0</sup>"
 
 ---
 
@@ -49,7 +50,7 @@ To build the detector, execute `forward.py`.  This will create the databases for
 database format is `text` and the default variation is `default`, so the files 
 `forward__geometry_default.txt` and `forward__materials_default.txt` will appear.
 
-The steering card has one pi0 / event is generated and two outputs are defined: a root file and a text file. Modify as 
+The steering card setups 200 events, each with one {{ page.pi0 }}, with two outputs: a root file and a text file. Modify as 
 needed and run gemc:
 
 ```
@@ -69,7 +70,7 @@ For example, to create a `forward` system with two variations, `default` and `le
 ```
 scigTemplate.py -s forward -v default lead_target
 ```
-This will allow to have two versions of the detector. As an example, the `lead_target` variation could be identical
+This will allow to have two versions of the same `forward` detector. As an example, the `lead_target` variation could be identical
 to the default except for the target material. For more details check the [Variations Example](https://github.com/maureeungaro/sci-g/tree/main/examples/variations).
 
 
