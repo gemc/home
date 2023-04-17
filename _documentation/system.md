@@ -53,7 +53,19 @@ Following the above example, to build the detector, execute `forward.py`.  This 
 database format is `text` and the default variation is `default`, so the files 
 `forward__geometry_default.txt` and `forward__materials_default.txt` will appear.
 
-The steering card setups 200 events, each with one {{ page.pi0 }}, with two outputs: a root file and a text file. Modify as 
+To load the system in gemc, the following entry is added to the steering card:
+
+```json
+"+gsystem": [
+        {
+          "system":   "./forward",
+          "factory": "text",
+          "variation": "default"
+        }
+]
+```
+
+The steering card also setups 200 events, each with one {{ page.pi0 }}, with two outputs: a root file and a text file. Modify as 
 needed and run gemc:
 
 ```
