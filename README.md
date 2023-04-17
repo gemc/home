@@ -13,16 +13,13 @@ bundle exec jekyll serve
 
 ### Asciinema recording:
 
-Remember to load the environment in .zshrc cause asciinema starts a new shell. 
-Remember to set the prompt to $:
+Remember to load the environment .
 
-PROMPT='$ '
+ ./asciinema-rec_script script_name.sh
 
-Remember to use the same version of module load as it is in the container.
+asciinema upload script_name.sh.cast 
 
-asciinema rec -t title
-
-then login into asciinema.org to get the embed code - add 
+then login into asciinema.org to get the embed the player - add 
 
 `data-autoplay="true" data-loop="true"`
 

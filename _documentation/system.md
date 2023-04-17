@@ -20,16 +20,17 @@ pi0: "&pi;<sup>0</sup>"
 # Systems
 
 
-A detector in gemc is composed by one or more *systems*, each a hierarchical collection of geant4 volumes like 
-in the example below.
+A detector in gemc is composed by one or more *systems*, each a hierarchical collection of geant4 volumes. 
+In the example below an example with two systems, Forward Detector and Central Detector, is shown.
 
 
 | Systems Hierarchy Visualisation       | Corresponding Hierarchy List                                                                                                  |
 |---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | [![systems]](../documentation/system) | {{ page.s1 }} {{ page.s2 }} {{ page.s3 }} {{ page.s4 }} {{ page.s5 }} {{ page.s6 }} {{ page.s7 }} {{ page.s8 }} {{ page.s9 }} |
 
+## Create a system
 
-To create a new system, the sci-g template script `scigTemplate.py` can be used. This script creates a new directory 
+To create a new system, use the sci-g template script `scigTemplate.py`. It setups a new directory 
 with the name of the system containing template files with default geometry and materials. 
 
 For example, to create a 'forward' system:
@@ -46,7 +47,9 @@ In the directory `forward`, the following files appear:
 - `materials.py`: the materials' builder; shows two different ways to define materials
 - `forward.jcard`: the steering card that loads the detector and defines the event generator, the output and the options
 
-To build the detector, execute `forward.py`.  This will create the databases for the geometry and materials. The default 
+## Build the system and run gemc
+
+Following the above example, to build the detector, execute `forward.py`.  This will create the databases for the geometry and materials. The default 
 database format is `text` and the default variation is `default`, so the files 
 `forward__geometry_default.txt` and `forward__materials_default.txt` will appear.
 
