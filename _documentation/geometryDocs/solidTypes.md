@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Build Volumes from Solid Types
+title: Native geant4 solid types builders
 description: use python to create volumes based on geant4 solids
 ---
 This document describes how to use python to build the volumes described in the <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Detector/Geometry/geomSolids.html">Geant4 User Guide</a><br/><br/>
