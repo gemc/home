@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Geometry
+title: Geometry Quickstart
 order: 5
-description: Build detectors, create materials, assign sensitivity.
+description: solid type builder and volume constructor
 ---
 
 A system geometry is a collection of volume definitions. 

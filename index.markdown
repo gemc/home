@@ -16,12 +16,12 @@ p1:  "Geant4 volumes are built using the sci-g python API."
 p2:  "An example geometry: a flux scintillator paddle collects hits from protons impinging on a liquid hydrogen target"
 p3:  "The [above snippet](https://gist.github.com/maureeungaro/8e8616b388d65df0c8168a6b205f0c43) is the only code needed to build the geometry and record all tracks hitting the paddle."
 
-v1: "<br/> A detector can be re-used in multiple experiments, often with changes such as a shift of some components, a change of materials, the addition or removal of certain volumes.<br/><br/>"
-v2: "In GEMC this is controlled by a string variable called `variation`. This has the advantages:"
-v3: "{::nomarkdown}<li>Multiple versions of the geometry are organized  using a single string</li>"
-v4: "<li>The desired geometry variation is selected by using the corresponding string</li>{:/}"
-v5: "In the above animation two variations of the CLAS12 Central Detector (clas12CD) are shown. The geometries are identical except for the position of the target. <br/>In the JSON steering card the two variations of clas12CD are loaded by specifying the variation name."
-v6: "JSON lines that select the variations shown: <br/><br/> <font size=\"2\"> { \"system\": \"clas12CD\", \"variation\": \"nominal\" } <br/> <br/> { \"system\": \"clas12CD\", \"variation\": \"targetShift\" }</font>"
+v1: "<br/> A detector can be re-used in multiple experiments, with configuration changes such as shifts components, changes of materials, addition or removal of certain volumes.<br/><br/>"
+v2: "GEMC can manage this with a string variable called `variation`. This has the advantages:<br/><br/>"
+v3: "{::nomarkdown}<li>Multiple versions of a detector are organized  using a single string</li>"
+v4: "<li>Easiness to select the desired configuration</li><br/><br/>{:/}"
+v5: "In the above animation two variations of the CLAS12 Central Detector (*clas12CD*) are shown. The geometries are identical except for the position of the target. <br/>"
+v6: "In the JSON steering card the two variations of clas12CD are loaded by specifying the variation name: <br/><br/> <font size=\"2\"> { \"system\": \"clas12CD\", \"variation\": \"nominal\" } <br/>  { \"system\": \"clas12CD\", \"variation\": \"targetShift\" }</font>"
 
 
 ---
@@ -48,10 +48,10 @@ It provides:<br/>
 
 <br/><br/>
 
-| Python API                   |                                                                                 |
-|------------------------------|---------------------------------------------------------------------------------|
-| ![gemcExamplePic]            | ![gemcCodeExample]                                                              |
-| {{ page.p1 }}  {{ page.p2 }} | *{{ page.p3 }}*                                                                 |
+| Python API                   |                                |
+|------------------------------|--------------------------------|
+| ![gemcExamplePic]            | ![gemcCodeExample]             |
+| {{ page.p1 }}  {{ page.p2 }} | *{{ page.p3 }}*                |
 
 <br/><br/>
 
