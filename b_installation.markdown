@@ -2,7 +2,7 @@
 layout: default
 title: Installation
 gemcv: 3.0beta
-gemc_container_tag: jeffersonlab/gemc3:1.0
+gemc_container_tag: jeffersonlab/gemc3:1.1-fedora36
 
 tables:
   gemcInstallationTypes:
