@@ -6,11 +6,12 @@
 layout: default
 
 
-c1:  "{::nomarkdown}<br/> GEMC databases (txt, mysql) to store simulation parameters like geometry, materials, etc. No quantity is hard-coded: systems can be created w/o re-compiling the code."
-c2: " In addition:<br/><br/><li>Complex geometries can be built and uploaded to the databases without programming knowledge thanks to an intuitive python API</li>"
-c3: "<li>Models can be imported from CAD and/or GDML and mixed with the pyton API's.</li>"
-c4: "<li>The geometry can be modded at run time, for example by applying tilts / displacements</li><br/>{:/}"
-c5: "A typical GEMC usage: detector geometries and materials are loaded from various databases and the world is formed. Particles are swam through materials by Geant4, hits are digitized, and output(s) are created."
+description:  "{::nomarkdown} GEMC use databases (ASCII, SQLITE, MYSQL) to create Geant4 simulation objects such as geometry, materials, etc. 
+Since no quantity is hard-coded, systems can be created or modified w/o re-compiling the code.
+In addition:<br/><br/>
+<li>The geometry/materials API is in python </li>
+<li>Models can be imported from CAD and/or GDML and mixed with native Geant4 volumes</li>
+<li>The geometry can be modded at run time, for example by applying tilts / displacements</li><br/>{:/}"
 
 p1:  "Geant4 volumes are built using the sci-g python API."
 p2:  "An example geometry: a flux scintillator paddle collects hits from protons impinging on a liquid hydrogen target"
@@ -26,25 +27,24 @@ v6: "In the JSON steering card the two variations of clas12CD are loaded by spec
 
 ---
 
-**GEMC** (**GE**ant **M**onte-**C**arlo)
-is a program based on [Geant4](https://geant4.web.cern.ch) 
+**GEMC** (**GE**ant **M**onte-**C**arlo) is a program based on [Geant4](https://geant4.web.cern.ch) 
 to simulate the passage of particles through matter.
 It provides:<br/>
 
-- MYSQL / Text Databases for geometry, materials, calibration constants, digitization
-- Detector variations
-- Emulation of hardware electronics, time windows
-- Pre-defined digitizations such as flux and dosimeter
+- MYSQL / ASCII Databases for geometry, materials, calibration constants, digitization
+- Geometry variations
+- Emulation of hardware electronics
+- Pre-packaged signal digitization such as flux and dosimeter
 - Plugins mechanism for generators, fields, digitization, inefficiencies, output
-- Built-in text and [ROOT](https://root.cern) output
+- Built-in ASCII and [ROOT](https://root.cern) output
 
 <br/>
 
-| Database sources: code-independent experiment description |             
-|-----------------------------------------------------------|
-| {{ page.c1 }} {{ page.c2 }} {{ page.c3 }} {{ page.c4 }}   |
-| ![gemcArch]                                               |
-| *{{ page.c5 }}*                                           |
+| Database sources: code-independent simulations |             
+|------------------------------------------------|
+| {{ page.description }}                         |
+| ![gemcArch]                                    |
+| *{{ page.c5 }}*                                |
 
 <br/><br/>
 
