@@ -5,7 +5,6 @@
 
 layout: default
 
-
 description:  "{::nomarkdown} GEMC use databases (ASCII, SQLITE, MYSQL) to create Geant4 simulation objects such as geometry, materials, etc. 
 Since no quantity is hard-coded, systems can be created or modified w/o re-compiling the code.
 In addition:<br/><br/>
@@ -31,11 +30,11 @@ v6: "In the JSON steering card the two variations of clas12CD are loaded by spec
 to simulate the passage of particles through matter.
 It provides:<br/>
 
-- MYSQL / ASCII Databases for geometry, materials, calibration constants, digitization
+- SQL / ASCII Databases for detector parameters like geometry and materials
 - Geometry variations
 - Emulation of hardware electronics
 - Pre-packaged signal digitization such as flux and dosimeter
-- Plugins mechanism for generators, fields, digitization, inefficiencies, output
+- Custom users plugins mechanism for simulation aspects like generators and igitization
 - Built-in ASCII and [ROOT](https://root.cern) output
 
 <br/>

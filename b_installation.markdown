@@ -82,21 +82,18 @@ docker run -it --rm  -v ~/mywork:/mywork  -p 8080:8080  {{ page.gemc_container_t
 
 <br/>
 
-Point the environment variable SIM_HOME to an installation location (for example: `/opt/sim`)
+Download the common environment and installation repo 
+[ceInstall](https://github.com/jeffersonlab/ceInstall) 
+to an installation location (for example: `/opt/sim`)
 
 ```
-  export SIM_HOME=/opt/sim
-  mkdir -p $SIM_HOME
-  cd $SIM_HOME
   git clone https://github.com/jeffersonlab/ceInstall
-  source $SIM_HOME/ceInstall/setup.(c)sh install
-  module load gemc3/1.0
+  module use ceInstall/modules
+  module load sim_system
 ```
 
-To install gemc3:
-
 ```
-install_gemc3 1.0
+install_gemc 3.0
 ```
 
 This will install gemc and the  [sci-g](https://github.com/gemc/sci-g)  python api.

@@ -3,7 +3,6 @@ layout: default
 title: Gemc options
 order: 50
 description: How to use the command line and / or jcards to setup a gemc session
-
 ---
 
 

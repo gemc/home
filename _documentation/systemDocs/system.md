@@ -30,13 +30,13 @@ In the example below an example with two systems, Forward Detector and Central D
 
 ## Create a system
 
-To create a new system, use the sci-g template script `scigTemplate.py`. It setups a new directory 
+To create a new system, use the script `templates.py`. It setups a new directory 
 with the name of the system containing template files with default geometry and materials. 
 
-For example, to create a 'forward' system:
+For example, to create a `forward` system:
 
 ``` 
-scigTemplate.py -s forward
+templates.py -s forward
 ```
 
 In the directory `forward`, the following files appear:
@@ -47,7 +47,7 @@ In the directory `forward`, the following files appear:
 - `materials.py`: the materials' builder; shows two different ways to define materials
 - `forward.jcard`: the steering card that loads the detector and defines the event generator, the output and the options
 
-## Build the system and run gemc
+## Create the system geometry and run gemc
 
 Following the above example, to build the detector, execute `forward.py`.  This will create the databases for the geometry and materials. The default 
 database format is `text` and the default variation is `default`, so the files 
@@ -79,11 +79,11 @@ These steps have been summarized in the following recording:
                    
 # Variations
 
-The `scigTemplate` script accepts a `-v` option to create one or more variations of a system.  
+The `templates` script accepts a `-v` option to create one or more variations of a system.  
 For example, to create a `forward` system with two variations, `default` and `lead_target`:
 
 ```
-scigTemplate.py -s forward -v default lead_target
+templates.py -s forward -v default lead_target
 ```
 This will allow to have two versions of the same `forward` detector. As an example, the `lead_target` variation could be identical
 to the default except for the target material. For more details check the [Variations Example](https://github.com/maureeungaro/sci-g/tree/main/examples/variations).

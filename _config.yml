@@ -23,7 +23,7 @@ title: Home
 author: Maurizio Ungaro
 email: ungaro@jlab.org
 description: >- # this means to ignore newlines until "baseurl:"
-  Maurizio Ungaro is a researcher at Jefferson Lab
+  GEMC
 
 baseurl: /home                        # the subpath of your site, e.g. /blog - this is important cause of the file feed.xml
 domain: maureeungaro.github.io        # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
