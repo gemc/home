@@ -5,35 +5,46 @@
 
 layout: default
 
-description:  "{::nomarkdown} GEMC utilizes databases (ASCII, SQLite, MySQL) to dynamically create Geant4 
+description:  "{::nomarkdown} GEMC utilizes ASCII, SQLite, MySQL, GDML, CAD databases to dynamically create Geant4 
 simulation objects, including geometry, materials, and more. 
-Systems can be created or modified without requiring code recompilation. 
-Additionally, geometry can be imported from CAD or GDML files and seamlessly integrated with 
-native Geant4 volumes.<br/><br/>
+<br/><br/>
+Systems can be created without requiring code recompilation and without C++ or Geant4 knowledge,
+<br/><br/>
 <div style=\"text-align: center;\">
     <img src=\"assets/images/gemcArchitecture.png\" style=\"width: 80%;\" />
 </div>
 {:/}"
-arc_caption: "Typical usage: detector geometries and materials are loaded from various databases sources.
-Particles are transported through materials by Geant4, hits are collected and digitized, and output(s) are created.
-Notice that GEMC users do not have to code the Geant4 simulation, but only the detector geometry and materials."
+
+arc_caption: "Typical gemc usage: detectors are loaded from various databases sources.
+Particles are transported through materials by Geant4, hits are collected and digitized, and output(s) are created."
 
 api:  "Geant4 volumes are built using the python API.
 An example geometry: a flux scintillator paddle collects hits from protons impinging on a liquid hydrogen target"
-api_caption:  "The [above snippet](https://gist.github.com/maureeungaro/8e8616b388d65df0c8168a6b205f0c43) is the only code needed to build the geometry and record all tracks hitting the paddle."
+api_caption:  "The [above snippet](https://gist.github.com/maureeungaro/8e8616b388d65df0c8168a6b205f0c43) is 
+the only code needed to build the geometry and record all tracks hitting the paddle."
 
-v1: "<br/> A detector can be re-used in multiple experiments, with configuration changes such as shifts components, changes of materials, addition or removal of certain volumes.<br/><br/>"
-v2: "GEMC can manage this with a string variable called `variation`. This has the advantages:<br/><br/>"
-v3: "{::nomarkdown}<li>Multiple versions of a detector are organized  using a single string</li>"
-v4: "<li>Easiness to select the desired configuration</li><br/><br/>{:/}"
-v5: "In the above animation two variations of the CLAS12 Central Detector (*clas12CD*) are shown. The geometries are identical except for the position of the target. <br/>"
-v6: "In the JSON steering card the two variations of clas12CD are loaded by specifying the variation name: <br/><br/> <font size=\"2\"> { \"system\": \"clas12CD\", \"variation\": \"nominal\" } <br/>  { \"system\": \"clas12CD\", \"variation\": \"targetShift\" }</font>"
+variations: "<br/><br/><br/> A detector can be re-used in multiple experiments, 
+with configuration changes such as components shifts, changes of materials, addition or removal of certain volumes.<br/><br/>
+GEMC can manage these changes by using `variations`. This has the advantages:<br/>
+{::nomarkdown}<li>Seamless organization of multiple versions of a detector</li>
+<li>Easiness to select the desired configuration</li><br/>
+In the YAML steering card the two variations of clas12CD are loaded by specifying the variation name: <br/><br/> 
+<font size=\"4\"> { \"system\": \"clas12CD\", \"variation\": \"nominal\" } <br/>  { \"system\": \"clas12CD\", \"variation\": \"targetShift\" }</font>
+{:/}"
 
+var_caption: "In the above animation two variations of the CLAS12 Central Detector (*clas12CD*) are shown. 
+The geometries are identical except for the position of the target. <br/>"
 
 ---
 
-**GEMC** (**GE**ant **M**onte-**C**arlo) is a simulation program built on [Geant4](https://geant4.web.cern.ch)
- designed to leverage databases for modeling the passage of particles through matter. Key features include:<br/>
+![gemcLogo]
+
+<br/>
+<br/>
+
+**GEMC** (**GE**ant **M**onte-**C**arlo) leverages databases to create
+[Geant4](https://geant4.web.cern.ch) systems to simulate 
+the passage of particles through matter. Key features include:<br/>
 
 - Python API
 - Support for geometry variations to adapt to different simulation setups
@@ -44,10 +55,10 @@ v6: "In the JSON steering card the two variations of clas12CD are loaded by spec
 
 <br/>
 
-| Database sources: no-code simulations |             
-|---------------------------------------|
-| {{ page.description }}                |
-| *{{ page.arc_caption }}*              |
+| Database and simulations |             
+|--------------------------|
+| {{ page.description }}   |
+| *{{ page.arc_caption }}* |
 
 <br/><br/>
 
@@ -58,10 +69,10 @@ v6: "In the JSON steering card the two variations of clas12CD are loaded by spec
 
 <br/><br/>
 
-| Detector Variations |                                                         |
-|---------------------|---------------------------------------------------------|
-| ![clas12v]          | {{ page.v1 }} {{ page.v2 }} {{ page.v3 }} {{ page.v4 }} |
-| {{ page.v5 }}       | {{ page.v6 }}                                           |
+| Detector Variations      |                       |
+|--------------------------|-----------------------|
+| ![clas12v]               | {{ page.variations }} |
+| *{{ page.var_caption }}* | {{ page.v6 }}         |
 
 <br/><br/>
 
@@ -73,3 +84,4 @@ v6: "In the JSON steering card the two variations of clas12CD are loaded by spec
 
 [clas12v]: assets/images/clas12v.gif
 
+[gemcLogo]: assets/images/gemcLogo.png
