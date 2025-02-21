@@ -5,9 +5,9 @@
 
 layout: default
 
-description:  "{::nomarkdown} GEMC utilizes ASCII, SQLite, MySQL, GDML, CAD databases to dynamically create Geant4 
-simulation objects, including geometry, materials, and more. 
-<br/><br/>
+description:  "{::nomarkdown} GEMC utilizes databases to dynamically create Geant4 
+simulation objects. 
+<br/>
 Systems can be created without requiring code recompilation and without C++ or Geant4 knowledge,
 <br/><br/>
 <div style=\"text-align: center;\">
@@ -40,16 +40,17 @@ The geometries are identical except for the position of the target. <br/>"
 ![gemcLogo]
 
 <br/>
-<br/>
 
-**GEMC** (**GE**ant **M**onte-**C**arlo) leverages databases to create
-[Geant4](https://geant4.web.cern.ch) systems to simulate 
-the passage of particles through matter. Key features include:<br/>
+**GEMC** (**GE**ant **M**onte-**C**arlo) leverages databases to simulate,
+using [Geant4](https://geant4.web.cern.ch), detector responses, including geometry, materials, optical elements, 
+digitization, and measurements like particle fluxes and doses.
+Key features include:<br/>
 
+- ASCII, SQLite, GDML, CAD databases
 - Python API
-- Support for geometry variations to adapt to different simulation setups
-- Pre-packaged signal digitization tools, such as flux and dosimeter simulations
-- Plugins mechanism to extend functionality, including custom user generators and digitization
+- Support for geometry variations and run numbers to adapt to different simulation setups
+- Signal digitization tools, such as flux and dosimeter
+- Plugin mechanisms to extend functionality, including custom event generators and digitization
 - Emulation of hardware electronics
 - Built-in ASCII and [ROOT](https://root.cern) output formats
 
@@ -69,7 +70,7 @@ the passage of particles through matter. Key features include:<br/>
 
 <br/><br/>
 
-| Detector Variations      |                       |
+| Geometry Variations      |                       |
 |--------------------------|-----------------------|
 | ![clas12v]               | {{ page.variations }} |
 | *{{ page.var_caption }}* | {{ page.v6 }}         |

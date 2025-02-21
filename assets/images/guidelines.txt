@@ -1,0 +1,9 @@
+# Image guidelines
+
+
+- Images in grid: adjust sizes to 600x600
+
+```
+open databases.png examples/scintillator_array/geometry.png materials.png digitization.png \
+       generator.png em_fields.png physics.png mirrors.png options.png faq.png exit_codes.png 
+```

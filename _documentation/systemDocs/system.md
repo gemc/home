@@ -1,7 +1,7 @@
 ---
 layout: default
 title: System
-order: 1
+order: 3
 description: How to create a system, a hierarchical collection of volumes.
 
 s1: "{::nomarkdown}<img width=420/> <ul style='list-style-type: square'>"
