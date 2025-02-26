@@ -1,0 +1,33 @@
+<style>
+.tabs { display: flex; border-bottom: 2px solid #ddd; }
+.tab { padding: 10px 15px; cursor: pointer; border: 1px solid #ddd; border-bottom: none; background: #f9f9f9; margin-right: 5px; }
+.tab:hover { background: #e9e9e9; }
+.tab-content { display: none; padding: 15px; border: 1px solid #ddd; background: white; }
+.tab-content.active { display: block; }
+.active-tab { background: white; border-bottom: 2px solid white; }
+</style>
+
+<!-- Tabs Navigation -->
+<div class="tabs">
+  <div class="tab active-tab" onclick="showTab(0)">{{ include.tab1_title }}</div>
+  <div class="tab" onclick="showTab(1)">{{ include.tab2_title }}</div>
+</div>
+
+<!-- Tabs Content -->
+<div class="tab-content active">
+  {{ include.tab1_content | markdownify }}
+</div>
+<div class="tab-content">
+  {{ include.tab2_content | markdownify }}
+</div>
+
+<script>
+function showTab(index) {
+  let tabs = document.querySelectorAll('.tab');
+  let contents = document.querySelectorAll('.tab-content');
+  tabs.forEach(t => t.classList.remove('active-tab'));
+  contents.forEach(c => c.classList.remove('active'));
+  tabs[index].classList.add('active-tab');
+  contents[index].classList.add('active');
+}
+</script>

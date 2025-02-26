@@ -4,9 +4,45 @@
 bundle exec jekyll serve
 ```
 
+### Other possible useful commands:
+
+See for [example](https://github.com/mmistakes/minimal-mistakes)
+
+```
+bundle exec jekyll clean 
+bundle update jekyll
+bundle install
+sudo gem install jekyll bundler
+bundle update --bundler > Upgrade Bundler & Reinstall Gems
+```
+
+# Tabs in markdown.
+
+- the plugin read_file is installed in _plugins
+- the file tabs.html is in _includes
+
+This will produce tabs, however not if gh-pages is used.
+
+```
+{% capture tab1 %}
+  {{ "_documentation/databases/fields.md" | read_file }}
+{% endcapture %}
+
+{% capture tab2 %}
+  {{ "_documentation/databases/fields.md" | read_file }}
+{% endcapture %}
+
+{% include tabs.html 
+   tab1_title="Tab 1" tab1_content=tab1
+   tab2_title="Tab 2" tab2_content=tab2
+%}
+
+```
+
 ### Run Periodically:
 
 (put all these in a single script please)
+
 ```
 ./scripts/periodic.sh
 ```
@@ -15,11 +51,11 @@ bundle exec jekyll serve
 
 Remember to load the environment .
 
- ./asciinema-rec_script script_name.sh
+./asciinema-rec_script script_name.sh
 
-asciinema upload script_name.sh.cast 
+asciinema upload script_name.sh.cast
 
-then login into asciinema.org to get the embed the player - add 
+then login into asciinema.org to get the embed the player - add
 
 `data-autoplay="true" data-loop="true"`
 
@@ -27,9 +63,9 @@ when needed.
 
 ## To install [jekyll](https://jekyllrb.com):
 
-It can be done with ruby. 
+It can be done with ruby.
 The ruby-install ruby can be skipped, can use brew to overwrite the old system version,
-for example 
+for example
 
 ```
 brew install ruby@3.0
@@ -38,13 +74,11 @@ if [ -d $brewDir ]; then
 	export PATH=$brewDir/opt/ruby@3.0/bin:$PATH
 fi
 ```
- 
- 
+
 ```
 brew install chruby ruby-install  
 (sudo) gem install jekyll
 ```
-
 
 ---
 
@@ -75,7 +109,7 @@ At the editing the Gemfile step, add
 
 gem "github-pages", "~> 227", group: :jekyll_plugins
 
-check the [dependency versions](https://pages.github.com/versions/) 
+check the [dependency versions](https://pages.github.com/versions/)
 
 May need to add [webrick](https://github.com/github/pages-gem/issues/752)
 

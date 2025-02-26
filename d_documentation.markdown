@@ -2,7 +2,7 @@
 layout: default
 title: Documentation
 permalink: /Documentation/
-db: ../documentation/systemDocs/databases
+db: ../documentation/databases/databases
 sys: ../documentation/systemDocs/system
 geoQS: ../documentation/geometryDocs/geoQuickstart
 ng4: ../documentation/geometryDocs/native_geometry

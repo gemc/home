@@ -32,10 +32,14 @@ url: "https://maureeungaro.github.io" # the base hostname & protocol for your si
 twitter_username: maurizio_ungaro
 github_username:  maureeungaro
 
-
 # Build settings
 markdown: kramdown
 theme: minima
+#theme: minimal-mistakes-jekyll
+
+# Plugins are also loaded from _plugins
+# However, on gh pages they are disabled
+# (gem "github-pages", group: :jekyll_plugins) entry in Gemfile
 plugins:
   - jekyll-feed
 

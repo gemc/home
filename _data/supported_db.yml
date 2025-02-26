@@ -1,0 +1,9 @@
+- name:  ASCII
+  description:  ASCII Files are used to store GEMC simulation parameters.
+  detail: Search paths include the launch dir and the $GEMC_DATA_DIR directory.
+  default: yes
+
+- name:  SQLITE
+  description:  'An SQLite database is used to store GEMC simulation parameters'
+  detail: 'The file.sqlite path is specified in the API and at run time. '
+  default: yes
