@@ -24,9 +24,9 @@ A detector in gemc is composed by one or more *systems*, each a hierarchical col
 In the example below an example with two systems, Forward Detector and Central Detector, is shown.
 
 
-| Systems Hierarchy Visualisation       | Corresponding Hierarchy List                                                                                                  |
-|---------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
-| [![systems]](../documentation/system) | {{ page.s1 }} {{ page.s2 }} {{ page.s3 }} {{ page.s4 }} {{ page.s5 }} {{ page.s6 }} {{ page.s7 }} {{ page.s8 }} {{ page.s9 }} |
+| Systems Hierarchy Visualisation    | Corresponding Hierarchy List                                                                                                  |
+|------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| [![systems]](../systemDocs/system) | {{ page.s1 }} {{ page.s2 }} {{ page.s3 }} {{ page.s4 }} {{ page.s5 }} {{ page.s6 }} {{ page.s7 }} {{ page.s8 }} {{ page.s9 }} |
 
 ## Create a system
 

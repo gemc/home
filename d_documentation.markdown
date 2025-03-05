@@ -13,7 +13,7 @@ evg: ../documentation/generatorDocs/generators
 emf: ../documentation/fieldDocs/fields
 phy: ../documentation/physicsDocs/physics
 mir: ../documentation/geometryDocs/mirrors
-time: ../documentation/digitizationDocs/timeWindow
+time: ../documentation/digitizationDocs/time_window
 opt: ../documentation/options
 faq: ../documentation/faq
 err: ../documentation/errorCodes

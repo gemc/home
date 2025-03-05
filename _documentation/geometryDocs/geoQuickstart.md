@@ -32,7 +32,7 @@ Let's go over each line. The lines commented out with `#` set the default values
 
 
 2. volume constructor. The argument is the name of the volume
-3. [solid type builder](geometryDocs/solidTypes) . The arguments are its dimensions
+3. [solid type builder](solidTypes) . The arguments are its dimensions
 4. volume's material name
 5. the name of the volume that contains this volume
 6. volume's description
@@ -57,7 +57,7 @@ using the template script:
 <script async id="asciicast-sgKptHkpOxagaaQPkBsE7jkwB" src="https://asciinema.org/a/sgKptHkpOxagaaQPkBsE7jkwB.js" data-autoplay="true" data-loop="true"></script>
 
 
-For more information on how to build native Geant4 volumes, see the [native geometry documentation](geometryDocs/native_geometry).
+For more information on how to build native Geant4 volumes, see the [native geometry documentation](native_geometry).
 
 <br/>
 

@@ -4,6 +4,13 @@
 bundle exec jekyll serve
 ```
 
+
+#### Link checker:
+
+https://www.deadlinkchecker.com/
+
+
+
 ### Other possible useful commands:
 
 See for [example](https://github.com/mmistakes/minimal-mistakes)
@@ -47,7 +54,15 @@ This will produce tabs, however not if gh-pages is used.
 ./scripts/periodic.sh
 ```
 
-### Asciinema recording:
+## Asciinema
+
+asciinema rec demo.cast
+
+Generating a GIF
+
+
+
+### Scripting and embedding
 
 Remember to load the environment .
 
