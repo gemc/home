@@ -5,7 +5,7 @@ source "https://rubygems.org"
 #
 #     bundle exec jekyll serve
 #
-# gem "jekyll", "~> 4.4.1"
+# gem "jekyll", "~> 3.10.0"
 
 # minima seems too old
 #gem "minimal-mistakes-jekyll"
