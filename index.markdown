@@ -90,6 +90,7 @@ Continuous Integration (CI) is used to test the code and ensure that the simulat
 [![Doxygen](https://github.com/gemc/src/actions/workflows/doxygen.yaml/badge.svg)](https://github.com/gemc/src/actions/workflows/doxygen.yaml)
 [![Sanitize](https://github.com/gemc/src/actions/workflows/sanitize.yaml/badge.svg)](https://github.com/gemc/src/actions/workflows/sanitize.yaml)
 [![Nightly Dev Release](https://github.com/gemc/src/actions/workflows/dev_release.yml/badge.svg)](https://github.com/gemc/src/actions/workflows/dev_release.yml)
+[![GEMC Homepage Deployment](https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg)](https://github.com/gemc/home/actions/workflows/jekyll.yml)
 
 
 [gemcCodeExample]: assets/images/pythonAPI.png
