@@ -41,6 +41,13 @@ The geometries are identical except for the position of the target. <br/>"
 
 <br/>
 
+This site refers to the **GEMC** project latest development (**version 3 and above**). 
+
+For **CLAS12 simulations** please visit [this page](https://github.com/gemc/clas12Tags). 
+For GEMC **version 2** please visit [this page](https://gemc.jlab.org/gemc/html/index.html).
+
+---
+
 **GEMC** (**GE**ant **M**onte-**C**arlo) leverages databases to simulate,
 using [Geant4](https://geant4.web.cern.ch), detector responses, including geometry, materials, optical elements, 
 digitization, and measurements like particle fluxes and doses.
