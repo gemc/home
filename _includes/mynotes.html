@@ -1,0 +1,43 @@
+<style>
+    .alternate {
+        width: 100%; /* Ensures the table takes full width */
+        table-layout: fixed; /* Forces equal column widths */
+        border-collapse: collapse; /* Ensures clean cell borders */
+    }
+
+    .alternate td {
+        text-align: center; /* Centers text */
+        border: 1px solid #ccc; /* Optional: Adds border for clarity */
+        padding: 8px; /* Adds spacing inside cells */
+        width: 120px; /* Each column takes up 1/12 of the table width */
+    }
+</style>
+
+{% assign grouped_notes = site.data.mynotes | group_by: "category" %}
+
+{% for group in grouped_notes %}
+  <p><strong>{{ group.name }}</strong></p>
+
+  <table class="alternate">
+    <colgroup>
+      {% for i in (1..12) %}
+        <col>
+      {% endfor %}
+    </colgroup>
+
+    {% for note in group.items %}
+      {% assign mod_result = forloop.index0 | modulo: 12 %}
+      {% if mod_result == 0 %}
+        <tr>
+      {% endif %}
+
+      <td><a href="{{ note.link }}">{{ note.title }}</a></td>
+
+      {% if mod_result == 11 or forloop.last %}
+        </tr>
+      {% endif %}
+    {% endfor %}
+  </table>
+{% endfor %}
+
+<script defer src="{{ '/assets//copyCode.js?v=1' | relative_url }}"></script>

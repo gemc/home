@@ -18,6 +18,7 @@ gem "github-pages", group: :jekyll_plugins
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed"
+  gem "jekyll-gfm-admonitions", "~> 1.0"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -31,8 +32,10 @@ end
 gem "wdm", :platforms => [:mingw, :x64_mingw, :mswin]
 
 # kramdown v2 ships without the gfm parser by default.
-# gem "kramdown-parser-gfm"
+gem "kramdown-parser-gfm"
 
-# Lock `http_parser.rb` gem to `v0.6.x` on JRuby builds since newer versions of the gem
-# do not have a Java counterpart.
-gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
+# Lock to the last JRuby-compatible line (Java impl was dropped after 0.6.x)
+# gem "http_parser.rb", "~> 0.6", platforms: :jruby
+
+# (Optional) Let MRI/TruffleRuby use newer versions
+gem "http_parser.rb", ">= 0.8", platforms: [:ruby, :truffleruby]

@@ -1,48 +1,12 @@
 ---
 layout: default
 title: Installation
-gemcv: 3.0beta
-gemc_container_tag: jeffersonlab/gemc3:1.1-fedora36
+gemc_latest_docker_tag: jeffersonlab/gemc3:1.1-fedora36
 
-tables:
-  gemcInstallationTypes:
-    headers: [Type, OS, Requirements, GUI]
-    rows:
-      - [
-      "Docker",
-      "Linux, Mac",
-      "<a href=\"https://www.docker.com\">docker</a><br/>",
-      "web browser"
-      ]
-      - [
-      "Compilation",
-      "Linux Fedora, MacOS Ventura (intel chips)",
-      "<a href=\"https://github.com/JeffersonLab/ceInstall\">Common Environment Setup</a><br/>",
-      "native OS"
-      ]
 ---
 
+{% include mynotes.html %}
 
-<br/>
-<table border="1" width="70%" class="table-info">
-	<tr>
-		{% for header in page.tables.gemcInstallationTypes.headers %}	
-		<th>{{ header }}</th>
-		{% endfor %}
-	</tr>
-	{% for row in page.tables.gemcInstallationTypes.rows %}
-		<tr>
-			{% for item in row %}
-				<td> {{ item }} </td>
-			{% endfor %}
-		</tr>
-	{% endfor %}
-</table>
-
-<!--# DMG <a href="https://www.jlab.org/12gev_phys/packages/dmg/gemc-{{ page.gemcv }}.dmg"> <span data-feather="download"></span> </a> -->
-<!--After installation use the line below to load the environment. -->
-<!-- source /Applications/gemc-{{ page.gemcv }}.app/environment.sh-->
-<!---->
 
 # Docker 
 

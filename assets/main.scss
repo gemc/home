@@ -1,11 +1,10 @@
 ---
 ---
 
-
-@import "{{ site.theme }}" ;
+@import "{{ site.theme }}";
 
 .wrapper {
-  min-width: 70%;
+  min-width: 80%;
 }
 
 body {
@@ -13,17 +12,16 @@ body {
   font-size: 1.2rem;
   text-rendering: optimizeLegibility;
   //min-width: 800px;
-  margin:0px;
-  width:100vw;
-  height:100vh;
-  overflow:auto;
+  margin: 10px;
+  width: 90vw;
+  height: 100vh;
+  overflow: auto;
 }
 
 
 table th {
   background-color: #fdfdfd;
   border: 1px solid #fdfdfd;
-  border-bottom-color: #fdfdfd;
 }
 
 table td {
@@ -113,10 +111,10 @@ a.page-link:hover {
 }
 
 
-img:hover {
-  background-color: #ececec;
-  outline: 1px solid #41a4ea;
-}
+//img:hover {
+//  background-color: #ececec;
+//  outline: 1px solid #41a4ea;
+//}
 
 button:focus {
   color: #00419b;
@@ -132,4 +130,88 @@ input[type="file"] {
 input[type="file"]:hover {
   color: #00419b;
   border: 1px solid #00419b;
+}
+
+/* ─────────────────────────────────────────────────────────
+   ChatGPT‑like code‑block styling + copy button for Jekyll
+   (Rouge wraps code in <div class="highlight"><pre class="highlight"><code>…)
+   ───────────────────────────────────────────────────────── */
+
+/* one rule that matches *either* markup style */
+div.highlight,
+pre.highlight {
+  position: relative;
+  margin: 1.25rem 0;
+  padding: 1rem 3.5rem 1rem 1rem;
+  background: #f7f7f8 !important; /* ← NEW bg; !important beats theme */
+  border: 1px solid #e6e6e9;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas,
+  "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: #24292e;        /* GitHub‑like neutral code text */
+}
+
+/* make sure the *inner* pre doesn’t repaint over the container */
+div.highlight > pre,
+div.highlight pre,
+pre.highlight {
+  background: transparent !important;   /* clobbers Minima’s token bgs */
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.highlight *, .highlight pre * {
+  background: transparent !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  div.highlight,
+  pre.highlight {
+    background: #2f2f34;
+    border-color: #3e3e44;
+    color: #e6e6e7;      /* light‑on‑dark base text */
+  }
+}
+
+/* ── Copy button for the codeblocks ───────────────────────────────────────── */
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+
+  padding: 0.25rem 0.55rem;
+  font-size: 0.85rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+
+  background: transparent !important;   /* clobbers Minima’s token bgs */
+}
+
+.copy-btn:hover,
+.copy-btn:focus-visible {
+  background: #e6e6e9;
+  border-color: #d1d1d6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .copy-btn {
+	background: rgba(46, 46, 50, 0.7);
+	color: #f0f0f0;
+  }
+  .copy-btn:hover,
+  .copy-btn:focus-visible {
+	background: #3b3b40;
+	border-color: #55555b;
+  }
 }

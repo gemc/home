@@ -25,37 +25,41 @@ email: ungaro@jlab.org
 description: >- # this means to ignore newlines until "baseurl:"
   GEMC
 
-baseurl: /home                        # the subpath of your site, e.g. /blog - this is important cause of the file feed.xml
-domain: maureeungaro.github.io        # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
-url: "https://maureeungaro.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: /home                  # the subpath of your site, e.g. /blog - this is important cause of the file feed.xml
+domain: gemc.github.io          # if you want to force HTTPS, specify the domain without the http at the start, e.g. example.com
+url: "https://gemc.github.io"   # the base hostname & protocol for your site, e.g. http://example.com
 
 twitter_username: maurizio_ungaro
-github_username:  maureeungaro
+github_username: maureeungaro
 
 # Build settings
+# _config.yml
 markdown: kramdown
-theme: minima
-#theme: minimal-mistakes-jekyll
+kramdown:
+  input: GFM                     # optional, GitHub-Flavored Markdown
+  syntax_highlighter: rouge
 
-# Plugins are also loaded from _plugins
-# However, on gh pages they are disabled
-# (gem "github-pages", group: :jekyll_plugins) entry in Gemfile
+theme: minima
 plugins:
   - jekyll-feed
 
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Create a custom list to override the default setting.
+# The vendor directory is added to allow github pages build.
 exclude:
-   - .jekyll-cache/
-   - .idea/
-   - Gemfile
-   - Gemfile.lock
-   - README.md
-   - todo
-   - scripts
-   - node_modules
-   - vendor/bundle/
-   - vendor/cache/
-   - vendor/gems/
-   - vendor/ruby/
+  - .jekyll-cache/
+  - .idea/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - todo
+  - scripts
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
 
 # this adds content to the website from the local dirs starting with _
 collections:
@@ -68,7 +72,6 @@ collections:
 
 
 # shortcuts to symbols, accessible with {{ site.symbol_name }}
-
 
 pi: "&pi;"
 pi0: "&pi;<sup>0</sup>"
