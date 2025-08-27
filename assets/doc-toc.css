@@ -1,67 +1,108 @@
-.doc {
-	display: grid;
-	grid-template-columns:280px 1fr;
-	gap: 1.25rem
+/* ===================== TOC knobs (tweak freely) ===================== */
+:root{
+  --toc-width: 170px;            /* TOC sidebar width */
+  --toc-font-size: 0.95rem;      /* TOC text size */
+  --toc-toggle-col: 0.9rem;      /* caret/bullet column width */
+  --toc-gap: 0.25rem;            /* space between caret and text */
+  --toc-indent-h3: 0.6rem;       /* extra indent for H3 lists */
+  --toc-indent-h4: 1.1rem;       /* extra indent for H4 lists */
+
+  --toc-sublist-gap: 0.35rem;      /* space between a topic and its subtopic list (top) */
+  --toc-after-sublist-gap: 0.9rem; /* space after the subtopic list before next topic */
+
+  --toc-selected-bg: rgba(100,0,100,.06); /* background for LAST clicked topic (covers subtopics) */
+  --toc-toggle-y: -3px;               /* caret vertical tweak (+down / -up) */
+  --toc-left-shift: -6rem;            /* shift entire TOC left (e.g., -0.25rem) */
+  --toc-row-radius: 6px;              /* rounding for selected topic group */
 }
 
-.doc__toc {
-	position: sticky;
-	top: 1.25rem;
-	height: calc(100vh - 2.5rem);
-	overflow: auto;
-	padding-right: .75rem;
-	border-right: 1px solid #eaecef
+/* ===================== Layout: left TOC, right content ===================== */
+.doc{
+  display:grid;
+  grid-template-columns: var(--toc-width) 1fr;
+  gap:1.25rem;
+}
+.doc__toc{
+  position:sticky; top:1.25rem;
+  height:calc(100vh - 2.5rem);
+  overflow:auto;
+  padding-right:.75rem;
+  border-right:1px solid #eaecef;
+  margin-left: var(--toc-left-shift); /* shift whole TOC left/right */
+
+  /* --- Keep sidebar from “helpfully” jumping (esp. Safari) --- */
+  overflow-anchor: none;           /* disable scroll anchoring */
+  overscroll-behavior: contain;    /* isolate wheel/touch scroll */
+  scrollbar-gutter: stable both-edges; /* keep gutter width stable */
+}
+.doc__content{ min-width:0; }
+
+@media (max-width:900px){
+  .doc{ grid-template-columns:1fr; }
+  .doc__toc{ position:static; height:auto; border:0; margin:0 0 1rem 0; }
 }
 
-.toc ul {
-	list-style: none;
-	padding-left: .75rem;
-	margin: 0
+/* ===================== TOC base ===================== */
+.toc{
+  font-size: var(--toc-font-size);
+  text-align: left;
+}
+.toc ul{ list-style:none; margin:0; padding-left:0; }
+
+/* ===================== TOC rows: [caret][text] + children list below ===================== */
+.toc li{
+  display:flex;              /* two columns via flex children */
+  flex-wrap: wrap;           /* nested UL drops to next line (no overlap) */
+  align-items:flex-start;
+  gap: var(--toc-gap);
+  margin:.1rem 0;
+  border-radius: var(--toc-row-radius);
 }
 
-.toc li {
-	margin: .15rem 0
+/* Caret button (bullet) */
+.toc li > .toc-toggle{
+  flex: 0 0 var(--toc-toggle-col);  /* fixed caret column */
+  transform: translateY(var(--toc-toggle-y)); /* fine-tune vertical alignment */
+  text-align:center;
+  border:0; background:none; font:inherit; cursor:pointer;
 }
 
-.toc a {
-	display: inline-block;
-	text-decoration: none;
-	padding: .15rem .25rem
+/* Link text column */
+.toc li > a{
+  flex: 1 1 auto;
+  min-width: 0;                  /* needed for ellipsis in flex */
+  display:block;
+  line-height:1.25;
+  white-space: nowrap;           /* keep on one line */
+  overflow: hidden;
+  text-overflow: ellipsis;       /* truncate long titles */
+  text-decoration:none;
 }
 
-.toc .has-children > .toc-toggle {
-	border: 0;
-	background: none;
-	font: inherit;
-	cursor: pointer;
-	margin-right: .25rem
+/* Subtopic list: new line under title, with extra spacing above and below */
+.toc li > ul{
+  flex: 1 1 100%;
+  margin: var(--toc-sublist-gap) 0 var(--toc-after-sublist-gap) 0; /* top + bottom gaps */
+  margin-left: calc(var(--toc-toggle-col) + var(--toc-gap));        /* align under text column */
+  padding-left: 0;
 }
 
-.toc .is-collapsed > ul {
-	display: none
+/* Extra indent at deeper levels */
+.toc ul ul{
+  margin-left: calc(var(--toc-toggle-col) + var(--toc-gap) + var(--toc-indent-h3));
+}
+.toc ul ul ul{
+  margin-left: calc(var(--toc-toggle-col) + var(--toc-gap) + var(--toc-indent-h4));
 }
 
-.toc a.is-active {
-	font-weight: 600;
-	text-decoration: underline
+/* Collapse + active states */
+.toc .is-collapsed > ul{ display:none; }
+.toc a.is-active{ font-weight:600; text-decoration:underline; }
+
+/* Selected topic (only the most recently clicked) */
+.toc li.is-selected{
+  background: var(--toc-selected-bg);
 }
 
-.doc__content {
-	min-width: 0
-}
-
-@media (max-width: 900px) {
-	.doc {
-		grid-template-columns:1fr
-	}
-
-	.doc__toc {
-		position: static;
-		height: auto;
-		border: 0;
-		margin-bottom: 1rem
-	}
-}
-
-/* assets/css/doc-toc.css additions (optional) */
-.toc li.has-children > a { cursor: pointer; }
+/* Make parent rows feel clickable */
+.toc li.has-children > a{ cursor:pointer; }

@@ -31,6 +31,7 @@ url: "https://gemc.github.io"   # the base hostname & protocol for your site, e.
 
 twitter_username: maurizio_ungaro
 github_username: maureeungaro
+theme: minima
 
 # Build settings
 # _config.yml
@@ -39,10 +40,10 @@ kramdown:
   input: GFM                     # optional, GitHub-Flavored Markdown
   syntax_highlighter: rouge
 
-theme: minima
 plugins:
   - jekyll-feed
   - jekyll-toc
+  - jekyll-gfm-admonitions
 
 toc:
   min_level: 2      # start from H2

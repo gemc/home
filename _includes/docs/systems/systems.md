@@ -1,10 +1,4 @@
-
-
-
-
-
 ## Systems
-
 
 A detector in gemc is composed by one or more *systems*, each a hierarchical collection of geant4 volumes. 
 In the example below an example with two systems, Forward Detector and Central Detector, is shown.
@@ -22,7 +16,7 @@ with the name of the system containing template files with default geometry and 
 For example, to create a `forward` system:
 
 ``` 
-templates.py -s forward
+system_template.py -s forward
 ```
 
 In the directory `forward`, the following files appear:

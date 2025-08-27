@@ -1,42 +1,35 @@
-// assets/js/doc-toc.js
 document.addEventListener('DOMContentLoaded', () => {
   const toc = document.querySelector('.toc');
   if (!toc) return;
 
-  // Change to 'global' if you want to close EVERYTHING except the branch you open.
-  const ACCORDION_MODE = 'siblings'; // 'siblings' | 'global'
-
-  // --- helpers ---------------------------------------------------------------
+  const sidebar = toc.closest('.doc__toc') || document.scrollingElement;
   const hasChildren = (li) => !!li.querySelector(':scope > ul');
 
-  function setExpanded(li, expanded, { closeSiblings = false } = {}) {
+  // Keep the clicked row's position stable inside the sidebar while DOM expands/collapses.
+  function stabilize(rowEl, mutator) {
+    if (!rowEl || !sidebar) { mutator(); return; }
+    const before = rowEl.getBoundingClientRect().top - sidebar.getBoundingClientRect().top;
+    mutator();
+	
+    // Let layout settle a tick (works across Safari/Chrome/Firefox)
+    requestAnimationFrame(() => {
+      const after = rowEl.getBoundingClientRect().top - sidebar.getBoundingClientRect().top;
+      sidebar.scrollTop += (after - before);
+    });
+  }
+
+  function setExpanded(li, expanded) {
     if (!hasChildren(li)) return;
     li.classList.toggle('is-collapsed', !expanded);
     li.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-
     const btn = li.querySelector(':scope > .toc-toggle');
     if (btn) btn.textContent = expanded ? '▾' : '▸';
-
-    if (closeSiblings) {
-      collapseSiblings(li);
-    }
-    if (ACCORDION_MODE === 'global' && expanded) {
-      collapseAllExcept(li);
-    }
   }
 
-  function collapseSiblings(li) {
-    const parent = li.parentElement; // UL
-    if (!parent) return;
-    parent.querySelectorAll(':scope > li.has-children').forEach(sib => {
-      if (sib !== li) setExpanded(sib, false);
-    });
-  }
-
-  function collapseAllExcept(keepLi) {
-    toc.querySelectorAll('li.has-children').forEach(li => {
-      if (!li.contains(keepLi)) setExpanded(li, false);
-    });
+  function selectTopic(li) {
+    // Only one selected at a time
+    toc.querySelectorAll('li.is-selected').forEach(n => n.classList.remove('is-selected'));
+    li.classList.add('is-selected');
   }
 
   function expandToHash(hash) {
@@ -47,17 +40,22 @@ document.addEventListener('DOMContentLoaded', () => {
     toc.querySelectorAll('a').forEach(a => a.classList.remove('is-active'));
     active.classList.add('is-active');
 
-    // Walk up from the active link, expanding parents and collapsing siblings
+    // Ensure ancestors are expanded so the active item is visible
     let node = active.parentElement;
-    while (node && node !== toc) {
-      if (node.tagName === 'LI' && node.classList.contains('has-children')) {
-        setExpanded(node, true, { closeSiblings: true });
+    let selected = null;
+    stabilize(active.closest('li'), () => {
+      while (node && node !== toc) {
+        if (node.tagName === 'LI' && node.classList.contains('has-children')) {
+          setExpanded(node, true);
+          selected = selected || node; // nearest parent topic
+        }
+        node = node.parentElement;
       }
-      node = node.parentElement;
-    }
+    });
+    if (selected) selectTopic(selected);
   }
 
-  // --- build toggles & initial state ----------------------------------------
+  // Build toggles & initial state
   toc.querySelectorAll('li').forEach(li => {
     const sub = li.querySelector(':scope > ul');
     if (!sub) return;
@@ -69,25 +67,37 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = document.createElement('button');
     btn.className = 'toc-toggle';
     btn.setAttribute('aria-label', 'Toggle section');
-    btn.setAttribute('aria-controls', ''); // purely presentational here
     btn.textContent = '▸';
+
+    // Prevent focus-on-mousedown from nudging sidebar in Safari
+    if (link) link.addEventListener('mousedown', (e) => e.preventDefault());
+
+    // Clicking the caret toggles ONLY this item, and keeps the row stationary
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const expanded = li.classList.contains('is-collapsed');
-      setExpanded(li, expanded, { closeSiblings: true });
+      stabilize(li, () => {
+        const willExpand = li.classList.contains('is-collapsed');
+        setExpanded(li, willExpand);
+        selectTopic(li);
+      });
     });
-    li.insertBefore(btn, link);
 
-    // NEW: clicking the TEXT also toggles (and still navigates to the section)
-    link.addEventListener('click', () => {
-      // Don’t prevent default — we want the hash navigation.
-      const willExpand = li.classList.contains('is-collapsed');
-      setExpanded(li, willExpand, { closeSiblings: true });
-      // Navigation occurs; expandToHash() will also run on hashchange.
-    });
+    // Clicking the text navigates, toggles ONLY this item, and keeps the row stationary
+    if (link) {
+      link.addEventListener('click', () => {
+        stabilize(li, () => {
+          const willExpand = li.classList.contains('is-collapsed');
+          setExpanded(li, willExpand);
+          selectTopic(li);
+        });
+        // Let the browser handle hash navigation normally.
+      });
+    }
+
+    li.insertBefore(btn, link);
   });
 
-  // initial highlight/expand (if landing with a hash)
+  // Initial highlight/expand (if landing with a hash)
   expandToHash(location.hash);
   window.addEventListener('hashchange', () => expandToHash(location.hash));
 });

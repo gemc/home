@@ -25,21 +25,14 @@ err: ../documentation/errorCodes
 
 {% include mynotes.html %}
 
+Navigate through the various topics using the table of content menu on the left.
 
-## Intro
-asdasd ad as
-asd asd 
-ada
+{% include docs/quickstart/quickstart.md %}
 
 
-{% include docs/systems/system.md %}
-
-## Big Topic
+{% include docs/systems/systems.md %}
 
 
-asdasd ad as
-asd asd 
-ada
 
 
 ### Subtopic A
@@ -70,51 +63,6 @@ asd asd
 ada
 
 ### Deep Dive
-
-
-
-|:------------------------------------------------------------------------------------------:|:-----------------------------------------------------------:|
-|                                     	**Databases**                                        |                           **Systems**                       |
-|                                [![databases]]({{page.db}})                                 |                 [![systems]]({{page.sys}})                  |
-|                                   ──────────────────────                                   |                     ──────────────────────                  |
-| :---------------------------------------------------------------------------------------:  | :---------------------------------------------------------: |
-|                                        **Geometry**                                        |                          **Materials**                      |
-|                               [![geometry]]({{page.geoQS}})                                |                [![materials]]({{page.mats}})                |
-| [Quickstart]({{page.geoQS}}) ----- [Native Geant4]({{page.ng4}}) ----- [CAD]({{page.cad}}) |   [Use Geant4 materials or build your own]({{page.mats}})   |
-|                                   ──────────────────────                                   |                     ──────────────────────                  |
-| :---------------------------------------------------------------------------------------:  | :---------------------------------------------------------: |
-|                                    **Event Generators**                                    |                     **Digitization**                        |
-|                                [![generator]]({{page.evg}})                                |              [![digitization]]({{page.digi}})               |
-|                 [GEMC internal generator, available plugins]({{page.evg}})                 | [Use pre-existing or write your own plugin]({{page.digi}})  |
-|                                   ──────────────────────                                   |                     ──────────────────────                  |
-| :---------------------------------------------------------------------------------------:  | :---------------------------------------------------------: |
-|                                 **Electromagnetic Fields**                                 |                        **Physics**                          |
-|                                [![em_fields]]({{page.emf}})                                |                 [![physics]]({{page.phy}})                  |
-|                  [Defined Electro-magnetic fields and maps]({{page.emf}})                  |            [Select Geant4 Physics]({{page.phy}})            |
-|                                   ──────────────────────                                   |                     ──────────────────────                  |
-| :---------------------------------------------------------------------------------------:  | :---------------------------------------------------------: |
-|                                    **Optical Surfaces**                                    |                      **Time Window**                      |
-|                                 [![mirrors]]({{page.mir}})                                 |               [![time_window]]({{page.time}})               |
-|            [Define mirrors and surfaces with optical properties]({{page.mir}})             |   [The concept of electronic time window]({{page.time}})    |
-|                                   ──────────────────────                                   |                     ──────────────────────                  |
-| :---------------------------------------------------------------------------------------:  | :---------------------------------------------------------: |
-|                                      **GEMC Options**                                      |                          **FAQ**                          |
-|                                 [![options]]({{page.opt}})                                 |                   [![faq]]({{page.faq}})                    |
-|                         [Options and Steering card]({{page.opt}})                          |         [Frequently Asked Questions]({{page.faq}})          |
-|                                   ──────────────────────                                   |                     ──────────────────────                  |
-| :---------------------------------------------------------------------------------------:  | :---------------------------------------------------------: |
-|                                       **Exit Codes**                                       |                                                             |
-|                               [![exit_codes]]({{page.err}})                                |                                                             |
-|                                 [Exit Codes]({{page.err}})                                 |                                                             |
-| :---------------------------------------------------------------------------------------:  | :---------------------------------------------------------: |
-
-<br/>
-
-
-|                              ──────────────────────                             |        
-|:-------------------------------------------------------------------------------:|
-| **[Doxygen: Classes and Members Reference Guide](https://gemc.github.io/src/)** |                                                                                               
-|                    [![doxygen]](https://gemc.github.io/src/)                    |                                                                                 
 
 
 [databases]: /home/assets/images/databases.png
