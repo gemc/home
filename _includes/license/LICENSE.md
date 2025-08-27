@@ -3,6 +3,7 @@
 *Version 1.0, August 25, 2025*
 
 > [!WARNING]
+> Copyright
 > Copyright (c) 2006–2025,
 > Maurizio Ungaro and Thomas Jefferson National Accelerator Facility (“Jefferson Lab”).
 > All rights not expressly granted under this license are reserved.

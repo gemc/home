@@ -1,8 +1,7 @@
 ---
-layout: default
+layout: doc
 title: Databases
-order: 2
-description: Databases in GEMC
+toc: true
 ---
 
 # GEMC Databases

@@ -42,6 +42,17 @@ kramdown:
 theme: minima
 plugins:
   - jekyll-feed
+  - jekyll-toc
+
+toc:
+  min_level: 2      # start from H2
+  max_level: 4      # include up to H4
+  ordered_list: false
+  list_id: toc
+  list_class: section-nav
+  sublist_class: ''
+  item_class: toc-entry
+  item_prefix: toc-
 
 # Exclude from processing.
 # The following items will not be processed, by default.

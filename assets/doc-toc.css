@@ -1,0 +1,67 @@
+.doc {
+	display: grid;
+	grid-template-columns:280px 1fr;
+	gap: 1.25rem
+}
+
+.doc__toc {
+	position: sticky;
+	top: 1.25rem;
+	height: calc(100vh - 2.5rem);
+	overflow: auto;
+	padding-right: .75rem;
+	border-right: 1px solid #eaecef
+}
+
+.toc ul {
+	list-style: none;
+	padding-left: .75rem;
+	margin: 0
+}
+
+.toc li {
+	margin: .15rem 0
+}
+
+.toc a {
+	display: inline-block;
+	text-decoration: none;
+	padding: .15rem .25rem
+}
+
+.toc .has-children > .toc-toggle {
+	border: 0;
+	background: none;
+	font: inherit;
+	cursor: pointer;
+	margin-right: .25rem
+}
+
+.toc .is-collapsed > ul {
+	display: none
+}
+
+.toc a.is-active {
+	font-weight: 600;
+	text-decoration: underline
+}
+
+.doc__content {
+	min-width: 0
+}
+
+@media (max-width: 900px) {
+	.doc {
+		grid-template-columns:1fr
+	}
+
+	.doc__toc {
+		position: static;
+		height: auto;
+		border: 0;
+		margin-bottom: 1rem
+	}
+}
+
+/* assets/css/doc-toc.css additions (optional) */
+.toc li.has-children > a { cursor: pointer; }

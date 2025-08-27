@@ -1,9 +1,13 @@
 ---
-layout: default
+layout: doc
 title: Documentation
-permalink: /Documentation/
+toc: true
+
+toc: true
+toc_min_level: 1   # include H1 from the included file
+toc_max_level: 4
+
 db: ../documentation/databases/databases
-sys: ../documentation/systemDocs/system
 geoQS: ../documentation/geometryDocs/geoQuickstart
 ng4: ../documentation/geometryDocs/native_geometry
 cad: ../documentation/geometryDocs/cad_imports
@@ -18,6 +22,55 @@ opt: ../documentation/options
 faq: ../documentation/faq
 err: ../documentation/errorCodes
 ---
+
+{% include mynotes.html %}
+
+
+## Intro
+asdasd ad as
+asd asd 
+ada
+
+
+{% include docs/systems/system.md %}
+
+## Big Topic
+
+
+asdasd ad as
+asd asd 
+ada
+
+
+### Subtopic A
+asdasd ad as
+asd asd 
+ada
+asdasd ad as
+asd asd 
+ada
+asdasd ad as
+asd asd 
+ada
+
+### Subtopic B
+
+## Another Topic
+asdasd ad as
+asd asd 
+ada
+asdasd ad as
+asd asd 
+ada
+asdasd ad as
+asd asd 
+ada
+asdasd ad as
+asd asd 
+ada
+
+### Deep Dive
+
 
 
 |:------------------------------------------------------------------------------------------:|:-----------------------------------------------------------:|
