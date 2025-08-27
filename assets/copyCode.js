@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   /* Grab all highlight containers, regardless of the specific class name */
-  document.querySelectorAll('div.highlight, div.highlighter-rouge').forEach(block => {
+  document.querySelectorAll('div.highlight').forEach(block => {
     /* Skip if we already added a button (avoids duplicates on hot reload) */
     if (block.dataset.copyBtn) return;
     block.dataset.copyBtn = 'true';
