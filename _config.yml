@@ -41,8 +41,8 @@ kramdown:
   syntax_highlighter: rouge
 
 plugins:
-  - jekyll-feed
   - jekyll-toc
+  - jekyll-feed
   - jekyll-gfm-admonitions
 
 toc:
@@ -75,13 +75,15 @@ exclude:
 
 # this adds content to the website from the local dirs starting with _
 collections:
-  documentation:
-    output: true
+#  documentation:
+#    output: true
   examples:
     output: true
   installation:
     output: true
-
+  docs:
+    output: true
+    permalink: /docs/:name/
 
 # shortcuts to symbols, accessible with {{ site.symbol_name }}
 

@@ -172,7 +172,7 @@ Bibitem:
 
 <br/>
 
-The [GEMC source code](https://github.com/gemc/src) is distributed under an [open source license](/home/license/).
+The GEMC source code on ([GitHub](https://github.com/gemc/src)) is distributed under an [open source license](/home/license/).
 
 
 <br/><br/>

@@ -11,7 +11,7 @@
   --header-gap: 12px;               /* ↩︎ breathing room below the header */
   --header-bg: rgba(253,253,253,.92);
   --header-border: #eaecef;
-  --header-z: 1000;
+  --header-z: 1000;     /* header stacking level */
 
   /* Derived: one source of truth for all sticky offsets */
   --sticky-offset: calc(var(--header-h) + var(--header-gap));

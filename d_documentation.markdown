@@ -1,68 +1,18 @@
 ---
-layout: doc
 title: Documentation
-toc: true
-
-toc: true
-toc_min_level: 1   # include H1 from the included file
-toc_max_level: 4
-
-db: ../documentation/databases/databases
-geoQS: ../documentation/geometryDocs/geoQuickstart
-ng4: ../documentation/geometryDocs/native_geometry
-cad: ../documentation/geometryDocs/cad_imports
-mats: ../documentation/materialDocs/materials
-digi: ../documentation/digitizationDocs/digitization
-evg: ../documentation/generatorDocs/generators
-emf: ../documentation/fieldDocs/fields
-phy: ../documentation/physicsDocs/physics
-mir: ../documentation/geometryDocs/mirrors
-time: ../documentation/digitizationDocs/time_window
-opt: ../documentation/options
-faq: ../documentation/faq
-err: ../documentation/errorCodes
+layout: doc_master_toc
+permalink: /documentation/
+topic_id: Documentation
 ---
 
-{% include mynotes.html %}
 
-Navigate through the various topics using the table of content menu on the left.
+This manual provides documentation for the **GEMC** (**GE**ant **M**onte-**C**arlo) application. 
+It is assumed that the software has been installed, see the [installation instructions](/home/installation/).
 
-{% include docs/quickstart/quickstart.md %}
-
-
-{% include docs/systems/systems.md %}
+Navigate through the various topics using the table of content menu below or on the left.
 
 
-
-
-### Subtopic A
-asdasd ad as
-asd asd 
-ada
-asdasd ad as
-asd asd 
-ada
-asdasd ad as
-asd asd 
-ada
-
-### Subtopic B
-
-## Another Topic
-asdasd ad as
-asd asd 
-ada
-asdasd ad as
-asd asd 
-ada
-asdasd ad as
-asd asd 
-ada
-asdasd ad as
-asd asd 
-ada
-
-### Deep Dive
+[Getting Started](/home/quickstart/)
 
 
 [databases]: /home/assets/images/databases.png

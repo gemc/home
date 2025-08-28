@@ -1,108 +1,100 @@
 /* ===================== TOC knobs (tweak freely) ===================== */
 :root{
-  --toc-width: 170px;            /* TOC sidebar width */
-  --toc-font-size: 0.95rem;      /* TOC text size */
-  --toc-toggle-col: 0.9rem;      /* caret/bullet column width */
-  --toc-gap: 0.25rem;            /* space between caret and text */
-  --toc-indent-h3: 0.6rem;       /* extra indent for H3 lists */
-  --toc-indent-h4: 1.1rem;       /* extra indent for H4 lists */
+  --toc-width: 240px;             /* left column width */
+  --toc-font-size: 0.95rem;       /* link text size */
+  --toc-toggle-col: 0.9rem;       /* caret column width */
+  --toc-gap: 0.25rem;             /* space between caret and text */
 
-  --toc-sublist-gap: 0.35rem;      /* space between a topic and its subtopic list (top) */
-  --toc-after-sublist-gap: 0.9rem; /* space after the subtopic list before next topic */
+  --toc-indent-h3: 0.6rem;        /* extra indent for H3 lists */
+  --toc-indent-h4: 1.1rem;        /* extra indent for H4 lists */
 
-  --toc-selected-bg: rgba(100,0,100,.06); /* background for LAST clicked topic (covers subtopics) */
-  --toc-toggle-y: -3px;               /* caret vertical tweak (+down / -up) */
-  --toc-left-shift: -6rem;            /* shift entire TOC left (e.g., -0.25rem) */
-  --toc-row-radius: 6px;              /* rounding for selected topic group */
+  --toc-sublist-gap: 0.35rem;     /* space between a topic and its subtopic list (top) */
+  --toc-after-sublist-gap: 0.6rem;/* space after the subtopic list before next topic */
+
+  --toc-topic-bg: rgba(0,0,0,.05);/* background for the ACTIVE topic group */
+  --toc-active-link-bg: transparent; /* background for the active link (keep subtle) */
+  --toc-active-link-underline: underline; /* or none */
+  --toc-row-radius: 6px;
+  --header-h: 60px;                 /* keep in sync with your header height */
+  --sticky-offset: calc(var(--header-h) + 60px);  /* little breathing room */
 }
 
-/* ===================== Layout: left TOC, right content ===================== */
-.doc{
-  display:grid;
-  grid-template-columns: var(--toc-width) 1fr;
-  gap:1.25rem;
-}
+/* ===================== Two-column layout ===================== */
+.doc { display:grid; grid-template-columns: var(--toc-width) 1fr; gap:1.25rem; }
 .doc__toc{
-  position:sticky; top:1.25rem;
-  height:calc(100vh - 2.5rem);
-  overflow:auto;
-  padding-right:.75rem;
-  border-right:1px solid #eaecef;
-  margin-left: var(--toc-left-shift); /* shift whole TOC left/right */
-
-  /* --- Keep sidebar from “helpfully” jumping (esp. Safari) --- */
-  overflow-anchor: none;           /* disable scroll anchoring */
-  overscroll-behavior: contain;    /* isolate wheel/touch scroll */
-  scrollbar-gutter: stable both-edges; /* keep gutter width stable */
+  position: sticky;
+  top: var(--sticky-offset);        /* ← ensures it never tucks under header */
+  z-index: 1001;                    /* ← above header if header z-index is 1000 */
+  height: calc(100vh - var(--sticky-offset) - 10rem);
+  overflow: auto;
+  padding-right: .75rem;
+  border-right: 1px solid #eaecef;
 }
 .doc__content{ min-width:0; }
 
 @media (max-width:900px){
   .doc{ grid-template-columns:1fr; }
-  .doc__toc{ position:static; height:auto; border:0; margin:0 0 1rem 0; }
+  .doc__toc{ position:static; height:auto; border:0; margin-bottom:1rem; }
 }
 
-/* ===================== TOC base ===================== */
-.toc{
-  font-size: var(--toc-font-size);
-  text-align: left;
-}
-.toc ul{ list-style:none; margin:0; padding-left:0; }
+/* ===================== Master TOC ===================== */
+.toc{ font-size: var(--toc-font-size); }
+.toc a{ text-decoration:none; }
 
-/* ===================== TOC rows: [caret][text] + children list below ===================== */
-.toc li{
-  display:flex;              /* two columns via flex children */
-  flex-wrap: wrap;           /* nested UL drops to next line (no overlap) */
-  align-items:flex-start;
+.toc-topic-title{ margin:.35rem 0 .25rem; font-size:.95rem; font-weight:600; }
+.toc-topic-link{ display:inline-block; padding:.12rem .25rem; border-radius: var(--toc-row-radius); }
+
+/* Group wrapper so we can highlight the whole active topic area */
+.toc-group{ border-radius: var(--toc-row-radius); padding:.15rem .15rem; }
+.toc-group.is-selected{ background: var(--toc-topic-bg); }
+
+/* Reset ul and turn each row into [caret][text] */
+.toc-tree ul{ list-style:none; margin:0; padding-left:0; }
+.toc-tree li{
+  display:flex; flex-wrap:wrap; align-items:flex-start;
   gap: var(--toc-gap);
-  margin:.1rem 0;
+  margin:.08rem 0;
   border-radius: var(--toc-row-radius);
 }
 
-/* Caret button (bullet) */
-.toc li > .toc-toggle{
-  flex: 0 0 var(--toc-toggle-col);  /* fixed caret column */
-  transform: translateY(var(--toc-toggle-y)); /* fine-tune vertical alignment */
-  text-align:center;
+/* Caret button */
+.toc-tree li > .toc-toggle{
+  flex: 0 0 var(--toc-toggle-col);
   border:0; background:none; font:inherit; cursor:pointer;
+  line-height:1; text-align:center;
 }
 
-/* Link text column */
-.toc li > a{
-  flex: 1 1 auto;
-  min-width: 0;                  /* needed for ellipsis in flex */
-  display:block;
-  line-height:1.25;
-  white-space: nowrap;           /* keep on one line */
-  overflow: hidden;
-  text-overflow: ellipsis;       /* truncate long titles */
-  text-decoration:none;
+/* Link column (1 line with ellipsis) */
+.toc-tree li > a{
+  flex:1 1 auto; min-width:0; display:block;
+  padding:.08rem .25rem;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 
-/* Subtopic list: new line under title, with extra spacing above and below */
-.toc li > ul{
-  flex: 1 1 100%;
-  margin: var(--toc-sublist-gap) 0 var(--toc-after-sublist-gap) 0; /* top + bottom gaps */
-  margin-left: calc(var(--toc-toggle-col) + var(--toc-gap));        /* align under text column */
-  padding-left: 0;
+/* Indent nested lists: align under text column and add extra depth indent */
+.toc-tree li > ul{
+  flex:1 1 100%;
+  margin: var(--toc-sublist-gap) 0 var(--toc-after-sublist-gap) 0;
+  margin-left: calc(var(--toc-toggle-col) + var(--toc-gap));
+  padding-left:0;
+}
+.toc-tree ul ul{ margin-left: calc(var(--toc-toggle-col) + var(--toc-gap) + var(--toc-indent-h3)); }
+.toc-tree ul ul ul{ margin-left: calc(var(--toc-toggle-col) + var(--toc-gap) + var(--toc-indent-h4)); }
+
+/* Collapse state */
+.toc-tree .is-collapsed > ul{ display:none; }
+
+/* Active link styling */
+.toc a.is-active{
+  font-weight:600;
+  text-decoration: var(--toc-active-link-underline);
+  background: var(--toc-active-link-bg);
+  border-radius: var(--toc-row-radius);
 }
 
-/* Extra indent at deeper levels */
-.toc ul ul{
-  margin-left: calc(var(--toc-toggle-col) + var(--toc-gap) + var(--toc-indent-h3));
+/* Make parent rows feel clickable (caret toggles; link navigates) */
+.toc-tree li.has-children > a{ cursor:pointer; }
+.toc-topic-title { display:none; }
+.doc__content .page-title.is-hidden-title {
+  display: none;
 }
-.toc ul ul ul{
-  margin-left: calc(var(--toc-toggle-col) + var(--toc-gap) + var(--toc-indent-h4));
-}
-
-/* Collapse + active states */
-.toc .is-collapsed > ul{ display:none; }
-.toc a.is-active{ font-weight:600; text-decoration:underline; }
-
-/* Selected topic (only the most recently clicked) */
-.toc li.is-selected{
-  background: var(--toc-selected-bg);
-}
-
-/* Make parent rows feel clickable */
-.toc li.has-children > a{ cursor:pointer; }

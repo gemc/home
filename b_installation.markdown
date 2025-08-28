@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Installation
+permalink: /installation/
 gemc_latest_docker_tag: jeffersonlab/gemc3:1.1-fedora36
 
 ---

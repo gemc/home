@@ -1,0 +1,53 @@
+---
+layout: default
+---
+
+<link rel="stylesheet" href="{{ '/assets/doc-toc.css' | relative_url }}">
+<script src="{{ '/assets/doc-toc.js' | relative_url }}" defer></script>
+
+{%- assign topics = site.data.docs_topics -%}
+{%- assign active_id = page.topic_id | default: page.slug -%}
+
+<div class="doc" data-active-topic="{{ active_id }}">
+  <aside class="doc__toc">
+    <nav class="toc" aria-label="Documentation TOC">
+      {%- for t in topics -%}
+        {%- assign tgt = site.docs | where: "slug", t.id | first -%}
+        {%- if tgt -%}
+          {%- assign base = tgt.url | relative_url -%}
+
+          {%- comment -%}
+          Build the TOC from the *page's markdown content*.
+          Includes are already expanded in tgt.content → markdownify → headings present.
+          We keep toc_only with no named options to avoid Liquid arg errors on Jekyll 3.x.
+          {%- endcomment -%}
+          {%- assign rendered = tgt.content | markdownify -%}
+          {%- capture local_toc -%}{{ rendered | toc_only }}{%- endcapture -%}
+
+          <section class="toc-group" data-topic="{{ t.id }}" data-base="{{ base }}">
+            <h3 class="toc-topic-title">
+              <a class="toc-topic-link" href="{{ base }}">{{ t.title }}</a>
+            </h3>
+            <div class="toc-tree">
+              {{ local_toc }}
+            </div>
+          </section>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+  </aside>
+
+  <article class="doc__content">
+    {%- assign active = topics | where: "id", active_id | first -%}
+    <h1 class="page-title">{{ active.title | default: page.title }}</h1>
+
+    {%- if active -%}
+      {%- comment -%}Show ONLY the active topic's content on the right{%- endcomment -%}
+      {%- capture active_md -%}{% include {{ active.include }} %}{%- endcapture -%}
+      {{ active_md | markdownify | inject_anchors }}
+    {%- else -%}
+      {%- comment -%}No active topic -> show this page's own content (your Introduction){%- endcomment -%}
+      {{ content }}
+    {%- endif -%}
+  </article>
+</div>
