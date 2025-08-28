@@ -6,16 +6,35 @@ topic_id: Documentation
 ---
 
 
-This manual provides documentation for the **GEMC** (**GE**ant **M**onte-**C**arlo) application. 
-It is assumed that the software has been installed, see the [installation instructions](/home/installation/).
+This manual provides documentation for the **GEMC** application. 
+It is assumed that the software has been installed. See also the [installation instructions](/home/installation/).
 
-Navigate through the various topics using the table of content menu below or on the left.
-
-
-[Getting Started](/home/quickstart/)
+Navigate through the various documentation using the topics below or the table of content on the left.
 
 
-[databases]: /home/assets/images/databases.png
+<div class="doc-topic-grid">
+  {%- for t in site.data.docs_topics -%}
+    {%- assign p = site.docs | where: "slug", t.id | first -%}
+    <article class="doc-topic">
+      <h3>
+        {%- if p -%}
+          <a
+            href="{{ p.url | relative_url }}"
+            class="js-open-topic"
+            data-open-topic="{{ t.id }}"
+          >{{ t.title }}</a>
+        {%- else -%}
+          {{ t.title }}
+        {%- endif -%}
+      </h3>
+      {%- if t.desc -%}<p>{{ t.desc }}</p>{%- endif -%}
+    </article>
+  {%- endfor -%}
+</div>
+
+
+
+
 
 [systems]:  /home/assets/images/systems.png
 

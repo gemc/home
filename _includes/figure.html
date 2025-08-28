@@ -1,0 +1,18 @@
+{% assign src = include.src | default: '' %}
+{% assign alt = include.alt | default: '' %}
+{% assign cap = include.caption | default: '' %}
+{% assign w   = include.width | default: '' %}
+{% assign link = include.link | to_s | strip %}
+
+<figure class="figure">
+  {% if link != '' %}
+    <a href="{{ link | relative_url }}">
+      <img src="{{ src | relative_url }}" alt="{{ alt }}" loading="lazy" {% if w %}width="{{ w }}"{% endif %}>
+    </a>
+  {% else %}
+    <img src="{{ src | relative_url }}" alt="{{ alt }}" loading="lazy" {% if w %}width="{{ w }}"{% endif %}>
+  {% endif %}
+  {% if cap != '' %}
+    <figcaption>{{ cap }}</figcaption>
+  {% endif %}
+</figure>
