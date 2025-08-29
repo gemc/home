@@ -2,14 +2,98 @@
 layout: default
 title: Installation
 permalink: /installation/
-gemc_latest_docker_tag: jeffersonlab/gemc3:1.1-fedora36
-
+gemc_latest_docker_tag_ubuntu: ghcr.io/gemc/gemc:latest-ubuntu24
+gemc_latest_docker_tag_alma: ghcr.io/gemc/gemc:latest-almalinux94
+gemc_latest_docker_tag_fedora: ghcr.io/gemc/gemc:latest-fedora40
+development_tag: dev3
+development_release_date: <small><time>released nightly</time></small>
+latest_tag: 1.0
+latest_release_date: <small><time>Not Yet Released</time></small>
+repo_link: https://github.com/gemc/src/releases/tag
+release_notes: https://github.com/gemc/src/releases
 ---
 
 {% include mynotes.html %}
 
+<br/>
 
-# Docker 
+## License
+
+See the [license conditions](/home/license/).
+
+<br/>
+
+## Release Notes
+
+
+- [`development`]({{ page.release_notes }}/tag/{{ page.development_tag }}) - {{ page.development_release_date }}{: .meta }
+- [`{{ page.latest_tag }}`]({{ page.release_notes }}/tag/{{ page.latest_tag }}) - {{ page.latest_release_date }}{: .meta }
+- [`All Releases`]({{ page.release_notes }})
+
+
+<br/>
+
+---
+
+<br/>
+
+# Installation
+
+> [!NOTE] 
+> Always use the most recent GEMC release to ensure you are taking  advantage of
+> latest bug fixes and the new features. This also helps the developer to provide the best support.
+
+<br/>
+
+GEMC can be installed by: 
+ 
+- [Local compilation from source code](#build-and-install-gemc-from-source)
+- [Using a docker container](#run-gemc-in-a-docker-container)
+
+
+<br/>
+
+
+<br/>
+
+
+## Build and Install GEMC from Source
+
+Set a `GEMC` environment variable that points to your desired installation location. Typically: `/opt/gemc` or `~/gemc`. 
+
+We will install GEMC in it. 
+
+```bash
+  export GEMC=/opt/gemc
+  mkdir -p $GEMC
+```
+
+Download the latest release source code anywhere on your system:
+
+```bash
+wget {{ page.repo_link }}/{{ page.latest_tag }}.tar.gz
+```
+
+Alternatively, clone the repository to get the latest development version:
+```bash
+git clone https://github.com/gemc/src
+```
+
+
+
+
+
+The [meson build system](https://mesonbuild.com) is used to compile and install GEMC.
+
+
+<br/>
+
+---
+
+<br/>
+
+
+## Run GEMC in a Docker container
 
 Pull the latest image:
 ```docker pull {{ page.gemc_container_tag }}```

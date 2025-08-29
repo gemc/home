@@ -6,31 +6,79 @@
 
 /* ===================== Global knobs ===================== */
 :root {
-  /* Fixed header config */
+
+  // mono for code blocks
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  // body: last one wins
+
+  /* default */
+  --font-sans: system-ui, sans-serif;
+
+  /* Ultra-minimal universal */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Arial, "Noto Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+
+  --font-sans: Georgia, "Times New Roman", Times, serif;
+
+  /* Lexend (aimed at reading fluency) */
+  --font-sans: "Lexend", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
+
+  /* STIX Two Text (serif for math/technical copy) */
+  --font-sans: "STIX Two Text", Georgia, "Times New Roman", Times, serif;
+
+  --font-sans: "Helvetica Neue", Helvetica, Arial, "Noto Sans", system-ui, sans-serif;
+
+  /* Manrope (modern, open shapes) */
+  --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
+
+  /* Inter (modern, very readable) */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
+
+  --font-sans: Avenir, system-ui, -apple-system, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+
+  --line: 1.6;
+
   --header-h: 60px; /* ↩︎ actual header height */
-  --header-gap: 12px; /* ↩︎ breathing room below the header */
+  --header-gap: 20px; /* ↩︎ breathing room below the header */
   --header-bg: rgba(253, 253, 253, .92);
   --header-border: #eaecef;
   --header-z: 1000; /* header stacking level */
+
+  :where(h1, h2, h3, h4, h5, h6, [id]) {
+	scroll-margin-top: calc(var(--header-h) + var(--header-gap));
+  }
 
   /* Derived: one source of truth for all sticky offsets */
   --sticky-offset: calc(var(--header-h) + var(--header-gap));
 
   /* Accent colors */
-  --link: #1f8572;
-  --link-hover: #099f71;
+  --link: #00419b;
+  --link-hover: #552de4;
 }
 
 /* ===================== Base layout / typography ===================== */
 body {
-  font-family: Avenir, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, noto sans, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol, noto color emoji;
-  font-size: 1.2rem;
+  font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
-
-  /* Removed height:100vh + overflow:auto since it can break sticky.
-     If you truly need a custom scroll container, tell me and I’ll adapt the sticky math. */
+  font-synthesis: none;
+  font-size: 1.2em;
   margin: 10px;
-  width: 90vw; /* keep if you really want narrower pages; otherwise remove */
+  width: 90vw;
+  tab-size: 4;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+code, pre, kbd, samp, highlighter-rouge {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  font-variant-ligatures: contextual;
+}
+
+.content {
+  max-width: 75ch;
 }
 
 .wrapper {
@@ -131,10 +179,10 @@ pre.highlight {
   border: 1px solid #e6e6e9;
   border-radius: 8px;
   overflow-x: auto;
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  font-size: 0.875rem;
+  font-family: var(--font-mono);
   line-height: 1.45;
   color: #24292e;
+  font-size: 0.95em;
 }
 
 div.highlight > pre,
@@ -149,6 +197,13 @@ pre.highlight {
 .highlight *, .highlight pre * {
   background: transparent !important;
 }
+
+.highlighter-rouge {
+  background: #f6f7f7 !important;
+  font-size: 0.95em;
+  line-height: 1.45;
+}
+
 
 .copy-btn {
   position: absolute;
@@ -244,8 +299,14 @@ pre.highlight {
 }
 
 .figure figcaption {
-  margin-top: .5rem;
+  margin-top: 1.0rem;
   font-size: 1.1rem;
   font-style: italic;
-  color: #666;
+  color: #444;
+}
+
+.meta {
+  font-size: 0.85em;
+  color: #6b7280;
+  font-weight: 400;
 }
