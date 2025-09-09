@@ -3,31 +3,24 @@ layout: default
 ---
 
 {% include mynotes.html %}
-
-
-{% include figure.html
-   src="assets/images/gemcLogo.png"
-   alt="Database-driven architecture"
-   caption=""
-   width="1000"
-%}
-
-<br/>
-
 This site refers to the latest **GEMC** project (version 3 and above). 
 
 For **CLAS12 simulations** refer to [this page](https://github.com/gemc/clas12Tags). 
 For previous GEMC version, refer to [this page](https://gemc.jlab.org/gemc/html/index.html).
 
----
 
-<br/>
+{% include figure.html
+   src="assets/images/gemcLogo.png"
+   alt="Database-driven architecture"
+   caption="GEant Monte-Carlo"
+   width="1000"
+%}
 
-**GEMC** (**GE**ant **M**onte-**C**arlo) leverages [Geant4](https://geant4.web.cern.ch) to run simulations of particles through constructs defined in databases.
+
+**GEMC** leverages [Geant4](https://geant4.web.cern.ch) to run simulations of particles through geometries stored in databases.
 Key features include:<br/>
 
-- Python API
-- Databases I/O of Geant4 objects
+- Python API provides database I/O of geometry and materials
 - Custom extensibility of fieldmaps, hardware electronics, output formats and signal digitization
 - Built-in `ASCII` and [`ROOT`](https://root.cern) output
 
@@ -35,11 +28,11 @@ Key features include:<br/>
 
 
 
-## **Databases**
+## Databases
 
-Geant4 volumes are uploaded to the databases using the python API. To run the simulation:
+Geant4 objects are uploaded to databases using the python API. Running simulations looks like this:
 
-- GEMC reads databases (`ASCII`, `SQLite`, `GDML` or `CAD` files) to create the Geant4 objects (volumes, materials, surfaces, etc).
+- GEMC reads databases (`ASCII`, `SQLite`, `GDML` or `CAD` files) to create the geometry (volumes, materials, surfaces, etc).
 - Generated particle are transported through the geometry by Geant4. 
 - The resulting hits are processed, collected and digitized. 
 - Outputs are streamed to `ASCII`, `ROOT`  and/or user defined formats. 
@@ -50,24 +43,20 @@ Geant4 volumes are uploaded to the databases using the python API. To run the si
    alt="Database-driven architecture"
    caption="
    Typical gemc workflow: detectors can be loaded from several databases sources.
-   Geant4 volumes, materials, mirrors, optical properties are created. User generate 
-   particles that are then transported through materials by Geant4. 
+   Optionally, users can add run time conditions by moving some detectors, changing some materials, etc. 
+   Users generated particles are then transported through materials by Geant4. 
    Hits are collected, digitized and streamed to disk output(s)."
    width="1200"
 %}
 
-<br/>
-
----
-
-<br/>
+<br/><br/>
 
 ## Python API
 
-No previous knowledge of Geant4 or C++ is required to construct and upload to databases
-the geometry, materials, mirrors, etc.
+`Python` is used to create and upload to databases the geometry, materials, mirrors, etc.
 
-The GEMC application reads any supported database and does not need to be re-compiled when the geometry is changed.
+- No previous knowledge of Geant4 or C++ is required.
+- The application does not need to be re-compiled when the geometry is changed.
 
 {% include figure.html
    src="assets/images/pythonAPIGeo.png"
@@ -93,17 +82,13 @@ The GEMC application reads any supported database and does not need to be re-com
  ```
 
 
-<br/>
+<br/><br/>
 
----
-
-<br/>
 
 ## Geometry Variations 
 
 A detector can be re-used in multiple experiments, with configuration changes such as components shifts, 
 changes of materials, addition or removal of certain volumes.
-
 GEMC Supports these geometry versions using **variations** and/or run **numbers** to adapt to different simulation setups
 
 {% include figure.html
@@ -118,25 +103,22 @@ GEMC Supports these geometry versions using **variations** and/or run **numbers*
 
 <br/><br/>
 
----
 
-<br/>
+## Continuous Integration
 
-**Continuous Integration**:
+Gemc is built on several platforms for every commit and pull request. 
+In addition, nightly releases are built and deployed the Github repository.
 
-
-[![Doxygen](https://github.com/gemc/src/actions/workflows/doxygen.yaml/badge.svg)](https://github.com/gemc/src/actions/workflows/doxygen.yaml)
-[![Nightly Dev Release](https://github.com/gemc/src/actions/workflows/dev_release.yml/badge.svg)](https://github.com/gemc/src/actions/workflows/dev_release.yml)
-[![GEMC Homepage Deployment](https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg)](https://github.com/gemc/home/actions/workflows/jekyll.yml)
-[![Build and Test Images](https://github.com/gemc/src/actions/workflows/docker.yml/badge.svg)](https://github.com/gemc/src/actions/workflows/docker.yml)
+- [![Build and Test Images](https://github.com/gemc/src/actions/workflows/docker.yml/badge.svg)](https://github.com/gemc/src/actions/workflows/docker.yml)
+- [![Doxygen](https://github.com/gemc/src/actions/workflows/doxygen.yaml/badge.svg)](https://github.com/gemc/src/actions/workflows/doxygen.yaml)
+- [![Nightly Dev Release](https://github.com/gemc/src/actions/workflows/dev_release.yml/badge.svg)](https://github.com/gemc/src/actions/workflows/dev_release.yml)
+- [![GEMC Homepage Deployment](https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg)](https://github.com/gemc/home/actions/workflows/jekyll.yml)
 
 <br/><br/>
- 
----
 
-<br/>
 
-**Reference**:
+## Reference
+
 <br/>
 
 *M. Ungaro*, Geant4 Monte-Carlo (GEMC) A database-driven simulation program, *EPJ Web of Conferences* [**295**, 05005 *(2024)*](https://www.epj-conferences.org/articles/epjconf/abs/2024/05/epjconf_chep2024_05005/epjconf_chep2024_05005.html)
@@ -169,12 +151,9 @@ Bibitem:
 
 <br/><br/>
 
----
-
-<br/>
 
 
-**Source Code and Licence**:
+## Source Code and Licence
 
 <br/>
 
@@ -183,7 +162,4 @@ The GEMC source code on ([GitHub](https://github.com/gemc/src)) is distributed u
 
 <br/><br/>
 
----
-
-<br/>
 

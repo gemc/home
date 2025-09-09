@@ -39,6 +39,7 @@
   "Helvetica Neue", Arial, "Noto Sans", sans-serif,
   "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
 
+
   --line: 1.6;
 
   --header-h: 60px; /* ↩︎ actual header height */
@@ -58,6 +59,30 @@
   --link: #00419b;
   --link-hover: #552de4;
 }
+
+h1 {
+  font-size: 2em;
+  font-weight: 505;
+  margin: 0.67em 0;
+  border-bottom: none; /* GitHub does NOT add a bar to h1 */
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 505;
+  margin: 24px 0 16px;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgba(0,0,0,0.15); /* grey bar */
+}
+
+h3 {
+  font-size: 1.25em;
+  font-weight: 505;
+  margin: 20px 0 12px;
+  border-bottom: none; /* no bar on h3 in GitHub */
+}
+
+
 
 /* ===================== Base layout / typography ===================== */
 body {
@@ -242,6 +267,31 @@ pre.highlight {
   }
 }
 
+/* Plain <pre> blocks (not Rouge-highlighted) */
+pre:not(.highlight) {
+  background: #252323;       /* softer background */
+  border: 1px solid #d7dde6;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  font-size: 0.80em;         /* smaller than code blocks */
+  line-height: 1.5;
+  overflow-x: auto;
+  color: #97ff80;            /* readable on light bg */
+  font-family: var(--font-mono);
+  white-space: pre;          /* keep whitespace exactly */
+}
+
+/* Dark mode for plain <pre> */
+@media (prefers-color-scheme: dark) {
+  pre:not(.highlight) {
+    background: #1f2430;
+    border-color: #2b3240;
+    color: #e6e8eb;
+  }
+}
+
+
 /* ===================== Fixed header (Option B) ===================== */
 .site-header {
   position: fixed;
@@ -310,3 +360,4 @@ pre.highlight {
   color: #6b7280;
   font-weight: 400;
 }
+

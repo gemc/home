@@ -18,58 +18,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	const norm = s => (s || '').trim().replace(/\s+/g, ' ').toLowerCase();
 
-	// -------- Build nested H2/H3 list from fetched page --------
-	function buildTocList(docEl, baseHref, topicTitle) {
-		const topicNorm = norm(topicTitle);
-		const article = docEl.querySelector('article.doc__content') || docEl;
-		const heads = Array.from(article.querySelectorAll('h2, h3'));
-		if (!heads.length) return null;
+// -------- Build nested H1/H2 list from fetched page --------
+function buildTocList(docEl, baseHref, topicTitle) {
+  const topicNorm = norm(topicTitle);
+  const article = docEl.querySelector('article.doc__content') || docEl;
+  // use H1/H2 instead of H2/H3
+  const heads = Array.from(article.querySelectorAll('h1, h2'));
+  if (!heads.length) return null;
 
-		const ul = document.createElement('ul');
-		let currentH2Li = null;
-		let subUl = null;
-		let sawTopH2 = false;
+  const ul = document.createElement('ul');
+  let currentH1Li = null;
+  let subUl = null;
+  let sawTopH1 = false;
 
-		heads.forEach(h => {
-			const level = h.tagName === 'H2' ? 2 : 3;
-			const text = (h.textContent || '').trim();
-			const textNorm = norm(text);
+  heads.forEach(h => {
+    const level = h.tagName === 'H1' ? 1 : 2;
+    const text = (h.textContent || '').trim();
+    const textNorm = norm(text);
 
-			// Skip duplicate topic-title H2
-			if (level === 2 && !sawTopH2) {
-				sawTopH2 = true;
-				if (topicNorm && textNorm === topicNorm) return;
-			}
+    // Skip duplicate topic-title H1
+    if (level === 1 && !sawTopH1) {
+      sawTopH1 = true;
+      if (topicNorm && textNorm === topicNorm) return;
+    }
 
-			let id = h.id;
-			if (!id) id = text.toLowerCase().replace(/[^\w\- ]+/g, '').replace(/\s+/g, '-');
+    let id = h.id;
+    if (!id) id = text.toLowerCase().replace(/[^\w\- ]+/g, '').replace(/\s+/g, '-');
 
-			const li = document.createElement('li');
-			const a = document.createElement('a');
-			a.textContent = text;
-			a.href = `${baseHref}#${id}`;
-			a.classList.add(`toc-h${level}`);
-			li.appendChild(a);
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.textContent = text;
+    a.href = `${baseHref}#${id}`;
+    a.classList.add(`toc-h${level}`);
+    li.appendChild(a);
 
-			if (level === 2) {
-				ul.appendChild(li);
-				currentH2Li = li;
-				subUl = null;
-			} else {
-				if (!currentH2Li) {
-					ul.appendChild(li);
-				} else {
-					if (!subUl) {
-						subUl = document.createElement('ul');
-						currentH2Li.appendChild(subUl);
-					}
-					subUl.appendChild(li);
-				}
-			}
-		});
+    if (level === 1) {
+      ul.appendChild(li);
+      currentH1Li = li;
+      subUl = null;
+    } else {
+      if (!currentH1Li) {
+        ul.appendChild(li);
+      } else {
+        if (!subUl) {
+          subUl = document.createElement('ul');
+          currentH1Li.appendChild(subUl);
+        }
+        subUl.appendChild(li);
+      }
+    }
+  });
 
-		return ul.childElementCount ? ul : null;
-	}
+  return ul.childElementCount ? ul : null;
+}
+
 
 	// -------- Enhance a built tree (caret-only collapse, with state memory) --------
 	function enhanceTocTree(tree) {

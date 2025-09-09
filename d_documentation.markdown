@@ -9,29 +9,20 @@ topic_id: Documentation
 This manual provides documentation for the **GEMC** application. 
 It is assumed that the software has been installed. See also the [installation instructions](/home/installation/).
 
-Navigate through the various documentation using the topics below or the table of content on the left.
+Navigate through the various documentation using the table of content on the left or below. 
+
+<br/>
 
 
-<div class="doc-topic-grid">
-  {%- for t in site.data.docs_topics -%}
-    {%- assign p = site.docs | where: "slug", t.id | first -%}
-    <article class="doc-topic">
-      <h3>
-        {%- if p -%}
-          <a
-            href="{{ p.url | relative_url }}"
-            class="js-open-topic"
-            data-open-topic="{{ t.id }}"
-          >{{ t.title }}</a>
-        {%- else -%}
-          {{ t.title }}
-        {%- endif -%}
-      </h3>
-      {%- if t.desc -%}<p>{{ t.desc }}</p>{%- endif -%}
-    </article>
-  {%- endfor -%}
-</div>
+## Table of Contents
 
+<ul class="toc">
+  {% for section in site.data.docs_topics %}
+    <li>
+      <a href="../docs/{{ section.id }}" >{{ section.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
 
 
 

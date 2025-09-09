@@ -1,4 +1,3 @@
-## Systems
 
 A detector in gemc is composed by one or more *systems*, each a hierarchical collection of geant4 volumes. 
 In the example below an example with two systems, Forward Detector and Central Detector, is shown.
@@ -8,7 +7,7 @@ In the example below an example with two systems, Forward Detector and Central D
 |-----------------------------------|---------------------------------------------------------------------------------------------------------------------|
 | ![systems]] | {{ s1 }} {{ s2 }} {{ page.s3 }} {{ page.s4 }} {{ page.s5 }} {{ page.s6 }} {{ page.s7 }} {{ page.s8 }} {{ page.s9 }} |
 
-### Create a system
+## Create a system
 
 To create a new system, use the script `templates.py`. It setups a new directory 
 with the name of the system containing template files with default geometry and materials. 
@@ -21,13 +20,16 @@ system_template.py -s forward
 
 In the directory `forward`, the following files appear:
 
-- `README.md`:  a template markdown file   
-- `forward.py`: the main python script that calls geometry and material builders    
-- `geometry.py`: the geometry builder; has a box and a tube as example volumes
-- `materials.py`: the materials' builder; shows two different ways to define materials
-- `forward.jcard`: the steering card that loads the detector and defines the event generator, the output and the options
 
-### Create the system geometry and run gemc
+- a subdir called `counter` was created in the current directory
+- inside `counter`, few files were created:
+  - `counter.yaml`: a steering card (yaml file) that defines the simulation configuration
+  - `counter.py`: the python executable that builds the system
+  - `geometry.py`: the geometry definition file
+  - `materials.py`: the materials definition file
+  - `README.md`: a template readme file meant to be edited by the user
+
+## Create the system geometry and run gemc
 
 Following the above example, to build the detector, execute `forward.py`.  This will create the databases for the geometry and materials. The default 
 database format is `text` and the default variation is `default`, so the files 
@@ -57,7 +59,7 @@ These steps have been summarized in the following recording:
 <script async id="asciicast-1wDOXfYmQKs53O31nOIlIDLda" src="https://asciinema.org/a/1wDOXfYmQKs53O31nOIlIDLda.js" data-autoplay="true" data-loop="true"></script>        
 			 
                    
-### Variations
+## Variations
 
 The `templates` script accepts a `-v` option to create one or more variations of a system.  
 For example, to create a `forward` system with two variations, `default` and `lead_target`:
@@ -72,7 +74,7 @@ to the default except for the target material. For more details check the [Varia
 
 
 
-### Database factories		
+## Database factories		
     
 
 

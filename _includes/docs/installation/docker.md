@@ -1,17 +1,17 @@
 # Run GEMC in a Docker Container
 
-
+You can use docker to run GEMC without having to install it or any of its dependencies.
 The available GEMC docker images are listed below.
 
 | Image        | Pull Command                          | VNC Access                          |
 |--------------|---------------------------------------|-------------------------------------|
 {% for img in site.data.docker.images -%}
-| {{ img.label }} | `docker pull {{ img.tag }}` | {{ img.vnc_access }} |
+| {{ img.label }} | ```docker pull {{ img.tag }}``` | {{ img.vnc_access }} |
 {% endfor %}
 
 
-It is recommended to mount a local directory to save store your work.
-For illustration purposes here we will bind the image path `{{ page.docker_remote_mount }}`
+It is recommended to bind a local directory to save and store your work.
+For illustration purposes, below we will bind the image path `{{ page.docker_remote_mount }}`
 to the local dir `{{ page.docker_local_mount }}` and we will use the image `{{ site.data.docker.images[0].tag }}`.
 
 For Apple Silicon Mac you may need to add the option `--platform linux/amd64` to the docker commands below.

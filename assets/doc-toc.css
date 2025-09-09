@@ -5,15 +5,15 @@
   --toc-toggle-col: 0.9rem;       /* caret column width */
   --toc-gap: 0.25rem;             /* space between caret and text */
 
-  --toc-indent-h3: 0.6rem;        /* extra indent for H3 lists */
-  --toc-indent-h4: 1.1rem;        /* extra indent for H4 lists */
+  --toc-indent-h2: 0.6rem;        /* extra indent for H3 lists */
+  --toc-indent-h3: 1.1rem;        /* extra indent for H4 lists */
 
   --toc-sublist-gap: 0.35rem;     /* space between a topic and its subtopic list (top) */
   --toc-after-sublist-gap: 0.6rem;/* space after the subtopic list before next topic */
 
   --toc-topic-bg: rgba(0,0,0,.05);/* background for the ACTIVE topic group */
   --toc-active-link-bg: transparent; /* background for the active link (keep subtle) */
-  --toc-active-link-underline: underline; /* or none */
+  --toc-active-link-underline: none; /* or none */
   --toc-row-radius: 6px;
   --header-h: 60px;                 /* keep in sync with your header height */
   --sticky-offset: calc(var(--header-h) + 60px);  /* little breathing room */
@@ -82,8 +82,8 @@
 
 }
 
-.toc-tree ul ul{ margin-left: calc(var(--toc-toggle-col) + var(--toc-gap) + var(--toc-indent-h3)); }
-.toc-tree ul ul ul{ margin-left: calc(var(--toc-toggle-col) + var(--toc-gap) + var(--toc-indent-h4)); }
+.toc-tree ul ul{ margin-left: calc(var(--toc-toggle-col) + var(--toc-gap) + var(--toc-indent-h2)); }
+.toc-tree ul ul ul{ margin-left: calc(var(--toc-toggle-col) + var(--toc-gap) + var(--toc-indent-h3)); }
 
 /* Collapse state */
 .toc-tree .is-collapsed > ul{ display:none; }

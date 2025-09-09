@@ -1,0 +1,45 @@
+<style>
+.tabs5 { display: flex; border-bottom: 2px solid #ddd; }
+.tab5 { padding: 10px 15px; cursor: pointer; border: 1px solid #ddd; border-bottom: none; background: #f9f9f9; margin-right: 5px; }
+.tab5:hover { background: #e9e9e9; }
+.tab5-content { display: none; padding: 15px; border: 1px solid #ddd; background: white; }
+.tab5-content.active { display: block; }
+.active-tab5 { background: white; border-bottom: 2px solid white; }
+</style>
+
+<!-- Tabs Navigation -->
+<div class="tabs5">
+  <div class="tab5 active-tab5" onclick="showtab5(0)">{{ include.tab1_title }}</div>
+  <div class="tab5" onclick="showtab5(1)">{{ include.tab5_title }}</div>
+  <div class="tab5" onclick="showtab5(2)">{{ include.tab3_title }}</div>
+  <div class="tab5" onclick="showtab5(3)">{{ include.tab4_title }}</div>
+  <div class="tab5" onclick="showtab5(4)">{{ include.tab5_title }}</div>
+</div>
+
+<!-- Tabs Content -->
+<div class="tab5-content active">
+  {{ include.tab1_content | markdownify }}
+</div>
+<div class="tab5-content">
+  {{ include.tab2_content | markdownify }}
+</div>
+<div class="tab5-content">
+  {{ include.tab3_content | markdownify }}
+</div>
+<div class="tab5-content">
+  {{ include.tab4_content | markdownify }}
+</div>
+<div class="tab5-content">
+  {{ include.tab5_content | markdownify }}
+</div>
+<script>
+
+function showtab5(index) {
+  let tabs5 = document.querySelectorAll('.tab5');
+  let contents = document.querySelectorAll('.tab5-content');
+  tabs5.forEach(t => t.classList.remove('active-tab5'));
+  contents.forEach(c => c.classList.remove('active'));
+  tabs5[index].classList.add('active-tab5');
+  contents[index].classList.add('active');
+}
+</script>
