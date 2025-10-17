@@ -1,12 +1,16 @@
 # Run GEMC in a Docker Container
 
 You can use docker to run GEMC without having to install it or any of its dependencies.
-The available GEMC docker images are listed below.
+The images are  multi-arch: both `arm64` and `amd64` are supported (except on Arch Linux images which are `amd64` only [^1]).
 
-| Image        | Pull Command                          | VNC Access                          |
-|--------------|---------------------------------------|-------------------------------------|
+<br/>
+
+{:.zebra}
+
+| OS   | Pull Command | arm64 | amd64                         |
+|-----|-------------------------|-------------------------------------|
 {% for img in site.data.docker.images -%}
-| {{ img.label }} | ```docker pull {{ img.tag }}``` | {{ img.vnc_access }} |
+| {{ img.id }} {{ img.osversion }}  | ```docker pull {{ img.tag }}``` | {{ img.arm64 }} | {{ img.amd64 }} |
 {% endfor %}
 
 
@@ -14,7 +18,7 @@ It is recommended to bind a local directory to save and store your work.
 For illustration purposes, below we will bind the image path `{{ page.docker_remote_mount }}`
 to the local dir `{{ page.docker_local_mount }}` and we will use the image `{{ site.data.docker.images[0].tag }}`.
 
-For Apple Silicon Mac you may need to add the option `--platform linux/amd64` to the docker commands below.
+[^1]: For Apple Silicon Mac add the option `--platform linux/amd64` to the `docker run` command if you want to use the `amd64` images.
 
 <br/>
 

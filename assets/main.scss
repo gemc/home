@@ -149,6 +149,27 @@ table td {
 .alternate tr:nth-child(odd) td {
   background: #f8fafa;
 }
+/* Zebra table — override default cell backgrounds */
+table.zebra {
+  border-collapse: collapse;
+  width: 100%;
+}
+table.zebra th,
+table.zebra td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e5e7eb;
+  background: transparent; /* neutralize your global td/th bg */
+}
+table.zebra thead th {
+  background: #f3f4f6;
+  text-align: left;
+}
+/* Stripe the *cells* so they win over generic td bg rules */
+table.zebra tbody tr:nth-child(even) td { background: #f6f8fa; }
+table.zebra tbody tr:nth-child(odd)  td { background: #ffffff; }
+
+/* (optional) if other rules still win, add !important to the 3 bg lines above */
+
 
 /* Footer hidden (your choice) */
 footer {

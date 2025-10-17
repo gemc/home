@@ -1,14 +1,27 @@
 # _data/docker.yml
 images:
-  - id: ubuntu24
-    label: Ubuntu 24.04
+  - id: Ubuntu
+    osversion: 24.04
     tag: ghcr.io/gemc/gemc:latest-ubuntu24
-    vnc_access: yes
-  - id: alma94
-    label: AlmaLinux 9.4
+    amd64: yes
+    arm64: yes
+  - id: AlmaLinux
+    osversion: 9.4
     tag: ghcr.io/gemc/gemc:latest-almalinux94
-    vnc_access: no
-  - id: fedora40
-    label: Fedora 40
+    amd64: yes
+    arm64: yes
+  - id: Fedora
+    osversion: 40
     tag: ghcr.io/gemc/gemc:latest-fedora40
-    vnc_access: yes
+    amd64: yes
+    arm64: yes
+  - id: Debian
+    osversion: 12
+    tag: ghcr.io/gemc/gemc:latest-fedora40
+    amd64: yes
+    arm64: yes
+  - id: ArchLinux
+    osversion: latest
+    tag: ghcr.io/gemc/gemc:latest-fedora40
+    amd64: yes
+    arm64: no

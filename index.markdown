@@ -1,5 +1,6 @@
 ---
 layout: default
+
 ---
 
 {% include mynotes.html %}
@@ -17,12 +18,14 @@ For previous GEMC version, refer to [this page](https://gemc.jlab.org/gemc/html/
 %}
 
 
-**GEMC** leverages [Geant4](https://geant4.web.cern.ch) to run simulations of particles through geometries stored in databases.
+**GEMC** is a database-driven Monte Carlo simulation program based on [Geant4](https://geant4.web.cern.ch).
 Key features include:<br/>
 
-- Python API provides database I/O of geometry and materials
-- Custom extensibility of fieldmaps, hardware electronics, output formats and signal digitization
-- Built-in `ASCII` and [`ROOT`](https://root.cern) output
+- Python API for database I/O of geometry and materials
+- No need to know, write or compile C++ or Geant4 code
+- Built-in `ASCII`, `CSV` and [`ROOT`](https://root.cern) output formats
+- Custom extensibility of signal digitization, output formats, e.m. fields, hardware electronics. 
+- [`pyvista`](https://https://pyvista.org) 3D visualization and meshes support
 
 <br/>
 
@@ -32,21 +35,19 @@ Key features include:<br/>
 
 Geant4 objects are uploaded to databases using the python API. Running simulations looks like this:
 
-- GEMC reads databases (`ASCII`, `SQLite`, `GDML` or `CAD` files) to create the geometry (volumes, materials, surfaces, etc).
-- Generated particle are transported through the geometry by Geant4. 
-- The resulting hits are processed, collected and digitized. 
-- Outputs are streamed to `ASCII`, `ROOT`  and/or user defined formats. 
+ 1. GEMC reads databases (`ASCII`, `SQLite`, `GDML`, `CAD` files) to create the Geant4 volumes, materials, surfaces, etc.
+ 2. Generated particle are transported through the geometry by Geant4. 
+ 3. The resulting hits are processed, collected and digitized. 
+ 4. Outputs are streamed to the desired formats. 
 
 
 {% include figure.html
    src="assets/images/gemcArchitecture.png"
    alt="Database-driven architecture"
-   caption="
-   Typical gemc workflow: detectors can be loaded from several databases sources.
-   Optionally, users can add run time conditions by moving some detectors, changing some materials, etc. 
-   Users generated particles are then transported through materials by Geant4. 
-   Hits are collected, digitized and streamed to disk output(s)."
-   width="1200"
+   caption="<br/>
+   Typical gemc workflow: detectors can be loaded from several databases sources.<br/>
+   Users can add run time conditions by moving detectors, changing materials, etc. "
+   width="1100"
 %}
 
 <br/><br/>
@@ -54,9 +55,8 @@ Geant4 objects are uploaded to databases using the python API. Running simulatio
 ## Python API
 
 `Python` is used to create and upload to databases the geometry, materials, mirrors, etc.
-
-- No previous knowledge of Geant4 or C++ is required.
-- The application does not need to be re-compiled when the geometry is changed.
+GEMC does not need to be re-compiled when the geometry is changed. The API supports [`pyvista`](https://https://pyvista.org) 
+visualization of the geometry.
 
 {% include figure.html
    src="assets/images/pythonAPIGeo.png"
@@ -104,15 +104,31 @@ GEMC Supports these geometry versions using **variations** and/or run **numbers*
 <br/><br/>
 
 
-## Continuous Integration
+## Status Badges
 
-Gemc is built on several platforms for every commit and pull request. 
+Gemc is built on several platforms and both arm64, amd64 architectures for every commit and pull request. 
 In addition, nightly releases are built and deployed the Github repository.
 
-- [![Build and Test Images](https://github.com/gemc/src/actions/workflows/docker.yml/badge.svg)](https://github.com/gemc/src/actions/workflows/docker.yml)
-- [![Doxygen](https://github.com/gemc/src/actions/workflows/doxygen.yaml/badge.svg)](https://github.com/gemc/src/actions/workflows/doxygen.yaml)
-- [![Nightly Dev Release](https://github.com/gemc/src/actions/workflows/dev_release.yml/badge.svg)](https://github.com/gemc/src/actions/workflows/dev_release.yml)
-- [![GEMC Homepage Deployment](https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg)](https://github.com/gemc/home/actions/workflows/jekyll.yml)
+{:.zebra}
+
+| Deployment | [![CI][CI-badge]][CI]                |
+| Doxygen    | [![Docs][Docs-badge]][Docs]          |
+| Nightly    | [![Nightly][Nightly-badge]][Nightly] |
+| Site       | [![Site][Site-badge]][Site]          |
+
+
+
+[CI]: https://github.com/gemc/src/actions/workflows/build_and_test.yml
+[CI-badge]: https://github.com/gemc/src/actions/workflows/build_and_test.yml/badge.svg
+
+[Docs]: https://github.com/gemc/src/actions/workflows/doxygen.yaml
+[Docs-badge]: https://github.com/gemc/src/actions/workflows/doxygen.yaml/badge.svg
+
+[Nightly]: https://github.com/gemc/src/actions/workflows/dev_release.yml
+[Nightly-badge]: https://github.com/gemc/src/actions/workflows/dev_release.yml/badge.svg
+
+[Site]: https://github.com/gemc/home/actions/workflows/jekyll.yml
+[Site-badge]: https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg
 
 <br/><br/>
 
@@ -155,11 +171,9 @@ Bibitem:
 
 ## Source Code and Licence
 
-<br/>
-
-The GEMC source code on ([GitHub](https://github.com/gemc/src)) is distributed under an [open source license](/home/license/).
+The GEMC source code on [GitHub](https://github.com/gemc/src) is distributed under an [open source license](/home/license/).
 
 
 <br/><br/>
 
-
+<hr/>

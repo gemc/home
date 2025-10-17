@@ -36,10 +36,8 @@ See the [license conditions](/home/license/).
 > Use the most recent GEMC release to ensure you are taking  advantage of
 > latest bug fixes and the new features. This also helps the developers to provide the best support.
 
-<br/>
-<hr/>
-<br/>
-<br/>
+<br/><br/>
+
 
 ## Table of Contents
  
@@ -48,16 +46,10 @@ See the [license conditions](/home/license/).
 
 
 
-<br/>
+<br/><br/>
 
 {% include docs/installation/build.md %}
 
-<br/><br/>
-
-
----
-
-<br/>
 <br/><br/>
 
 
