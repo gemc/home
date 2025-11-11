@@ -21,45 +21,44 @@ For previous GEMC version, refer to [this page](https://gemc.jlab.org/gemc/html/
 **GEMC** is a database-driven Monte Carlo simulation program based on [Geant4](https://geant4.web.cern.ch).
 Key features include:<br/>
 
-- Python API for database I/O of geometry and materials
-- No need to know, write or compile C++ or Geant4 code
+- Python API for geometry and materials
+- `ASCII`, `SQLite`, `GDML`, `CAD` support
 - Built-in `ASCII`, `CSV` and [`ROOT`](https://root.cern) output formats
-- Custom extensibility of signal digitization, output formats, e.m. fields, hardware electronics. 
-- [`pyvista`](https://https://pyvista.org) 3D visualization and meshes support
+- Custom extensibility of digitization, output formats, e.m. fields.
+- [`pyvista`](https://https://pyvista.org) 3D visualization and import. 
+- CAD / meshes support
 
 <br/>
 
-
-
 ## Databases
 
-Geant4 objects are uploaded to databases using the python API. Running simulations looks like this:
+Running simulations does not require previous knowledge of C++ or Geant4. A typical workflow looks like this:
 
- 1. GEMC reads databases (`ASCII`, `SQLite`, `GDML`, `CAD` files) to create the Geant4 volumes, materials, surfaces, etc.
- 2. Generated particle are transported through the geometry by Geant4. 
- 3. The resulting hits are processed, collected and digitized. 
- 4. Outputs are streamed to the desired formats. 
+ 1. Geant4 geometry and materials are uploaded to databases using `python`
+ 2. GEMC reads databases and builds the Geant4 world
+ 3. Particles are transported by Geant4. 
+ 4. Hits are digitized and streamed to the desired formats. 
 
 
 {% include figure.html
    src="assets/images/gemcArchitecture.png"
    alt="Database-driven architecture"
    caption="<br/>
-   Typical gemc workflow: detectors can be loaded from several databases sources.<br/>
-   Users can add run time conditions by moving detectors, changing materials, etc. "
+   Typical gemc workflow: the Geant4 world is defined from databases sources.<br/>
+   Users can add run time conditions, particles, etc. Geant4's steps are collected in hits, digitized and streamed. "
    width="1100"
 %}
 
 <br/><br/>
 
 ## Python API
+GEMC does not need to be re-compiled when the geometry is changed.
 
 `Python` is used to create and upload to databases the geometry, materials, mirrors, etc.
-GEMC does not need to be re-compiled when the geometry is changed. The API supports [`pyvista`](https://https://pyvista.org) 
-visualization of the geometry.
+The API supports [`pyvista`](https://https://pyvista.org) visualization of the geometry.
 
 {% include figure.html
-   src="assets/images/pythonAPIGeo.png"
+   src="assets/images/gemc_showcase.gif"
    alt="Python API example"
    caption="  
    An example geometry: a flux plane (generated with the snippet below) collects hits from all 
