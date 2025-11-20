@@ -1,11 +1,11 @@
 
-# Build and Install GEMC from Source
+## Build and Install GEMC from Source
 
 Please see the [GEMC/Geant4 Software Prerequisites](#gemc-and-geant4-software-prerequisites) in the appendix for the requirements.
 
 <br/>
 
-## 1. Obtain the source 
+### 1. Obtain the source 
 
 For illustration only, we will use  `{{ page.path_prefix }}` as the installation location, `{{ page.latest_tag }}` as the version to be installed,
 `source` as the location of the code. Create the paths and cd to the version directory:
@@ -45,7 +45,7 @@ git clone --depth=1 https://github.com/gemc/src source
 
 <br/>
 
-## 2. Compile and install GEMC
+### 2. Compile and install GEMC
 
 The [meson build system](https://mesonbuild.com) is used to compile and install GEMC. 
 A `build` directory is used:
@@ -66,7 +66,7 @@ Optionally, after installation, `meson test -v` will run several tests of variou
 
 <br/>
 
-**Build Options**
+### Build Options
 
 - Use `-v` at build time for verbose output.
 - The setup option `-Droot=enabled` will build GEMC with ROOT support if ROOT is installed on your system.
@@ -78,7 +78,7 @@ Optionally, after installation, `meson test -v` will run several tests of variou
 
 
 
-## Post Installation 
+### Post Installation 
 Add the `bin` and `api` directories to your `PATH` and `PYTHONPATH` environment variables.
 
 ```bash

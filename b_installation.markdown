@@ -3,9 +3,9 @@ layout: default
 title: Installation
 permalink: /installation/
 
-development_tag: dev3
-development_release_date: <small><time>released nightly</time></small>
+development_tag: dev
 latest_tag: 1.0
+development_release_date: <small><time>released nightly</time></small>
 latest_release_date: <small><time>Not Yet Released</time></small>
 repo_link: https://github.com/gemc/src/releases/tag
 release_notes: https://github.com/gemc/src/releases
@@ -43,6 +43,7 @@ See the [license conditions](/home/license/).
  
 - [Build and Install GEMC from source code](#build-and-install-gemc-from-source)
 - [Run GEMC in a Docker Container](#run-gemc-in-a-docker-container)
+- [Run GEMC using Apptainer](#run-gemc-using-apptainer)
 
 
 
@@ -52,13 +53,15 @@ See the [license conditions](/home/license/).
 
 <br/><br/>
 
-
 {% include docs/installation/docker.md %}
 
-<br/><br/><br/><br/><br/>
+<br/><br/>
+
+{% include docs/installation/apptainer.md %}
+
+<br/><br/><br/>
 
 # Appendix
-<hr/>
 <br/>
 
 {% include docs/installation/pre-requisites.md %}

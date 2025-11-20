@@ -95,15 +95,12 @@ ttf-dejavu qt6-base root gcc-libs tbb
    tab5_title="Arch Linux" tab5_content=tab5a
 %}
 
-
-
-
-<br/>
 <br/>
 
 ## Supported and tested platforms
 <br/>
 
+- macOS: 15 or later (Sequoia)
 - Linux:
 
   - Fedora 40 or later
@@ -112,8 +109,4 @@ ttf-dejavu qt6-base root gcc-libs tbb
   - Debian 12 or later
   - Arch Linux (rolling release)
 
-<br/>
-
-- macOS: 15 or later (Sequoia)
-
-
+	
