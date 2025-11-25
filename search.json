@@ -1,0 +1,25 @@
+---
+layout: none
+---
+
+[
+  {%- comment -%}
+  Only include:
+    - real pages (have a title)
+    - pages that are not explicitly search: false
+    - pages that are not explicitly published: false
+    (Drafts aren’t output in a normal build anyway)
+  {%- endcomment -%}
+
+  {%- assign pages = site.pages | where_exp: "page", "page.title" -%}
+  {%- assign pages = pages | where_exp: "page", "page.search != false" -%}
+  {%- assign pages = pages | where_exp: "page", "page.published != false" -%}
+
+  {%- for page in pages -%}
+  {
+    "title": {{ page.title | jsonify }},
+    "url": {{ page.url | relative_url | jsonify }},
+    "content": {{ page.content | strip_html | strip_newlines | jsonify }}
+  }{% if forloop.last == false %},{% endif %}
+  {%- endfor -%}
+]
