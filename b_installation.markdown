@@ -7,7 +7,7 @@ development_tag: dev
 latest_tag: 1.0
 development_release_date: <small><time>released nightly</time></small>
 latest_release_date: <small><time>Not Yet Released</time></small>
-repo_link: https://github.com/gemc/src/releases/tag
+repo_link: https://github.com/gemc/src
 release_notes: https://github.com/gemc/src/releases
 path_prefix: /path/to/gemc
 docker_local_mount: ~/mywork

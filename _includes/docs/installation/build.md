@@ -20,8 +20,8 @@ Download the code:
 {% capture tab1 %}
 Download the latest release:
 ```bash
-wget {{ page.repo_link }}/{{ page.latest_tag }}.tar.gz
-tar -xvzf {{ page.latest_tag }}.tar.gz --strip-components=1 -C source
+cd {{ page.path_prefix }}/{{ page.latest_tag }}
+git clone -c advice.detachedHead=false --recurse-submodules --branch {{ page.latest_tag }} {{ page.repo_link }} source
 ```
 {% endcapture %}
 
@@ -29,7 +29,7 @@ tar -xvzf {{ page.latest_tag }}.tar.gz --strip-components=1 -C source
 At your own risk, clone the repository to get the development version:
 ```bash
 cd {{ page.path_prefix }}/{{ page.latest_tag }}
-git clone --depth=1 https://github.com/gemc/src source
+git clone --depth=1 {{ page.repo_link }} source
 ```
 {% endcapture %}
 
