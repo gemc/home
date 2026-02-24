@@ -75,8 +75,8 @@ exclude:
 
 # this adds content to the website from the local dirs starting with _
 collections:
-#  documentation:
-#    output: true
+  documentation:
+    output: true
   examples:
     output: true
   installation:

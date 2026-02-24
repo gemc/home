@@ -30,7 +30,7 @@
 One liners installation of basic packages and dependencies on some popular Linux distributions:
 
 {% capture tab1a %}
-```bash
+```shell
 dnf install -y --allowerasing git make cmake gcc-c++ gdb valgrind expat-devel mariadb-devel \
 sqlite-devel python3-devel ninja-build mesa-libGLU-devel libX11-devel libXpm-devel libXft-devel \
 libXt-devel libXmu-devel libXrender-devel xorg-x11-server-Xvfb xrandr bzip2 wget curl nano bash \
@@ -41,7 +41,7 @@ libasan libubsan libtsan tbb
 {% endcapture %}
 
 {% capture tab2a %}
-```bash
+```shell
 dnf install -y --allowerasing git make cmake gcc-c++ gdb valgrind expat-devel mariadb-devel \
 sqlite-devel python3-devel ninja-build mesa-libGLU-devel libX11-devel libXpm-devel libXft-devel \
 libXt-devel libXmu-devel libXrender-devel xorg-x11-server-Xvfb xrandr bzip2 wget curl nano bash 
@@ -52,7 +52,7 @@ libasan libubsan libtsan tbb
 {% endcapture %}
 
 {% capture tab3a %}
-```bash
+```shell
 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata git make cmake \
 g++ gdb valgrind libexpat1-dev libmysqlclient-dev libsqlite3-dev python3-dev ninja-build \
 libglu1-mesa-dev libx11-dev libxpm-dev libxft-dev libxt-dev libxmu-dev libxrender-dev \
@@ -64,7 +64,7 @@ libqt6openglwidgets6t64 qt6-base-dev-tools liblsan0 libasan8 libubsan1 libtsan2 
 {% endcapture %}
 
 {% capture tab4a %}
-```bash
+```shell
 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata git make cmake \
 g++ gdb valgrind libexpat1-dev libmariadb-dev libsqlite3-dev python3-dev ninja-build \
 libglu1-mesa-dev libx11-dev libxpm-dev libxft-dev libxt-dev libxmu-dev libxrender-dev \
@@ -76,7 +76,7 @@ qt6-base-dev-tools liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 {% endcapture %}
 
 {% capture tab5a %}
-```bash
+```shell
 pacman-key --init && pacman-key --populate
 pacman -Sy --noconfirm archlinux-keyring
 pacman -Syu --noconfirm --needed git make cmake gcc gdb valgrind expat mariadb mariadb-libs \

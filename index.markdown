@@ -3,7 +3,6 @@ layout: default
 
 ---
 
-{% include mynotes.html %}
 This site refers to the latest **GEMC** project (version 3 and above). 
 
 For **CLAS12 simulations** refer to [this page](https://github.com/gemc/clas12Tags). 

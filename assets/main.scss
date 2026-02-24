@@ -13,27 +13,27 @@
   // body: last one wins
 
   /* default */
-  --font-sans: system-ui, sans-serif;
+  //--font-sans: system-ui, sans-serif;
 
   /* Ultra-minimal universal */
-  --font-sans: system-ui, -apple-system, "Segoe UI", Arial, "Noto Sans", sans-serif,
-  "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+  //--font-sans: system-ui, -apple-system, "Segoe UI", Arial, "Noto Sans", sans-serif,
+  //"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
 
-  --font-sans: Georgia, "Times New Roman", Times, serif;
+  //--font-sans: Georgia, "Times New Roman", Times, serif;
 
   /* Lexend (aimed at reading fluency) */
-  --font-sans: "Lexend", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
+  //--font-sans: "Lexend", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
 
   /* STIX Two Text (serif for math/technical copy) */
-  --font-sans: "STIX Two Text", Georgia, "Times New Roman", Times, serif;
+  //--font-sans: "STIX Two Text", Georgia, "Times New Roman", Times, serif;
 
-  --font-sans: "Helvetica Neue", Helvetica, Arial, "Noto Sans", system-ui, sans-serif;
+  //--font-sans: "Helvetica Neue", Helvetica, Arial, "Noto Sans", system-ui, sans-serif;
 
   /* Manrope (modern, open shapes) */
-  --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
+  //--font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
 
   /* Inter (modern, very readable) */
-  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
+  //--font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
 
   --font-sans: Avenir, system-ui, -apple-system, "Segoe UI", Roboto,
   "Helvetica Neue", Arial, "Noto Sans", sans-serif,
@@ -72,7 +72,7 @@ h2 {
   font-weight: 505;
   margin: 24px 0 16px;
   padding-bottom: 0.3em;
-  border-bottom: 1px solid rgba(0,0,0,0.15); /* grey bar */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15); /* grey bar */
 }
 
 h3 {
@@ -81,7 +81,6 @@ h3 {
   margin: 20px 0 12px;
   border-bottom: none; /* no bar on h3 in GitHub */
 }
-
 
 
 /* ===================== Base layout / typography ===================== */
@@ -149,24 +148,33 @@ table td {
 .alternate tr:nth-child(odd) td {
   background: #f8fafa;
 }
+
 /* Zebra table — override default cell backgrounds */
 table.zebra {
   border-collapse: collapse;
   width: 100%;
 }
+
 table.zebra th,
 table.zebra td {
   padding: 0.5rem 0.75rem;
   border: 1px solid #e5e7eb;
   background: transparent; /* neutralize your global td/th bg */
 }
+
 table.zebra thead th {
   background: #f3f4f6;
   text-align: left;
 }
+
 /* Stripe the *cells* so they win over generic td bg rules */
-table.zebra tbody tr:nth-child(even) td { background: #f6f8fa; }
-table.zebra tbody tr:nth-child(odd)  td { background: #ffffff; }
+table.zebra tbody tr:nth-child(even) td {
+  background: #f6f8fa;
+}
+
+table.zebra tbody tr:nth-child(odd) td {
+  background: #ffffff;
+}
 
 /* (optional) if other rules still win, add !important to the 3 bg lines above */
 
@@ -176,14 +184,6 @@ footer {
   display: none;
 }
 
-/* Decorative band */
-.colored_band {
-  box-shadow: inset 0 0 0 1000px rgba(240, 240, 240, 0.65);
-  padding-left: 30%;
-  padding-right: 12%;
-  margin-left: -30%;
-  margin-right: -12%;
-}
 
 /* Icon hover */
 .zoomIcon {
@@ -290,25 +290,25 @@ pre.highlight {
 
 /* Plain <pre> blocks (not Rouge-highlighted) */
 pre:not(.highlight) {
-  background: #252323;       /* softer background */
+  background: #252323; /* softer background */
   border: 1px solid #d7dde6;
   border-radius: 6px;
   padding: 0.75rem 1rem;
   margin: 1rem 0;
-  font-size: 0.80em;         /* smaller than code blocks */
+  font-size: 0.80em; /* smaller than code blocks */
   line-height: 1.5;
   overflow-x: auto;
-  color: #97ff80;            /* readable on light bg */
+  color: #97ff80; /* readable on light bg */
   font-family: var(--font-mono);
-  white-space: pre;          /* keep whitespace exactly */
+  white-space: pre; /* keep whitespace exactly */
 }
 
 /* Dark mode for plain <pre> */
 @media (prefers-color-scheme: dark) {
   pre:not(.highlight) {
-    background: #1f2430;
-    border-color: #2b3240;
-    color: #e6e8eb;
+	background: #1f2430;
+	border-color: #2b3240;
+	color: #e6e8eb;
   }
 }
 
@@ -412,7 +412,7 @@ pre:not(.highlight) {
   list-style: none;
   background: #fff;
   border: 1px solid #eaeaea;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   max-height: 300px;
   overflow-y: auto;
   z-index: 1000;
@@ -446,4 +446,129 @@ pre:not(.highlight) {
 .no-results {
   color: #999;
   font-style: italic;
+}
+
+.two-col-grid{
+  display: grid;
+  gap: 4rem;
+  align-items: start;
+}
+
+.two-col-centered{
+  width: 90%;
+  max-width: 90%;
+  margin: 0 auto;     /* centered block */
+}
+
+
+
+@media (max-width: 700px) {
+  .two-col-grid.centered {
+	grid-template-columns: 1fr !important;
+  }
+}
+
+.indent3 { text-indent: 3em;    position: relative;
+  top: -1.4rem;   }
+
+
+/* ===================================================================== */
+/* Directory page (script-style) — appended at bottom, scoped to directory */
+/* ===================================================================== */
+
+/* ===================================================================== */
+/* Directory page (match python-generated index.html styling)              */
+/* ===================================================================== */
+
+/*
+  This block intentionally resets typography inside the directory page to
+  match the standalone HTML produced by your python script:
+
+  - font-family: GitHub-ish system stack (NOT your global --font-sans)
+  - base font-size: 16px (your global body is 1.2em)
+  - link hover: underline (your global hover removes underline)
+  - h3 in footer: normalized to browser-ish sizing (script has no h3 rule)
+*/
+
+.page-content .directory-page {
+  /* script "body" equivalent, but scoped */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+               Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 16px;
+  line-height: 1.5;
+  color: #24292f;
+  background: #ffffff;
+
+  /* script ".container" */
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px 24px 24px 24px;
+}
+
+.page-content .directory-page .intro {
+  margin: 0 0 16px 0;
+  color: #57606a;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.page-content .directory-page .link-list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0 0;
+}
+
+.page-content .directory-page .section {
+  margin: 0 0 20px 0;
+}
+
+.page-content .directory-page .section-title {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.25;
+  margin: 24px 0 10px 0;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #d0d7de;
+}
+
+.page-content .directory-page .section-links {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+
+  /* match script column layout */
+  column-count: 4;
+  column-gap: 18px;
+}
+
+.page-content .directory-page .section-links li {
+  break-inside: avoid;
+  margin: 6px 0;
+}
+
+/* Match script link behavior (override your global hover rules) */
+.page-content .directory-page a {
+  color: #0969da;
+  text-decoration: none;
+}
+
+.page-content .directory-page a:hover {
+  text-decoration: underline;
+  color: #0969da; /* keep same as script */
+}
+
+/* Footer matches script */
+.page-content .directory-page .footer {
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: #999;
+}
+
+/* Normalize footer h3 (script uses browser default since it has no h3 rule) */
+.page-content .directory-page .footer h3 {
+  font-size: 1.17em;
+  font-weight: 600;
+  margin: 0;
+  border-bottom: none;
+  padding-bottom: 0;
 }

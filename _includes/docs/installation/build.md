@@ -10,7 +10,7 @@ Please see the [GEMC/Geant4 Software Prerequisites](#gemc-and-geant4-software-pr
 For illustration only, we will use  `{{ page.path_prefix }}` as the installation location, `{{ page.latest_tag }}` as the version to be installed,
 `source` as the location of the code. Create the paths and cd to the version directory:
 
-```bash
+```shell
 mkdir -p {{ page.path_prefix }}/{{ page.latest_tag }}/source
 cd {{ page.path_prefix }}/{{ page.latest_tag }}
 ```
@@ -19,7 +19,7 @@ Download the code:
 
 {% capture tab1 %}
 Download the latest release:
-```bash
+```shell
 cd {{ page.path_prefix }}/{{ page.latest_tag }}
 git clone -c advice.detachedHead=false --recurse-submodules --branch {{ page.latest_tag }} {{ page.repo_link }} source
 ```
@@ -27,7 +27,7 @@ git clone -c advice.detachedHead=false --recurse-submodules --branch {{ page.lat
 
 {% capture tab2 %}
 At your own risk, clone the repository to get the development version:
-```bash
+```shell
 cd {{ page.path_prefix }}/{{ page.latest_tag }}
 git clone --depth=1 {{ page.repo_link }} source
 ```
@@ -51,7 +51,7 @@ The [meson build system](https://mesonbuild.com) is used to compile and install 
 A `build` directory is used:
 
 
-```bash
+```shell
 cd {{ page.path_prefix }}/{{ page.latest_tag }}/source
 meson setup build --native-file=core.ini --prefix={{ page.path_prefix }}/{{ page.latest_tag }}
 meson compile -C build
@@ -81,7 +81,7 @@ Optionally, after installation, `meson test -v` will run several tests of variou
 ### Post Installation 
 Add the `bin` and `api` directories to your `PATH` and `PYTHONPATH` environment variables.
 
-```bash
+```shell
 export GEMC_VERSION={{ page.latest_tag }}
 export PATH={{ page.path_prefix }}/$GEMC_VERSION/bin:$PATH
 export PYTHONPATH={{ page.path_prefix }}/$GEMC_VERSION/api:$PYTHONPATH

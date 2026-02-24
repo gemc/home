@@ -14,7 +14,6 @@ docker_local_mount: ~/mywork
 docker_remote_mount: /mywork
 ---
 
-{% include mynotes.html %}
 
 
 ### License

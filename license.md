@@ -3,8 +3,6 @@ layout: default
 permalink: /license/
 ---
 
-{% include mynotes.html %}
-
 [//]: # (Notice: I copied the content of src/LICENSE.md here to have it rendered by Jekyll)
 
 # GEMC Software License
@@ -62,7 +60,7 @@ software itself.
 Publications or presentations that use this software
 or results produced with it must include the following citation:
 
-```bash
+```shell
 M. Ungaro, Geant4 Monte-Carlo (GEMC): A database-driven simulation program, 
 EPJ Web of Conferences 295, 05005 (2024),
 https://doi.org/10.1051/epjconf/202429505005
