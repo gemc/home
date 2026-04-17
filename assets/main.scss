@@ -537,8 +537,8 @@ pre:not(.highlight) {
   margin: 10px 0 0 0;
 
   /* match script column layout */
-  column-count: 4;
-  column-gap: 18px;
+  column-count: 5;
+  column-gap: 15px;
 }
 
 .page-content .directory-page .section-links li {
@@ -571,4 +571,44 @@ pre:not(.highlight) {
   margin: 0;
   border-bottom: none;
   padding-bottom: 0;
+}
+
+
+.directory-section {
+  display: block;
+}
+
+.directory-links {
+  margin-top: 0.35rem;
+  column-gap: 2rem;
+}
+
+.directory-entry {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  margin-bottom: 0.35em;
+}
+
+
+.owner-only-section {
+  display: none;
+}
+
+.owner-mode .owner-only-section {
+  display: block;
+}
+
+
+blockquote.doc-important {
+  margin: 1.25rem 0;
+  padding: 0.9rem 1rem;
+  border-left: 4px solid #2b87c0;
+  background: #fbfbfb;
+  border-radius: 6px;
+}
+
+blockquote.doc-important > p:first-child strong {
+  color: #17648e;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }

@@ -1,26 +1,4 @@
 - title: "Create a system"
-  stitle: "system"
   category: "quickstart"
-  order: 1
-
-- title: "Build the geometry"
-  stitle: "geometry"
-  category: "quickstart"
-  order: 2
-
-- title: "Run Gemc"
-  stitle: "run"
-  category: "quickstart"
-  order: 3
-
-- title: "Introduction"
-  stitle: "Intro"
-  category: "system"
-  order: 1
-
-- title: "Create a system"
-  stitle: "system"
-  category: "system"
-  order: 1
-
+  link: "/home/documentation/materials.md"
 

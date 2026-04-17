@@ -1,0 +1,35 @@
+{% assign items = include.data | group_by: "category" %}
+{% assign columns = include.columns | default: 1 | plus: 0 %}
+{% assign section_breaks = include.section_breaks | default: 1 | plus: 0 %}
+
+<script>
+  (function () {
+    if (document.cookie.split('; ').includes('ownerMode=true')) {
+      document.documentElement.classList.add('owner-mode');
+    }
+  })();
+</script>
+
+<div class="directory-page directory-container">
+  {% for group in items %}
+    {% assign owner_only = false %}
+    {% if page.owner_only_categories contains group.name %}
+      {% assign owner_only = true %}
+    {% endif %}
+
+    <div class="directory-section{% if owner_only %} owner-only-section{% endif %}"
+         {% unless forloop.last %}style="margin-bottom: {{ section_breaks }}em;"{% endunless %}>
+      <div class="section-title">{{ group.name | escape }}</div>
+
+      <div class="directory-links" style="column-count: {{ columns }};">
+        {% for item in group.items %}
+          {% assign href = item.link | default: item.link1 %}
+          <div class="directory-entry">
+            <a href="{{ href | escape }}">[ {{ item.title | escape }} ]</a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+

@@ -81,9 +81,9 @@ collections:
     output: true
   installation:
     output: true
-  docs:
-    output: true
-    permalink: /docs/:name/
+#  docs:
+#    output: true
+#    permalink: /docs/:name/
 
 # shortcuts to symbols, accessible with {{ site.symbol_name }}
 
@@ -100,5 +100,4 @@ deltaM: "&Delta;(1232)"
 
 mauriPlotsUrl: 'https://raw.githubusercontent.com/MauriPlots'
 mauriPubs: 'https://raw.githubusercontent.com/maureeungaro/pubs/585b32bd516546e14de489a8b4178a2e24b6764f/pdfs'
-
 

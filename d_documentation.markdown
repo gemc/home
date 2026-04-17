@@ -4,4 +4,4 @@ title: Documentation
 permalink: /documentation/
 ---
 
-{% include doc_toc.html %}
+{% include directory.html data=site.data.documentation columns=5 section_breaks=4 %}

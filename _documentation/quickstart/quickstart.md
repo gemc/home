@@ -4,7 +4,6 @@ title: Quickstart
 permalink: /documentation/quickstart/
 ---
 
-{% include doc_toc.html %}
 
 <br/>
 
