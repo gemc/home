@@ -25,11 +25,10 @@
         {% for item in group.items %}
           {% assign href = item.link | default: item.link1 %}
           <div class="directory-entry">
-            <a href="{{ href | escape }}">[ {{ item.title | escape }} ]</a>
+            <a href="{{ href | escape }}" target="_blank">[ {{ item.title | escape }} ]</a>
           </div>
         {% endfor %}
       </div>
     </div>
   {% endfor %}
 </div>
-

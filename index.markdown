@@ -19,11 +19,10 @@ width="1000"
 Key features include:<br/>
 
 - Python API for geometry and materials
-- `ASCII`, `SQLite`, `GDML`, `CAD` support
+- Support for `ASCII`, `SQLite`, `GDML`, `CAD meshes` volume imports
 - Built-in `ASCII`, `CSV` and [`ROOT`](https://root.cern) output formats
 - Custom extensibility of digitization, output formats, e.m. fields.
 - [`pyvista`](https://https://pyvista.org) 3D visualization and import.
-- CAD / meshes support
 
 <br/>
 
@@ -31,10 +30,11 @@ Key features include:<br/>
 
 Running simulations does not require previous knowledge of C++ or Geant4. A typical workflow looks like this:
 
-1. Geant4 geometry and materials are uploaded to databases using `python`
-2. GEMC reads databases and builds the Geant4 world
-3. Particles are transported by Geant4.
-4. Hits are digitized and streamed to the desired formats.
+1. Geant4 geometry and materials are defined using python
+2. GEMC builds the Geant4 world
+3. Particles are transported by Geant4, hits are created
+4. Hardware electronic emulations digitize the hits   
+5. Data is streamed to the desired output formats.
 
 {% include figure.html
 src="assets/images/gemcArchitecture.png"
@@ -115,12 +115,12 @@ In addition, nightly releases are built and deployed the Github repository.
 | Code QL | [![CodeQL][CodeQL-badge]][CodeQL]          |
 
 
-[CI]: https://github.com/gemc/src/actions/workflows/docker.yml
-[CI-badge]: https://github.com/gemc/src/actions/workflows/docker.yml/badge.svg
+[CI]: https://github.com/gemc/src/actions/workflows/dockers_deploy_and_test.yml
+[CI-badge]: https://github.com/gemc/src/actions/workflows/dockers_deploy_and_test.yml/badge.svg
 
 
-[Docs]: https://github.com/gemc/src/actions/workflows/doxygen.yaml
-[Docs-badge]: https://github.com/gemc/src/actions/workflows/doxygen.yaml/badge.svg
+[Docs]: https://github.com/gemc/src/actions/workflows/doxygen.yml
+[Docs-badge]: https://github.com/gemc/src/actions/workflows/doxygen.yml/badge.svg
 
 [Nightly]: https://github.com/gemc/src/actions/workflows/dev_release.yml
 [Nightly-badge]: https://github.com/gemc/src/actions/workflows/dev_release.yml/badge.svg
@@ -128,8 +128,8 @@ In addition, nightly releases are built and deployed the Github repository.
 [Site]: https://github.com/gemc/home/actions/workflows/jekyll.yml
 [Site-badge]: https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg
 
-[Sanitize]: ttps://github.com/gemc/src/actions/workflows/sanitize.yaml
-[Sanitize-badge]: https://github.com/gemc/src/actions/workflows/sanitize.yaml/badge.svg
+[Sanitize]: ttps://github.com/gemc/src/actions/workflows/sanitize.yml
+[Sanitize-badge]: https://github.com/gemc/src/actions/workflows/sanitize.yml/badge.svg
 
 [CodeQL]: https://github.com/gemc/src/actions/workflows/codeql.yml
 [CodeQL-badge]: https://github.com/gemc/src/actions/workflows/codeql.yml/badge.svg
@@ -138,13 +138,10 @@ In addition, nightly releases are built and deployed the Github repository.
 
 ## Reference
 
-<br/>
-
 Please make sure to cite the following paper if you use GEMC:
 
 {:.zebra}
-| *M. Ungaro*, Geant4 Monte-Carlo (GEMC) A database-driven simulation program, *EPJ Web of Conferences* [**295**, 05005 *(
-2024)*](https://www.epj-conferences.org/articles/epjconf/abs/2024/05/epjconf_chep2024_05005/epjconf_chep2024_05005.html) |
+| *M. Ungaro*, Geant4 Monte-Carlo (GEMC) A database-driven simulation program, \*EPJ Web of Conferences* [**295**, 05005 *(2024)*](https://www.epj-conferences.org/articles/epjconf/abs/2024/05/epjconf_chep2024_05005/epjconf_chep2024_05005.html) |
 
 Bibtex:
 
@@ -162,7 +159,6 @@ author = { {Ungaro}, Maurizio,
  doi = {10.1051/epjconf/202429505005},
  adsurl = {https://ui.adsabs.harvard.edu/abs/2024EPJWC.29505005U},
  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
-}
 ```
 
 Bibitem:

@@ -601,10 +601,11 @@ pre:not(.highlight) {
 
 blockquote.doc-important {
   margin: 1.25rem 0;
-  padding: 0.9rem 1rem;
+  padding: .9rem 2rem;
   border-left: 4px solid #2b87c0;
-  background: #fbfbfb;
-  border-radius: 6px;
+  border-right: 4px solid #2b87c0;
+  background: #fdfdfe;
+  border-radius: 16px;
 }
 
 blockquote.doc-important > p:first-child strong {
