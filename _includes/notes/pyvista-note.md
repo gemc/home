@@ -20,5 +20,8 @@
 	  -pvx, --x X           Set plotter x position
 	  -pvy, --y Y           Set plotter y position
 	  -axes, --add_axes_at_zero
+>
+> If you have `pyvista` (see also [install pyvista](/home/installation/#install-pyvista)), 
+> you can use the `-pv` and `-pvb` options to display the setup without having to run GEMC
 {: .doc-important }
  

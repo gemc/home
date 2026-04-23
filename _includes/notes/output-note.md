@@ -2,9 +2,8 @@
 > **NOTE**
 >
 > The `gstreamer` option allows select the name and format of the output.
-> For the complete list of parameter that can be passed to it: 
 > 
-> `gemc help gstreamer`. 
+> Run `gemc help gstreamer` to check its documentation: 
 >
 >		 -gstreamer=<sequence> ......: define a gstreamer output
 >		

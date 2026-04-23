@@ -42,6 +42,7 @@ See the [license conditions](/home/license/).
 ## Table of Contents
  
 - [Build and Install GEMC from source code](#build-and-install-gemc-from-source)
+- [Install Pyvista](#install-pyvista)
 - [Run GEMC in a Docker Container](#run-gemc-in-a-docker-container)
 - [Run GEMC using Apptainer](#run-gemc-using-apptainer)
 
@@ -58,8 +59,9 @@ Please see the [GEMC/Geant4 Software Prerequisites](#gemc-and-geant4-software-pr
 
 ### 1. Obtain the source 
 
-For illustration only, we will use  `{{ page.path_prefix }}` as the installation location, `{{ page.latest_tag }}` as the version to be installed,
-`source` as the location of the code. Replace `{{ page.latest_tag }}` with `{{ page.dev_tag }}` for the development release.  
+For illustration, we will use  `{{ page.path_prefix }}` as the installation location, `{{ page.latest_tag }}` 
+as the version to be installed, `source` as where to place the source code. 
+Replace `{{ page.latest_tag }}` with `{{ page.dev_tag }}` if you want to instal the development release.  
 
 Create the paths and cd to the version directory:
 
@@ -132,7 +134,7 @@ Optionally, after installation, `meson test -v` will run several tests of variou
 - The setup option `-Di_test=true` will enable the GUI interfaces in the tests.
 - Use `-v` at build time for verbose output.
 - To wipe out the build directory and start over, use `rm -rf build` and then re-run setup.
-- Use `-jN` to limit the number of threads to `N` during compilation
+- Use `-jN` to set the number of threads during compilation
 
 
 <br/>
@@ -142,7 +144,6 @@ Optionally, after installation, `meson test -v` will run several tests of variou
 ### Post Installation 
 
 You can add the lines below to your shell configuration file (e.g. `~/.bashrc` or `~/.zshrc`). 
-Here we use `$GEMC_VERSION` to control the version of GEMC you want to use.
 
 ```shell
 export GEMC_VERSION={{ page.latest_tag }}
@@ -150,8 +151,36 @@ export PATH={{ page.path_prefix }}/$GEMC_VERSION/bin:$PATH
 export PYTHONPATH={{ page.path_prefix }}/$GEMC_VERSION/api:$PYTHONPATH
 ```
 
+Here we use the variable `GEMC_VERSION` to control the version of GEMC you want to use. This way we can use different versions 
+of GEMC, with `GEMC_VERSION` the only variable to change. 
 
 
+<br/>
+
+
+## Install Pyvista
+
+
+While pyvista is not necessary to build the detectors, it provides  a nice visual feedback
+without the need to run GEMC to visualize the geometry.
+
+To install pyvista, including the qt modules, use a python environment:
+
+```shell
+python3 -m venv ~/venv/pyvista/
+source ~/venv/pyvista/bin/activate
+pip install pyvista vtk 
+pip install pyqt6 pyvistaqt
+```
+
+To use it with the Python API, remember to activate the environment first: 
+
+```shell
+source ~/venv/pyvista/bin/activate
+```
+
+Then pass either `-pv` (native pyvista) or `-pvb` (for a non-blocking GUI) to the python scripts that build 
+the databases. 
 
 
 
@@ -237,9 +266,6 @@ apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_re
 > Then run apptainer again.
 
 
-
-
-
 <br/><br/><br/>
 
 # Appendix
@@ -269,7 +295,7 @@ apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_re
 
   - expat: 2.0.1 or higher
   - zlib: 1.2.3 or higher
-  - [Qt6](https://www.qt.io): 6.5 or higher (optional, required for GUI
+  - [Qt6](https://www.qt.io): 6.5 or higher (required for GUI
   - [ROOT](https://root.cern): 6.36.04 or higher (optional, required for ROOT output)
 
 <br/>
@@ -344,19 +370,18 @@ ttf-dejavu qt6-base root gcc-libs tbb
 
 <br/>
 
+To install Geant4 we recommend using the [g4install](https://github.com/gemc/g4install) repository, as it provides
+seamless coexistence of multiple Geant4 versions.
+
+<br/>
+
 ## Supported and tested platforms
 <br/>
 
-- macOS: 15 or later (Sequoia)
-- Linux:
-
-  - Fedora 40 or later
-  - AlmaLinux 9 or later
-  - Ubuntu 24.04 or later
-  - Debian 12 or later
-  - Arch Linux (rolling release)
-
-	
+- macOS: 26
+{% for img in site.data.docker.images -%}
+- {{ img.id }}: {{ img.osversion }} 
+{% endfor %}	
 
 
 <br/>

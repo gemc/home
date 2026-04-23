@@ -4,9 +4,7 @@ layout: default
 ---
 
 This site refers to the latest **GEMC** project (version 3 and above).
-
 For **CLAS12 simulations** refer to [this page](https://github.com/gemc/clas12Tags).
-For previous GEMC version, refer to [this page](https://gemc.jlab.org/gemc/html/index.html).
 
 {% include figure.html
 src="assets/images/gemcLogo.png"
@@ -18,23 +16,32 @@ width="1000"
 **GEMC** is a database-driven Monte Carlo simulation program based on [Geant4](https://geant4.web.cern.ch).
 Key features include:<br/>
 
-- Python API for geometry and materials
+- Python API to create geometry and materials
 - Support for `ASCII`, `SQLite`, `GDML`, `CAD meshes` volume imports
-- Built-in `ASCII`, `CSV` and [`ROOT`](https://root.cern) output formats
-- Custom extensibility of digitization, output formats, e.m. fields.
+- Custom extensibility of digitization, output formats, e.m. fields
+- Built-in `dosimeter`, `flux`, `particle_counter` digitizations
+- Built-in `ASCII`, `CSV`, `JSON`, [`ROOT`](https://root.cern) output formats
 - [`pyvista`](https://https://pyvista.org) 3D visualization and import.
 
 <br/>
 
 ## Databases
 
-Running simulations does not require previous knowledge of C++ or Geant4. A typical workflow looks like this:
+Since GEMC is using Python to create and read detectors from databases, running simulations 
+does not require previous knowledge of C++ or Geant4. A basic Python knowledge would help organizing
+complex setups. A typical workflow looks like this:
 
-1. Geant4 geometry and materials are defined using python
-2. GEMC builds the Geant4 world
-3. Particles are transported by Geant4, hits are created
-4. Hardware electronic emulations digitize the hits   
-5. Data is streamed to the desired output formats.
+	   1. Geant4 geometry and materials are defined
+	   2. GEMC builds the Geant4 world
+	   3. Particles are transported by Geant4, hits are created
+	   4. Hardware electronic emulations digitize the hits   
+	   5. Data is streamed to the desired output formats.
+
+Users are in charge of the first step by using the Python API to store simulation parameters in the database of choice. 
+
+> [!NOTE]
+> Users can also defined their own hardware emulation routines - in this case a basic C++ knowledge would help
+> for complex digitizations.
 
 {% include figure.html
 src="assets/images/gemcArchitecture.png"
@@ -49,10 +56,10 @@ width="1100"
 
 ## Python API
 
-GEMC does not need to be re-compiled when the geometry is changed.
 
 `Python` is used to create and upload to databases the geometry, materials, mirrors, etc.
 The API supports [`pyvista`](https://https://pyvista.org) visualization of the geometry.
+GEMC does not need to be re-compiled when the geometry is changed.
 
 {% include figure.html
 src="assets/images/gemc_showcase.gif"
@@ -80,6 +87,9 @@ gvolume.set_identifier("flux_plane", 1)
 gvolume.publish(cfg)
  ```
 
+All GEMC volumes are defined like in the above snippet. Some utility functions, like `make_box` facilitate the 
+creations of Geant4 solids (in this case G4Box). 
+
 <br/><br/>
 
 ## Geometry Variations
@@ -100,10 +110,9 @@ width="1900"
 
 <br/><br/>
 
-## Status Badges
+## Continuous Integration
 
-Gemc is built on several platforms and both arm64, amd64 architectures for every commit and pull request.
-In addition, nightly releases are built and deployed the Github repository.
+Gemc is built, tested and deployed to docker images by a GitHub CI on several platforms and both arm64, amd64 architectures.
 
 {:.zebra}
 

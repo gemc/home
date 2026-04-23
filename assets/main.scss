@@ -228,7 +228,7 @@ pre.highlight {
   font-family: var(--font-mono);
   line-height: 1.45;
   color: #24292e;
-  font-size: 0.95em;
+  font-size: 1.0em;
 }
 
 div.highlight > pre,
@@ -448,18 +448,17 @@ pre:not(.highlight) {
   font-style: italic;
 }
 
-.two-col-grid{
+.two-col-grid {
   display: grid;
   gap: 4rem;
   align-items: start;
 }
 
-.two-col-centered{
+.two-col-centered {
   width: 90%;
   max-width: 90%;
-  margin: 0 auto;     /* centered block */
+  margin: 0 auto; /* centered block */
 }
-
 
 
 @media (max-width: 700px) {
@@ -468,8 +467,11 @@ pre:not(.highlight) {
   }
 }
 
-.indent3 { text-indent: 3em;    position: relative;
-  top: -1.4rem;   }
+.indent3 {
+  text-indent: 3em;
+  position: relative;
+  top: -1.4rem;
+}
 
 
 /* ===================================================================== */
@@ -493,7 +495,7 @@ pre:not(.highlight) {
 .page-content .directory-page {
   /* script "body" equivalent, but scoped */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
-               Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 16px;
   line-height: 1.5;
   color: #24292f;
@@ -600,15 +602,20 @@ pre:not(.highlight) {
 
 
 blockquote.doc-important {
-  margin: 1.25rem 0;
-  padding: .9rem 2rem;
+  margin: 1.05rem 0;
+  padding: .9rem 1.2rem;
   border-left: 4px solid #2b87c0;
   border-right: 4px solid #2b87c0;
   background: #fdfdfe;
   border-radius: 16px;
+  color: #252e24;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  letter-spacing: 0.02em;
 }
 
 blockquote.doc-important > p:first-child strong {
+  font-size: 1.3em;
   color: #17648e;
   text-transform: uppercase;
   letter-spacing: 0.03em;

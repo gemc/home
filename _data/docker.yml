@@ -11,12 +11,12 @@ images:
     amd64: yes
     arm64: yes
   - id: Fedora
-    osversion: 40
+    osversion: 42
     tag: ghcr.io/gemc/gemc:latest-fedora40
     amd64: yes
     arm64: yes
   - id: Debian
-    osversion: 12
+    osversion: 13
     tag: ghcr.io/gemc/gemc:latest-fedora40
     amd64: yes
     arm64: yes

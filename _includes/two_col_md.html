@@ -1,0 +1,6 @@
+<div class="two-col-grid two-col-centered"
+     style="grid-template-columns: {{ include.left }} {{ include.right }};">
+  <div>{{ include.left_content  | markdownify }}</div>
+  <div>{{ include.right_content | markdownify }}</div>
+</div>
+
