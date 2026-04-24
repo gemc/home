@@ -18,39 +18,38 @@ Key features include:<br/>
 
 - Python API to create geometry and materials
 - Support for `ASCII`, `SQLite`, `GDML`, `CAD meshes` volume imports
-- Custom extensibility of digitization, output formats, e.m. fields
-- Built-in `dosimeter`, `flux`, `particle_counter` digitizations
-- Built-in `ASCII`, `CSV`, `JSON`, [`ROOT`](https://root.cern) output formats
-- [`pyvista`](https://https://pyvista.org) 3D visualization and import.
+- Custom extensibility of digitization, output formats, electro-magnetic fields
+- Built-in `dosimeter`, `flux`, `particle_counter` 
+- Built-in `ASCII`, `CSV`, `JSON`, [`ROOT`](https://root.cern) output 
+- [`pyvista`](https://https://pyvista.org) 3D visualization
 
 <br/>
 
 ## Databases
 
-Since GEMC is using Python to create and read detectors from databases, running simulations 
-does not require previous knowledge of C++ or Geant4. A basic Python knowledge would help organizing
-complex setups. A typical workflow looks like this:
-
-	   1. Geant4 geometry and materials are defined
-	   2. GEMC builds the Geant4 world
-	   3. Particles are transported by Geant4, hits are created
-	   4. Hardware electronic emulations digitize the hits   
-	   5. Data is streamed to the desired output formats.
-
-Users are in charge of the first step by using the Python API to store simulation parameters in the database of choice. 
-
-> [!NOTE]
-> Users can also defined their own hardware emulation routines - in this case a basic C++ knowledge would help
-> for complex digitizations.
+Python is used to create and read detectors from databases,  A typical workflow looks like this:
 
 {% include figure.html
 src="assets/images/gemcArchitecture.png"
 alt="Database-driven architecture"
 caption="<br/>
-Typical gemc workflow: the Geant4 world is defined from databases sources.<br/>
-Users can add run time conditions, particles, etc. Geant4's steps are collected in hits, digitized and streamed. "
+Using the GEMC Python Api, databases are created with detectors definitions and simulation parameters. <br/>
+GEMC takes care of the rest:
+the Geant4 world creation, 
+the Geant4 transport of tracks, 
+hits creation and collections, 
+digitizations and output streams. "
 width="1100"
 %}
+
+
+
+
+> [!NOTE]
+> Running simulations does not require previous knowledge of C++ or Geant4. 
+> A basic Python knowledge would help organizing complex setups.
+> Users can also **define their own hardware emulation routines** - in this case a basic C++ knowledge would help
+> for complex digitizations.
 
 <br/><br/>
 
