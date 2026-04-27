@@ -12,7 +12,8 @@
 		   • type: type of output fileDefault value: event
 >		
 >		
-		   Define output formats and filenames. It can be used to select <events> or <frame> streams.
+		   Define output formats and filenames. 
+           It can be used to select <events> or <frame> streams.
 		   The file extension is added automatically based on the format.
 >		   
 		   Supported formats:
@@ -34,8 +35,8 @@
 >		   
 		   The produced files structure depends on the accumulation method used:
 >		   
-		   - event-based digitization (like <flux>) will have one file for every thread, with "_tj" 
-             appended to the filename
+		   - event-based digitization (like <flux>) will have one file for every j 
+             thread, with "_tj" appended to the filename
            - run-based digitization (like <dosimeter>) will have one file only
 {: .doc-important }
 

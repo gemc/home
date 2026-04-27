@@ -20,7 +20,7 @@
 > 
 >   - Command line:
 >     
->           -gparticle="[{name: e-, p: 5000, multiplicity: 5}, {name: proton, p: 2000, theta: 30, phi: 90}]"
+>         -gparticle="[{name: e-, p: 5000, multiplicity: 5}, {name: proton, p: 2000, theta: 30, phi: 90}]"
 > 
 >   -  Yaml:
 >   

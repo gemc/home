@@ -7,13 +7,13 @@
 	  -f, --factory FACTORY
 							ascii, sqlite
 	  -v, --variation VARIATION
-							Set variation
+                            Set variation name
 	  -r, --run RUN         Set run number
 	  -sql, --dbhost DBHOST
-							SQLite filename or MYSQL host
+                            SQLite filename or MYSQL host
 	  -pv, --pyvista        Show geometry using pyvista (needs pyvista)
 	  -pvb, --pvb, --pyvista-background
-							Use PyVista BackgroundPlotter (non-blocking GUI, needs pyqt6 pyvistaqt)
+                            Use PyVista BackgroundPlotter (needs pyqt6 pyvistaqt)
 	  -pvw, --width WIDTH   Set plotter width
 	  -pvh, --height HEIGHT
 							Set plotter height
