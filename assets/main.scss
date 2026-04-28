@@ -5,52 +5,28 @@
 @import "{{ site.theme }}";
 
 /* ===================== Global knobs ===================== */
+
 :root {
-
-  // mono for code blocks
+  /* Fonts */
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-
-  // body: last one wins
-
-  /* default */
-  //--font-sans: system-ui, sans-serif;
-
-  /* Ultra-minimal universal */
-  //--font-sans: system-ui, -apple-system, "Segoe UI", Arial, "Noto Sans", sans-serif,
-  //"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
-
-  //--font-sans: Georgia, "Times New Roman", Times, serif;
-
-  /* Lexend (aimed at reading fluency) */
-  //--font-sans: "Lexend", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
-
-  /* STIX Two Text (serif for math/technical copy) */
-  //--font-sans: "STIX Two Text", Georgia, "Times New Roman", Times, serif;
-
-  //--font-sans: "Helvetica Neue", Helvetica, Arial, "Noto Sans", system-ui, sans-serif;
-
-  /* Manrope (modern, open shapes) */
-  //--font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
-
-  /* Inter (modern, very readable) */
-  //--font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", sans-serif;
 
   --font-sans: Avenir, system-ui, -apple-system, "Segoe UI", Roboto,
   "Helvetica Neue", Arial, "Noto Sans", sans-serif,
   "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
 
-
   --line: 1.6;
 
-  --header-h: 60px; /* ↩︎ actual header height */
-  --header-gap: 20px; /* ↩︎ breathing room below the header */
-  --header-bg: rgba(253, 253, 253, .92);
-  --header-border: #eaecef;
-  --header-z: 1000; /* header stacking level */
+  /* Page colors */
+  --page-bg: #ffffff;
+  --text: #24292f;
+  --muted: #6b7280;
 
-  :where(h1, h2, h3, h4, h5, h6, [id]) {
-	scroll-margin-top: calc(var(--header-h) + var(--header-gap));
-  }
+  /* Header */
+  --header-h: 60px;
+  --header-gap: 20px;
+  --header-bg: rgba(253, 253, 253, 0.92);
+  --header-border: #eaecef;
+  --header-z: 1000;
 
   /* Derived: one source of truth for all sticky offsets */
   --sticky-offset: calc(var(--header-h) + var(--header-gap));
@@ -58,32 +34,42 @@
   /* Accent colors */
   --link: #00419b;
   --link-hover: #552de4;
+
+  /* Dark-mode code variables only */
+  --code-bg-dark: #161b22;
+  --code-border-dark: #30363d;
+  --code-text-dark: #e6edf3;
+  --inline-code-bg-dark: #222936;
+  --inline-code-border-dark: #303746;
 }
 
-h1 {
-  font-size: 2em;
-  font-weight: 505;
-  margin: 0.67em 0;
-  border-bottom: none; /* GitHub does NOT add a bar to h1 */
+@media (prefers-color-scheme: dark) {
+  :root {
+	--page-bg: #0f1117;
+	--text: #e6e8eb;
+	--muted: #a9b1bd;
+
+	--header-bg: rgba(18, 20, 27, 0.94);
+	--header-border: #303746;
+
+	--link: #8ab4ff;
+	--link-hover: #c4d7ff;
+  }
 }
 
-h2 {
-  font-size: 1.5em;
-  font-weight: 505;
-  margin: 24px 0 16px;
-  padding-bottom: 0.3em;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15); /* grey bar */
+/* Make in-page anchor jumps stop below the sticky bar */
+:where(h1, h2, h3, h4, h5, h6, [id]) {
+  scroll-margin-top: var(--sticky-offset);
 }
-
-h3 {
-  font-size: 1.25em;
-  font-weight: 505;
-  margin: 20px 0 12px;
-  border-bottom: none; /* no bar on h3 in GitHub */
-}
-
 
 /* ===================== Base layout / typography ===================== */
+
+html,
+body {
+  background: var(--page-bg);
+  color: var(--text);
+}
+
 body {
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
@@ -95,12 +81,6 @@ body {
   font-variant-numeric: lining-nums tabular-nums;
 }
 
-code, pre, kbd, samp, highlighter-rouge {
-  font-family: var(--font-mono);
-  font-size: 0.95em;
-  font-variant-ligatures: contextual;
-}
-
 .content {
   max-width: 75ch;
 }
@@ -109,7 +89,71 @@ code, pre, kbd, samp, highlighter-rouge {
   min-width: 80%;
 }
 
-/* Links */
+.page-content,
+.wrapper,
+.content {
+  color: var(--text);
+}
+
+code,
+pre,
+kbd,
+samp,
+.highlighter-rouge {
+  font-family: var(--font-mono);
+  font-size: 0.95em;
+  font-variant-ligatures: contextual;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page-content,
+  .wrapper,
+  .content {
+	background: transparent;
+  }
+}
+
+/* ===================== Headings ===================== */
+
+h1 {
+  font-size: 2em;
+  font-weight: 505;
+  margin: 0.67em 0;
+  border-bottom: none;
+  color: var(--text);
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: 505;
+  margin: 24px 0 16px;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  color: var(--text);
+}
+
+h3 {
+  font-size: 1.25em;
+  font-weight: 505;
+  margin: 20px 0 12px;
+  border-bottom: none;
+  color: var(--text);
+}
+
+h4,
+h5,
+h6 {
+  color: var(--text);
+}
+
+@media (prefers-color-scheme: dark) {
+  h2 {
+	border-bottom-color: #303746;
+  }
+}
+
+/* ===================== Links ===================== */
+
 a:link,
 a:visited {
   color: var(--link);
@@ -130,7 +174,16 @@ a.page-link:hover {
   background-color: #fdfdfd;
 }
 
-/* Tables */
+@media (prefers-color-scheme: dark) {
+  a.site-title:hover,
+  a.page-link:hover {
+	color: var(--link-hover);
+	background-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* ===================== Tables ===================== */
+
 table th {
   background-color: #fdfdfd;
   border: 1px solid #fdfdfd;
@@ -159,7 +212,7 @@ table.zebra th,
 table.zebra td {
   padding: 0.5rem 0.75rem;
   border: 1px solid #e5e7eb;
-  background: transparent; /* neutralize your global td/th bg */
+  background: transparent;
 }
 
 table.zebra thead th {
@@ -167,7 +220,6 @@ table.zebra thead th {
   text-align: left;
 }
 
-/* Stripe the *cells* so they win over generic td bg rules */
 table.zebra tbody tr:nth-child(even) td {
   background: #f6f8fa;
 }
@@ -176,19 +228,71 @@ table.zebra tbody tr:nth-child(odd) td {
   background: #ffffff;
 }
 
-/* (optional) if other rules still win, add !important to the 3 bg lines above */
+@media (prefers-color-scheme: dark) {
+  table th,
+  table td {
+	background-color: transparent;
+	border-color: transparent;
+	color: var(--text);
+  }
+
+  +
+  table tbody tr:nth-child(odd) th,
+  table tbody tr:nth-child(odd) td {
+	background-color: var(--page-bg);
+  }
+
+  table tbody tr:nth-child(even) th,
+  table tbody tr:nth-child(even) td {
+	background-color: #161b22;
+  }
+
+  table:not(.zebra):not(.alternate) th,
+  table:not(.zebra):not(.alternate) td {
+	border-color: var(--page-bg);
+  }
 
 
-/* Footer hidden (your choice) */
+  table.zebra th,
+  table.zebra td {
+	border-color: #30363d;
+  }
+
+  table.zebra thead th {
+	background: #222936;
+  }
+
+  table.zebra tbody tr:nth-child(odd) td {
+	background: var(--page-bg);
+  }
+
+  table.zebra tbody tr:nth-child(even) td {
+	background: #161b22;
+  }
+
+  .alternate td {
+	border-color: #3b4454;
+  }
+
+  .alternate tr:nth-child(odd) td {
+	background: var(--page-bg);
+  }
+  .alternate tr:nth-child(even) td {
+	background: #161b22;
+  }
+}
+
+/* ===================== Footer ===================== */
+
 footer {
   display: none;
 }
 
+/* ===================== Icon hover ===================== */
 
-/* Icon hover */
 .zoomIcon {
   background-color: transparent;
-  transition: transform .1s;
+  transition: transform 0.1s;
   width: 40px;
   height: 40px;
   margin: 0 auto;
@@ -198,7 +302,8 @@ footer {
   transform: scale(1.2);
 }
 
-/* Focus & inputs */
+/* ===================== Focus & inputs ===================== */
+
 button:focus {
   color: #00419b;
   outline: 2px solid #2a7ae2;
@@ -215,7 +320,32 @@ input[type="file"]:hover {
   border-color: #00419b;
 }
 
+@media (prefers-color-scheme: dark) {
+  button:focus {
+	color: var(--link-hover);
+	outline-color: var(--link);
+  }
+
+  input[type="file"] {
+	color: var(--muted);
+	border-color: #3b4454;
+	background: #111827;
+  }
+
+  input[type="file"]:hover {
+	color: var(--link-hover);
+	border-color: var(--link);
+  }
+}
+
 /* ===================== Code blocks + copy button ===================== */
+
+/*
+  Light mode:
+  Keep your original code styling.
+  The dark-mode fixes below do not alter light-mode Rouge colors.
+*/
+
 div.highlight,
 pre.highlight {
   position: relative;
@@ -240,7 +370,8 @@ pre.highlight {
   padding: 0;
 }
 
-.highlight *, .highlight pre * {
+.highlight *,
+.highlight pre * {
   background: transparent !important;
 }
 
@@ -249,7 +380,6 @@ pre.highlight {
   font-size: 0.95em;
   line-height: 1.45;
 }
-
 
 .copy-btn {
   position: absolute;
@@ -267,53 +397,217 @@ pre.highlight {
   background: transparent !important;
 }
 
-.copy-btn:hover, .copy-btn:focus-visible {
-  background: #e6e6e9;
+.copy-btn:hover,
+.copy-btn:focus-visible {
+  background: #e6e6e9 !important;
   border-color: #d1d1d6;
 }
 
-@media (prefers-color-scheme: dark) {
-  div.highlight, pre.highlight {
-	background: #2f2f34;
-	border-color: #3e3e44;
-	color: #e6e6e7;
-  }
-  .copy-btn {
-	background: rgba(46, 46, 50, 0.7);
-	color: #f0f0f0;
-  }
-  .copy-btn:hover, .copy-btn:focus-visible {
-	background: #3b3b40;
-	border-color: #55555b;
-  }
-}
-
-/* Plain <pre> blocks (not Rouge-highlighted) */
+/* Plain <pre> blocks, not Rouge-highlighted — original light-mode style */
 pre:not(.highlight) {
-  background: #252323; /* softer background */
+  background: #252323;
   border: 1px solid #d7dde6;
   border-radius: 6px;
   padding: 0.75rem 1rem;
   margin: 1rem 0;
-  font-size: 0.80em; /* smaller than code blocks */
+  font-size: 0.80em;
   line-height: 1.5;
   overflow-x: auto;
-  color: #97ff80; /* readable on light bg */
+  color: #97ff80;
   font-family: var(--font-mono);
-  white-space: pre; /* keep whitespace exactly */
+  white-space: pre;
 }
 
-/* Dark mode for plain <pre> */
 @media (prefers-color-scheme: dark) {
+  /*
+    In Jekyll/Rouge, block code is often wrapped by:
+      <div class="language-... highlighter-rouge">
+        <div class="highlight">...</div>
+      </div>
+
+    Only the outer block wrapper should be transparent.
+    This avoids the two-nested-box effect.
+  */
+  div.highlighter-rouge {
+	background: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+  }
+
+  div.highlight,
+  pre.highlight {
+	background: var(--code-bg-dark) !important;
+	border-color: var(--code-border-dark);
+	color: var(--code-text-dark) !important;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  div.highlight > pre,
+  div.highlight pre,
+  pre.highlight,
+  div.highlight code,
+  pre.highlight code {
+	background: transparent !important;
+	border: none !important;
+	color: var(--code-text-dark) !important;
+  }
+
+  /*
+    Critical reset:
+    Prevent inherited Minima/Rouge light-theme token colors from producing
+    dark blue text on a dark background.
+  */
+  .highlight,
+  .highlight pre,
+  .highlight code,
+  .highlight span {
+	color: var(--code-text-dark) !important;
+	background: transparent !important;
+  }
+
+  /*
+    Dark-mode inline code.
+    This targets inline code without changing full block wrappers.
+  */
+  p code,
+  li code,
+  td code,
+  th code,
+  dd code,
+  blockquote code,
+  code.highlighter-rouge {
+	background: var(--inline-code-bg-dark) !important;
+	color: var(--code-text-dark) !important;
+	border: 1px solid var(--inline-code-border-dark);
+	border-radius: 5px;
+	padding: 0.08em 0.32em;
+	font-size: 0.95em;
+	line-height: 1.45;
+  }
+
   pre:not(.highlight) {
-	background: #1f2430;
-	border-color: #2b3240;
-	color: #e6e8eb;
+	background: var(--code-bg-dark);
+	border-color: var(--code-border-dark);
+	color: var(--code-text-dark);
+  }
+
+  /* Comments */
+  .highlight .c,
+  .highlight .cm,
+  .highlight .c1,
+  .highlight .cs,
+  .highlight .cp,
+  .highlight .cpf {
+	color: #9aa7b8 !important;
+	font-style: italic;
+  }
+
+  /* Keywords */
+  .highlight .k,
+  .highlight .kc,
+  .highlight .kd,
+  .highlight .kn,
+  .highlight .kp,
+  .highlight .kr,
+  .highlight .kt {
+	color: #ff9b92 !important;
+  }
+
+  /* Strings */
+  .highlight .s,
+  .highlight .sa,
+  .highlight .sb,
+  .highlight .sc,
+  .highlight .dl,
+  .highlight .sd,
+  .highlight .s1,
+  .highlight .s2,
+  .highlight .se,
+  .highlight .sh,
+  .highlight .si,
+  .highlight .sx,
+  .highlight .sr,
+  .highlight .ss {
+	color: #a5d6ff !important;
+  }
+
+  /* Numbers */
+  .highlight .m,
+  .highlight .mb,
+  .highlight .mf,
+  .highlight .mh,
+  .highlight .mi,
+  .highlight .mo,
+  .highlight .il {
+	color: #79c0ff !important;
+  }
+
+  /* Function names, class names, attributes, tags */
+  .highlight .nf,
+  .highlight .fm,
+  .highlight .na,
+  .highlight .nc,
+  .highlight .nn,
+  .highlight .nt {
+	color: #d2a8ff !important;
+  }
+
+  /* Constants, builtins, variables */
+  .highlight .no,
+  .highlight .nb,
+  .highlight .bp,
+  .highlight .vc,
+  .highlight .vg,
+  .highlight .vi,
+  .highlight .nv,
+  .highlight .vm {
+	color: #ffa657 !important;
+  }
+
+  /* Operators, punctuation, names */
+  .highlight .o,
+  .highlight .ow,
+  .highlight .p,
+  .highlight .n,
+  .highlight .nx,
+  .highlight .w {
+	color: var(--code-text-dark) !important;
+  }
+
+  /* Diff deleted lines */
+  .highlight .gd {
+	color: #ffdcd7 !important;
+	background: rgba(248, 81, 73, 0.18) !important;
+  }
+
+  /* Diff inserted lines */
+  .highlight .gi {
+	color: #aff5b4 !important;
+	background: rgba(46, 160, 67, 0.18) !important;
+  }
+
+  /* Errors */
+  .highlight .err {
+	color: #ffdcd7 !important;
+	background: rgba(248, 81, 73, 0.22) !important;
+  }
+
+  .copy-btn {
+	background: #222936 !important;
+	color: var(--text);
+	border-color: #3b4454;
+  }
+
+  .copy-btn:hover,
+  .copy-btn:focus-visible {
+	background: #303746 !important;
+	border-color: #596579;
+	color: #ffffff;
   }
 }
 
+/* ===================== Fixed header ===================== */
 
-/* ===================== Fixed header (Option B) ===================== */
 .site-header {
   position: fixed;
   top: 0;
@@ -331,7 +625,6 @@ pre:not(.highlight) {
   padding-top: var(--sticky-offset);
 }
 
-/* Make in-page anchor jumps stop below the sticky bar */
 .doc__content h1,
 .doc__content h2,
 .doc__content h3,
@@ -341,22 +634,41 @@ pre:not(.highlight) {
   scroll-margin-top: var(--sticky-offset);
 }
 
-/* ===================== TOC + Sticky sidebar integration ===================== */
-/* Your TOC lives in .doc__toc (from doc-toc.css). Ensure it stays below the fixed header. */
-.doc__toc {
-  /* Force the sticky offset to match the header height so it never tucks underneath */
-  top: var(--sticky-offset) !important;
-  /* If your doc-toc.css also sets top, this wins without touching that file. */
-}
-
-/* Optional: if you use a sticky footer or other fixed bars later, bump z-indexes thoughtfully. */
-
 @media (prefers-color-scheme: dark) {
-  :root {
-	--header-bg: rgba(22, 22, 25, .85);
-	--header-border: #3e3e44;
+  .site-header {
+	background: var(--header-bg);
+	border-bottom-color: var(--header-border);
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  .site-title,
+  .site-title:visited,
+  .site-nav .page-link {
+	color: var(--text);
+  }
+
+  .site-nav {
+	background: transparent;
+  }
+
+  .site-nav .page-link:hover {
+	color: var(--link-hover);
+	background: rgba(255, 255, 255, 0.08);
+	text-decoration: none;
+  }
+
+  .site-nav .menu-icon > svg path {
+	fill: var(--text);
   }
 }
+
+/* ===================== TOC + sticky sidebar integration ===================== */
+
+.doc__toc {
+  top: var(--sticky-offset) !important;
+}
+
+/* ===================== Figures ===================== */
 
 .figure {
   margin: 2.25rem auto;
@@ -370,7 +682,7 @@ pre:not(.highlight) {
 }
 
 .figure figcaption {
-  margin-top: 1.0rem;
+  margin-top: 1rem;
   font-size: 1.1rem;
   font-style: italic;
   color: #444;
@@ -378,9 +690,18 @@ pre:not(.highlight) {
 
 .meta {
   font-size: 0.85em;
-  color: #6b7280;
+  color: var(--muted);
   font-weight: 400;
 }
+
+@media (prefers-color-scheme: dark) {
+  .figure figcaption,
+  .meta {
+	color: var(--muted);
+  }
+}
+
+/* ===================== Search ===================== */
 
 /* Container so results sit under the input */
 .search-container {
@@ -388,7 +709,7 @@ pre:not(.highlight) {
   display: inline-block;
 }
 
-/* Search box in the minima top bar */
+/* Search box in the Minima top bar */
 .search-form {
   display: inline-block;
   margin-left: 1rem;
@@ -417,16 +738,12 @@ pre:not(.highlight) {
   overflow-y: auto;
   z-index: 1000;
   font-size: 0.9rem;
-
-  /* 🔒 hidden by default */
   display: none;
 }
 
-/* When we want it visible */
 .search-results.is-visible {
   display: block;
 }
-
 
 .search-results li {
   margin: 0;
@@ -448,6 +765,39 @@ pre:not(.highlight) {
   font-style: italic;
 }
 
+@media (prefers-color-scheme: dark) {
+  .search-form input[type="search"] {
+	background: #111827;
+	color: var(--text);
+	border-color: #3b4454;
+  }
+
+  .search-form input[type="search"]::placeholder {
+	color: #8b949e;
+  }
+
+  .search-results {
+	background: #161b22;
+	border-color: #30363d;
+	box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+  }
+
+  .search-results li a {
+	color: var(--link);
+  }
+
+  .search-results li a:hover {
+	color: var(--link-hover);
+	background: #222936;
+  }
+
+  .no-results {
+	color: var(--muted);
+  }
+}
+
+/* ===================== Layout helpers ===================== */
+
 .two-col-grid {
   display: grid;
   gap: 4rem;
@@ -457,9 +807,8 @@ pre:not(.highlight) {
 .two-col-centered {
   width: 90%;
   max-width: 90%;
-  margin: 0 auto; /* centered block */
+  margin: 0 auto;
 }
-
 
 @media (max-width: 700px) {
   .two-col-grid.centered {
@@ -473,35 +822,15 @@ pre:not(.highlight) {
   top: -1.4rem;
 }
 
-
-/* ===================================================================== */
-/* Directory page (script-style) — appended at bottom, scoped to directory */
-/* ===================================================================== */
-
-/* ===================================================================== */
-/* Directory page (match python-generated index.html styling)              */
-/* ===================================================================== */
-
-/*
-  This block intentionally resets typography inside the directory page to
-  match the standalone HTML produced by your python script:
-
-  - font-family: GitHub-ish system stack (NOT your global --font-sans)
-  - base font-size: 16px (your global body is 1.2em)
-  - link hover: underline (your global hover removes underline)
-  - h3 in footer: normalized to browser-ish sizing (script has no h3 rule)
-*/
+/* ===================== Directory page ===================== */
 
 .page-content .directory-page {
-  /* script "body" equivalent, but scoped */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
   Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 16px;
   line-height: 1.5;
   color: #24292f;
   background: #ffffff;
-
-  /* script ".container" */
   max-width: 980px;
   margin: 0 auto;
   padding: 32px 24px 24px 24px;
@@ -537,8 +866,6 @@ pre:not(.highlight) {
   list-style: none;
   padding: 0;
   margin: 10px 0 0 0;
-
-  /* match script column layout */
   column-count: 5;
   column-gap: 15px;
 }
@@ -548,7 +875,6 @@ pre:not(.highlight) {
   margin: 6px 0;
 }
 
-/* Match script link behavior (override your global hover rules) */
 .page-content .directory-page a {
   color: #0969da;
   text-decoration: none;
@@ -556,17 +882,15 @@ pre:not(.highlight) {
 
 .page-content .directory-page a:hover {
   text-decoration: underline;
-  color: #0969da; /* keep same as script */
+  color: #0969da;
 }
 
-/* Footer matches script */
 .page-content .directory-page .footer {
   margin-top: 20px;
   font-size: 0.9em;
   color: #999;
 }
 
-/* Normalize footer h3 (script uses browser default since it has no h3 rule) */
 .page-content .directory-page .footer h3 {
   font-size: 1.17em;
   font-weight: 600;
@@ -574,7 +898,6 @@ pre:not(.highlight) {
   border-bottom: none;
   padding-bottom: 0;
 }
-
 
 .directory-section {
   display: block;
@@ -591,7 +914,6 @@ pre:not(.highlight) {
   margin-bottom: 0.35em;
 }
 
-
 .owner-only-section {
   display: none;
 }
@@ -600,10 +922,36 @@ pre:not(.highlight) {
   display: block;
 }
 
+@media (prefers-color-scheme: dark) {
+  .page-content .directory-page {
+	background: transparent;
+	color: var(--text);
+  }
+
+  .page-content .directory-page .intro,
+  .page-content .directory-page .footer {
+	color: var(--muted);
+  }
+
+  .page-content .directory-page .section-title {
+	color: var(--text);
+	border-bottom-color: #303746;
+  }
+
+  .page-content .directory-page a {
+	color: var(--link);
+  }
+
+  .page-content .directory-page a:hover {
+	color: var(--link-hover);
+  }
+}
+
+/* ===================== Important callout ===================== */
 
 blockquote.doc-important {
   margin: 1.05rem 0;
-  padding: .9rem 1.2rem;
+  padding: 0.9rem 1.2rem;
   border-left: 4px solid #2b87c0;
   border-right: 4px solid #2b87c0;
   background: #fdfdfe;
@@ -619,4 +967,52 @@ blockquote.doc-important > p:first-child strong {
   color: #17648e;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+}
+
+@media (prefers-color-scheme: dark) {
+  blockquote.doc-important {
+	background: #142033;
+	color: var(--text);
+	border-left-color: #58a6ff;
+	border-right-color: #58a6ff;
+  }
+
+  blockquote.doc-important > p:first-child strong {
+	color: #8ab4ff;
+  }
+}
+
+
+.no-bullets-list ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.no-bullets-list li {
+  margin-bottom: 1.2rem;
+}
+
+.no-bullets-list strong {
+  font-weight: 400;
+  color: var(--text);
+}
+
+.no-bullets-list a {
+  color: #1e8a62;
+  font-weight: 300;
+}
+
+@media (prefers-color-scheme: dark) {
+  .no-bullets-list a {
+    color: #8fd18f;
+  }
+}
+
+.large-emoji {
+  display: inline-block;
+  font-size: 2.0em;
+  line-height: 1;
+  vertical-align: -0.08em;
+  margin-right: 0.2rem;
 }
