@@ -89,7 +89,6 @@ being generated and crossing the flux box, producing red hits.
    src="assets/images/documentation/quickstart.png"
    alt="The quickstart example"
    caption="A proton beam impinging on an epoxy target. The flux box collects hits from all particles crossing it."
-   width="1000"
 %}
 
 

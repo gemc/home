@@ -964,24 +964,31 @@ blockquote.doc-important {
 
 blockquote.doc-important > p:first-child strong {
   font-size: 1.3em;
-  color: #17648e;
+  color: #2b87c0;
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
 
 @media (prefers-color-scheme: dark) {
   blockquote.doc-important {
-	background: #142033;
 	color: var(--text);
 	border-left-color: #58a6ff;
 	border-right-color: #58a6ff;
-  }
-
-  blockquote.doc-important > p:first-child strong {
-	color: #8ab4ff;
+	background: var(--page-bg);
   }
 }
 
+blockquote.doc-important figure {
+  margin: 1rem auto;
+}
+
+blockquote.doc-important img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* ===================== no-bullets-list ===================== */
 
 .no-bullets-list ul {
   list-style: none;
