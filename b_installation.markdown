@@ -104,8 +104,10 @@ git clone --depth=1 {{ page.repo_link }} source
 ### 2. Compile and install GEMC
 
 The [meson](https://mesonbuild.com) build system is used to compile and install GEMC. 
-A `setup` phase will check for the required dependencies and fetch external libraries.
-Here we use a `build` directory inside `source`:
+
+
+The **setup** phase will check for the required dependencies and fetch external libraries.
+Here we use a `build` directory inside `ssource`:
 
 
 ```shell
@@ -113,15 +115,11 @@ cd {{ page.path_prefix }}/{{ page.latest_tag }}/source
 meson setup build --native-file=core.ini --prefix={{ page.path_prefix }}/{{ page.latest_tag }}
 ```
 
-The compile phase will build the code and external librarie: 
+The **compile** phase will build the code and external libraries. The **install** phase will 
+copy the binaries, libraries, and python modules to the installation directory.
 
 ```shell
 meson compile -C build
-```
-
-The install phase will copy the binaries, libraries, and python modules to the installation directory:
-
-```shell
 meson install -C build
 ```
 
@@ -152,8 +150,7 @@ export PATH={{ page.path_prefix }}/$GEMC_VERSION/bin:$PATH
 export PYTHONPATH={{ page.path_prefix }}/$GEMC_VERSION/api:$PYTHONPATH
 ```
 
-Here we use the variable `GEMC_VERSION` to control the version of GEMC you want to use. This way we can use different versions 
-of GEMC, with `GEMC_VERSION` the only variable to change. 
+Here with `GEMC_VERSION` we control the version of GEMC to use. 
 
 
 <br/>
@@ -180,26 +177,25 @@ To use it with the Python API, remember to activate the environment first:
 source ~/venv/pyvista/bin/activate
 ```
 
-Then pass either `-pv` (native pyvista) or `-pvb` (for a non-blocking GUI) to the python scripts that build 
+Then pass either `-pv` (native pyvista) or `-pvb` (for a qt GUI) to the python scripts that build 
 the databases. 
 
 
 
 <br/><br/>
 
-## Run GEMC in a Docker Container
+## GEMC using Docker
 
 You can use docker to run GEMC. The available images are listed below. 
 Both `arm64` and `amd64` are supported (except on Arch Linux images which are `amd64` only [^1]).
 
-<br/>
 
 {:.zebra}
 
-| OS   | Pull Command | arm64 | amd64                         |
+| OS   | Registry address | arm64 | amd64                         |
 |-----|-------------------------|-------------------------------------|
 {% for img in site.data.docker.images -%}
-| {{ img.id }} {{ img.osversion }}  | ```docker pull {{ img.tag }}``` | {{ img.arm64 }} | {{ img.amd64 }} |
+| {{ img.id }} {{ img.osversion }}  | ```{{ img.tag }}``` | {{ img.arm64 }} | {{ img.amd64 }} |
 {% endfor %}
 
 
@@ -211,22 +207,18 @@ to the local dir `{{ page.docker_local_mount }}` and we will use the image `{{ s
 
 <br/>
 
-### Run docker in batch mode
+### Batch mode
 
 ```
-
 docker run -it --rm -v {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} {{ site.data.docker.images[0].tag }} bash
-
 ```
 
 <br/>
 
-### Run docker and use a browser for the graphical interface:
+### Use a browser for the graphical interface:
 
 ```
-
 docker run -it --rm  -v {{ page.docker_local_mount }}:{{ page.docker_remote_mount}}  -p 8080:8080 {{ site.data.docker.images[0].tag }}
-
 ```
 
 Then point your browser to [`http://localhost:8080/vnc.html`]( http://localhost:8080/vnc.html ) to access the graphical interface.
@@ -246,16 +238,17 @@ You can use it with the docker images above.  It runs similarly to docker:
 
 
 ```
-
 apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} {{ site.data.docker.images[0].tag }} bash
-
 ```
 
 <br/>
 
-> Apptainer uses a default cache directory to store the images. If that becomes full, one can use
-> environment variables to point to a location with enough disk space.
-> For example, to point to `/path/to/$USER/cache`:
+<blockquote class="doc-important" markdown="1">
+**Note**
+
+Apptainer uses a default cache directory to store the images. If that becomes full, one can use
+environment variables to point to a location with enough disk space.
+For example, to point to `/path/to/$USER/cache`:
 
 ```shell
 	export sif_cache=/path/to/$USER/cache
@@ -264,7 +257,8 @@ apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_re
 	export TMPDIR=$sif_cache/apptainer-tmp
 ```
 
-> Then run apptainer again.
+Then run apptainer again.
+</blockquote>
 
 
 <br/><br/><br/>
