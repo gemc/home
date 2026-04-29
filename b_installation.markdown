@@ -42,7 +42,7 @@ See the [license conditions](/home/license/).
 ## Table of Contents
  
 - [Build and Install GEMC from source code](#build-and-install-gemc-from-source)
-- [Install Pyvista](#install-pyvista)
+- [[Optional] Install Pyvista](#optional-install-pyvista)
 - [Run GEMC in a Docker Container](#run-gemc-in-a-docker-container)
 - [Run GEMC using Apptainer](#run-gemc-using-apptainer)
 
@@ -53,7 +53,8 @@ See the [license conditions](/home/license/).
 
 ## Build and Install GEMC from Source
 
-Please see the [GEMC/Geant4 Software Prerequisites](#gemc-and-geant4-software-prerequisites) in the appendix for the requirements.
+Please see the [Software Prerequisites and Geant4 Installation](#software-prerequisites-and-geant4-installation) 
+in the appendix for the requirements.
 
 <br/>
 
@@ -158,7 +159,7 @@ of GEMC, with `GEMC_VERSION` the only variable to change.
 <br/>
 
 
-## Install Pyvista
+## [Optional] Install Pyvista
 
 
 While pyvista is not necessary to build the detectors, it provides  a nice visual feedback
@@ -271,7 +272,7 @@ apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_re
 # Appendix
 <br/>
 
-## GEMC and Geant4 Software Prerequisites
+## Software Prerequisites and Geant4 Installation
 
 <br/>
 
@@ -280,16 +281,6 @@ apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_re
   - C++ Compiler and Standard Library supporting the C++17 Standard
   - [CMake](https://cmake.org) 3.16 or later
   - [Meson](https://mesonbuild.com) 1.10.1 or later
-
-<br/>
-
-- Packages, compiled from source against the same C++ Standard as GEMC (C++17 by default):
-
-  - [Geant4](https://geant4.web.cern.ch): 11.3.2 or higher
-  - [CLHEP](https://proj-clhep.web.cern.ch/proj-clhep/): 2.4.6.0 or higher 
-  - [Xerces-C](https://xerces.apache.org/xerces-c/): 3.2  or higher
-  
-<br/>
 
 - Packages installed with your system package manager:
 
@@ -370,8 +361,18 @@ ttf-dejavu qt6-base root gcc-libs tbb
 
 <br/>
 
-To install Geant4 we recommend using the [g4install](https://github.com/gemc/g4install) repository, as it provides
-seamless coexistence of multiple Geant4 versions.
+- Packages, compiled from source against the same C++ Standard as GEMC (C++17 by default):
+
+  - [Geant4](https://geant4.web.cern.ch): 11.3.2 or higher
+  - [CLHEP](https://proj-clhep.web.cern.ch/proj-clhep/): 2.4.6.0 or higher 
+  - [Xerces-C](https://xerces.apache.org/xerces-c/): 3.2  or higher
+
+<br/>
+
+> [!IMPORTANT]
+> GEMC can use any custom installation of Geant4, however 
+> **we recommend using the [g4install](https://github.com/gemc/g4install) repository to install Geant4**, 
+> as it provides seamless coexistence of multiple Geant4 versions.
 
 <br/>
 
