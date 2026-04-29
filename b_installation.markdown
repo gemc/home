@@ -4,10 +4,10 @@ title: Installation
 permalink: /installation/
 
 development_tag: dev
-latest_tag: 1.0
+latest_tag: 0.1
 dev_tag: dev
 development_release_date: <small><time>released nightly</time></small>
-latest_release_date: <small><time>Not Yet Released</time></small>
+latest_release_date: <small><time>04/29/2026</time></small>
 repo_link: https://github.com/gemc/src
 release_notes: https://github.com/gemc/src/releases
 path_prefix: /path/to/gemc
@@ -27,7 +27,7 @@ See the [license conditions](/home/license/).
 
 
 - [`development`]({{ page.release_notes }}/tag/{{ page.development_tag }}) - {{ page.development_release_date }}{: .meta }
-- [`{{ page.latest_tag }}`]({{ page.release_notes }}/tag/{{ page.latest_tag }}) - {{ page.latest_release_date }}{: .meta }
+- [`{{ page.latest_tag }}`]({{ page.release_notes }}/tag/{{ page.latest_tag }}) - <small><time>Released on</time></small> {{ page.latest_release_date }}{: .meta }
 - [`All Releases`]({{ page.release_notes }})
 
 <br/>

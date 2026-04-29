@@ -4,36 +4,34 @@ title: Quickstart
 permalink: /documentation/quickstart/
 ---
 
-
-<br/>
-
-
 # Quickstart
 
-1. Using the python API, create a simple geometry consisting of a target and a `flux` detector. 
-2. Shoot protons at the target and count how many tracks cross the detector.
+This quickstart walks through a minimal GEMC simulation:
+
+1. Use the Python API to create a simple geometry with a target and a `flux` detector.
+2. Shoot protons at the target.
+3. Count how many tracks cross the detector.
 
 <br/>
-
 
 ## Create a system
 
-We could write a simple python script from scratch to define the geometry and materials, 
-but the GEMC api comes with template creators that facilitate this considerably.
-Let's use it to make a **system**, named _counter_. <br/>
+You could write a Python script from scratch to define the geometry and materials, 
+but in this example we will create a **system** named `counter` using 
+the GEMC API template creators.
 
-In a directory of your choice, the following command 
-will make a subdir called `counter` containing template scripts for geometry and materials:
+From a directory of your choice, run this command to create a subdirectory 
+named `counter` containing template scripts for geometry and materials:
 
-```shell 
+```shell
 system_template.py -s counter
 ```
 
-You should see the following output:
+You should see this log:
 
+<pre>
 
-```text
- Writing files for experiment >examples<, system template >counter< using variations >['default']<:
+Writing files for experiment &gt;examples&lt;, system template &gt;counter&lt; using variations &gt;['default']&lt;:
 
   - counter.py
   - geometry.py
@@ -42,78 +40,95 @@ You should see the following output:
 
   - Variations defined in counter.py:
     * default
+</pre>
+
+The generated files are already configured to build a geometry with a target and a `flux` detector. 
+By default, the template also provides a YAML steering card that shoots protons at the target.
+
+To see additional options for `system_template.py`, run:
+
+```shell
+system_template.py -h
 ```
-
-The files are already configured to create the geometry with a target and a `flux` detector. 
-By default, a `yaml` card is provided to shoot protons at the target.
-
-Use `-h` to see other options for `system_template.py`.
 
 <br/>
 
+
 ## Build the geometry
 
-Inside the `counter` directory, run `counter.py` to create the geometry and materials databases:
+Go into the `counter` directory and run `counter.py` to create the geometry and materials databases:
 
 ```shell
 ./counter.py
 ```
 
-You should see the following output:
+You should see output similar to this:
 
-```text
-
+<pre>
   ❖ Database file gemc.db does not exist
   ❖ Created new SQLite database: gemc.db
 
-  ❖  GConfiguration for experiment <examples>,  system <counter> : 
+  ❖  GConfiguration for experiment &lt;examples&gt;,  system &lt;counter&gt; :
 	▪︎ Factory: sqlite         
 	▪︎ SQLite File: gemc.db
 	▪︎ (Variation, Run): (default, 1)
 	▪︎ Number of volumes: 2
 	▪︎ Number of materials: 2
+</pre>
 
-```
-
-By default, the `sqlite` factory is used, so an sqlite file `gemc.db` is been created containing 
-the geometry and materials. 
-
-The geometry is created for the defaults run number `1` and variation `default`. 
-Use `-h` to see other options.
+By default, GEMC uses the `sqlite` factory, so this command creates a SQLite database named `gemc.db`. 
+The database contains the geometry and materials for run number `1` and variation `default`.
 
 <br/>
 
-## Run gemc
+> [!NOTE]
+> If you have `pyvista` installed, you can add the `-pv` or `-pvb` options to display the
+> geometry as it is being generated. 
 
-Use the `counter.yaml` steering card and run `GEMC` in interactive mode using `-gui`:
+<br/>
+
+To see other available options, run:
+
+```shell
+./counter.py -h
+```
+
+<br/>
+
+## Run GEMC
+
+Use the `counter.yaml` steering card to run GEMC, add `-gui` for interactive mode:
 
 ```shell
 gemc counter.yaml -gui
 ```
 
-You will see the gemc GUI window. Click the Run button (top left) to start the simulation. 
-You should see 100 particles being generated and crossing the flux box, producing red hits.
+The GEMC GUI window will open. Click the **Run** button in the top-left corner to start the simulation.
+
+You should see 100 generated particles crossing the flux box. The hits are shown in red.
 
 {% include figure.html
-   src="assets/images/documentation/quickstart_flux.png"
-   alt="The quickstart example"
-   caption="A proton beam impinging on an epoxy target. The flux box collects hits from the tracks crossing it."
+src="assets/images/documentation/quickstart_flux.png"
+alt="The quickstart example"
+caption="A proton beam impinging on the target. The flux box collects hits from the tracks crossing it."
 %}
 
-Use GEMC without the `-gui` option to run it in batch mode.
+To run GEMC in batch mode instead, omit the `-gui` option:
+
+```shell
+gemc counter.yaml
+```
 
 <br/>
 
-## Output 
+## Output
 
-The yaml file specify the `ascii` format and an output file name `counter`.
-After running gemc you will see files with the `_t<T>` string appended to them, where `T` is 
-the thread used for those events. 
+The YAML file specifies the `ascii` output format and uses `counter` as the output filename prefix.
 
-The `ascii` files contain both `true information` and `digitized` hits from the tracks. 
-For example:
+After running GEMC, you should see output files whose names include `_t<T>`, where `T` is the thread 
+number that processed those events.
 
-
+The `ascii` output contains both **true information** and **digitized hits** from the tracks. For example:
 
 ```text
    Detector <flux> True Info Bank {
@@ -144,19 +159,17 @@ For example:
    }
 ```
 
-Change the format to `root` in the yaml card to use `ROOT` output instead.
 
-<br/>
 <br/>
 
 # More Details
 
-Let's dig in some of the code for more insight.
+The previous sections showed how to create, build, run, and inspect the quickstart example. 
+This section explains the main files in more detail.
 
 <br/>
 
 ## The main script: `counter.py`
-
 
 The relevant lines in `counter.py` are:
 
@@ -167,16 +180,16 @@ define_materials(cfg)
 build_counter(cfg)
 ```
 
-The first one declare the `counter` system inside the `examples` experiment. 
+The first line declares the `counter` system inside the `examples` experiment.
 
-The second and third lines call methods defined in 
-`materials.py` and `geometry.py` to create the materials and geometry. Let's take a look at them.
+The next two lines call functions defined in `materials.py` and `geometry.py`. 
+These functions create the materials and geometry used by the simulation.
 
 <br/>
 
 ## Defining the geometry: `geometry.py`
 
-The `build_counter` function creates the geometry by calling these `build_flux_box` and `build_target` functions:
+The `build_counter` function creates the geometry by calling the `build_flux_box` and `build_target` functions:
 
 ```python
 def build_flux_box(configuration):
@@ -199,56 +212,57 @@ def build_target(configuration):
 	gvolume.publish(configuration)
 ```
 
-Notice how the `flux` digitization is assigned to the flux box and how the utilities `make_box` and `make_tube` are 
-used to create the shapes. 
+The flux box is assigned the `flux` digitization. The geometry uses the helper 
+methods `make_box` and `make_tube` to define the shapes.
 
-The materials associated with the flux_box and the target have custom names: they are defined in `materials.py`.
+The materials used by the flux box and target, `carbonFiber` and `epoxy`, are custom 
+materials defined in `materials.py`.
 
-Notice the absence of `G4VSolid`, `G4LogicalVolume`, `G4PVPlacement`, `G4Material`, etc definitions: 
-GEMC handles the building of those objects based on the database entries filled with the functions above. 
-
+Notice that the script does not define `G4VSolid`, `G4LogicalVolume`, `G4PVPlacement`, `G4Material`, 
+or related Geant4 objects directly. GEMC builds those Geant4 objects from the 
+database entries created by the Python API.
 
 <br/>
 
+## Defining the materials: `materials.py`
 
-## Define the materials: `materials.py`
-
-The `define_material` method creates the `epoxy` and `carbonFiber` materials used by the geometry:
+The `define_materials` function creates the `epoxy` and `carbonFiber` materials used by the geometry:
 
 ```python
-	# example of material: epoxy glue, defined with number of atoms
-	gmaterial = GMaterial("epoxy")
-	gmaterial.description = "epoxy glue 1.16 g/cm3"
-	gmaterial.density = 1.16
-	gmaterial.addNAtoms("H",  32)
-	gmaterial.addNAtoms("N",   2)
-	gmaterial.addNAtoms("O",   4)
-	gmaterial.addNAtoms("C",  15)
-	gmaterial.publish(configuration)
+# example of material: epoxy glue, defined with number of atoms
+gmaterial = GMaterial("epoxy")
+gmaterial.description = "epoxy glue 1.16 g/cm3"
+gmaterial.density = 1.16
+gmaterial.addNAtoms("H",  32)
+gmaterial.addNAtoms("N",   2)
+gmaterial.addNAtoms("O",   4)
+gmaterial.addNAtoms("C",  15)
+gmaterial.publish(configuration)
 
-	# example of material: carbon fiber, defined using the fractional mass
-	gmaterial = GMaterial("carbonFiber")
-	gmaterial.description = "carbon fiber - 1.75g/cm3"
-	gmaterial.density = 1.75
-	gmaterial.addMaterialWithFractionalMass("G4_C",  0.745)
-	gmaterial.addMaterialWithFractionalMass("epoxy", 0.255)
-	gmaterial.publish(configuration)
+# example of material: carbon fiber, defined using the fractional mass
+gmaterial = GMaterial("carbonFiber")
+gmaterial.description = "carbon fiber - 1.75g/cm3"
+gmaterial.density = 1.75
+gmaterial.addMaterialWithFractionalMass("G4_C",  0.745)
+gmaterial.addMaterialWithFractionalMass("epoxy", 0.255)
+gmaterial.publish(configuration)
 ```
-<br/>
 
+The `epoxy` material is defined by specifying the number of atoms for each element. 
+The `carbonFiber` material is defined using fractional masses.
 
 > [!NOTE]
-> The code created by  `system_template.py` could have easily be 
-> contained in `counter.py`. Here we are showing how geometry and materials
-> can be organized in separate files and methods.
+> The code generated by `system_template.py` could be contained entirely in `counter.py`. 
+> In this example, geometry and materials are organized in separate files to show a cleaner project structure.
 
 <br/>
 
 ## The steering card: `counter.yaml`
 
-In GEMC, the simulation parameters can be passed through a steering card and/or command line options.
-In both cases `YAML` is used. For this example:
+In GEMC, simulation parameters can be passed through a steering card, command-line options, or both. 
+In either case, the parameters use YAML syntax.
 
+For this example, `counter.yaml` contains:
 
 ```yaml
 runno: 1
@@ -275,9 +289,8 @@ gstreamer:
 root: G4Box, 15*cm, 15*cm, 15*cm, G4_AIR
 ```
 
-Notice how the Geant4 world volume `root` is defined dynamically in the steering card. 
-It could also be defined in the geometry scripts.
+The `nthreads` entry limits the threads used to 4. Remove it to use all threads. 
+To use ROOT output, change the output format in `counter.yaml` from `ascii` to `root`.
 
-
-<br/><br/>
-
+The `root` entry dynamically defines the Geant4 world volume in the steering card. 
+The world volume could also be defined in the geometry scripts.
