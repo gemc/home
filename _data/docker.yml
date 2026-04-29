@@ -1,27 +1,29 @@
-# _data/docker.yml
 images:
-  - id: Ubuntu
-    osversion: 24.04
-    tag: ghcr.io/gemc/gemc:latest-ubuntu24
-    amd64: yes
-    arm64: yes
   - id: AlmaLinux
     osversion: 9.4
-    tag: ghcr.io/gemc/gemc:latest-almalinux94
-    amd64: yes
-    arm64: yes
-  - id: Fedora
-    osversion: 42
-    tag: ghcr.io/gemc/gemc:latest-fedora40
-    amd64: yes
-    arm64: yes
-  - id: Debian
-    osversion: 13
-    tag: ghcr.io/gemc/gemc:latest-fedora40
+    tag: ghcr.io/gemc/src:dev-11.4.1-almalinux-9.4
     amd64: yes
     arm64: yes
   - id: ArchLinux
     osversion: latest
-    tag: ghcr.io/gemc/gemc:latest-fedora40
+    tag: ghcr.io/gemc/src:dev-11.4.1-archlinux-latest
     amd64: yes
     arm64: no
+  - id: Debian
+    osversion: 13
+    tag: ghcr.io/gemc/src:dev-11.4.1-debian-13
+    amd64: yes
+    arm64: yes
+  - id: Fedora
+    osversion: 42
+    tag: ghcr.io/gemc/src:dev-11.4.1-fedora-42
+    amd64: yes
+    arm64: yes
+  - id: Ubuntu
+    osversion: 24.04
+    tag: ghcr.io/gemc/src:dev-11.4.1-ubuntu-24.04
+    amd64: yes
+    arm64: yes
+
+
+

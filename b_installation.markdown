@@ -43,8 +43,8 @@ See the [license conditions](/home/license/).
  
 - [Build and Install GEMC from source code](#build-and-install-gemc-from-source)
 - [[Optional] Install Pyvista](#optional-install-pyvista)
-- [Run GEMC in a Docker Container](#run-gemc-in-a-docker-container)
-- [Run GEMC using Apptainer](#run-gemc-using-apptainer)
+- [GEMC using Docker](#gemc-using-docker)
+- [GEMC using Apptainer](#gemc-using-apptainer)
 
 
 
@@ -230,7 +230,7 @@ Then point your browser to [`http://localhost:8080/vnc.html`]( http://localhost:
 
 <br/><br/>
 
-## Run GEMC using Apptainer
+## GEMC using Apptainer
 
 
 Linux hosts can use `apptainer` (formally `singularity`) to run docker containers. 
@@ -238,7 +238,7 @@ You can use it with the docker images above.  It runs similarly to docker:
 
 
 ```
-apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} {{ site.data.docker.images[0].tag }} bash
+apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} docker://{{ site.data.docker.images[0].tag }} bash
 ```
 
 <br/>
@@ -248,16 +248,21 @@ apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_re
 
 Apptainer uses a default cache directory to store the images. If that becomes full, one can use
 environment variables to point to a location with enough disk space.
-For example, to point to `/path/to/$USER/cache`:
+For example, set `sim_cache` to somewhere with enough space:
 
 ```shell
 	export sif_cache=/path/to/$USER/cache
+```
+
+then set these variables:
+
+```shell
 	export APPTAINER_CACHEDIR=$sif_cache/apptainer-cache
 	export APPTAINER_TMPDIR=$sif_cache/apptainer-tmp
 	export TMPDIR=$sif_cache/apptainer-tmp
 ```
 
-Then run apptainer again.
+and run apptainer again.
 </blockquote>
 
 
