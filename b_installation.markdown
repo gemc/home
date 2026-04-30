@@ -243,11 +243,18 @@ Then point your browser to [` http://localhost:6080/vnc.html`](  http://localhos
 
 
 Linux hosts can use `apptainer` (formally `singularity`) to run docker containers. 
-You can use it with the docker images above.  It runs similarly to docker:
+You can use it with the docker images above.  It runs similarly to docker - but the entrypoint needs to be 
+source explicitly:
 
 
 ```
 apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} docker://{{ site.data.docker.images[0].tag }} bash
+```
+
+Then:
+```
+source /usr/local/bin/docker-entrypoint.sh
+gemc -v
 ```
 
 <br/>
