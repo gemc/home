@@ -1,29 +1,66 @@
 images:
   - id: AlmaLinux
     osversion: 9.4
-    tag: ghcr.io/gemc/src:dev-11.4.1-almalinux-9.4
+    tag: ghcr.io/gemc/src:dev-almalinux-9.4
     amd64: yes
     arm64: yes
+    gemcv: dev
   - id: ArchLinux
     osversion: latest
-    tag: ghcr.io/gemc/src:dev-11.4.1-archlinux-latest
+    tag: ghcr.io/gemc/src:dev-archlinux-latest
     amd64: yes
     arm64: no
+    gemcv: dev
   - id: Debian
     osversion: 13
-    tag: ghcr.io/gemc/src:dev-11.4.1-debian-13
+    tag: ghcr.io/gemc/src:dev-debian-13
     amd64: yes
     arm64: yes
+    gemcv: dev
   - id: Fedora
     osversion: 42
-    tag: ghcr.io/gemc/src:dev-11.4.1-fedora-42
+    tag: ghcr.io/gemc/src:dev-fedora-42
     amd64: yes
     arm64: yes
+    gemcv: dev
   - id: Ubuntu
     osversion: 24.04
-    tag: ghcr.io/gemc/src:dev-11.4.1-ubuntu-24.04
+    tag: ghcr.io/gemc/src:dev-ubuntu-24.04
     amd64: yes
     arm64: yes
+    gemcv: dev
+  - id: AlmaLinux
+    osversion: 9.4
+    tag: ghcr.io/gemc/src:0.1-almalinux-9.4
+    amd64: yes
+    arm64: yes
+    gemcv: 0.1
+  - id: ArchLinux
+    osversion: latest
+    tag: ghcr.io/gemc/src:0.1-archlinux-latest
+    amd64: yes
+    arm64: no
+    gemcv: 0.1
+  - id: Debian
+    osversion: 13
+    tag: ghcr.io/gemc/src:0.1-debian-13
+    amd64: yes
+    arm64: yes
+    gemcv: 0.1
+  - id: Fedora
+    osversion: 42
+    tag: ghcr.io/gemc/src:0.1-fedora-42
+    amd64: yes
+    arm64: yes
+    gemcv: 0.1
+  - id: Ubuntu
+    osversion: 24.04
+    tag: ghcr.io/gemc/src:0.1-ubuntu-24.04
+    amd64: yes
+    arm64: yes
+    gemcv: 0.1
+
+
 
 
 

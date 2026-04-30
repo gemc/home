@@ -192,10 +192,10 @@ Both `arm64` and `amd64` are supported (except on Arch Linux images which are `a
 
 {:.zebra}
 
-| OS   | Registry address | arm64 | amd64                         |
-|-----|-------------------------|-------------------------------------|
+| OS   | GEMC Version  | Registry address | arm64 | amd64  |
+|------|---------------|------------------|-------|--------|
 {% for img in site.data.docker.images -%}
-| {{ img.id }} {{ img.osversion }}  | ```{{ img.tag }}``` | {{ img.arm64 }} | {{ img.amd64 }} |
+| {{ img.id }} {{ img.osversion }}  |  {{ img.gemcv }} | ```{{ img.tag }}``` | {{ img.arm64 }} | {{ img.amd64 }} |
 {% endfor %}
 
 
@@ -396,7 +396,9 @@ ttf-dejavu qt6-base root gcc-libs tbb
 
 - macOS: 26
 {% for img in site.data.docker.images -%}
+{% if img.gemcv == "dev" %} 
 - {{ img.id }}: {{ img.osversion }} 
+{% endif %}>
 {% endfor %}	
 
 
