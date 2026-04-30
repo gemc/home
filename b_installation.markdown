@@ -217,11 +217,20 @@ docker run -it --rm -v {{ page.docker_local_mount }}:{{ page.docker_remote_mount
 
 ### Use a browser for the graphical interface:
 
-```
-docker run -it --rm  -v {{ page.docker_local_mount }}:{{ page.docker_remote_mount}}  -p 8080:8080 {{ site.data.docker.images[0].tag }}
+Set these convenience variables for the interactive (choose your own password):
+
+```shell
+VPORTS=(-p 6080:6080 -p 5900:5900)
+VNC_PASS=(-e X11VNC_PASSWORD=change-me)
+VNC_BIND=(-e VNC_BIND=0.0.0.0)
+GEO_FLAGS=(-e GEOMETRY=1920x1200)
 ```
 
-Then point your browser to [`http://localhost:8080/vnc.html`]( http://localhost:8080/vnc.html ) to access the graphical interface.
+```shell
+docker run -it --rm -v {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} $VPORTS $VNC_BIND $VNC_PASS $GEO_FLAGS {{ site.data.docker.images[0].tag }}
+```
+
+Then point your browser to [` http://localhost:6080/vnc.html`](  http://localhost:6080/vnc.html ) to access the graphical interface.
 
 <br/>
 
