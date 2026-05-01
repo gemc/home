@@ -244,7 +244,7 @@ Then point your browser to [` http://localhost:6080/vnc.html`](  http://localhos
 
 Linux hosts can use `apptainer` (formally `singularity`) to run docker containers. 
 You can use it with the docker images above.  It runs similarly to docker - but the entrypoint needs to be 
-source explicitly:
+sourced explicitly.
 
 
 ```

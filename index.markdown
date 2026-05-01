@@ -6,21 +6,34 @@ layout: default
 This site refers to the latest **GEMC** project (version 3 and above).
 For **CLAS12 simulations** refer to [this page](https://github.com/gemc/clas12Tags).
 
+<br/>
+
+
 {% include figure.html
 src="assets/images/gemcLogo.png"
 alt="Database-driven architecture"
 caption="GEant Monte-Carlo"
 %}
 
-**GEMC** is a database-driven Monte Carlo simulation program based on [Geant4](https://geant4.web.cern.ch).
-Key features include:<br/>
+## A database-driven Geant4 simulation application with Python geometry workflows
+
+<br/>
+
+**GEMC** is a Python-friendly wrapper around [Geant4](https://geant4.web.cern.ch) that eliminates the C++/Geant4 
+learning curve. Users define geometry in Python, store it in a database, and GEMC handles the full simulation pipeline. 
+
+The goal is to lower the entry barrier for Geant4-based simulations, especially for users 
+who want to prototype detector or radiation-transport setups without writing a Geant4 application.
+
+Highlights:<br/>
 
 - Python API to create geometry and materials
-- Support for `ASCII`, `SQLite` `GDML`, `CAD meshes` volume imports
-- Custom extensibility of digitization, output formats, electro-magnetic fields
+- `ASCII`, `SQLite` `GDML`, `CAD meshes` volume imports
 - Built-in `dosimeter`, `flux`, `particle_counter` sensitive types
-- Built-in `ASCII`, `CSV`, `JSON`, [`ROOT`](https://root.cern) output formats
-- [`pyvista`](https://https://pyvista.org) 3D visualization
+- `ASCII`, `CSV`, `JSON`, [`ROOT`](https://root.cern) output formats
+- [`pyvista`](https://pyvista.org) geometry visualization
+- Geometry variations and run-number-dependent configurations
+- CI-tested builds and Docker deployment
 
 <br/>
 
@@ -138,7 +151,7 @@ Gemc is built, tested and deployed to docker images by a GitHub CI on several pl
 [Site]: https://github.com/gemc/home/actions/workflows/jekyll.yml
 [Site-badge]: https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg
 
-[Sanitize]: ttps://github.com/gemc/src/actions/workflows/sanitize.yml
+[Sanitize]: https://github.com/gemc/src/actions/workflows/sanitize.yml
 [Sanitize-badge]: https://github.com/gemc/src/actions/workflows/sanitize.yml/badge.svg
 
 [CodeQL]: https://github.com/gemc/src/actions/workflows/codeql.yml
@@ -168,7 +181,8 @@ author = { {Ungaro}, Maurizio,
  pages = {05005},
  doi = {10.1051/epjconf/202429505005},
  adsurl = {https://ui.adsabs.harvard.edu/abs/2024EPJWC.29505005U},
- adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+ adsnote = {Provided by the SAO/NASA Astrophysics Data System} }
+}
 ```
 
 Bibitem:
