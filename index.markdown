@@ -23,7 +23,7 @@ caption="GEant Monte-Carlo"
 learning curve. Users define geometry in Python, store it in a database, and GEMC handles the full simulation pipeline. 
 
 The goal is to lower the entry barrier for Geant4-based simulations, especially for users 
-who want to prototype detector or radiation-transport setups without writing a Geant4 application.
+who want to prototype detector or radiation-transport setups without writing C++ Code.
 
 Highlights:<br/>
 
@@ -34,38 +34,6 @@ Highlights:<br/>
 - [`pyvista`](https://pyvista.org) geometry visualization
 - Geometry variations and run-number-dependent configurations
 - CI-tested builds and Docker deployment
-
-<br/>
-
-## Databases
-
-Databases are used to store detector definitions. A typical workflow looks like this:
-
-{% include figure.html
-src="assets/images/gemcArchitecture.png"
-alt="Database-driven architecture"
-caption="
-<span class='caption-flow'>
-Using the GEMC Python API, databases are filled with detector definitions.<br/>
-GEMC takes care of the rest:
-<br/>
-<span class='caption-indent-1'>→ Geant4 world creation</span>
-<span class='caption-indent-2'>→ Geant4 transport of tracks</span>
-<span class='caption-indent-3'>→ Hits creation and collections</span>
-<span class='caption-indent-4'>→ Digitizations</span>
-<span class='caption-indent-5'>→ Output streams</span>
-</span>
-"
-%}
-
-<br/>
-
-
-> [!NOTE]
-> Running simulations does not require previous knowledge of C++ or Geant4. 
-> A basic Python knowledge would help organizing complex setups.
-> Users can also **define their own hardware emulation routines** - in this case a basic C++ knowledge would help
-> for complex digitizations.
 
 <br/><br/>
 
@@ -107,6 +75,39 @@ Some utility functions, like `make_box` facilitate the creations of Geant4 solid
 </p>
 
 <br/><br/>
+
+## Databases
+
+Detector definitions are stored in databases. A typical workflow looks like this:
+
+{% include figure.html
+src="assets/images/gemcArchitecture.png"
+alt="Database-driven architecture"
+caption="
+<span class='caption-flow'>
+Using the Python API, databases are filled with detector definitions.<br/>
+GEMC takes care of the rest:
+<br/>
+<span class='caption-indent-1'>→ Geant4 world creation</span>
+<span class='caption-indent-2'>→ Geant4 transport of tracks</span>
+<span class='caption-indent-3'>→ Hits creation and collections</span>
+<span class='caption-indent-4'>→ Digitizations</span>
+<span class='caption-indent-5'>→ Output streams</span>
+</span>
+"
+%}
+
+<br/>
+
+
+> [!NOTE]
+> Running simulations does not require previous knowledge of C++ or Geant4. 
+> A basic Python knowledge would help organizing complex setups.
+> Users can also **define their own hardware emulation routines** - in this case a basic C++ knowledge would help
+> for complex digitizations.
+
+<br/><br/>
+
 
 ## Geometry Variations
 
