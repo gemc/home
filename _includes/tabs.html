@@ -1,24 +1,81 @@
-<!-- Tabs Navigation -->
-<div class="tabs">
-  <div class="tab active-tab" onclick="showTab(0)">{{ include.tab1_title }}</div>
-  <div class="tab" onclick="showTab(1)">{{ include.tab2_title }}</div>
-</div>
+{% assign tab_count = include.count | default: 2 | plus: 0 %}
+{% assign tabs_id = include.id %}
 
-<!-- Tabs Content -->
-<div class="tab-content active">
-  {{ include.tab1_content | markdownify }}
-</div>
-<div class="tab-content">
-  {{ include.tab2_content | markdownify }}
+<div class="tabs-widget" data-tabs>
+  <!-- Tabs Navigation -->
+  <div class="tabs" role="tablist">
+    {% for i in (1..tab_count) %}
+      {% assign title_key = "tab" | append: i | append: "_title" %}
+      {% assign title = include[title_key] %}
+
+      <button
+        type="button"
+        class="tab {% if forloop.first %}active-tab{% endif %}"
+        data-tab-button
+        role="tab"
+        aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+        {% if tabs_id %}
+          id="{{ tabs_id }}-tab-{{ forloop.index0 }}"
+          aria-controls="{{ tabs_id }}-panel-{{ forloop.index0 }}"
+        {% endif %}
+      >
+        {{ title }}
+      </button>
+    {% endfor %}
+  </div>
+
+  <!-- Tabs Content -->
+  {% for i in (1..tab_count) %}
+    {% assign content_key = "tab" | append: i | append: "_content" %}
+    {% assign content = include[content_key] %}
+
+    <div
+      class="tab-content {% if forloop.first %}active{% endif %}"
+      data-tab-panel
+      role="tabpanel"
+      {% unless forloop.first %}hidden{% endunless %}
+      {% if tabs_id %}
+        id="{{ tabs_id }}-panel-{{ forloop.index0 }}"
+        aria-labelledby="{{ tabs_id }}-tab-{{ forloop.index0 }}"
+      {% endif %}
+    >
+      {{ content | markdownify }}
+    </div>
+  {% endfor %}
 </div>
 
 <script>
-function showTab(index) {
-  let tabs = document.querySelectorAll('.tab');
-  let contents = document.querySelectorAll('.tab-content');
-  tabs.forEach(t => t.classList.remove('active-tab'));
-  contents.forEach(c => c.classList.remove('active'));
-  tabs[index].classList.add('active-tab');
-  contents[index].classList.add('active');
-}
+(function () {
+  function setupTabs() {
+    document.querySelectorAll('[data-tabs]').forEach(function (tabsRoot) {
+      if (tabsRoot.dataset.tabsInitialized === 'true') return;
+      tabsRoot.dataset.tabsInitialized = 'true';
+
+      const buttons = tabsRoot.querySelectorAll('[data-tab-button]');
+      const panels = tabsRoot.querySelectorAll('[data-tab-panel]');
+
+      buttons.forEach(function (button, index) {
+        button.addEventListener('click', function () {
+          buttons.forEach(function (btn, i) {
+            const isActive = i === index;
+            btn.classList.toggle('active-tab', isActive);
+            btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+          });
+
+          panels.forEach(function (panel, i) {
+            const isActive = i === index;
+            panel.classList.toggle('active', isActive);
+            panel.hidden = !isActive;
+          });
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupTabs);
+  } else {
+    setupTabs();
+  }
+})();
 </script>

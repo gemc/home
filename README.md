@@ -23,8 +23,12 @@ This will produce tabs, however not if gh-pages is used.
 {% endcapture %}
 
 {% include tabs.html 
-   tab1_title="Tab 1" tab1_content=tab1
-   tab2_title="Tab 2" tab2_content=tab2
+   id="example-tabs-2"
+   count=2
+   tab1_title="First tab"
+   tab1_content=tab1
+   tab2_title="Second tab"
+   tab2_content=tab2
 %}
 
 ```

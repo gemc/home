@@ -1077,14 +1077,12 @@ blockquote.doc-important img {
 
 
 /* ===================== Tabs ===================== */
-.tabs,
-.tabs5 {
+.tabs {
   display: flex;
   border-bottom: 2px solid #ddd;
 }
 
-.tab,
-.tab5 {
+.tab {
   padding: 10px 15px;
   cursor: pointer;
   border: 1px solid #ddd;
@@ -1094,13 +1092,11 @@ blockquote.doc-important img {
   margin-right: 5px;
 }
 
-.tab:hover,
-.tab5:hover {
+.tab:hover {
   background: #e9e9e9;
 }
 
-.tab-content,
-.tab5-content {
+.tab-content {
   display: none;
   padding: 15px;
   border: 1px solid #ddd;
@@ -1108,13 +1104,11 @@ blockquote.doc-important img {
   color: #222;
 }
 
-.tab-content.active,
-.tab5-content.active {
+.tab-content.active {
   display: block;
 }
 
-.active-tab,
-.active-tab5 {
+.active-tab  {
   background: white;
   border-bottom: 2px solid white;
 }
@@ -1122,36 +1116,35 @@ blockquote.doc-important img {
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
 
-  .tabs,
-  .tabs5 {
+  .tabs {
 	border-bottom-color: #444;
   }
 
-  .tab,
-  .tab5 {
+  .tab {
 	border-color: #444;
 	background: transparent;
 	color: #f1f1f1;
   }
 
-  .tab:hover,
-  .tab5:hover {
+  .tab:hover {
 	background: rgba(255, 255, 255, 0.08);
   }
 
-  .tab-content,
-  .tab5-content {
+  .tab-content {
 	border-color: #444;
 	background: transparent;
 	color: #f1f1f1;
   }
 
-  .active-tab,
-  .active-tab5 {
+  .active-tab {
 	background: transparent;
 	border-bottom-color: transparent;
 	color: #ffffff;
   }
+
+  .tab-content:not(.active) {
+  display: none;
+}
 
 
   /* Dark mode for pre */
@@ -1161,5 +1154,60 @@ blockquote.doc-important img {
 	  background: rgba(50, 50, 60, 0.88) !important;
 	  color: #f5f5f5;
 	}
+  }
+}
+
+
+.progress-item {
+  margin: 1rem 0 1.25rem 0;
+}
+
+.progress-item__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.progress-item__label {
+  font-weight: 600;
+}
+
+.progress-item__value {
+  white-space: nowrap;
+  color: #555;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 0.75rem;
+  background: #e6e6e6;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  background: #2f80ed;
+  border-radius: 999px;
+}
+
+
+/* Dark mode: automatic, based on system preference */
+@media (prefers-color-scheme: dark) {
+  .progress-item__label {
+    color: #f2f2f2;
+  }
+
+  .progress-item__value {
+    color: #c9c9c9;
+  }
+
+  .progress-bar {
+    background: #2f333a;
+  }
+
+  .progress-bar__fill {
+    background: #66aaff;
   }
 }

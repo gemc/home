@@ -1,0 +1,17 @@
+<div class="progress-item">
+  <div class="progress-item__header">
+    <span class="progress-item__label">{{ include.label }}</span>
+    <span class="progress-item__value">{{ include.value }}%</span>
+  </div>
+
+  <div class="progress-bar" aria-label="{{ include.label }} progress">
+    <div
+      class="progress-bar__fill"
+      style="width: {{ include.value }}%;"
+      role="progressbar"
+      aria-valuenow="{{ include.value }}"
+      aria-valuemin="0"
+      aria-valuemax="100">
+    </div>
+  </div>
+</div>

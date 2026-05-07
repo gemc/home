@@ -37,8 +37,8 @@ Highlights:<br/>
 
 <br/><br/>
 
-## Python API
 
+## Python API
 
 `Python` is used to create and fill databases with the geometry, materials and mirrors definitions.
 GEMC uses these databases to create the Geant4 world and does not need to be re-compiled when the geometry is changed.
@@ -75,6 +75,24 @@ Some utility functions, like `make_box` facilitate the creations of Geant4 solid
 </p>
 
 <br/><br/>
+
+## Latest News
+
+{% assign recent_posts = site.posts | slice: 0, 3 %}
+
+{% for post in recent_posts %}
+### [{{ post.title }}]({{ post.url | relative_url }})
+<small>{{ post.date | date: "%B %-d, %Y" }}</small>
+
+{{ post.excerpt | strip_html | truncatewords: 35 }}
+
+<br/>
+{% endfor %}
+
+[All news]({{ "/news/" | relative_url }}) · [RSS Feed]({{ "/feed.xml" | relative_url }})
+
+<br/><br/>
+
 
 ## Databases
 
