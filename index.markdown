@@ -6,14 +6,10 @@ layout: default
 This site refers to the latest **GEMC** project (version 3 and above).
 For **CLAS12 simulations** refer to [this page](https://github.com/gemc/clas12Tags).
 
+{% include gemc-logo.svg %}
+
 <br/>
 
-
-{% include figure.html
-src="assets/images/gemcLogo.png"
-alt="Database-driven architecture"
-caption="GEant Monte-Carlo"
-%}
 
 {% capture left %}
 
@@ -61,10 +57,17 @@ Highlights:<br/>
 {% endcapture %}
 
 
-{% include two_col_md.html left="80%" right="20%" left_content=left right_content=right %}
+{% include two_col_md.html left="70%" right="20%" left_content=left right_content=right %}
 
 <br/><br/>
 
+## Try GEMC in Your Browser
+
+No installation needed. Click the badge to launch a live JupyterLab session:
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/gemc/binder-tutorials/HEAD)
+
+<br/><br/>
 
 ## Python API
 

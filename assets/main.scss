@@ -857,12 +857,12 @@ pre:not(.highlight) {
 }
 
 .two-col-centered {
-  width: 90%;
-  max-width: 90%;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   .two-col-grid.centered {
     grid-template-columns: 1fr !important;
   }
@@ -1494,4 +1494,15 @@ body.dark,
   .news-card__title {
     font-size: 1.2rem;
   }
+}
+
+.gemc-logo {
+  width: 1480px;   /* adjust to taste */
+  max-width: 100%;
+  height: auto;
+  color: #111;
+}
+
+@media (prefers-color-scheme: dark) {
+  .gemc-logo { color: #ffffff; }
 }

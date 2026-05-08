@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 220" role="img" width="100%" height="auto">
+  <title>GEMC — Geant4 Simulation Framework</title>
+  <desc>Particle vertex diagram with curved detector tracks and the GEMC wordmark</desc>
+
+  <!--
+    Usage:
+      <img src="gemc-logo.svg" />          — inherits nothing, currentColor = black
+      <img src="gemc-logo.svg" style="color: white" />   — white text/tracks (dark bg)
+      Or inline the SVG so it truly inherits your page's color-scheme.
+
+    Recommended: inline the SVG and add to your CSS:
+      :root          { color-scheme: light; }
+      @media (prefers-color-scheme: dark) { svg.gemc-logo { color: #fff; } }
+      .gemc-logo { color: #111; }
+  -->
+
+  <defs>
+    <style>
+      /* All colours derived from currentColor so the page theme drives them */
+      .gemc-ring   { fill: none; stroke: currentColor; stroke-width: 0.7; opacity: 0.08; }
+      .gemc-track  { fill: none; stroke: currentColor; stroke-width: 0.9; opacity: 0.12; }
+      .gemc-hi     { fill: none; stroke: currentColor; stroke-width: 1.6; opacity: 0.55; }
+      /* Accent colours are absolute — they read on both light and dark */
+      .gemc-green  { fill: none; stroke: #3ecf8e; stroke-width: 1.6; opacity: 0.75; }
+      .gemc-amber  { fill: none; stroke: #f5a623; stroke-width: 1.4; opacity: 0.7;  }
+      .gemc-dot-hi    { fill: currentColor; opacity: 0.7; }
+      .gemc-dot-green { fill: #3ecf8e; }
+      .gemc-dot-amber { fill: #f5a623; }
+      .gemc-vertex    { fill: currentColor; opacity: 0.9; }
+      .gemc-word  { fill: currentColor; font-family: Georgia, 'Times New Roman', serif;
+                    font-size: 72px; font-weight: 700; letter-spacing: -2px; }
+      .gemc-tag   { fill: currentColor; opacity: 0.4;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                    font-size: 13px; font-weight: 400; letter-spacing: 2.8px; }
+    </style>
+  </defs>
+
+  <!-- Concentric detector rings -->
+  <circle cx="110" cy="110" r="18" class="gemc-ring"/>
+  <circle cx="110" cy="110" r="36" class="gemc-ring"/>
+  <circle cx="110" cy="110" r="56" class="gemc-ring"/>
+  <circle cx="110" cy="110" r="78" class="gemc-ring"/>
+  <circle cx="110" cy="110" r="96" class="gemc-ring"/>
+
+  <!-- Faint background tracks -->
+  <path d="M110 110 Q145 75 185 58"     class="gemc-track"/>
+  <path d="M110 110 Q158 108 200 102"   class="gemc-track"/>
+  <path d="M110 110 Q148 138 188 160"   class="gemc-track"/>
+  <path d="M110 110 Q88  70  72  32"    class="gemc-track"/>
+  <path d="M110 110 Q72  115 35  118"   class="gemc-track"/>
+  <path d="M110 110 Q80  138 58  165"   class="gemc-track"/>
+
+  <!-- Primary blue/neutral tracks (currentColor) -->
+  <path d="M110 110 Q148 82 196 60 Q215 50 238 44"    class="gemc-hi"/>
+  <path d="M110 110 Q162 115 210 118 Q232 119 255 118" class="gemc-hi"/>
+  <path d="M110 110 Q78  130 48  155 Q32  168 18  182" class="gemc-hi"/>
+
+  <!-- Green tracks -->
+  <path d="M110 110 Q152 145 198 172 Q220 184 244 192" class="gemc-green"/>
+  <path d="M110 110 Q130 88 170 72 Q192 63 215 56"     class="gemc-green"/>
+
+  <!-- Amber tracks -->
+  <path d="M110 110 Q88  62  74  18"  class="gemc-amber"/>
+  <path d="M110 110 Q66  108 24  106" class="gemc-amber"/>
+
+  <!-- Hit dots — primary -->
+  <circle cx="238" cy="44"  r="3.5" class="gemc-dot-hi"/>
+  <circle cx="255" cy="118" r="3.5" class="gemc-dot-hi"/>
+  <circle cx="196" cy="60"  r="2"   class="gemc-dot-hi"/>
+  <circle cx="18"  cy="182" r="2.5" class="gemc-dot-hi"/>
+
+  <!-- Hit dots — green -->
+  <circle cx="244" cy="192" r="3.5" class="gemc-dot-green"/>
+  <circle cx="198" cy="172" r="2"   class="gemc-dot-green"/>
+  <circle cx="215" cy="56"  r="2"   class="gemc-dot-green"/>
+
+  <!-- Hit dots — amber -->
+  <circle cx="74"  cy="18"  r="3"   class="gemc-dot-amber"/>
+  <circle cx="24"  cy="106" r="3"   class="gemc-dot-amber"/>
+
+  <!-- Origin vertex -->
+  <circle cx="110" cy="110" r="5.5" class="gemc-vertex"/>
+  <circle cx="110" cy="110" r="2.5" class="gemc-dot-green"/>
+
+  <!-- Wordmark -->
+  <text x="292" y="107" class="gemc-word">gemc</text>
+  <text x="295" y="140" class="gemc-tag">GEANT4 SIMULATION FRAMEWORK</text>
+</svg>
