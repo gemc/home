@@ -1214,7 +1214,6 @@ blockquote.doc-important img {
 }
 
 
-
 /* ============================
    News
    ============================ */
@@ -1497,12 +1496,33 @@ body.dark,
 }
 
 .gemc-logo {
-  width: 1480px;   /* adjust to taste */
+  width: 1480px; /* adjust to taste */
   max-width: 100%;
   height: auto;
   color: #111;
 }
 
 @media (prefers-color-scheme: dark) {
-  .gemc-logo { color: #ffffff; }
+  .gemc-logo {
+    color: #ffffff;
+  }
+}
+
+.small-icons {
+  display: table;
+  width: auto !important;
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+}
+
+.small-icons img {
+  width: 30px;
+  height: auto;
+}
+
+.profile-icons td {
+  padding: 0 2px;
+  text-align: center;
+  white-space: nowrap;
 }
