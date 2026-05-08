@@ -15,9 +15,10 @@ alt="Database-driven architecture"
 caption="GEant Monte-Carlo"
 %}
 
+{% capture left %}
+
 ## A database-driven Geant4 simulation application with Python geometry workflows
 
-<br/>
 
 **GEMC** is a Python-friendly wrapper around [Geant4](https://geant4.web.cern.ch) that eliminates the C++/Geant4 
 learning curve. Users define geometry in Python, store it in a database, and GEMC handles the full simulation pipeline. 
@@ -34,6 +35,33 @@ Highlights:<br/>
 - [`pyvista`](https://pyvista.org) geometry visualization
 - Geometry variations and run-number-dependent configurations
 - CI-tested builds and Docker deployment
+
+{% endcapture %}
+
+{% capture right %}
+
+
+## Latest News
+
+<div class="news-feed news-feed--compact">
+  {% assign news_posts = site.posts | where_exp: "post", "post.categories contains 'news'" | slice: 0, 3 %}
+
+  {% for post in news_posts %}
+    {% include news-card.html post=post compact=true %}
+  {% endfor %}
+</div>
+
+<p class="news-links">
+  <a href="{{ "/news/" | relative_url }}">All news</a>
+  ·
+  <a href="{{ "/feed.xml" | relative_url }}">RSS Feed</a>
+</p>
+
+
+{% endcapture %}
+
+
+{% include two_col_md.html left="80%" right="20%" left_content=left right_content=right %}
 
 <br/><br/>
 
@@ -74,25 +102,8 @@ The code used to create the flux plane shown above, showcasing the Python API.
 Some utility functions, like `make_box` facilitate the creations of Geant4 solids (in this case G4Box). 
 </p>
 
-<br/><br/>
-
-## Latest News
-
-{% assign recent_posts = site.posts | slice: 0, 3 %}
-
-{% for post in recent_posts %}
-### [{{ post.title }}]({{ post.url | relative_url }})
-<small>{{ post.date | date: "%B %-d, %Y" }}</small>
-
-{{ post.excerpt | strip_html | truncatewords: 35 }}
-
-<br/>
-{% endfor %}
-
-[All news]({{ "/news/" | relative_url }}) · [RSS Feed]({{ "/feed.xml" | relative_url }})
 
 <br/><br/>
-
 
 ## Databases
 

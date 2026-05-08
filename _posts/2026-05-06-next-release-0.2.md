@@ -2,12 +2,16 @@
 layout: post
 title: "Upcoming in GEMC 0.2"
 date: 2026-05-07
-categories: news roadmap
-
+categories: news
+tags: [release, generator, examples, pyvista]
 progress:
   - label: "Jupyter support"
     value: 60
-  - label: "Flux, Materials, Pyvista examples "
+  - label: "Flux example"
+    value: 25
+  - label: "Materials example "
+    value: 35
+  - label: "Pyvista examples "
     value: 25
   - label: "LUND support for generator"
     value: 0

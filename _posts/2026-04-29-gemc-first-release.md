@@ -2,12 +2,12 @@
 layout: post
 title: "GEMC first release"
 date: 2026-04-28
-categories: news release
-tags: [release, gemc, geant4, python, ci]
+categories: news
+tags: [release, geant4, python, pyvista]
 github_release: https://github.com/gemc/src/releases/tag/0.1
 ---
 
-This announcement corresponds to the [`0.1`](https://github.com/gemc/src/releases/tag/0.1) release.
+This announcement corresponds to the [`0.1`](https://github.com/gemc/src/releases/tag/0.1) GEMC release.
 
 <br/>
 

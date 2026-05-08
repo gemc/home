@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<section class="news-page">
+  <header class="news-header">
+    <p class="news-header__eyebrow">Project updates</p>
+    <h1>{{ page.title }}</h1>
+    <div class="news-header__intro">
+      {{ content }}
+    </div>
+  </header>
+
+  <div class="news-feed">
+    {% assign news_posts = site.posts | where_exp: "post", "post.categories contains 'news'" %}
+
+    {% for post in news_posts %}
+      {% include news-card.html post=post %}
+    {% endfor %}
+  </div>
+</section>

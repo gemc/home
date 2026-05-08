@@ -1,0 +1,45 @@
+<article class="news-card{% if include.compact %} news-card--compact{% endif %}">
+  <div class="news-card__meta">
+    <time datetime="{{ include.post.date | date_to_xmlschema }}">
+      {{ include.post.date | date: "%B %-d, %Y" }}
+    </time>
+
+    {% if include.post.categories contains "news" %}
+      <span class="news-card__badge">News</span>
+    {% endif %}
+  </div>
+
+  <h2 class="news-card__title">
+    <a class="news-card__main-link" href="{{ include.post.url | relative_url }}">
+      {{ include.post.title }}
+    </a>
+  </h2>
+
+  <p class="news-card__excerpt">
+    {% if include.compact %}
+      {{ include.post.excerpt | strip_html | truncatewords: 32 }}
+    {% else %}
+      {{ include.post.excerpt | strip_html | truncate: 220 }}
+    {% endif %}
+  </p>
+
+  {% unless include.compact %}
+    {% if include.post.tags %}
+      <div class="news-card__tags">
+        {% for tag in include.post.tags limit: 4 %}
+          <span>{{ tag }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endunless %}
+
+  {% unless include.compact %}
+    {% if include.post.github_release %}
+      <div class="news-card__footer">
+        <a class="news-card__release" href="{{ include.post.github_release }}">
+          GitHub release
+        </a>
+      </div>
+    {% endif %}
+  {% endunless %}
+</article>
