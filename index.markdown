@@ -83,7 +83,7 @@ Highlights:<br/>
 
 No installation needed. Click the badge to launch a live JupyterLab session:
 
-{:.zebra}
+{:.zebra .compact-table}
 | Simple Flux | [![Simple Flux][binder]][simple_flux]{:target="_blank" rel="noopener noreferrer"} |
 
 

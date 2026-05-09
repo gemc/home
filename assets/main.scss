@@ -229,6 +229,32 @@ table.zebra tbody tr:nth-child(odd) td {
   background: #ffffff;
 }
 
+.zebra img {
+  height: 20px;
+  transition: none;
+}
+
+.zebra a {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.zebra a img {
+  height: 30px;
+  width: auto;
+  display: block;
+  cursor: pointer;
+}
+
+
+.zebra.compact-table {
+  width: auto;
+}
+
+
 @media (prefers-color-scheme: dark) {
   table th,
   table td {
