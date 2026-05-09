@@ -21,8 +21,8 @@ progress:
     value: 0
 ---
 
-Several GEMC features are currently under active development Jupyter support, LUND format for
-particles generators and more examples. 
+Several GEMC features are currently under active development: Jupyter support, LUND format for
+particle generators, more examples, and bug fixes.
 
 <br/>
 
