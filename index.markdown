@@ -22,7 +22,7 @@ layout: default
 [CodeQL-badge]: https://github.com/gemc/src/actions/workflows/codeql.yml/badge.svg
 
 [binder]: https://mybinder.org/badge_logo.svg
-[simple_flux]: https://mybinder.org/v2/gh/gemc/binder-tutorials.git/main?urlpath=%2Fdoc%2Ftree%2Fnotebooks%2F01_simple_flux.ipynb
+[simple_flux]: https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/01_simple_flux.ipynb
 
 This site refers to the latest **GEMC** project (version 3 and above).
 For **CLAS12 simulations** refer to [this page](https://github.com/gemc/clas12Tags).
