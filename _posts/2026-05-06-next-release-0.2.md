@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Upcoming in GEMC 0.2"
-date: 2026-05-07
+date: 2026-05-11
 categories: news
 tags: [release, generator, examples, pyvista]
 progress:
@@ -13,6 +13,8 @@ progress:
     value: 35
   - label: "Pyvista examples "
     value: 25
+  - label: "Cherenkov examples "
+    value: 0
   - label: "LUND support for generator"
     value: 0
   - label: "Analyzer Scripts"
@@ -36,5 +38,5 @@ particle generators, more examples, and bug fixes.
 
 ## Issues to be addressed:
 
-- [ ] [#80: add batch screenshot](https://github.com/gemc/src/issues/80)
-- [ ] [#81: Cherenkov bug](https://github.com/gemc/src/issues/81)
+- [ ] [#80: Add batch screenshot](https://github.com/gemc/src/issues/80)
+- [ ] [#81: Fix Cherenkov bug](https://github.com/gemc/src/issues/81)
