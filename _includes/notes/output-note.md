@@ -37,9 +37,9 @@ Run `gemc help gstreamer` to check its documentation:
 
 	The produced files structure depends on the accumulation method used:
 
-	  - event-based digitization (like <flux>) will have one file for every j 
-	    thread, with "_tj" appended to the filename
-	  - run-based digitization (like <dosimeter>) will have one file only
+	  - event-based digitization (like <flux>) will have one file per 
+	    thread, with "_t<thread#>" appended to the filename
+	  - run-based digitization (like <dosimeter>) will have one output file
 
 </blockquote>
 

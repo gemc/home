@@ -1,7 +1,11 @@
 - title: "b1"
   category: "basic"
-  link: "/home/examples/b1"
+  link: "/home/examples/basic/b1"
 
 - title: "b2"
   category: "basic"
-  link: "/home/examples/b2"
+  link: "/home/examples/basic/b2"
+
+- title: "Cherenkov"
+  category: "optical"
+  link: "/home/examples/optical/cherenkov"

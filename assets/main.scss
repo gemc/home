@@ -1160,6 +1160,17 @@ blockquote.doc-important img {
   }
 }
 
+/* Larger Markdown / Jekyll task-list checkboxes */
+.task-list-item-checkbox,
+li.task-list-item input[type="checkbox"],
+li input[type="checkbox"] {
+  width: 2.1em;
+  height: 2.1em;
+  margin-right: 0.45em;
+  vertical-align: -0.15em;
+  accent-color: var(--link);
+}
+
 /* ========================================================================== */
 /* Tabs                                                                       */
 /* ========================================================================== */
