@@ -1,0 +1,81 @@
+{% assign milestone_number = include.milestone | default: 1 %}
+{% assign milestone_key = "milestone_" | append: milestone_number %}
+{% assign issues_key = "milestone_" | append: milestone_number | append: "_issues" %}
+
+{% assign milestone = site.data.github[milestone_key] %}
+{% assign issues = site.data.github[issues_key] %}
+
+{% if milestone %}
+{% assign total = milestone.open_issues | plus: milestone.closed_issues %}
+
+{% if total > 0 %}
+{% assign percent = milestone.closed_issues | times: 100 | divided_by: total %}
+{% else %}
+{% assign percent = 0 %}
+{% endif %}
+
+<section class="github-milestone">
+    <br/>
+    <h2>
+        <a href="{{ milestone.html_url }}">
+            {{ milestone.title }}: Github Milestone
+        </a>
+    </h2>
+    <br/>
+
+    {% if milestone.description %}
+    <div class="milestone-description">
+        {{ milestone.description | markdownify }}
+    </div>
+    {% endif %}
+
+    <p>
+        <strong>{{ milestone.closed_issues }}</strong> closed /
+        <strong>{{ total }}</strong> total
+        — <strong>{{ percent }}%</strong> complete
+    </p>
+
+    <progress value="{{ milestone.closed_issues }}" max="{{ total }}">
+        {{ percent }}%
+    </progress>
+
+    {% if milestone.due_on %}
+    <p>
+        <strong>Due:</strong>
+        {{ milestone.due_on | date: "%B %-d, %Y" }}
+    </p>
+    {% endif %}
+
+    <br/>
+    {% if issues %}
+    <h3>Milestone items</h3>
+
+    <ul class="milestone-items">
+        {% for issue in issues %}
+        <li class="milestone-item milestone-item-{{ issue.state }}">
+            {% if issue.pull_request %}
+            <span class="milestone-type">PR</span>
+            {% else %}
+            <span class="milestone-type">Issue</span>
+            {% endif %}
+
+            <a href="{{ issue.html_url }}">
+                #{{ issue.number }}: {{ issue.title }}
+            </a>
+
+            <span class="milestone-state">
+              {{ issue.state }}
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No issue data found for milestone {{ milestone_number }}.</p>
+    {% endif %}
+</section>
+{% else %}
+<p>
+    No GitHub milestone data found for milestone {{ milestone_number }}.
+</p>
+{% endif %}
+<br/>

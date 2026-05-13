@@ -5,11 +5,11 @@ title: "Cherenkov"
 {% include directory.html data=site.data.examples columns=5 section_breaks=4 %}
 
 [default-img]: /home/assets/images/examples/cherenkov/default.png
-[CO2-img]: /home/assets/images/examples/cherenkov/CO2.png
-[C4F10-img]: /home/assets/images/examples/cherenkov/C4F10.png
+[CO2-img]: /home/assets/images/examples/cherenkov/co2.png
+[C4F10-img]: /home/assets/images/examples/cherenkov/c4f10.png
 [defaulty-img]: /home/assets/images/examples/cherenkov/default_yield.png
-[CO2y-img]: /home/assets/images/examples/cherenkov/CO2_yield.png
-[C4F10y-img]: /home/assets/images/examples/cherenkov/C4F10_yield.png
+[CO2y-img]: /home/assets/images/examples/cherenkov/co2_yield.png
+[C4F10y-img]: /home/assets/images/examples/cherenkov/c4f10_yield.png
 
 
 # Cherenkov Example 
