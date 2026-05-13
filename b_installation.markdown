@@ -301,6 +301,8 @@ and run apptainer again.
     - [CMake](https://cmake.org) 3.16 or later
     - [Meson](https://mesonbuild.com) 1.10.1 or later
 
+<br/>
+
 - System Packages (typically installed with your system package manager):
 
     - expat: 2.0.1 or higher
@@ -418,21 +420,20 @@ tab6_content=tab6
 
 - External libraries, compiled from source against the same C++ Standard as GEMC (C++17 by default):
 
-    - [Geant4](https://geant4.web.cern.ch): 11.3.2 or higher
     - [CLHEP](https://proj-clhep.web.cern.ch/proj-clhep/): 2.4.6.0 or higher
     - [Xerces-C](https://xerces.apache.org/xerces-c/): 3.2 or higher
+    - [Geant4](https://geant4.web.cern.ch): 11.3.2 or higher
 
 <br/>
 
 > [!IMPORTANT]
-> GEMC can use any custom installation of Geant4, however
+> GEMC can use any custom installation of `CLHEP`/`Xereces-C`/`Geant4`, however
 > **we recommend using the [g4install](https://github.com/gemc/g4install) repository to install Geant4**,
-> as it provides seamless coexistence of multiple Geant4 versions.
+> as it provides coexistence of multiple Geant4 versions and installation scripts.
 
 <br/>
 
 ## Supported and tested platforms
-
 
 - MacOS: 26
   {% for img in site.data.docker.images -%}
