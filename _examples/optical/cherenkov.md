@@ -19,6 +19,12 @@ title: "Cherenkov"
 
 This example showcases the activation of the Cherenkov radiation in a GEMC detector.
 
+{% assign example = site.data.examples | where: "title", "Cherenkov" | first %}
+
+You can run this example in your browser: [![{{ example.title }}]({{ example.badge }})]({{ example.binder }}){:target="_blank" rel="noopener noreferrer"} 
+
+The instructions below assume you have already installed GEMC.
+
 <br/>
 
 ## Quickstart

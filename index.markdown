@@ -21,8 +21,6 @@ layout: default
 [CodeQL]: https://github.com/gemc/src/actions/workflows/codeql.yml
 [CodeQL-badge]: https://github.com/gemc/src/actions/workflows/codeql.yml/badge.svg
 
-[binder]: https://mybinder.org/badge_logo.svg
-[simple_flux]: https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/01_simple_flux.ipynb
 
 This site refers to the latest **GEMC** project (version 3 and above).
 For **CLAS12 simulations** refer to [this page](https://github.com/gemc/clas12Tags).
@@ -83,9 +81,28 @@ Highlights:<br/>
 
 No installation needed. Click the badge to launch a live JupyterLab session:
 
-{:.zebra .compact-table}
-| Simple Flux | [![Simple Flux][binder]][simple_flux]{:target="_blank" rel="noopener noreferrer"} |
+{% assign visible_examples = site.data.examples | where: "display", true %}
 
+<table class="zebra compact-table">
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>Binder</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for example in visible_examples %}
+    <tr>
+      <td>{{ example.header }}</td>
+      <td>
+        <a href="{{ example.binder }}" target="_blank" rel="noopener noreferrer">
+          <img src="{{ example.badge }}" alt="{{ example.title }}">
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 <br/><br/>
 
