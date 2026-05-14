@@ -19,4 +19,6 @@ progress:
 
 New features, improvements, and issue resolutions planned for the next release.
 
+See also the [GEMC Roadmap](https://github.com/orgs/gemc/projects/1/views/4).
+
 {% include github_milestone.html milestone=1 %}
