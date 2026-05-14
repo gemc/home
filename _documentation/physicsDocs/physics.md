@@ -18,7 +18,7 @@ In the jcard, add this line to select the desired physics:
  The option can be composed by: 
 
 - The main geant4 module (mandatory field). For example: **QGSP_BIC** 
-- Optional: a replacement for the default electro-magnetic physics list, specified by adding its code
+- Optional: a replacement for the default electromagnetic physics list, specified by adding its code
 - Optional: physics constructor(s) can be added using the **+** sign
 
 <br/>
@@ -153,4 +153,3 @@ In the jcard, add this line to select the desired physics:
  - G4StoppingPhysicsFritiofWithBinaryCascade
  - G4UnknownDecayPhysics
  - G4WeightWindowBiasing
-

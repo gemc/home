@@ -37,7 +37,7 @@ For **CLAS12 simulations** refer to [this page](https://github.com/gemc/clas12Ta
 learning curve. Users define geometry in Python, store it in a database, and GEMC handles the full simulation pipeline. 
 
 The goal is to lower the entry barrier for Geant4-based simulations, especially for users 
-who want to prototype detector or radiation-transport setups without writing C++ Code.
+who want to prototype detector or radiation-transport setups without writing C++ code.
 
 Highlights:<br/>
 
@@ -124,7 +124,7 @@ No installation needed. Click the badge to launch a live JupyterLab session:
 
 `Python` is used to create and fill databases with the geometry, materials and mirrors definitions.
 GEMC uses these databases to create the Geant4 world and does not need to be re-compiled when the geometry is changed.
-The API supports [`pyvista`](https://https://pyvista.org) visualization of the geometry.
+The API supports [`pyvista`](https://pyvista.org) visualization of the geometry.
 
 {% include figure.html
 src="assets/images/gemc_showcase.gif"
@@ -176,8 +176,8 @@ The rest of the steps are executed by GEMC.
 
 > [!NOTE]
 > Running simulations does not require previous knowledge of C++ or Geant4. 
-> A basic Python knowledge would help organizing complex setups.
-> Users can also **define their own hardware emulation routines** - in this case a basic C++ knowledge would help
+> Basic Python knowledge helps organize complex setups.
+> Users can also **define their own hardware emulation routines** - in this case basic C++ knowledge helps
 > for complex digitizations.
 
 <br/><br/>
@@ -185,9 +185,9 @@ The rest of the steps are executed by GEMC.
 
 ## Geometry Variations
 
-A detector can be re-used in multiple experiments, with configuration changes such as components shifts,
+A detector can be re-used in multiple experiments, with configuration changes such as component shifts,
 changes of materials, addition or removal of certain volumes.
-GEMC Supports these geometry versions using **variations** and/or run **numbers** to adapt to different simulation setups
+GEMC supports these geometry versions using **variations** and/or run **numbers** to adapt to different simulation setups
 
 {% include figure.html
 src="assets/images/clas12v.gif"
@@ -201,7 +201,7 @@ by specifying a variation string or a run number in the configuration file or co
 
 ## Continuous Integration
 
-Gemc is built, tested and deployed to docker images by a GitHub CI on several platforms and both arm64, amd64 architectures.
+GEMC is built, tested, and deployed as Docker images by GitHub CI on several platforms and on both arm64 and amd64 architectures.
 
 {:.zebra}
 
@@ -252,7 +252,7 @@ Bibitem:
 
 <br/><br/>
 
-## Source Code and Licence
+## Source Code and License
 
 The GEMC source code on [GitHub](https://github.com/gemc/src) is distributed under an [open source license](/home/license/).
 

@@ -8,7 +8,7 @@ title: "materials"
 
 <br/>
 
-The setup is 5 different targets with materials built using diffent methods.
+The setup is 5 different targets with materials built using different methods.
 
 The geometry is constructed using the python script:
 
@@ -58,7 +58,7 @@ Defines `my_resistPaste` which uses a material from the Geant4 Material database
 ---
 <br/>
 
-The code that produce the geometry:
+The code that produces the geometry:
 
 <script src="https://gist.github.com/maureeungaro/6bbddd23f01630d779a8889b11c13223.js"></script>
 

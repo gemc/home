@@ -117,7 +117,7 @@ name `gemc.db`. Various command line options can define the database type, varia
 
 ### Running gemc
 
-The file `cherenkov.yaml` can be used to run the setup. Add `-gui` to run in interactively:
+The file `cherenkov.yaml` can be used to run the setup. Add `-gui` to run interactively:
 
 ```shell
 gemc cherenkov.yaml -gui
@@ -132,7 +132,7 @@ record the optical photons, because by default the `flux` digitization does not 
 
 ### Variations
 
-Within the YAML file, the variation is set to `default`. You can replace it `CO2` or `C4F10` 
+Within the YAML file, the variation is set to `default`. You can replace it with `CO2` or `C4F10` 
 to change the material. For example:
 
 ```yaml
@@ -141,8 +141,8 @@ gsystem:
     variation: C4F10
 ```
 
-Different radiators material will produce different photon yields, and at different angles, see the image below.
-We suggest tp match the variation name to the file name in the `gstreamer` option.
+Different radiator materials will produce different photon yields, and at different angles, see the image below.
+We suggest to match the variation name to the file name in the `gstreamer` option.
 
 
 <br/>

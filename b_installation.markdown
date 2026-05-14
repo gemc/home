@@ -31,7 +31,7 @@ See the [license conditions](/home/license/).
 
 > [!NOTE]
 > Use the most recent GEMC release to ensure you are taking advantage of
-> latest bug fixes and the new features. This also helps the developers to provide the best support.
+> the latest bug fixes and new features. This also helps the developers to provide the best support.
 
 <br/><br/>
 
@@ -59,7 +59,7 @@ in the appendix for the requirements.
 
 For illustration, we will use  `{{ page.path_prefix }}` as the installation location, `{{ page.latest_tag }}`
 as the version to be installed, `source` as where to place the source code.
-Replace `{{ page.latest_tag }}` with `{{ page.dev_tag }}` if you want to instal the development release.
+Replace `{{ page.latest_tag }}` with `{{ page.dev_tag }}` if you want to install the development release.
 
 Create the paths and cd to the version directory:
 
@@ -113,7 +113,7 @@ tab2_content=tab2
 The [meson](https://mesonbuild.com) build system is used to compile and install GEMC.
 
 The **setup** phase will check for the required dependencies and fetch external libraries.
-Here we use a `build` directory inside `ssource`:
+Here we use a `build` directory inside `source`:
 
 ```shell
 cd {{ page.path_prefix }}/{{ page.latest_tag }}/source
@@ -159,7 +159,7 @@ Here with `GEMC_VERSION` we control the version of GEMC to use.
 
 ## [Optional] Install Pyvista
 
-While pyvista is not necessary to build the detectors, it provides a nice visual feedback
+While pyvista is not necessary to build the detectors, it provides useful visual feedback
 without the need to run GEMC to visualize the geometry.
 
 To install pyvista, including the qt modules, use a python environment:
@@ -239,7 +239,7 @@ graphical interface.
 
 ## GEMC using Apptainer
 
-Linux hosts can use `apptainer` (formally `singularity`) to run docker containers.
+Linux hosts can use `apptainer` (formerly `singularity`) to run docker containers.
 You can use it with the docker images above. It runs similarly to docker - but the entrypoint needs to be
 sourced explicitly.
 
@@ -307,12 +307,12 @@ and run apptainer again.
 
     - expat: 2.0.1 or higher
     - zlib: 1.2.3 or higher
-    - [Qt6](https://www.qt.io): 6.5 or higher (required for GUI
+    - [Qt6](https://www.qt.io): 6.5 or higher (required for GUI)
     - [ROOT](https://root.cern): 6.36.04 or higher (optional, required for ROOT output)
 
 <br/>
 
-One liners installation of basic packages and dependencies on MacOS and some popular Linux distributions:
+One-line installation commands for basic packages and dependencies on MacOS and some popular Linux distributions:
 
 <br/>
 
@@ -427,7 +427,7 @@ tab6_content=tab6
 <br/>
 
 > [!IMPORTANT]
-> GEMC can use any custom installation of `CLHEP`/`Xereces-C`/`Geant4`, however
+> GEMC can use any custom installation of `CLHEP`/`Xerces-C`/`Geant4`, however
 > **we recommend using the [g4install](https://github.com/gemc/g4install) repository to install Geant4**,
 > as it provides coexistence of multiple Geant4 versions and installation scripts.
 
@@ -445,5 +445,4 @@ tab6_content=tab6
 <br/>
 <br/>
 <br/>
-
 

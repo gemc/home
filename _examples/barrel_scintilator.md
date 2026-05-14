@@ -19,7 +19,7 @@ The geometry is constructed using the python script:
 <br/>
 
 The output is defined by the entry `+goutput` in the jcard 'scintillator_array.jcard'.
-Two format are written out: 'text' and 'root'.
+Two formats are written out: 'text' and 'root'.
 
 Sets the desired number of cores, number of events, and verbosity in the jcard 'scintillator_array.jcard'. To run gemc:
 
@@ -67,7 +67,7 @@ will show the energy deposited in the bars versus bar id and the hit positions i
 ---
 <br/>
 
-The code that produce the geometry:
+The code that produces the geometry:
 
 <script src="https://gist.github.com/maureeungaro/2a3f64a684f2d9d1891b4bf5a0edcc60.js"></script>
 

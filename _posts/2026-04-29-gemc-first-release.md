@@ -19,7 +19,7 @@ The core of GEMC is now complete and includes:
 
 - Python API to create geometry and materials
 - Support for ASCII, SQLite, GDML, CAD meshes volume imports
-- Custom extensibility of digitization, output formats, electro-magnetic fields 
+- Custom extensibility of digitization, output formats, electromagnetic fields 
 - Built-in dosimeter, flux, particle_counter 
 - Built-in ASCII, CSV, JSON, ROOT output 
 - PyVista 3D visualization
@@ -76,4 +76,3 @@ Both AMD and ARM processors are supported.
 - Geant4: 11.4.1 or higher
 - CLHEP: 2.4.6.0 or higher
 - Xerces-C: 3.2 or higher
-

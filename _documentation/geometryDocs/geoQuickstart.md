@@ -6,7 +6,7 @@ description: solid type builder and volume constructor
 ---
 
 A system geometry is a collection of volume definitions. 
-The volumes can be native geant4 objects or be imported from  CAD / GDML.
+The volumes can be native Geant4 objects or be imported from  CAD / GDML.
 
 Before continuing, make sure you have read the [systems](../documentation/system) documentation and are working
 within a system directory. 
@@ -14,9 +14,9 @@ within a system directory.
 
 # Quickstart: build native Geant4 Volumes
 
-To build native geant4 volumes a set of functions and templates to build the geant4 volumes[^1] can be used.
+To build native Geant4 volumes, a set of functions and templates to build the Geant4 volumes[^1] can be used.
 
-To following will display the code, shown below, to build a volume, for example a G4Box of 30x40x50 cm:
+The following will display the code, shown below, to build a volume, for example a G4Box of 30x40x50 cm:
 
 ```python
 scigTemplate.py -gv G4Box  -gvp '30 40 50 cm'
@@ -47,7 +47,7 @@ Let's go over each line. The lines commented out with `#` set the default values
 13. volume's sensitivity: this is the name of the digitization plugin associated with the volume
 14. volume's identifier: unique set of pairs (string, id) that identifies the volume
 
-The types builders can be listed with `scigTemplate.py -sl` and can found [here](geometryDocs/solidTypes).
+The type builders can be listed with `scigTemplate.py -sl` and can be found [here](geometryDocs/solidTypes).
 
 <br/>
 
@@ -76,4 +76,4 @@ For more information on how to build native Geant4 volumes, see the [native geom
 ---
 <br/>
 
-[^1]: a geant4 volume is usually 3 objects: a. a solid, that defines the dimensions.  b. a logical volume, that includes materials and fields. c. a physical volume, that places the volume within its mother volume.
+[^1]: a Geant4 volume is usually 3 objects: a. a solid, that defines the dimensions.  b. a logical volume, that includes materials and fields. c. a physical volume, that places the volume within its mother volume.

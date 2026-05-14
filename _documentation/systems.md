@@ -9,7 +9,7 @@ In the example below an example with two systems, Forward Detector and Central D
 
 ## Create a system
 
-To create a new system, use the script `templates.py`. It setups a new directory 
+To create a new system, use the script `templates.py`. It sets up a new directory 
 with the name of the system containing template files with default geometry and materials. 
 
 For example, to create a `forward` system:
@@ -47,7 +47,7 @@ To load the system in gemc, the following entry is added to the steering card:
 ]
 ```
 
-The steering card also setups 200 events, each with one {{ page.pi0 }}, with two outputs: a root file and a text file. Modify as 
+The steering card also sets up 200 events, each with one {{ page.pi0 }}, with two outputs: a root file and a text file. Modify as 
 needed and run gemc:
 
 ```

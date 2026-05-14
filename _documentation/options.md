@@ -30,7 +30,7 @@ and the directives specified in the steering card 'example.jcard'
 ## JCards
 
 <br/>
-The gemc steering cards are JSON files the extentson **.jcard**, with comments added using the `#` sign.
+The gemc steering cards are JSON files with the extension **.jcard**, with comments added using the `#` sign.
 An example of jcard:
 
 <script src="https://gist.github.com/maureeungaro/f4449d88f5b63c4ef368d9e6f76589c1.js"></script>

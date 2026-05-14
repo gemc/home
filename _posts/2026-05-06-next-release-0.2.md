@@ -13,11 +13,10 @@ progress:
     value: 0
   - label: "Add Analyzer Scripts"
     value: 0
-  - label: "Enviroment script upon installation"
+  - label: "Environment script upon installation"
     value: 0
 ---
 
-New features, improvements and issues resolution planned for the next release.
+New features, improvements, and issue resolutions planned for the next release.
 
 {% include github_milestone.html milestone=1 %}
-

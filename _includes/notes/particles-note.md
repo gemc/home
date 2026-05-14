@@ -2,7 +2,7 @@
 **gparticle**
 
 The `gparticle` option allows to control the Geant4 particle gun. 
-For the complete list of parameter that can be passed to it: `gemc help gparticle`. 
+For the complete list of parameters that can be passed to it: `gemc help gparticle`. 
 
 Some of them: 
 - `name`: Particle name (mandatory),  for example "proton".
@@ -33,4 +33,3 @@ For example, to define a particle gun with one electron along z plus 1 proton at
 		  phi: 90
 
 </blockquote>
-
