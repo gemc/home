@@ -12,10 +12,12 @@ layout: default
   </header>
 
   <div class="news-feed">
-    {% assign news_posts = site.posts | where_exp: "post", "post.categories contains 'news'" %}
-
-    {% for post in news_posts %}
-      {% include news-card.html post=post %}
+    {% for post in site.posts %}
+      {% if post.categories contains "news" %}
+        {% include news-card.html post=post %}
+      {% elsif post.categories contains "release" %}
+        {% include news-card.html post=post %}
+      {% endif %}
     {% endfor %}
   </div>
 </section>

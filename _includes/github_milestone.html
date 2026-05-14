@@ -14,11 +14,12 @@
 {% assign percent = 0 %}
 {% endif %}
 
+<br/>
+
 <section class="github-milestone">
-    <br/>
     <h2>
         <a href="{{ milestone.html_url }}">
-            {{ milestone.title }}: Github Milestone
+            {{ milestone.title }}
         </a>
     </h2>
     <br/>
@@ -79,3 +80,14 @@
 </p>
 {% endif %}
 <br/>
+
+## Features progress
+
+<br/>
+
+{% for item in page.progress %}
+  {% include progress-item.html label=item.label value=item.value %}
+{% endfor %}
+
+<br/>
+

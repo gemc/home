@@ -4,7 +4,9 @@
       {{ include.post.date | date: "%B %-d, %Y" }}
     </time>
 
-    {% if include.post.categories contains "news" %}
+    {% if include.post.categories contains "release" %}
+      <span class="release-card__badge">Release</span>
+    {% elsif include.post.categories contains "news" %}
       <span class="news-card__badge">News</span>
     {% endif %}
   </div>

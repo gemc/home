@@ -57,10 +57,24 @@ Highlights:<br/>
 ## Latest News
 
 <div class="news-feed news-feed--compact">
-  {% assign news_posts = site.posts | where_exp: "post", "post.categories contains 'news'" | slice: 0, 3 %}
+  {% assign shown_posts = 0 %}
 
-  {% for post in news_posts %}
-    {% include news-card.html post=post compact=true %}
+  {% for post in site.posts %}
+    {% assign show_post = false %}
+    {% if post.categories contains "news" %}
+      {% assign show_post = true %}
+    {% elsif post.categories contains "release" %}
+      {% assign show_post = true %}
+    {% endif %}
+
+    {% if show_post %}
+      {% include news-card.html post=post compact=true %}
+      {% assign shown_posts = shown_posts | plus: 1 %}
+    {% endif %}
+
+    {% if shown_posts == 3 %}
+      {% break %}
+    {% endif %}
   {% endfor %}
 </div>
 

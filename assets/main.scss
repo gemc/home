@@ -72,6 +72,9 @@
   --news-accent: #2563eb;
   --news-accent-soft: #dbeafe;
   --news-accent-text: #1d4ed8;
+  --release-badge-bg: #7c3aed;
+  --release-badge-border: #6d28d9;
+  --release-badge-text: #ffffff;
   --news-tag-bg: #f3f4f6;
   --news-tag-text: #374151;
   --news-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
@@ -108,6 +111,9 @@
     --news-accent: #60a5fa;
     --news-accent-soft: rgba(96, 165, 250, 0.16);
     --news-accent-text: #bfdbfe;
+    --release-badge-bg: #a855f7;
+    --release-badge-border: #c084fc;
+    --release-badge-text: #ffffff;
     --news-tag-bg: #1f2937;
     --news-tag-text: #d1d5db;
     --news-shadow: 0 14px 35px rgba(0, 0, 0, 0.25);
@@ -129,6 +135,9 @@ body.dark,
   --news-accent: #60a5fa;
   --news-accent-soft: rgba(96, 165, 250, 0.16);
   --news-accent-text: #bfdbfe;
+  --release-badge-bg: #a855f7;
+  --release-badge-border: #c084fc;
+  --release-badge-text: #ffffff;
   --news-tag-bg: #1f2937;
   --news-tag-text: #d1d5db;
   --news-shadow: 0 14px 35px rgba(0, 0, 0, 0.25);
@@ -1378,6 +1387,18 @@ li input[type="checkbox"] {
   text-transform: uppercase;
 }
 
+.release-card__badge {
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--release-badge-border);
+  border-radius: 999px;
+  background: var(--release-badge-bg);
+  color: var(--release-badge-text);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .news-card__title {
   margin: 0 0 0.55rem;
   font-size: 1.4rem;
@@ -1469,6 +1490,10 @@ li input[type="checkbox"] {
 }
 
 .news-card--compact .news-card__badge {
+  font-size: 0.66rem;
+}
+
+.news-card--compact .release-card__badge {
   font-size: 0.66rem;
 }
 
