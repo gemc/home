@@ -2,3 +2,6 @@
   category: "quickstart"
   link: "/home/documentation/quickstart"
 
+- title: "Analyzer"
+  category: "Analyzer"
+  link: "/home/documentation/analyzer"
