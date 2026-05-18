@@ -5,20 +5,16 @@ date: 2026-05-13
 categories: [news]
 tags: [generator, cherenkov, jupyter, screenshot]
 progress:
-  - label: "Flux example"
-    value: 70
+  - label: "Simple Flux example"
+    value: 20
   - label: "Materials example "
     value: 35
   - label: "Pyvista example "
-    value: 0
-  - label: "Add Analyzer Scripts"
-    value: 0
-  - label: "Environment script upon installation"
     value: 0
 ---
 
 New features, improvements, and issue resolutions planned for the next release.
 
-See also the [GEMC Roadmap](https://github.com/orgs/gemc/projects/1/views/4).
+See also the [Project Roadmap](https://github.com/orgs/gemc/projects/1/views/4).
 
 {% include github_milestone.html milestone=1 %}

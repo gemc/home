@@ -1,5 +1,13 @@
+- title: "Simple Flux"
+  header: "Record track information using the flux digitization"
+  category: "basic"
+  link: "/home/examples/basic/simple_flux"
+  display: true
+  binder: "https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/basic/simple_flux.ipynb"
+  badge: "https://img.shields.io/badge/launch-Simple%20Flux-579aca.svg"
+
 - title: "b1"
-  header: "b1: reproduce the Geant4 basic B1 example"
+  header: "Reproduces the Geant4 basic B1 example"
   category: "basic"
   link: "/home/examples/basic/b1"
   display: true
@@ -7,23 +15,15 @@
   badge: "https://img.shields.io/badge/launch-b1-579aca.svg"
 
 - title: "b2"
-  header: "b2: reproduce the Geant4 basic B2 example"
+  header: "Reproduces the Geant4 basic B2 example"
   category: "basic"
   link: "/home/examples/basic/b2"
   display: true
   binder: "https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/basic/b2.ipynb"
   badge: "https://img.shields.io/badge/launch-b2-579aca.svg"
 
-- title: "Simple Flux"
-  header: "Simple Flux:"
-  category: "basic"
-  link: "/home/examples/basic/simple_flux"
-  display: false
-  binder: "https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/basic/simple_flux.ipynb"
-  badge: "https://img.shields.io/badge/launch-Simple%20Flux-579aca.svg"
-
 - title: "Cherenkov"
-  header: "Cherenkov: showcases the activation of the Cherenkov radiation in a GEMC detector"
+  header: "Showcases the activation of the Cherenkov radiation in a GEMC detector"
   category: "optical"
   link: "/home/examples/optical/cherenkov"
   display: true

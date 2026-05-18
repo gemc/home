@@ -29,12 +29,12 @@ The instructions below assume you have already installed GEMC.
 
 ## Quickstart
 
-To create the geometry and run GEMC to produce an ASCII and `ROOT` file:
+To create the geometry and run 10 events in GEMC to produce `ROOT` and `CSV` output files:
 
 ```shell
-cd $GEMC/examples/optical/cherenkov
+cd $GEMC_HOME/examples/optical/cherenkov
 ./cherenkov.py
-gemc cherenkov.yaml
+gemc cherenkov.yaml -n=10
 ```
 
 <br/>
@@ -45,9 +45,8 @@ gemc cherenkov.yaml
 
 The geometry, shown below, is defined in `cherenkov.py`. It is produced in three variations: `default`, `CO2` and `C4F10`.  
 
-The world contains: 
-
- - a radiator, made up of different materials depending on the variation chosen:
+The world (a box named %%root%%) contains: 
+a %%radiator%% box, made up of different materials depending on the variation chosen:
 
 {:.zebra .compact-table}
 
@@ -58,13 +57,13 @@ The world contains:
 | C4F10     | Perfluorobutane `C4F10`    | green |
 
 
- - a  `flux` detector composed of 4 boxes in order to leave a small hole in the center to let
-   the beam pass through.
+ - a  `flux` detector composed of 4 boxes (%%detector_left%%, %%detector_right%%, %%detector_top%%, %%detector_bottom%%).  
+   This leaves a small hole in the center to let the beam pass through.
 
 
 {% include figure.html
 src="assets/images/examples/cherenkov/geometry.png"
-caption="Cherenkov geometry. The `CF4` default radiator (red, style = 2 renders it as cloud) is the medium generating cherenkov radiation."
+caption="Cherenkov geometry. The CF4 default radiator (red, style = 2 renders it as cloud) is the medium generating cherenkov radiation."
 %}
 
 

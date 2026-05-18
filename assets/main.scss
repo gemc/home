@@ -1536,3 +1536,31 @@ li input[type="checkbox"] {
     font-size: 1.2rem;
   }
 }
+
+.gstring {
+  color: var(--gstring-text);
+  background: var(--gstring-bg);
+  border: 1px solid var(--gstring-border);
+  border-radius: 0.35em;
+  padding: 0.05em 0.28em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.93em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Light mode */
+:root {
+  --gstring-text: #18723a;
+  --gstring-bg: rgba(24, 114, 58, 0.02);
+  --gstring-border: rgba(24, 114, 58, 0.02);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gstring-text: #7ee787;
+    --gstring-bg: rgba(226, 231, 135, 0.02);
+    --gstring-border: rgba(126, 231, 135, 0.02);
+  }
+}

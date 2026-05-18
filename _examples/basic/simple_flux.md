@@ -1,21 +1,20 @@
 ---
 layout: default
-title: "b2 example"
+title: "Simple flux"
 ---
 {% include directory.html data=site.data.examples columns=5 section_breaks=4 %}
 
-[example]: https://geant4-userdoc.web.cern.ch/Doxygen/examples_doc/html/ExampleB2.html
 
 
-# Example b2
+# Simple Flux Detector
 <hr style="height:4px;border:0;background:#4a90e2;">
 
 <br/>
 
-This example reproduces the [geant4 basic example B2][example].  It uses the **flux digitization**
+This example uses the **flux digitization**
 to save true and digitized information in the output. 
 
-{% assign example = site.data.examples | where: "title", "b2" | first %}
+{% assign example = site.data.examples | where: "title", "Simple Flux" | first %}
 
 You can run this example in your browser: [![{{ example.title }}]({{ example.badge }})]({{ example.binder }}){:target="_blank" rel="noopener noreferrer"} 
 
@@ -28,9 +27,9 @@ The instructions below assume you have already installed GEMC.
 To create the geometry and run 10 events in GEMC to produce `ROOT` and `CSV` output files:
 
 ```shell
-cd $GEMC_HOME/examples/basic/b2
-./b2.py
-gemc b2.yaml -n=10
+cd $GEMC_HOME/examples/basic/simple_flux
+./simple_flux.py
+gemc simple_flux.yaml -n=10
 ```
 
 <br/>
@@ -39,18 +38,18 @@ gemc b2.yaml -n=10
 
 ## Geometry
 
-The geometry, shown below, is defined in `b2.py`.
+The geometry, shown below, is defined in `simple_flux.py`.
 
 The world (a box named %%root%%) contains: 
 
- - a cylindrical make of lead (`G4_Pb`), %%target%%
- - %%tracker%%, a cylinder containing five %%chambers%%(also cylinders)
-   made of xenon (`G4_Xe`), of increasing transverse size
+ - a cylindrical carbon (`G4_C`)  %%target%% 
+ - a  %%FluxPlane%%, a box made of air (`G4_AIR`), of increasing transverse size. 
+  %%FluxPlane%% is assigned the `flux` digitization. 
 
 
 {% include figure.html
-src="assets/images/examples/b2/geometry.png"
-caption="b2 geometry (rendered by pyvista). The tracker contains the chamber sensitive volumes."
+src="assets/images/examples/simple_flux/geometry.png"
+caption="simple_flux geometry, rendered by PyVista: the target and the sensitive flux detector FluxPlane"
 %}
 
 
@@ -66,14 +65,18 @@ caption="b2 geometry (rendered by pyvista). The tracker contains the chamber sen
 
 ## Generator
 
-The default kinematics is a 3 GeV proton generated along the z-axis just before the target.
+The default kinematics is a 2 GeV proton generated along the z-axis just before the target.
+A beam size of 0.1 m is used.
 This is defined in the yaml file:
 
 ```yaml
 gparticle:
   - name: proton
-    p: 3000
-    vz: -250
+    p: 2000
+    vz: -3
+    delta_vx: 0.1
+    delta_vy: 0.1
+    multiplicity: 10
 ```
 
 {% include notes/particles-note.md %}
@@ -83,12 +86,12 @@ gparticle:
 
 ## Digitization
 
-The _chamber_ volumes are associated to the `flux` digitization (one of the available GEMC pre-built routines) 
-in `geometry.py`. The copyNo is used to discriminate them:
+The %%FluxPlane%% is are associated to the `flux` digitization (one of the available GEMC pre-built routines) 
+in `geometry.py`, with identifier %%1%%. 
 
 ```python
-		gvolume.digitization = 'flux'  
-		gvolume.set_identifier('mychamber', copyNo)
+gvolume.digitization = "flux"
+gvolume.set_identifier("flux_plane", 1)
 ```
 
 
@@ -108,7 +111,7 @@ In addition to the digitized variables, the true information is saved on the out
 
 ### Building the detector
 
-Use the python script `b2.py` to build the detector. By default, the setup is stored in a SQLite file 
+Use the python script `simple_flux.py` to build the detector. By default, the setup is stored in a SQLite file 
 name `gemc.db`. Various command line options can define the database type, variations and run number.
 
 {% include notes/python-api-note.md %}
@@ -118,27 +121,27 @@ name `gemc.db`. Various command line options can define the database type, varia
 
 ### Running gemc
 
-The file `b2.yaml` can be used to run the setup. Add `-gui` to run interactively:
+The file `simple_flux.yaml` can be used to run the setup. Add `-gui` to run interactively:
 
 ```shell
 gemc b2.yaml -gui
 ```
 
-Modify `b2.yaml` as needed, in particular to add particles, control the number of threads, modify the output etc.
+Modify `simple_flux.yaml` as needed, in particular to add particles, control the number of threads, modify the output etc.
 
 <br/>
 
 ## Output
 
 The `gstreamer` option is used to select the name and format of the output. Two simultaneous streams are selected, 
-`ROOT` and `ASCII`:
+`ROOT` and `CSV`:
 
 ```yaml
 gstreamer:
-  - format: ascii
-    filename: out
+  - format: csv
+    filename: simple_flux
   - format: root
-    filename: out
+    filename: simple_flux
 ```
 
 Since `flux` is a per-event digitization, GEMC will produce one output file per thread.

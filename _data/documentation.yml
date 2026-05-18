@@ -5,3 +5,11 @@
 - title: "Analyzer"
   category: "Analyzer"
   link: "/home/documentation/analyzer"
+
+- title: "Internal"
+  category: "Generator"
+  link: "/home/documentation/generatorDocs/internal"
+
+- title: "LUND format"
+  category: "Generator"
+  link: "/home/documentation/generatorDocs/lund_format"

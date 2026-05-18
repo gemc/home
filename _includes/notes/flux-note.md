@@ -20,7 +20,7 @@ Track 3 creates one hit: < cell2, hit #3 >.<br/>
 "
 %}
 
-The variables stored in the digitized output are:
+The **DIGITIZED VARIABLES** below, resulting from the flux digitization, are stored in the output.
 
 - the sensitive element `identifier`, assigned by the user. For example
   - sector
