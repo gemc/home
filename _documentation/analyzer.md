@@ -175,6 +175,60 @@ Plot a true-info track vertex coordinate:
 python3 -m analyzer true_info.csv vx --kind csv --data true_info --save b2_vertex_x.png
 ```
 
+## Analyzer Plot Examples
+
+The examples below were produced from 1000-event GEMC CSV runs. The `-n=1000`
+command-line option overrides the event count for the run without modifying the
+YAML file.
+
+Plot the total energy deposited in the B2 digitized output:
+
+```sh
+python3 -m analyzer digitized.csv totEdep --kind csv --bins 50 --linear-y
+```
+
+![B2 digitized total energy deposited histogram](/home/assets/images/documentation/analyzer/analyzer_b2_totEdep.png){:width="70%"}
+
+Plot the true-info track vertex z coordinate in the B2 output:
+
+```sh
+python3 -m analyzer true_info.csv vz --kind csv --data true_info --bins 50 --linear-y
+```
+
+![B2 true-info track vertex z histogram](/home/assets/images/documentation/analyzer/analyzer_b2_true_vz.png){:width="70%"}
+
+Plot the total energy deposited in the simple_flux digitized output:
+
+```sh
+python3 -m analyzer digitized.csv totEdep --kind csv --bins 50 --linear-y
+```
+
+![simple_flux digitized total energy deposited histogram](/home/assets/images/documentation/analyzer/analyzer_simple_flux_totEdep.png){:width="70%"}
+
+Plot the hit time in the simple_flux digitized output:
+
+```sh
+python3 -m analyzer digitized.csv time --kind csv --bins 50 --linear-y
+```
+
+![simple_flux digitized hit time histogram](/home/assets/images/documentation/analyzer/analyzer_simple_flux_time.png){:width="70%"}
+
+Plot the particle energy in the cherenkov digitized output:
+
+```sh
+python3 -m analyzer digitized.csv E --kind csv --bins 50 --linear-y
+```
+
+![cherenkov digitized particle energy histogram](/home/assets/images/documentation/analyzer/analyzer_cherenkov_energy.png){:width="70%"}
+
+Plot the hit time in the cherenkov digitized output:
+
+```sh
+python3 -m analyzer digitized.csv time --kind csv --bins 50 --linear-y
+```
+
+![cherenkov digitized hit time histogram](/home/assets/images/documentation/analyzer/analyzer_cherenkov_time.png){:width="70%"}
+
 ## Jupyter Usage
 
 The analyzer can also be used directly in notebook-style Python cells:
@@ -224,7 +278,7 @@ build/gemc examples/basic/b2/b2.yaml \
   '-gsystem=[{name: b2, factory: sqlite}]' \
   '-gstreamer=[{format: csv, filename: b2}]' \
   -sql=gemc.db \
-  -n=20
+  -n=1000
 ```
 
 With one worker thread, this produces:
@@ -267,7 +321,7 @@ build/gemc examples/basic/b2/b2.yaml \
   '-gsystem=[{name: b2, factory: sqlite}]' \
   '-gstreamer=[{format: root, filename: b2}]' \
   -sql=gemc.db \
-  -n=20
+  -n=1000
 ```
 
 With one worker thread, this produces:
