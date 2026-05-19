@@ -6,7 +6,7 @@ categories: [news]
 tags: [generator, cherenkov, jupyter, screenshot]
 progress:
   - label: "Simple Flux example"
-    value: 20
+    value: 100
   - label: "Materials example "
     value: 35
   - label: "Pyvista example "

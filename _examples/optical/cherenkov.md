@@ -17,36 +17,33 @@ title: "Cherenkov"
 
 <br/>
 
-This example showcases the activation of the Cherenkov radiation in a GEMC detector.
+This example shows how to activate Cherenkov radiation in a GEMC detector.
 
 {% assign example = site.data.examples | where: "title", "Cherenkov" | first %}
 
 You can run this example in your browser: [![{{ example.title }}]({{ example.badge }})]({{ example.binder }}){:target="_blank" rel="noopener noreferrer"} 
 
-The instructions below assume you have already installed GEMC.
-
 <br/>
 
 ## Quickstart
 
-To create the geometry and run 10 events in GEMC to produce `ROOT` and `CSV` output files:
+Copy the example to your current directory.
+To create the geometry, run 10 events, and produce `ROOT` and `CSV` output files:
 
 ```shell
-cd $GEMC_HOME/examples/optical/cherenkov
+cp -r $GEMC_HOME/examples/optical/cherenkov .
+cd cherenkov
 ./cherenkov.py
 gemc cherenkov.yaml -n=10
 ```
 
 <br/>
 
-<br/>
-
 ## Geometry
 
-The geometry, shown below, is defined in `cherenkov.py`. It is produced in three variations: `default`, `CO2` and `C4F10`.  
+The geometry, shown below, is defined in `cherenkov.py`. It is produced in three variations: `default`, `CO2`, and `C4F10`.
 
-The world (a box named %%root%%) contains: 
-a %%radiator%% box, made up of different materials depending on the variation chosen:
+The world (a box named %%root%%) contains a %%radiator%% box. The radiator material depends on the selected variation:
 
 {:.zebra .compact-table}
 
@@ -57,22 +54,31 @@ a %%radiator%% box, made up of different materials depending on the variation ch
 | C4F10     | Perfluorobutane `C4F10`    | green |
 
 
- - a  `flux` detector composed of 4 boxes (%%detector_left%%, %%detector_right%%, %%detector_top%%, %%detector_bottom%%).  
-   This leaves a small hole in the center to let the beam pass through.
+- a `flux` detector composed of four boxes (%%detector_left%%, %%detector_right%%, %%detector_top%%, and %%detector_bottom%%). This leaves a small hole in the center for the beam.
 
 
 {% include figure.html
 src="assets/images/examples/cherenkov/geometry.png"
-caption="Cherenkov geometry. The CF4 default radiator (red, style = 2 renders it as cloud) is the medium generating cherenkov radiation."
+caption="Cherenkov geometry. The CF4 default radiator (red, style = 2 renders it as a cloud) is the medium generating Cherenkov radiation."
 %}
+
+The geometry can also be inspected interactively in the VTK.js viewer:
+
+<iframe
+  src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/examples/cherenkov/cherenkov.vtksz"
+  title="Interactive VTK.js view of the Cherenkov geometry"
+  width="100%"
+  height="620"
+  style="border:1px solid #d0d7de; border-radius:1px;"
+  loading="lazy">
+</iframe>
 
 
 <br/>
 
 ## Physics List
 
-`FTFP_BERT + G4OpticalPhysics` is used by default in the YAML file.
-Notice the addition of the optical physics.
+`FTFP_BERT + G4OpticalPhysics` is used by default in the YAML file. The optical physics component is required to produce optical photons.
 
 
 <br/>
@@ -87,8 +93,6 @@ gparticle:
   - name: e-
     p: 1000
     vz: -50
-    delta_theta: 20
-    delta_phi: 180
 ```
 
 
@@ -97,10 +101,15 @@ gparticle:
 
 ## Digitization
 
-The detector volumes are associated to the `flux` digitization (one of the available GEMC pre-built routines) 
-in `geometry.py`. 
+The detector volumes are associated with the `flux` digitization (one of the available GEMC pre-built routines)
+in `cherenkov.py`.
 
-The identifier is used to distinguish the different detector boxes.
+The identifier is used to distinguish the different detector boxes:
+
+```python
+backplate.digitization = "flux"
+backplate.set_identifier("detector", panel_id)
+```
 
 
 <br/>
@@ -109,8 +118,8 @@ The identifier is used to distinguish the different detector boxes.
 
 ### Building the detector
 
-Use the python script `cherenkov.py` to build the detector. By default, the setup is stored in a SQLite file 
-name `gemc.db`. Various command line options can define the database type, variations and run number.
+Use the Python script `cherenkov.py` to build the detector. By default, the setup is stored in a SQLite file
+named `gemc.db`. Command-line options can define the database type, variations, and run number.
 
 <br/>
 
@@ -123,15 +132,15 @@ gemc cherenkov.yaml -gui
 ```
 
 
-Modify `cherenkov.yaml` as needed, in particular to add particles, control the number of threads, modify the output, etc.
-Notice that since we are using the `flux` digitization, we need to set `recordZeroEdep` to `true` in order to 
-record the optical photons, because by default the `flux` digitization does not record hits if the energy is zero.
+Modify `cherenkov.yaml` as needed, in particular to add particles, control the number of threads, or change the output.
+Because this example uses `flux` digitization for optical photons, `recordZeroEdep` must be set to `true`.
+Optical photons deposit zero energy, and the `flux` digitization does not record zero-energy hits by default.
 
 <br/>
 
 ### Variations
 
-Within the YAML file, the variation is set to `default`. You can replace it with `CO2` or `C4F10` 
+Within the YAML file, the variation is set to `CO2`. You can replace it with `default` or `C4F10`
 to change the material. For example:
 
 ```yaml
@@ -140,8 +149,8 @@ gsystem:
     variation: C4F10
 ```
 
-Different radiator materials will produce different photon yields, and at different angles, see the image below.
-We suggest to match the variation name to the file name in the `gstreamer` option.
+Different radiator materials produce different photon yields and angles, as shown below.
+Use the variation name in the `gstreamer` filename when you want separate output files for each variation.
 
 
 <br/>
@@ -159,13 +168,46 @@ We suggest to match the variation name to the file name in the `gstreamer` optio
 ## Output
 
 The `gstreamer` option is used to select the name and format of the output. Two simultaneous streams are selected, 
-`ROOT` and `ASCII`:
+`CSV` and `ROOT`:
 
+```yaml
+gstreamer:
+  - format: csv
+    filename: cherenkov
+  - format: root
+    filename: cherenkov
+```
 
-Since `flux` is a per-event digitization, GEMC will produce one output file per thread.
+Because `flux` is a per-event digitization, GEMC will produce one output file per thread.
 For `ROOT` files, you can use `hadd` to merge the files.
 
+{% include notes/output-note.md %}
 
+<br/>
+
+## Plotting with the GEMC Analyzer
+
+Run GEMC with 1,000 events first. The default YAML file writes `cherenkov_t0_digitized.csv` and `cherenkov_t0_true_info.csv`.
+
+```shell
+gemc cherenkov.yaml -n=1000
+```
+
+Plot the digitized photon energy:
+
+```shell
+python3 -m analyzer cherenkov_t0_digitized.csv E --kind csv
+```
+
+![Cherenkov digitized energy plot](/home/assets/images/examples/cherenkov/analyzer_digitized_energy.png){:width="70%"}
+
+Plot the true particle track total energy:
+
+```shell
+python3 -m analyzer cherenkov_t0_true_info.csv E --kind csv --data true_info
+```
+
+![Cherenkov true track total energy plot](/home/assets/images/examples/cherenkov/analyzer_true_energy.png){:width="70%"}
 
 <br/>
 
