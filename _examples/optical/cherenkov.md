@@ -62,7 +62,7 @@ src="assets/images/examples/cherenkov/geometry.png"
 caption="Cherenkov geometry. The CF4 default radiator (red, style = 2 renders it as a cloud) is the medium generating Cherenkov radiation."
 %}
 
-The geometry can also be inspected interactively in the VTK.js viewer:
+Interactive viewer:
 
 <iframe
   src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/examples/cherenkov/cherenkov.vtksz"

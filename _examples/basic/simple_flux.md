@@ -48,7 +48,7 @@ src="assets/images/examples/simple_flux/geometry.png"
 caption="simple_flux geometry, rendered by PyVista: the target and the sensitive flux detector FluxPlane"
 %}
 
-The geometry can also be inspected interactively in the VTK.js viewer:
+Interactive viewer:
 
 <iframe
   src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/examples/simple_flux/simple_flux.vtksz"

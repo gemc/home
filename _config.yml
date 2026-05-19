@@ -72,6 +72,8 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - CLAUDE.md
+  - AGENTS.md
 
 # this adds content to the website from the local dirs starting with _
 collections:
@@ -81,12 +83,9 @@ collections:
     output: true
   installation:
     output: true
-#  docs:
-#    output: true
-#    permalink: /docs/:name/
+
 
 # shortcuts to symbols, accessible with {{ site.symbol_name }}
-
 pi: "&pi;"
 pi0: "&pi;<sup>0</sup>"
 pim: "&pi;<sup>-</sup>"
