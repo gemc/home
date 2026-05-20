@@ -121,42 +121,165 @@ gemc counter.yaml
 
 <br/>
 
+## Plot total energy deposited
+
+The generated `counter.yaml` steering card writes CSV and JSON output. For better plotting
+statistics, run 10,000 events:
+
+```shell
+gemc counter.yaml -n=10000
+```
+
+Plot the digitized `totEdep` variable, the total energy deposited in each flux hit:
+
+```shell
+python3 -m analyzer counter_t0_digitized.csv totEdep --kind csv --bins 50
+```
+
+{% include figure.html
+src="assets/images/documentation/quickstart_totEdep.png"
+alt="Quickstart total energy deposited histogram"
+caption="Total energy deposited in the flux detector for 10,000 generated protons."
+%}
+
+<br/>
+
 ## Output
 
-The YAML file specifies the `ascii` output format and uses `counter` as the output filename prefix.
+The YAML file specifies the `csv` and `json` output formats and uses `counter` as the output filename prefix.
 
 After running GEMC, you should see output files whose names include `_t<T>`, where `T` is the thread 
 number that processed those events.
 
-The `ascii` output contains both **true information** and **digitized hits** from the tracks. For example:
+The CSV output contains both **true information** and **digitized hits** from the tracks. For example,
+the digitized hit file starts with:
 
-```text
-   Detector <flux> True Info Bank {
-      Hit address: box->2 {
-         avgTime: 0.589659
-         avglx: -0.531997
-         avgly: -0.428564
-         avglz: -0.562993
-         avgx: -0.531997
-         avgy: -0.428564
-         avgz: 99.437
-         hitn: 0
-         pid: 2212
-         tid: 1
-         totalEDeposited: 1.31941
-         processName: NULL
+<div class="csv-preview-wrap" markdown="0">
+  <table class="csv-preview">
+    <thead>
+      <tr>
+        <th>evn</th>
+        <th>timestamp</th>
+        <th>thread_id</th>
+        <th>detector</th>
+        <th>hitn</th>
+        <th>pid</th>
+        <th>tid</th>
+        <th>E</th>
+        <th>time</th>
+        <th>totEdep</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>0</td>
+        <td>Wed 05.20.2026 06:59:52</td>
+        <td>0</td>
+        <td>flux</td>
+        <td>0</td>
+        <td>2212</td>
+        <td>1</td>
+        <td>1769.26</td>
+        <td>0.58366</td>
+        <td>0.000164249</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+The JSON output keeps the event structure in a single file per thread. For example,
+`counter_t0.json` starts with:
+
+```json
+{
+  "type": "event",
+  "events": [
+    {
+      "event_number": 0,
+      "header": {
+        "timestamp": "Wed 05.20.2026 07:09:10",
+        "thread_id": 0,
+        "g4local_event": 0,
+        "generated": {
+          "generated": [
+            {
+              "name": "proton",
+              "pid": 2212,
+              "type": 1,
+              "multiplicity": 1,
+              "p": 1500,
+              "theta": 0,
+              "phi": 0,
+              "vx": 0,
+              "vy": 0,
+              "vz": -50
+            }
+          ],
+          "generated_tracked": [
+            {
+              "name": "proton",
+              "pid": 2212,
+              "type": 1,
+              "multiplicity": 1,
+              "p": 1500,
+              "theta": 0,
+              "phi": 0,
+              "vx": 0,
+              "vy": 0,
+              "vz": -50
+            }
+          ]
+        },
+        "detectors": {
+          "flux": {
+            "true_info": [
+              {
+                "address": "box->2",
+                "vars": {
+                  "avgTime": 0.58366,
+                  "avglx": -0.00410225,
+                  "avgly": -0.00258459,
+                  "avglz": -1.6544,
+                  "avgx": -0.00410225,
+                  "avgy": -0.00258459,
+                  "avgz": 98.3456,
+                  "hitn": 0,
+                  "mtid": 0,
+                  "mvx": -123456,
+                  "mvy": -123456,
+                  "mvz": -123456,
+                  "pid": 2212,
+                  "tid": 1,
+                  "totalEDeposited": 0.000164249,
+                  "vx": 0,
+                  "vy": 0,
+                  "vz": -50,
+                  "processName": "NULL"
+                }
+              }
+            ],
+            "digitized": []
+          },
+          "digitized_by_detector": {
+            "flux": [
+              {
+                "address": "box->2",
+                "vars": {
+                  "hitn": 0,
+                  "pid": 2212,
+                  "tid": 1,
+                  "E": 1769.26,
+                  "time": 0.58366,
+                  "totEdep": 0.000164249
+                }
+              }
+            ]
+          }
+        }
       }
-   }
-   Detector <flux> Digitized Bank {
-      Hit address: box->2 {
-         hitn: 0
-         pid: 2212
-         tid: 1
-         E: 1747.43
-         time: 0.589659
-         totEdep: 1.31941
-      }
-   }
+    }
+  ]
+}
 ```
 
 
@@ -194,10 +317,10 @@ The `build_counter` function creates the geometry by calling the `build_flux_box
 ```python
 def build_flux_box(configuration):
 	gvolume = GVolume('flux_box')
-	gvolume.description = 'carbon fiber box'
+	gvolume.description = 'air flux box'
 	gvolume.make_box(40.0, 40.0, 2.0)
 	gvolume.set_position(0, 0, 100)
-	gvolume.material    = 'carbonFiber'
+	gvolume.material    = 'G4_AIR'
 	gvolume.color       = '3399FF'
 	gvolume.style       = 1
 	gvolume.digitization = 'flux'
@@ -206,17 +329,17 @@ def build_flux_box(configuration):
 
 def build_target(configuration):
 	gvolume = GVolume('target')
-	gvolume.description = 'epoxy target'
+	gvolume.description = 'methane gas target'
 	gvolume.make_tube(0, 20, 40, 0, 360)
-	gvolume.material    = 'epoxy'
+	gvolume.material    = 'methaneGas'
 	gvolume.publish(configuration)
 ```
 
 The flux box is assigned the `flux` digitization. The geometry uses the helper 
 methods `make_box` and `make_tube` to define the shapes.
 
-The materials used by the flux box and target, `carbonFiber` and `epoxy`, are custom 
-materials defined in `materials.py`.
+The flux box uses the built-in Geant4 material `G4_AIR`. The target uses the custom
+`methaneGas` material defined in `materials.py`.
 
 Notice that the script does not define `G4VSolid`, `G4LogicalVolume`, `G4PVPlacement`, `G4Material`, 
 or related Geant4 objects directly. GEMC builds those Geant4 objects from the 
@@ -224,32 +347,21 @@ database entries created by the Python API.
 
 <br/>
 
-## Defining the materials: `materials.py`
+## Defining the material: `materials.py`
 
-The `define_materials` function creates the `epoxy` and `carbonFiber` materials used by the geometry:
+The `define_materials` function creates the custom `methaneGas` material used by the target:
 
 ```python
-# example of material: epoxy glue, defined with number of atoms
-gmaterial = GMaterial("epoxy")
-gmaterial.description = "epoxy glue 1.16 g/cm3"
-gmaterial.density = 1.16
-gmaterial.addNAtoms("H",  32)
-gmaterial.addNAtoms("N",   2)
-gmaterial.addNAtoms("O",   4)
-gmaterial.addNAtoms("C",  15)
-gmaterial.publish(configuration)
-
-# example of material: carbon fiber, defined using the fractional mass
-gmaterial = GMaterial("carbonFiber")
-gmaterial.description = "carbon fiber - 1.75g/cm3"
-gmaterial.density = 1.75
-gmaterial.addMaterialWithFractionalMass("G4_C",  0.745)
-gmaterial.addMaterialWithFractionalMass("epoxy", 0.255)
+# example of material: methane gas, defined with number of atoms
+gmaterial = GMaterial("methaneGas")
+gmaterial.description = "methane gas CH4 0.000667 g/cm3"
+gmaterial.density = 0.000667
+gmaterial.addNAtoms("C", 1)
+gmaterial.addNAtoms("H", 4)
 gmaterial.publish(configuration)
 ```
 
-The `epoxy` material is defined by specifying the number of atoms for each element. 
-The `carbonFiber` material is defined using fractional masses.
+The `methaneGas` material is defined by specifying the number of atoms for each element.
 
 > [!NOTE]
 > The code generated by `system_template.py` could be contained entirely in `counter.py`. 
@@ -268,7 +380,7 @@ For this example, `counter.yaml` contains:
 runno: 1
 n: 100
 
-nthreads: 4
+nthreads: 1
 
 gparticle:
   - name: proton
@@ -284,13 +396,16 @@ gsystem:
 
 gstreamer:
   - filename: counter
-    format: ascii
+    format: csv
+  - filename: counter
+    format: json
 
 root: G4Box, 15*cm, 15*cm, 15*cm, G4_AIR
 ```
 
-The `nthreads` entry limits the threads used to 4. Remove it to use all threads. 
-To use ROOT output, change the output format in `counter.yaml` from `ascii` to `root`.
+The `nthreads` entry keeps the quickstart output in a single `counter_t0_digitized.csv`
+file and a single `counter_t0.json` file. Remove it to use all threads.
+To use ROOT output, add another `gstreamer` entry with `format: root`.
 
 The `root` entry dynamically defines the Geant4 world volume in the steering card. 
 The world volume could also be defined in the geometry scripts.

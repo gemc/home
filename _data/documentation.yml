@@ -13,3 +13,17 @@
 - title: "LUND format"
   category: "Generator"
   link: "/home/documentation/generatorDocs/lund_format"
+
+- title: "Geant4 Material Database"
+  category: "Support"
+  link: "https://geant4.web.cern.ch/documentation/dev/bfad_html/ForApplicationDevelopers/Appendix/materialNames.html"
+
+
+- title: "PyVista"
+  category: "Support"
+  link: "https://docs.pyvista.org"
+
+- title: "ROOT"
+  category: "Support"
+  link: "https://root.cern.ch"
+

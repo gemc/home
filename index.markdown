@@ -102,6 +102,15 @@ No installation needed. Click the badge to launch a live **JupyterLab** session:
 
 {% assign visible_examples = site.data.examples | where: "display", true %}
 
+
+{:.zebra.compact-table}
+
+[qbadge]: "https://img.shields.io/badge/launch-quickstart-579aca.svg"
+[lbadge]: "https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/basic/quickstart.ipynb"
+
+
+| Quickstart |  [![quickstart][CodeQL-badge]][lbadge] |
+
 <table class="zebra compact-table">
   <thead>
     <tr>
@@ -118,10 +127,8 @@ No installation needed. Click the badge to launch a live **JupyterLab** session:
         </a>
       </td>
     <td>{{ example.header }}</td>
-
     </tr>
     {% endfor %}
-
   </tbody>
 </table>
 

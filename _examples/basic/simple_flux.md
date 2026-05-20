@@ -39,7 +39,7 @@ The geometry, shown below, is defined in `simple_flux.py`.
 
 The world (a box named %%root%%) contains:
 
-- %%target%%, a cylindrical carbon target (`G4_C`)
+- %%target%%, a cylindrical liquid hydrogen target (`G4_lH2`)
 - %%FluxPlane%%, a box made of air (`G4_AIR`) and assigned the `flux` digitization
 
 
@@ -166,10 +166,10 @@ For `ROOT` files, you can use `hadd` to merge the files.
 
 ## Plotting with the GEMC Analyzer
 
-Run GEMC with 1,000 events first. The default YAML file writes `simple_flux_t0_digitized.csv` and `simple_flux_t0_true_info.csv`.
+Run GEMC with 10,000 events first. The default YAML file writes `simple_flux_t0_digitized.csv` and `simple_flux_t0_true_info.csv`.
 
 ```shell
-gemc simple_flux.yaml -n=1000
+gemc simple_flux.yaml -n=10000
 ```
 
 Plot the digitized total energy deposited:

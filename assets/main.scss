@@ -435,6 +435,42 @@ table.zebra tbody tr:nth-child(even) td {
   background: var(--table-zebra-even);
 }
 
+.csv-preview-wrap {
+  margin: 1rem 0 1.25rem;
+  overflow-x: auto;
+  border: 1px solid var(--table-zebra-border);
+  border-radius: 8px;
+  background: var(--code-bg);
+}
+
+table.csv-preview {
+  width: max-content;
+  min-width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+table.csv-preview th,
+table.csv-preview td {
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--table-zebra-border);
+  background: #ffffff;
+  color: var(--code-text);
+  text-align: left;
+}
+
+table.csv-preview th {
+  background: var(--table-zebra-head);
+  font-weight: 600;
+}
+
+table.csv-preview td {
+  background: #fbfcfd;
+}
+
 .zebra img {
   height: 20px;
   transition: none;
@@ -491,6 +527,54 @@ table.zebra tbody tr:nth-child(even) td {
   .alternate tr:nth-child(even) td {
     background: #161b22;
   }
+
+  .csv-preview-wrap {
+    border-color: var(--code-border-dark);
+    background: var(--code-bg-dark);
+  }
+
+  table.csv-preview th,
+  table.csv-preview td {
+    border-color: var(--code-border-dark);
+    color: var(--code-text-dark);
+  }
+
+  table.csv-preview th {
+    background: #222936;
+  }
+
+  table.csv-preview td {
+    background: #161b22;
+  }
+}
+
+html.dark .csv-preview-wrap,
+body.dark .csv-preview-wrap,
+[data-theme="dark"] .csv-preview-wrap {
+  border-color: var(--code-border-dark);
+  background: var(--code-bg-dark);
+}
+
+html.dark table.csv-preview th,
+html.dark table.csv-preview td,
+body.dark table.csv-preview th,
+body.dark table.csv-preview td,
+[data-theme="dark"] table.csv-preview th,
+[data-theme="dark"] table.csv-preview td {
+  border-color: var(--code-border-dark);
+  color: var(--code-text-dark);
+}
+
+html.dark table.csv-preview th,
+body.dark table.csv-preview th,
+[data-theme="dark"] table.csv-preview th {
+  background: #222936;
+}
+
+html.dark table.csv-preview td,
+body.dark table.csv-preview td,
+[data-theme="dark"] table.csv-preview td {
+  background: #161b22;
 }
 
 /* ========================================================================== */

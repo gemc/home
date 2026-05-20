@@ -1,3 +1,4 @@
+
 - title: "Simple Flux"
   header: "Record track information using the flux digitization"
   category: "basic"
@@ -5,6 +6,7 @@
   display: true
   binder: "https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/basic/simple_flux.ipynb"
   badge: "https://img.shields.io/badge/launch-Simple%20Flux-579aca.svg"
+  vtz_zoom: 0.02
 
 - title: "b1"
   header: "Reproduces the Geant4 basic B1 example"
@@ -13,6 +15,7 @@
   display: true
   binder: "https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/basic/b1.ipynb"
   badge: "https://img.shields.io/badge/launch-b1-579aca.svg"
+  vtz_zoom: 0.008
 
 - title: "b2"
   header: "Reproduces the Geant4 basic B2 example"
@@ -21,6 +24,7 @@
   display: true
   binder: "https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/basic/b2.ipynb"
   badge: "https://img.shields.io/badge/launch-b2-579aca.svg"
+  vtz_zoom: 0.0004
 
 - title: "Cherenkov"
   header: "Showcases the activation of the Cherenkov radiation in a GEMC detector"
@@ -29,3 +33,4 @@
   display: true
   binder: "https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/optical/cherenkov.ipynb"
   badge: "https://img.shields.io/badge/launch-Cherenkov-579aca.svg"
+  vtz_zoom:  0.0017
