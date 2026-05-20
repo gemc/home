@@ -6,31 +6,26 @@ permalink: /documentation/quickstart/
 
 # Quickstart
 
-This quickstart walks through a minimal GEMC simulation:
+This quickstart walks through a minimal but complete GEMC simulation:
 
-1. Use the Python API to create a simple geometry with a target and a `flux` detector.
-2. Shoot protons at the target.
-3. Count how many tracks cross the detector.
+1. Generate a geometry system with a target and a flux detector using `system_template.py`.
+2. Build the geometry database with Python.
+3. Shoot protons at the target and count the tracks crossing the detector.
 
 <br/>
 
 ## Create a system
 
-You could write a Python script from scratch to define the geometry and materials, 
-but in this example we will create a **system** named `counter` using 
-the GEMC API template creators.
-
-From a directory of your choice, run this command to create a subdirectory 
-named `counter` containing template scripts for geometry and materials:
+Run `system_template.py` from a directory of your choice to create a `counter/` subdirectory
+with ready-to-run geometry and materials scripts:
 
 ```shell
 system_template.py -s counter
 ```
 
-You should see this log:
+The command prints the list of generated files:
 
 <pre>
-
 Writing files for experiment &gt;examples&lt;, system template &gt;counter&lt; using variations &gt;['default']&lt;:
 
   - counter.py
@@ -42,10 +37,10 @@ Writing files for experiment &gt;examples&lt;, system template &gt;counter&lt; u
     * default
 </pre>
 
-The generated files are already configured to build a geometry with a target and a `flux` detector. 
-By default, the template also provides a YAML steering card that shoots protons at the target.
+The generated files define a geometry with a methane-gas target and a `flux` detector,
+and include a YAML steering card that shoots protons at the target.
 
-To see additional options for `system_template.py`, run:
+To see all available options:
 
 ```shell
 system_template.py -h
@@ -53,16 +48,16 @@ system_template.py -h
 
 <br/>
 
-
 ## Build the geometry
 
-Go into the `counter` directory and run `counter.py` to create the geometry and materials databases:
+Go into the `counter` directory and run `counter.py` to write the geometry and materials to a SQLite database:
 
 ```shell
+cd counter
 ./counter.py
 ```
 
-You should see output similar to this:
+The script creates `gemc.db` in the current directory and reports what it stored:
 
 <pre>
   ❖ Database file gemc.db does not exist
@@ -76,44 +71,43 @@ You should see output similar to this:
 	▪︎ Number of materials: 2
 </pre>
 
-By default, GEMC uses the `sqlite` factory, so this command creates a SQLite database named `gemc.db`. 
-The database contains the geometry and materials for run number `1` and variation `default`.
-
 <br/>
 
 > [!NOTE]
-> If you have `pyvista` installed, you can add the `-pv` or `-pvb` options to display the
-> geometry as it is being generated. 
+> Add `-pv` or `-pvb` to display the geometry interactively as it is built (requires PyVista).
+> 
+> Interactive view:
 
-<br/>
+<iframe
+  src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/documentation/counter.vtksz"
+  title="Interactive VTK.js view of the cpunter geometry"
+  width="100%"
+  height="620"
+  style="border:1px solid #d0d7de; border-radius:1px;"
+  loading="lazy">
+</iframe>
 
-To see other available options, run:
-
-```shell
-./counter.py -h
-```
 
 <br/>
 
 ## Run GEMC
 
-Use the `counter.yaml` steering card to run GEMC, add `-gui` for interactive mode:
+Use the `counter.yaml` steering card to run the simulation. Add `-gui` for the interactive Geant4 viewer:
 
 ```shell
 gemc counter.yaml -gui
 ```
 
-The GEMC GUI window will open. Click the **Run** button in the top-left corner to start the simulation.
-
-You should see 100 generated particles crossing the flux box. The hits are shown in red.
+Click **Run** in the Geant4 GUI to start the simulation. With `n: 100` events and a proton beam
+aimed along the z-axis, all 100 tracks should cross the flux detector. Hits are highlighted in red.
 
 {% include figure.html
 src="assets/images/documentation/quickstart_flux.png"
 alt="The quickstart example"
-caption="A proton beam impinging on the target. The flux box collects hits from the tracks crossing it."
+caption="A proton beam impinging on the target. The flux box collects hits from tracks crossing it."
 %}
 
-To run GEMC in batch mode instead, omit the `-gui` option:
+To run in batch mode:
 
 ```shell
 gemc counter.yaml
@@ -123,14 +117,13 @@ gemc counter.yaml
 
 ## Plot total energy deposited
 
-The generated `counter.yaml` steering card writes CSV and JSON output. For better plotting
-statistics, run 10,000 events:
+Run 10,000 events to get good statistics:
 
 ```shell
 gemc counter.yaml -n=10000
 ```
 
-Plot the digitized `totEdep` variable, the total energy deposited in each flux hit:
+Plot the digitized `totEdep` variable — the total energy deposited in each flux hit:
 
 ```shell
 python3 -m analyzer counter_t0_digitized.csv totEdep --kind csv --bins 50
@@ -146,13 +139,17 @@ caption="Total energy deposited in the flux detector for 10,000 generated proton
 
 ## Output
 
-The YAML file specifies the `csv` and `json` output formats and uses `counter` as the output filename prefix.
+The YAML steering card writes two output formats: `csv` and `json`. Output filenames include
+`_t<T>` where `T` is the thread number, e.g. `counter_t0_digitized.csv` and `counter_t0.json`.
 
-After running GEMC, you should see output files whose names include `_t<T>`, where `T` is the thread 
-number that processed those events.
+The CSV format produces several files per thread:
 
-The CSV output contains both **true information** and **digitized hits** from the tracks. For example,
-the digitized hit file starts with:
+- %%counter_t0_digitized.csv%% — digitized hit variables (one row per hit)
+- %%counter_t0_true_info.csv%% — raw Geant4 true information (one row per step)
+- %%counter_t0_generated.csv%% — all generated particles (one row per particle)
+- %%counter_t0_generated_tracked.csv%% — all generated particles that are tracked in the simulation
+
+An example of digitized row:
 
 <div class="csv-preview-wrap" markdown="0">
   <table class="csv-preview">
@@ -187,8 +184,7 @@ the digitized hit file starts with:
   </table>
 </div>
 
-The JSON output keeps the event structure in a single file per thread. For example,
-`counter_t0.json` starts with:
+The JSON format keeps all hits for each event in a single file per thread (`counter_t0.json`):
 
 ```json
 {
@@ -214,50 +210,11 @@ The JSON output keeps the event structure in a single file per thread. For examp
               "vy": 0,
               "vz": -50
             }
-          ],
-          "generated_tracked": [
-            {
-              "name": "proton",
-              "pid": 2212,
-              "type": 1,
-              "multiplicity": 1,
-              "p": 1500,
-              "theta": 0,
-              "phi": 0,
-              "vx": 0,
-              "vy": 0,
-              "vz": -50
-            }
           ]
         },
         "detectors": {
           "flux": {
-            "true_info": [
-              {
-                "address": "box->2",
-                "vars": {
-                  "avgTime": 0.58366,
-                  "avglx": -0.00410225,
-                  "avgly": -0.00258459,
-                  "avglz": -1.6544,
-                  "avgx": -0.00410225,
-                  "avgy": -0.00258459,
-                  "avgz": 98.3456,
-                  "hitn": 0,
-                  "mtid": 0,
-                  "mvx": -123456,
-                  "mvy": -123456,
-                  "mvz": -123456,
-                  "pid": 2212,
-                  "tid": 1,
-                  "totalEDeposited": 0.000164249,
-                  "vx": 0,
-                  "vy": 0,
-                  "vz": -50,
-                  "processName": "NULL"
-                }
-              }
-            ],
+            "true_info": [ { "address": "box->2", "vars": { ... } } ],
             "digitized": []
           },
           "digitized_by_detector": {
@@ -265,12 +222,8 @@ The JSON output keeps the event structure in a single file per thread. For examp
               {
                 "address": "box->2",
                 "vars": {
-                  "hitn": 0,
-                  "pid": 2212,
-                  "tid": 1,
-                  "E": 1769.26,
-                  "time": 0.58366,
-                  "totEdep": 0.000164249
+                  "hitn": 0, "pid": 2212, "tid": 1,
+                  "E": 1769.26, "time": 0.58366, "totEdep": 0.000164249
                 }
               }
             ]
@@ -282,19 +235,19 @@ The JSON output keeps the event structure in a single file per thread. For examp
 }
 ```
 
+{% include notes/output-note.md %}
 
 <br/>
 
 # More Details
 
-The previous sections showed how to create, build, run, and inspect the quickstart example. 
-This section explains the main files in more detail.
+The following sections explain the main files in more detail.
 
 <br/>
 
 ## The main script: `counter.py`
 
-The relevant lines in `counter.py` are:
+`counter.py` declares the system and delegates geometry and material construction to two helper modules:
 
 ```python
 cfg = autogeometry('examples', 'counter')
@@ -303,56 +256,49 @@ define_materials(cfg)
 build_counter(cfg)
 ```
 
-The first line declares the `counter` system inside the `examples` experiment.
-
-The next two lines call functions defined in `materials.py` and `geometry.py`. 
-These functions create the materials and geometry used by the simulation.
+`autogeometry` declares the `counter` system inside the `examples` experiment and returns a
+configuration parameters that are passed to the builders.
 
 <br/>
 
 ## Defining the geometry: `geometry.py`
 
-The `build_counter` function creates the geometry by calling the `build_flux_box` and `build_target` functions:
+`build_counter` creates two volumes: a cylindrical methane-gas target and a rectangular flux detector:
 
 ```python
 def build_flux_box(configuration):
-	gvolume = GVolume('flux_box')
-	gvolume.description = 'air flux box'
-	gvolume.make_box(40.0, 40.0, 2.0)
-	gvolume.set_position(0, 0, 100)
-	gvolume.material    = 'G4_AIR'
-	gvolume.color       = '3399FF'
-	gvolume.style       = 1
-	gvolume.digitization = 'flux'
-	gvolume.set_identifier('box', 2)  # identifier for this box
-	gvolume.publish(configuration)
+    gvolume = GVolume('flux_box')
+    gvolume.description = 'air flux box'
+    gvolume.make_box(40.0, 40.0, 2.0)
+    gvolume.set_position(0, 0, 100)
+    gvolume.material    = 'G4_AIR'
+    gvolume.color       = '3399FF'
+    gvolume.style       = 1
+    gvolume.digitization = 'flux'
+    gvolume.set_identifier('box', 2)
+    gvolume.publish(configuration)
 
 def build_target(configuration):
-	gvolume = GVolume('target')
-	gvolume.description = 'methane gas target'
-	gvolume.make_tube(0, 20, 40, 0, 360)
-	gvolume.material    = 'methaneGas'
-	gvolume.publish(configuration)
+    gvolume = GVolume('target')
+    gvolume.description = 'methane gas target'
+    gvolume.make_tube(0, 20, 40, 0, 360)
+    gvolume.material    = 'methaneGas'
+    gvolume.publish(configuration)
 ```
 
-The flux box is assigned the `flux` digitization. The geometry uses the helper 
-methods `make_box` and `make_tube` to define the shapes.
+`make_box` and `make_tube` are helper methods that set the solid type and parameters in one call.
+The flux box is assigned the `flux` digitization, which records a hit for every track that crosses it.
 
-The flux box uses the built-in Geant4 material `G4_AIR`. The target uses the custom
-`methaneGas` material defined in `materials.py`.
-
-Notice that the script does not define `G4VSolid`, `G4LogicalVolume`, `G4PVPlacement`, `G4Material`, 
-or related Geant4 objects directly. GEMC builds those Geant4 objects from the 
-database entries created by the Python API.
+No Geant4 C++ objects (`G4VSolid`, `G4LogicalVolume`, `G4PVPlacement`, etc.) appear in the script.
+GEMC constructs them internally from the database entries written by `publish`.
 
 <br/>
 
 ## Defining the material: `materials.py`
 
-The `define_materials` function creates the custom `methaneGas` material used by the target:
+The target uses a custom `methaneGas` material defined by atom count:
 
 ```python
-# example of material: methane gas, defined with number of atoms
 gmaterial = GMaterial("methaneGas")
 gmaterial.description = "methane gas CH4 0.000667 g/cm3"
 gmaterial.density = 0.000667
@@ -361,38 +307,33 @@ gmaterial.addNAtoms("H", 4)
 gmaterial.publish(configuration)
 ```
 
-The `methaneGas` material is defined by specifying the number of atoms for each element.
+<br/>
 
 > [!NOTE]
-> The code generated by `system_template.py` could be contained entirely in `counter.py`. 
-> In this example, geometry and materials are organized in separate files to show a cleaner project structure.
+> The code generated by `system_template.py` could all live in `counter.py`. Splitting into
+> `geometry.py` and `materials.py` is a convention that keeps larger projects readable.
 
 <br/>
 
 ## The steering card: `counter.yaml`
 
-In GEMC, simulation parameters can be passed through a steering card, command-line options, or both. 
-In either case, the parameters use YAML syntax.
-
-For this example, `counter.yaml` contains:
-
 ```yaml
 runno: 1
-n: 100
+n: 100               # number of events
 
-nthreads: 1
+nthreads: 1          # single thread → one output file per format
 
 gparticle:
   - name: proton
-    p: 1500
-    vz: -5.0
+    p: 1500          # momentum in MeV/c
+    vz: -5.0         # vertex z in cm, just before the target
 
 verbosity:
   - gsystem: 1
 
 gsystem:
   - name: counter
-    factory: sqlite
+    factory: sqlite  # read geometry from gemc.db
 
 gstreamer:
   - filename: counter
@@ -400,12 +341,11 @@ gstreamer:
   - filename: counter
     format: json
 
-root: G4Box, 15*cm, 15*cm, 15*cm, G4_AIR
+root: G4Box, 15*cm, 15*cm, 15*cm, G4_AIR   # world volume
 ```
 
-The `nthreads` entry keeps the quickstart output in a single `counter_t0_digitized.csv`
-file and a single `counter_t0.json` file. Remove it to use all threads.
-To use ROOT output, add another `gstreamer` entry with `format: root`.
+Remove `nthreads: 1` to use all available cores; each thread writes its own output file.
+Add a `gstreamer` entry with `format: root` for ROOT output.
 
-The `root` entry dynamically defines the Geant4 world volume in the steering card. 
-The world volume could also be defined in the geometry scripts.
+The %%root%% entry defines the Geant4 world volume inline in the steering card.
+%%root%% could also be defined in the geometry scripts.

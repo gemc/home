@@ -1,7 +1,6 @@
 ---
 layout: default
 title: Analyzer
-permalink: /documentation/analyzer/
 ---
 
 # GEMC Analyzer
@@ -184,23 +183,23 @@ YAML file.
 Plot the total energy deposited in the B2 digitized output:
 
 ```sh
-python3 -m analyzer digitized.csv totEdep --kind csv --bins 50 --linear-y
+python3 -m analyzer digitized.csv totEdep --kind csv --bins 50
 ```
 
 ![B2 digitized total energy deposited histogram](/home/assets/images/documentation/analyzer/analyzer_b2_totEdep.png){:width="70%"}
 
-Plot the true-info track vertex z coordinate in the B2 output:
+Plot the true-info track energy in the B2 output:
 
 ```sh
-python3 -m analyzer true_info.csv vz --kind csv --data true_info --bins 50 --linear-y
+python3 -m analyzer true_info.csv E --kind csv --data true_info --bins 50
 ```
 
-![B2 true-info track vertex z histogram](/home/assets/images/documentation/analyzer/analyzer_b2_true_vz.png){:width="70%"}
+![B2 true-info track energy histogram](/home/assets/images/documentation/analyzer/analyzer_b2_true_energy.png){:width="70%"}
 
 Plot the total energy deposited in the simple_flux digitized output:
 
 ```sh
-python3 -m analyzer digitized.csv totEdep --kind csv --bins 50 --linear-y
+python3 -m analyzer digitized.csv totEdep --kind csv --bins 50
 ```
 
 ![simple_flux digitized total energy deposited histogram](/home/assets/images/documentation/analyzer/analyzer_simple_flux_totEdep.png){:width="70%"}
@@ -208,7 +207,7 @@ python3 -m analyzer digitized.csv totEdep --kind csv --bins 50 --linear-y
 Plot the hit time in the simple_flux digitized output:
 
 ```sh
-python3 -m analyzer digitized.csv time --kind csv --bins 50 --linear-y
+python3 -m analyzer digitized.csv time --kind csv --bins 50
 ```
 
 ![simple_flux digitized hit time histogram](/home/assets/images/documentation/analyzer/analyzer_simple_flux_time.png){:width="70%"}
@@ -216,7 +215,7 @@ python3 -m analyzer digitized.csv time --kind csv --bins 50 --linear-y
 Plot the particle energy in the cherenkov digitized output:
 
 ```sh
-python3 -m analyzer digitized.csv E --kind csv --bins 50 --linear-y
+python3 -m analyzer digitized.csv E --kind csv --bins 50
 ```
 
 ![cherenkov digitized particle energy histogram](/home/assets/images/documentation/analyzer/analyzer_cherenkov_energy.png){:width="70%"}
@@ -224,7 +223,7 @@ python3 -m analyzer digitized.csv E --kind csv --bins 50 --linear-y
 Plot the hit time in the cherenkov digitized output:
 
 ```sh
-python3 -m analyzer digitized.csv time --kind csv --bins 50 --linear-y
+python3 -m analyzer digitized.csv time --kind csv --bins 50
 ```
 
 ![cherenkov digitized hit time histogram](/home/assets/images/documentation/analyzer/analyzer_cherenkov_time.png){:width="70%"}

@@ -1,4 +1,6 @@
 
+
+
 - title: "Simple Flux"
   header: "Record track information using the flux digitization"
   category: "basic"
@@ -34,3 +36,17 @@
   binder: "https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/optical/cherenkov.ipynb"
   badge: "https://img.shields.io/badge/launch-Cherenkov-579aca.svg"
   vtz_zoom:  0.0017
+
+- title: "Materials"
+  header: "Demonstrates Geant4 built-in materials, custom compositions, and optical properties"
+  category: "basic"
+  link: "/home/examples/basic/materials"
+  display: false
+  vtz_zoom: 0.07
+
+- title: "PyVista"
+  header: "Demonstrates the PyVista geometry visualization API: shapes, styles, colors, and rotations"
+  category: "basic"
+  link: "/home/examples/basic/pyvista"
+  display: false
+  vtz_zoom: 0.07

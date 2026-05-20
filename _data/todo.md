@@ -3,7 +3,6 @@
 
 ## Physicists (HEP, nuclear, astrophysics)
 
-
 - Submit a dedicated paper to Computer Physics Communications (the standard venue for simulation tools) — 
   your EPJ CHEP paper is a conference proc; a full CPC paper gets far more citations and visibility.
 - Post to the Geant4 mailing list (geant4-users@cern.ch) — this is the single highest-value action you can take immediately.
@@ -12,7 +11,6 @@
 
 
 ## Medical physicists / dosimetry
-
 
 - The built-in dosimeter sensitive type is a killer feature here. Target the AAPM 
   (American Association of Physicists in Medicine) annual meeting and their journal Medical Physics.

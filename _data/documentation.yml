@@ -1,23 +1,49 @@
 - title: "Quickstart"
-  category: "quickstart"
+  category: "Quickstart"
   link: "/home/documentation/quickstart"
 
-- title: "Analyzer"
-  category: "Analyzer"
-  link: "/home/documentation/analyzer"
+
+
+- title: "Materials"
+  category: "Materials"
+  link: "/home/documentation/materials/materials"
+
+- title: "Optical Properties"
+  category: "Materials"
+  link: "/home/documentation/materials/optical_properties"
+
+
+
+
+
 
 - title: "Internal"
   category: "Generator"
-  link: "/home/documentation/generatorDocs/internal"
+  link: "/home/documentation/generator/internal"
 
 - title: "LUND format"
   category: "Generator"
-  link: "/home/documentation/generatorDocs/lund_format"
+  link: "/home/documentation/generator/lund_format"
+
+
+
+- title: "PyVista API"
+  category: "api"
+  link: "/home/documentation/api/pyvista_api"
+
+- title: "Color Reference"
+  category: "api"
+  link: "/home/documentation/api/pyvista_colors"
+
+- title: "Analyzer"
+  category: "api"
+  link: "/home/documentation/api/analyzer"
+
+
 
 - title: "Geant4 Material Database"
   category: "Support"
   link: "https://geant4.web.cern.ch/documentation/dev/bfad_html/ForApplicationDevelopers/Appendix/materialNames.html"
-
 
 - title: "PyVista"
   category: "Support"

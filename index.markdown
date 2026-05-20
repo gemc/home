@@ -103,13 +103,14 @@ No installation needed. Click the badge to launch a live **JupyterLab** session:
 {% assign visible_examples = site.data.examples | where: "display", true %}
 
 
+
+[qbadge]: https://img.shields.io/badge/launch-quickstart-579aca.svg
+[lbadge]: https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/basic/quickstart.ipynb
+
 {:.zebra.compact-table}
+| [![quickstart][qbadge]][lbadge] | Creates a system with a simple detector and a target |
 
-[qbadge]: "https://img.shields.io/badge/launch-quickstart-579aca.svg"
-[lbadge]: "https://mybinder.org/v2/gh/gemc/binder-tutorials/main?urlpath=lab/tree/notebooks/basic/quickstart.ipynb"
-
-
-| Quickstart |  [![quickstart][CodeQL-badge]][lbadge] |
+Other examples:
 
 <table class="zebra compact-table">
   <thead>

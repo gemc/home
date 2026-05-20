@@ -5,303 +5,401 @@ order: 31
 description: GEMC gparticle and gparticlefile generator options
 ---
 
-The internal GEMC generator is configured with the cumulative `gparticle` option.
-Each `gparticle` entry defines one particle source that contributes to every event.
-Multiple entries can be supplied in the same list.
+# Internal Generator
 
-File-backed event generators are configured with the cumulative `gparticlefile` option.
-Each `gparticlefile` entry loads event records from a file format reader, for example the
-built-in LUND reader.
+The internal GEMC generator is configured with two cumulative options.
 
-If both options are present, every generated event receives:
+`gparticle` defines inline particle sources. Each entry adds one particle (or a group of
+identical copies) to every event. Multiple entries can be combined in the same list.
 
-1. all particles from `gparticle`;
-2. all particles from the matching event record in each `gparticlefile` source.
+`gparticlefile` loads event records from a file. The built-in reader supports the
+[LUND format](lund_format).
+
+When both options are present, every generated event receives all particles from `gparticle`
+**plus** all particles from the matching event record in each `gparticlefile` source.
+
+Both options can be set from the YAML steering card or the command line:
+
+```yaml
+# YAML steering card
+gparticle:
+  - name: e-
+    p: 2300
+    theta: 23.0
+```
+
+```shell
+# equivalent command-line form
+gemc -gparticle="[{name: e-, p: 2300, theta: 23.0}]"
+```
+
+<br/>
 
 ## `gparticle`
 
-The `gparticle` option is a list of particle definitions:
+### Fields
 
-```bash
-gemc -gparticle="[{name: e-, p: 2300, theta: 23.0}]"
-```
+`name` and `p` are required. All other fields are optional.
 
-The minimal required fields are:
+| Field | Default | Description |
+|-------|---------|-------------|
+| `name` | required | Geant4 particle name, e.g. `e-`, `proton`, `gamma`, `pi+` |
+| `p` | required | Nominal momentum magnitude, interpreted with `punit` |
+| `multiplicity` | `1` | Number of copies generated per event; each copy is independently randomized |
+| `punit` | `MeV` | Unit for `p` and `delta_p`. Use `MeV` or `GeV` |
+| `delta_p` | `0` | Momentum spread around `p` |
+| `randomMomentumModel` | `uniform` | `uniform`: flat in `[p − delta_p, p + delta_p]`; `gaussian`: Gaussian with sigma `delta_p` |
+| `theta` | `0` | Nominal polar angle (from the z-axis) |
+| `delta_theta` | `0` | Polar-angle spread around `theta` |
+| `randomThetaModel` | `uniform` | `uniform`: flat in `[θ − Δθ, θ + Δθ]`; `gaussian`: Gaussian sigma `delta_theta`; `cosine`: cos(θ) uniform, with rejection sampling within the window (see note below) |
+| `phi` | `0` | Nominal azimuthal angle |
+| `delta_phi` | `0` | Azimuthal-angle spread. **Always applied with the uniform model** — there is no `randomPhiModel` |
+| `aunit` | `deg` | Unit for `theta`, `delta_theta`, `phi`, `delta_phi`. Use `deg` or `rad` |
+| `vx` | `0` | Nominal vertex x |
+| `vy` | `0` | Nominal vertex y |
+| `vz` | `0` | Nominal vertex z |
+| `delta_vx` | `0` | Vertex x spread |
+| `delta_vy` | `0` | Vertex y spread |
+| `delta_vz` | `0` | Vertex z spread |
+| `vunit` | `cm` | Unit for vertex positions and spreads |
+| `randomVertexModel` | `uniform` | `uniform`: each component flat in `[v − δv, v + δv]`; `gaussian`: Gaussian sigma per component; `sphere`: uniform sampling within a spherical volume (see note below) |
 
-| Field  | Meaning                                                           |
-|--------|-------------------------------------------------------------------|
-| `name` | Geant4 particle name, for example `e-`, `proton`, `gamma`, `pi+`. |
-| `p`    | Nominal momentum. The value is interpreted with `punit`.          |
+> [!NOTE]
+> **cosine theta model** — samples θ such that cos(θ) is uniform using rejection sampling
+> within `[theta − delta_theta, theta + delta_theta]`. For narrow windows the acceptance rate
+> can be low. This model is most efficient when `delta_theta` covers a large fraction of
+> the full range `[0, 180°]`.
 
-All available fields are:
+> [!NOTE]
+> **sphere vertex model** — generates vertices uniformly within a spherical volume centred on
+> the nominal vertex. Set `delta_vx`, `delta_vy`, `delta_vz` all equal to the desired sphere
+> radius. Using different values for the three components changes the effective sampling sphere
+> size.
 
-| Field                 | Default   | Meaning                                                                                                |
-|-----------------------|-----------|--------------------------------------------------------------------------------------------------------|
-| `name`                | required  | Geant4 particle name.                                                                                  |
-| `multiplicity`        | `1`       | Number of copies generated for this particle entry in each event.                                      |
-| `p`                   | required  | Nominal momentum.                                                                                      |
-| `delta_p`             | `0`       | Momentum spread around `p`.                                                                            |
-| `punit`               | `MeV`     | Unit for `p` and `delta_p`, for example `MeV` or `GeV`.                                                |
-| `randomMomentumModel` | `uniform` | Momentum smearing model. Use `uniform` for a flat range or `gaussian` to interpret `delta_p` as sigma. |
-| `theta`               | `0`       | Nominal polar angle.                                                                                   |
-| `delta_theta`         | `0`       | Polar-angle spread around `theta`.                                                                     |
-| `randomThetaModel`    | `uniform` | Polar-angle smearing model. Use `uniform`, `gaussian`, or `cosine` to sample uniformly in cos(theta).  |
-| `phi`                 | `0`       | Nominal azimuthal angle.                                                                               |
-| `delta_phi`           | `0`       | Azimuthal-angle spread around `phi`.                                                                   |
-| `aunit`               | `deg`     | Unit for angles, for example `deg` or `rad`.                                                           |
-| `vx`                  | `0`       | Nominal vertex x position.                                                                             |
-| `vy`                  | `0`       | Nominal vertex y position.                                                                             |
-| `vz`                  | `0`       | Nominal vertex z position.                                                                             |
-| `delta_vx`            | `0`       | Vertex x spread around `vx`.                                                                           |
-| `delta_vy`            | `0`       | Vertex y spread around `vy`.                                                                           |
-| `delta_vz`            | `0`       | Vertex z spread around `vz`.                                                                           |
-| `vunit`               | `cm`      | Unit for vertex positions and spreads.                                                                 |
-| `randomVertexModel`   | `uniform` | Vertex smearing model. Use `uniform`, `gaussian`, or `sphere`.                                         |
+<br/>
 
 ### Examples
 
-Generate one 2.3 GeV electron at 23 degrees in every event:
+**One 2.3 GeV electron at 23°**
 
-```bash
-gemc -gparticle="[{name: e-, p: 2300, theta: 23.0}]"
+```yaml
+gparticle:
+  - name: e-
+    p: 2300
+    theta: 23.0
 ```
 
-The `generated_tracked` `theta` distribution is shown in radians:
+{% include figure.html
+src="assets/images/documentation/generatorDocs/internal/ex01_theta_basic.png"
+alt="theta distribution for one electron at 23 degrees"
+caption="Polar angle (θ) of the generated-tracked bank in radians. The spike at θ ≈ 0.4 rad (≈ 23°) confirms a fixed-angle source."
+width="70%"
+%}
 
-Analyzer command used:
+Analyzer command:
 
-```bash
+```shell
 python3 -m analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
 ```
 
-![Generated tracked theta distribution for one electron at 23 degrees](/home/assets/images/documentation/generatorDocs/internal/ex01_theta_basic.png){:width="70%"}
+<br/>
 
-Use explicit units, and spread in theta by 0.2 radians:
+**Explicit units with theta spread of 0.2 rad**
 
-```bash
-gemc -gparticle="[{name: e-, p: 2.3, punit: GeV, theta: 0.4, delta_theta: 0.2, aunit: rad}]"
+```yaml
+gparticle:
+  - name: e-
+    p: 2.3
+    punit: GeV
+    theta: 0.4
+    delta_theta: 0.2
+    aunit: rad
 ```
 
-The `generated_tracked` `theta` distribution is shown in radians:
+{% include figure.html
+src="assets/images/documentation/generatorDocs/internal/ex02_theta_rad_spread.png"
+alt="theta distribution for radian spread example"
+caption="Flat θ distribution in the window [0.2, 0.6] rad produced by uniform smearing with delta_theta = 0.2 rad."
+width="70%"
+%}
 
-Analyzer command used:
+Analyzer command:
 
-```bash
+```shell
 python3 -m analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
 ```
 
-![Generated tracked theta distribution for the explicit-radian spread example](/home/assets/images/documentation/generatorDocs/internal/ex02_theta_rad_spread.png){:width="70%"}
+<br/>
 
-Generate 10 identical protons in every event at 14 degrees and uniform in phi:
+**10 protons per event, uniform in φ**
 
-```bash
-gemc -gparticle="[{name: proton, multiplicity: 10, p: 1200, theta: 14.0, delta_phi: 180.0}]"
+```yaml
+gparticle:
+  - name: proton
+    multiplicity: 10
+    p: 1200
+    theta: 14.0
+    delta_phi: 180.0
 ```
 
-The `generated_tracked` `phi` distribution is shown in radians:
+{% include figure.html
+src="assets/images/documentation/generatorDocs/internal/ex03_phi_uniform.png"
+alt="phi distribution for ten protons with uniform phi"
+caption="Flat φ distribution across the full 2π range. phi is always smeared uniformly; no model option is needed."
+width="70%"
+%}
 
-Analyzer command used:
+Analyzer command:
 
-```bash
+```shell
 python3 -m analyzer generated_tracked.csv phi --kind csv --bins 50 --linear-y
 ```
 
-![Generated tracked phi distribution for ten protons with uniform phi](/home/assets/images/documentation/generatorDocs/internal/ex03_phi_uniform.png){:width="70%"}
+<br/>
 
-Smear the momentum uniformly by plus or minus 100 MeV:
+**Momentum spread — uniform**
 
-```bash
-gemc -gparticle="[{name: e-, p: 2300, delta_p: 100, randomMomentumModel: uniform}]"
+```yaml
+gparticle:
+  - name: e-
+    p: 2300
+    delta_p: 100
+    randomMomentumModel: uniform
 ```
 
-The `generated_tracked` `p` distribution is shown in MeV:
+{% include figure.html
+src="assets/images/documentation/generatorDocs/internal/ex04_p_uniform.png"
+alt="momentum distribution for uniform smearing"
+caption="Flat momentum distribution in [2200, 2400] MeV produced by uniform smearing with delta_p = 100 MeV."
+width="70%"
+%}
 
-Analyzer command used:
+Analyzer command:
 
-```bash
+```shell
 python3 -m analyzer generated_tracked.csv p --kind csv --bins 50 --linear-y
 ```
 
-![Generated tracked momentum distribution for uniform momentum smearing](/home/assets/images/documentation/generatorDocs/internal/ex04_p_uniform.png){:width="70%"}
+<br/>
 
-Smear the momentum with a Gaussian sigma of 100 MeV:
+**Momentum spread — Gaussian**
 
-```bash
-gemc -gparticle="[{name: e-, p: 2300, delta_p: 100, randomMomentumModel: gaussian}]"
+```yaml
+gparticle:
+  - name: e-
+    p: 2300
+    delta_p: 100
+    randomMomentumModel: gaussian
 ```
 
-The `generated_tracked` `p` distribution is shown in MeV:
+{% include figure.html
+src="assets/images/documentation/generatorDocs/internal/ex05_p_gaussian.png"
+alt="momentum distribution for Gaussian smearing"
+caption="Gaussian momentum distribution centred at 2300 MeV with sigma = 100 MeV."
+width="70%"
+%}
 
-Analyzer command used:
+Analyzer command:
 
-```bash
+```shell
 python3 -m analyzer generated_tracked.csv p --kind csv --bins 50 --linear-y
 ```
 
-![Generated tracked momentum distribution for Gaussian momentum smearing](/home/assets/images/documentation/generatorDocs/internal/ex05_p_gaussian.png){:width="70%"}
+<br/>
 
-Sample the polar angle uniformly in cos(theta):
+**Cosine theta sampling**
 
-```bash
-gemc -gparticle="[{name: e-, p: 2300, theta: 23.0, delta_theta: 5.0, randomThetaModel: cosine}]"
+```yaml
+gparticle:
+  - name: e-
+    p: 2300
+    theta: 23.0
+    delta_theta: 5.0
+    randomThetaModel: cosine
 ```
 
-The `generated_tracked` `theta` distribution is shown in radians:
+{% include figure.html
+src="assets/images/documentation/generatorDocs/internal/ex06_theta_cosine.png"
+alt="theta distribution for cosine theta sampling"
+caption="cos(θ)-uniform sampling within [18°, 28°]. The rising density toward larger θ is the sin(θ) weighting that makes solid angle uniform."
+width="70%"
+%}
 
-Analyzer command used:
+Analyzer command:
 
-```bash
+```shell
 python3 -m analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
 ```
 
-![Generated tracked theta distribution for cosine theta sampling](/home/assets/images/documentation/generatorDocs/internal/ex06_theta_cosine.png){:width="70%"}
+<br/>
 
-Smear the azimuthal angle by plus or minus 20 degrees:
+**Azimuthal-angle spread**
 
-```bash
-gemc -gparticle="[{name: e-, p: 2300, phi: 45.0, delta_phi: 20.0}]"
+```yaml
+gparticle:
+  - name: e-
+    p: 2300
+    phi: 45.0
+    delta_phi: 20.0
 ```
 
-The `generated_tracked` `phi` distribution is shown in radians:
+{% include figure.html
+src="assets/images/documentation/generatorDocs/internal/ex07_phi_spread.png"
+alt="phi distribution for azimuthal angle smearing"
+caption="Flat φ distribution in [25°, 65°] (≈ [0.44, 1.13] rad). phi is always spread uniformly."
+width="70%"
+%}
 
-Analyzer command used:
+Analyzer command:
 
-```bash
+```shell
 python3 -m analyzer generated_tracked.csv phi --kind csv --bins 50 --linear-y
 ```
 
-![Generated tracked phi distribution for azimuthal angle smearing](/home/assets/images/documentation/generatorDocs/internal/ex07_phi_spread.png){:width="70%"}
+<br/>
 
-Place the source at a fixed vertex:
+**Fixed vertex position**
 
-```bash
-gemc -gparticle="[{name: e-, p: 2300, vx: 0.0, vy: 0.0, vz: -10.0, vunit: cm}]"
+```yaml
+gparticle:
+  - name: e-
+    p: 2300
+    vx: 0.0
+    vy: 0.0
+    vz: -10.0
+    vunit: cm
 ```
 
-The `generated_tracked` `vz` distribution is shown in GEMC internal length units, mm:
+{% include figure.html
+src="assets/images/documentation/generatorDocs/internal/ex08_vz_fixed.png"
+alt="vertex-z distribution for a fixed source vertex"
+caption="All events originate at vz = −100 mm (−10 cm). GEMC stores vertex positions in mm internally."
+width="70%"
+%}
 
-Analyzer command used:
+Analyzer command:
 
-```bash
+```shell
 python3 -m analyzer generated_tracked.csv vz --kind csv --bins 50 --linear-y
 ```
 
-![Generated tracked vertex-z distribution for a fixed source vertex](/home/assets/images/documentation/generatorDocs/internal/ex08_vz_fixed.png){:width="70%"}
+<br/>
 
-Smear only the z vertex by plus or minus 2 cm:
+**Vertex z spread — uniform**
 
-```bash
-gemc -gparticle="[{name: e-, p: 2300, vz: 0.0, delta_vz: 2.0, vunit: cm, randomVertexModel: uniform}]"
+```yaml
+gparticle:
+  - name: e-
+    p: 2300
+    vz: 0.0
+    delta_vz: 2.0
+    vunit: cm
+    randomVertexModel: uniform
 ```
 
-The `generated_tracked` `vz` distribution is shown in GEMC internal length units, mm:
+{% include figure.html
+src="assets/images/documentation/generatorDocs/internal/ex09_vz_uniform.png"
+alt="vertex-z distribution for uniform z-vertex smearing"
+caption="Flat vz distribution in [−20, +20] mm (±2 cm) produced by uniform vertex smearing."
+width="70%"
+%}
 
-Analyzer command used:
+Analyzer command:
 
-```bash
+```shell
 python3 -m analyzer generated_tracked.csv vz --kind csv --bins 50 --linear-y
 ```
 
-![Generated tracked vertex-z distribution for uniform z-vertex smearing](/home/assets/images/documentation/generatorDocs/internal/ex09_vz_uniform.png){:width="70%"}
+<br/>
 
-Smear the vertex with Gaussian sigmas of 1 mm in x and y, and 5 mm in z:
+**Vertex spread — Gaussian**
 
-```bash
-gemc -gparticle="[{name: e-, p: 2300, delta_vx: 1.0, delta_vy: 1.0, delta_vz: 5.0, vunit: mm, randomVertexModel: gaussian}]"
+```yaml
+gparticle:
+  - name: e-
+    p: 2300
+    delta_vx: 1.0
+    delta_vy: 1.0
+    delta_vz: 5.0
+    vunit: mm
+    randomVertexModel: gaussian
 ```
 
-The `generated_tracked` `vz` distribution is shown in GEMC internal length units, mm:
+{% include figure.html
+src="assets/images/documentation/generatorDocs/internal/ex10_vz_gaussian.png"
+alt="vertex-z distribution for Gaussian vertex smearing"
+caption="Gaussian vz distribution with sigma = 5 mm centred at z = 0."
+width="70%"
+%}
 
-Analyzer command used:
+Analyzer command:
 
-```bash
+```shell
 python3 -m analyzer generated_tracked.csv vz --kind csv --bins 50 --linear-y
 ```
 
-![Generated tracked vertex-z distribution for Gaussian vertex smearing](/home/assets/images/documentation/generatorDocs/internal/ex10_vz_gaussian.png){:width="70%"}
+<br/>
 
-Combine multiple particle definitions:
+**Multiple particle definitions**
 
-```bash
-gemc -gparticle="[
-  {name: e-, p: 2300, theta: 23.0},
-  {name: proton, multiplicity: 2, p: 1200, theta: 14.0, delta_theta: 10.0}
-]"
+Each entry is an independent source; all contribute to every event.
+Here one electron (fixed angle) and two protons (smeared angle) are generated per event:
+
+```yaml
+gparticle:
+  - name: e-
+    p: 2300
+    theta: 23.0
+  - name: proton
+    multiplicity: 2
+    p: 1200
+    theta: 14.0
+    delta_theta: 10.0
 ```
 
-The `generated_tracked` `theta` distribution is shown in radians:
+{% include figure.html
+src="assets/images/documentation/generatorDocs/internal/ex11_theta_combined.png"
+alt="theta distribution for combined electron and proton sources"
+caption="Two populations: a spike at θ ≈ 0.4 rad (one electron at 23°) and a broad flat band from two protons smeared around 14°."
+width="70%"
+%}
 
-Analyzer command used:
+Analyzer command:
 
-```bash
+```shell
 python3 -m analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
 ```
 
-![Generated tracked theta distribution for combined electron and proton sources](/home/assets/images/documentation/generatorDocs/internal/ex11_theta_combined.png){:width="70%"}
+<br/>
 
 ## `gparticlefile`
 
-The `gparticlefile` option is a list of file sources. Each item has two fields:
+`gparticlefile` loads particle definitions from a file. Each entry specifies a format
+and a filename:
 
-| Field | Meaning |
-| --- | --- |
-| `format` | File format reader name. The built-in reader is `lund`. The value is case-insensitive, so `lund`, `Lund`, and `LUND` are equivalent. |
-| `filename` | Input file containing event particle definitions. |
+| Field | Description |
+|-------|-------------|
+| `format` | File format reader name. The built-in reader is `lund` (case-insensitive). |
+| `filename` | Path to the input file containing event records. |
 
-Example:
-
-```bash
-gemc -gparticlefile="[{format: lund, filename: events.lund}]"
+```yaml
+gparticlefile:
+  - format: lund
+    filename: events.lund
 ```
 
-The `generated_tracked` `p` distribution from the LUND file is shown in MeV:
+Event records are matched by index: file event 0 is used for GEMC event 0, file event 1 for
+GEMC event 1, and so on. In multi-threaded mode Geant4 distributes event IDs to worker threads;
+each file event is still assigned to exactly one GEMC event.
 
-Analyzer command used:
+Multiple sources can be combined — events from all files are merged by index:
 
-```bash
-python3 -m analyzer generated_tracked.csv p --kind csv --bins 50 --linear-y
+```yaml
+gparticlefile:
+  - format: lund
+    filename: beam_background.lund
+  - format: lund
+    filename: signal.lund
 ```
 
-![Generated tracked momentum distribution for a LUND file source](/home/assets/images/documentation/generatorDocs/internal/ex12_lund_p.png){:width="70%"}
-
-Combine inline particles with a LUND file. The electron is generated in every event, and
-the matching event record from `events.lund` is added to that same GEMC event:
-
-```bash
-gemc \
-  -gparticle="[{name: e-, p: 2300, theta: 23.0}]" \
-  -gparticlefile="[{format: LUND, filename: events.lund}]"
-```
-
-The `generated_tracked` `theta` distribution is shown in radians:
-
-Analyzer command used:
-
-```bash
-python3 -m analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
-```
-
-![Generated tracked theta distribution for an inline particle plus a LUND file source](/home/assets/images/documentation/generatorDocs/internal/ex13_inline_lund_theta.png){:width="70%"}
-
-Use more than one file source:
-
-```bash
-gemc -gparticlefile="[
-  {format: lund, filename: beam_background.lund},
-  {format: lund, filename: signal.lund}
-]"
-```
-
-The `generated_tracked` `p` distribution from the merged LUND file sources is shown in MeV:
-
-Analyzer command used:
-
-```bash
-python3 -m analyzer generated_tracked.csv p --kind csv --bins 50 --linear-y
-```
-
-![Generated tracked momentum distribution for merged LUND file sources](/home/assets/images/documentation/generatorDocs/internal/ex14_lund_sources_p.png){:width="70%"}
-
-For multiple file sources, event records are merged by event index: event 0 from every
-source contributes to GEMC event 0, event 1 from every source contributes to GEMC event 1,
-and so on.
+See the [LUND format documentation](lund_format) for the file structure, column definitions, and unit conventions.

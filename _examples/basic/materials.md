@@ -65,7 +65,7 @@ Interactive viewer:
 {% include figure.html
 src="assets/images/examples/materials/geometry.png"
 caption="Materials example geometry: five tubes along the z-axis, each using a different material definition. You can see the 
-scintillation properties of the NaI-like scintillator in the top-right corner."
+scintillation properties of the NaI-like scintillator the 4th volume and the Cherenkov radiation in the 5th."
 %}
 
 <br/>

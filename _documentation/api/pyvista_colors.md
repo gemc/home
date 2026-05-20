@@ -2,7 +2,6 @@
 layout: default
 title: "PyVista Color Reference"
 ---
-{% include directory.html data=site.data.documentation columns=4 section_breaks=3 %}
 
 # PyVista Color Reference
 <hr style="height:4px;border:0;background:#4a90e2;">

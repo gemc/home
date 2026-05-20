@@ -8,9 +8,9 @@ progress:
   - label: "Simple Flux example"
     value: 100
   - label: "Materials example "
-    value: 35
+    value: 100
   - label: "Pyvista example "
-    value: 0
+    value: 100
 ---
 
 New features, improvements, and issue resolutions planned for the next release.
