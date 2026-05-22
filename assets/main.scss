@@ -1557,6 +1557,10 @@ li input[type="checkbox"] {
   margin: 1rem 0 1.1rem;
 }
 
+.news-feed--homepage {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .news-card--compact {
   padding: 1rem 1.1rem;
   border-radius: 15px;
@@ -1604,6 +1608,12 @@ li input[type="checkbox"] {
 
 .news-links a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 760px) {
+  .news-feed--homepage {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {

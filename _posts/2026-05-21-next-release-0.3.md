@@ -11,6 +11,9 @@ progress:
     value: 0
   - label: "Vertex Manipulation Documentation"
     value: 0
+  - label: "pygemc Documentation"
+    value: 0
+
 ---
 
 New features, improvements, and issue resolutions planned for the next release.
