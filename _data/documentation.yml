@@ -39,6 +39,14 @@
   category: "api"
   link: "/home/documentation/api/analyzer"
 
+- title: "Options"
+  category: "api"
+  link: "/home/documentation/api/options"
+
+- title: "Options Reference"
+  category: "api"
+  link: "/home/documentation/api/options_reference"
+
 
 
 - title: "Geant4 Material Database"
@@ -52,4 +60,3 @@
 - title: "ROOT"
   category: "Support"
   link: "https://root.cern.ch"
-

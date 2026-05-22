@@ -1,6 +1,6 @@
 {
   "closed_at": null,
-  "closed_issues": 4,
+  "closed_issues": 5,
   "created_at": "2026-05-13T13:18:26Z",
   "creator": {
     "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -23,16 +23,16 @@
     "url": "https://api.github.com/users/maureeungaro",
     "user_view_type": "public"
   },
-  "description": "This version features:\n\n- Support for LUND format for generator\n- Analyzer Scripts\n- More examples\n- Jupyter support for the examples\n- Various bug fixes and improvements\n\n<br/><br/>",
+  "description": "This version features:\n\n- Support for LUND format for generator\n- Analyzer Scripts\n- More examples\n- Jupyter support for the examples\n- Various bug fixes and improvements\n\n<br/>",
   "due_on": "2026-05-27T00:00:00Z",
   "html_url": "https://github.com/gemc/src/milestone/1",
   "id": 15909747,
   "labels_url": "https://api.github.com/repos/gemc/src/milestones/1/labels",
   "node_id": "MI_kwDODkwbjc4A8sNz",
   "number": 1,
-  "open_issues": 1,
+  "open_issues": 0,
   "state": "open",
   "title": "GEMC Version 0.2",
-  "updated_at": "2026-05-18T17:58:33Z",
+  "updated_at": "2026-05-20T14:17:35Z",
   "url": "https://api.github.com/repos/gemc/src/milestones/1"
 }
