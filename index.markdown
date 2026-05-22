@@ -98,9 +98,9 @@ Highlights:<br/>
 
 <br/><br/>
 
-## Try GEMC in Your Browser
+## Try GEMC
 
-No installation needed. Click the badge to launch a live **JupyterLab** session:
+No installation needed. Click a badge to launch a live **JupyterLab** session in your browser:
 
 {% assign visible_examples = site.data.examples | where: "display", true %}
 
@@ -144,6 +144,19 @@ Other examples:
     {% endfor %}
   </tbody>
 </table>
+
+<br/>
+
+### Container image
+
+For a local or HPC JupyterLab session, use the pre-built multi-architecture image:
+
+```shell
+docker run --rm -p 8888:8888 ghcr.io/gemc/binder-tutorials:latest
+
+apptainer pull gemc-binder-tutorials.sif docker://ghcr.io/gemc/binder-tutorials:latest
+apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
+```
 
 <br/><br/>
 
