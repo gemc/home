@@ -38,7 +38,7 @@ See the [license conditions](/home/license/).
 ## Table of Contents
 
 - [Build and Install GEMC from source code](#build-and-install-gemc-from-source)
-- [[Optional] Install Pyvista](#optional-install-pyvista)
+- [Pyvista](#pyvista)
 - [GEMC using Docker](#gemc-using-docker)
 - [GEMC using Apptainer](#gemc-using-apptainer)
 
@@ -144,41 +144,34 @@ Optionally, after installation, `meson test -v` will run several tests of variou
 
 ### Post Installation
 
-You can add the lines below to your shell configuration file (e.g. `~/.bashrc` or `~/.zshrc`).
+Add these lines to your shell configuration file (e.g. `~/.bashrc` or `~/.zshrc`):
 
 ```shell
 export GEMC_VERSION={{ page.latest_tag }}
-export PATH={{ page.path_prefix }}/$GEMC_VERSION/bin:$PATH
-export PYTHONPATH={{ page.path_prefix }}/$GEMC_VERSION/api:$PYTHONPATH
+export PATH={{ page.path_prefix }}/$GEMC_VERSION/bin:{{ page.path_prefix }}/$GEMC_VERSION/python_env/bin:$PATH
 ```
 
-Here with `GEMC_VERSION` we control the version of GEMC to use.
+`GEMC_VERSION` selects which installation to use. The second PATH entry adds the bundled Python
+environment, making `pygemc`, `gemc-analyzer`, and `gemc-system-template` available on the command
+line without any additional activation step.
 
 
 <br/>
 
-## [Optional] Install Pyvista
+## Pyvista
 
-While pyvista is not necessary to build the detectors, it provides useful visual feedback
-without the need to run GEMC to visualize the geometry.
+[PyVista](https://pyvista.org) is bundled with the GEMC Python environment and installed
+automatically during `meson install`. No additional steps are needed.
 
-To install pyvista, including the qt modules, use a python environment:
-
-```shell
-python3 -m venv ~/venv/pyvista/
-source ~/venv/pyvista/bin/activate
-pip install pyvista vtk 
-pip install pyqt6 pyvistaqt
-```
-
-To use it with the Python API, remember to activate the environment first:
+Pass `-pv` (static pyvista window) or `-pvb` (interactive Qt GUI) to any geometry builder script:
 
 ```shell
-source ~/venv/pyvista/bin/activate
+python3 my_detector.py -pv
 ```
 
-Then pass either `-pv` (native pyvista) or `-pvb` (for a qt GUI) to the python scripts that build
-the databases.
+> [!NOTE]
+> On headless servers, the Qt-based viewer (`-pvb`) requires a display. Use `-pv` or run
+> with a virtual framebuffer. The geometry builder scripts work normally without any display.
 
 <br/><br/>
 

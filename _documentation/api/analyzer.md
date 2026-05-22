@@ -11,16 +11,14 @@ with a reader structure that can be extended to other formats later.
 
 ## Dependencies
 
-The main analyzer API uses the standard scientific Python stack:
+The analyzer dependencies (`pandas`, `numpy`, `matplotlib`) are pre-installed in the GEMC Python
+environment (`python_env/`) created during `meson install`. No separate installation is needed when
+using the `python3` or `gemc-analyzer` commands from that environment.
+
+ROOT output support also requires `uproot`, which can be added to the environment if needed:
 
 ```sh
-python3 -m pip install pandas numpy matplotlib
-```
-
-ROOT output support also requires `uproot`:
-
-```sh
-python3 -m pip install uproot
+pip install uproot
 ```
 
 ROOT prerequisites:
@@ -29,7 +27,7 @@ ROOT prerequisites:
 - The run must use `gstreamer` format `root`.
 - Reading ROOT files from Python does not require importing C++ ROOT; the analyzer uses `uproot`.
 
-The dependency-free SVG helper in `analyzer/svg_plot.py` only uses the Python standard library. It is useful on minimal systems where `pandas`, `numpy`, and `matplotlib` are not installed.
+The dependency-free SVG helper in `pygemc.analyzer.svg_plot` only uses the Python standard library. It is useful on minimal systems where `pandas`, `numpy`, and `matplotlib` are not installed.
 
 ## GEMC Output Model
 
@@ -97,7 +95,7 @@ ROOT detector trees store vector branches. The analyzer flattens each vector ele
 Read one digitized CSV file:
 
 ```python
-from analyzer import read_output
+from pygemc import read_output
 
 output = read_output("b2_t0_digitized.csv")
 df = output.get_frame("digitized")
@@ -107,7 +105,7 @@ print(df.columns)
 Read a CSV root name when both files exist:
 
 ```python
-from analyzer import read_output
+from pygemc import read_output
 
 output = read_output("b2_t0", kind="csv")
 print(output.summary())
@@ -116,7 +114,7 @@ print(output.summary())
 Plot `totEdep` grouped by `pid`:
 
 ```python
-from analyzer import plot_variable, read_output
+from pygemc import plot_variable, read_output
 
 output = read_output("b2_t0_digitized.csv")
 plot_variable(
@@ -132,7 +130,7 @@ plot_variable(
 Read ROOT output:
 
 ```python
-from analyzer import read_output
+from pygemc import read_output
 
 output = read_output("b2_t0.root", kind="root")
 df = output.get_frame("digitized", detector="flux")
@@ -140,38 +138,37 @@ df = output.get_frame("digitized", detector="flux")
 
 ## Command-Line Usage
 
-Run `python3 -m analyzer` from the GEMC source directory, where the `analyzer` package directory is visible to Python.
-
-The `-m` flag takes a module name, not a filesystem path. Do not run `python3 -m ../analyzer`. If your shell is in another directory, move back to the source directory or set `PYTHONPATH`.
+The `gemc-analyzer` command is installed into the GEMC Python environment and is available once
+`python_env/bin` is on your `PATH`. It can also be invoked as `python3 -m pygemc.analyzer`.
 
 Print a summary:
 
 ```sh
-python3 -m analyzer digitized.csv
+gemc-analyzer digitized.csv
 ```
 
 Plot a digitized variable with matplotlib:
 
 ```sh
-python3 -m analyzer digitized.csv totEdep --kind csv --xlim 0.0 0.1
+gemc-analyzer digitized.csv totEdep --kind csv --xlim 0.0 0.1
 ```
 
 Save a plot instead of showing it:
 
 ```sh
-python3 -m analyzer digitized.csv totEdep --kind csv --save b2_totEdep.png
+gemc-analyzer digitized.csv totEdep --kind csv --save b2_totEdep.png
 ```
 
 Plot ROOT output with matplotlib:
 
 ```sh
-python3 -m analyzer b2_t0.root totEdep --kind root --detector flux --save b2_totEdep.png
+gemc-analyzer b2_t0.root totEdep --kind root --detector flux --save b2_totEdep.png
 ```
 
 Plot a true-info track vertex coordinate:
 
 ```sh
-python3 -m analyzer true_info.csv vx --kind csv --data true_info --save b2_vertex_x.png
+gemc-analyzer true_info.csv vx --kind csv --data true_info --save b2_vertex_x.png
 ```
 
 ## Analyzer Plot Examples
@@ -183,7 +180,7 @@ YAML file.
 Plot the total energy deposited in the B2 digitized output:
 
 ```sh
-python3 -m analyzer digitized.csv totEdep --kind csv --bins 50
+gemc-analyzer digitized.csv totEdep --kind csv --bins 50
 ```
 
 ![B2 digitized total energy deposited histogram](/home/assets/images/documentation/analyzer/analyzer_b2_totEdep.png){:width="70%"}
@@ -191,7 +188,7 @@ python3 -m analyzer digitized.csv totEdep --kind csv --bins 50
 Plot the true-info track energy in the B2 output:
 
 ```sh
-python3 -m analyzer true_info.csv E --kind csv --data true_info --bins 50
+gemc-analyzer true_info.csv E --kind csv --data true_info --bins 50
 ```
 
 ![B2 true-info track energy histogram](/home/assets/images/documentation/analyzer/analyzer_b2_true_energy.png){:width="70%"}
@@ -199,7 +196,7 @@ python3 -m analyzer true_info.csv E --kind csv --data true_info --bins 50
 Plot the total energy deposited in the simple_flux digitized output:
 
 ```sh
-python3 -m analyzer digitized.csv totEdep --kind csv --bins 50
+gemc-analyzer digitized.csv totEdep --kind csv --bins 50
 ```
 
 ![simple_flux digitized total energy deposited histogram](/home/assets/images/documentation/analyzer/analyzer_simple_flux_totEdep.png){:width="70%"}
@@ -207,7 +204,7 @@ python3 -m analyzer digitized.csv totEdep --kind csv --bins 50
 Plot the hit time in the simple_flux digitized output:
 
 ```sh
-python3 -m analyzer digitized.csv time --kind csv --bins 50
+gemc-analyzer digitized.csv time --kind csv --bins 50
 ```
 
 ![simple_flux digitized hit time histogram](/home/assets/images/documentation/analyzer/analyzer_simple_flux_time.png){:width="70%"}
@@ -215,7 +212,7 @@ python3 -m analyzer digitized.csv time --kind csv --bins 50
 Plot the particle energy in the cherenkov digitized output:
 
 ```sh
-python3 -m analyzer digitized.csv E --kind csv --bins 50
+gemc-analyzer digitized.csv E --kind csv --bins 50
 ```
 
 ![cherenkov digitized particle energy histogram](/home/assets/images/documentation/analyzer/analyzer_cherenkov_energy.png){:width="70%"}
@@ -223,7 +220,7 @@ python3 -m analyzer digitized.csv E --kind csv --bins 50
 Plot the hit time in the cherenkov digitized output:
 
 ```sh
-python3 -m analyzer digitized.csv time --kind csv --bins 50
+gemc-analyzer digitized.csv time --kind csv --bins 50
 ```
 
 ![cherenkov digitized hit time histogram](/home/assets/images/documentation/analyzer/analyzer_cherenkov_time.png){:width="70%"}
@@ -234,7 +231,7 @@ The analyzer can also be used directly in notebook-style Python cells:
 
 ```python
 #%%
-from analyzer import read_output, plot_variable
+from pygemc import read_output, plot_variable
 
 plot_variable(
     read_output("cherenkov_t0_digitized.csv"),
@@ -250,13 +247,13 @@ plot_variable(
 If `pandas`, `numpy`, or `matplotlib` are unavailable, create an SVG histogram directly from the CSV file:
 
 ```sh
-python3 -B analyzer/svg_plot.py b2_t0_digitized.csv totEdep --out b2_totEdep.svg --bins 30
+python3 -m pygemc.analyzer.svg_plot b2_t0_digitized.csv totEdep --out b2_totEdep.svg --bins 30
 ```
 
 Add an x-axis range with:
 
 ```sh
-python3 -B analyzer/svg_plot.py b2_t0_digitized.csv totEdep --out b2_totEdep.svg --bins 30 --xlim 0.0 0.1
+python3 -m pygemc.analyzer.svg_plot b2_t0_digitized.csv totEdep --out b2_totEdep.svg --bins 30 --xlim 0.0 0.1
 ```
 
 ## Run the B2 Example
@@ -266,7 +263,6 @@ Run these commands from the GEMC source directory.
 Build the B2 geometry into a local SQLite database:
 
 ```sh
-PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=/opt/projects/gemc/src/api \
 python3 examples/basic/b2/b2.py -f sqlite -sql gemc.db
 ```
 
@@ -302,13 +298,13 @@ evn, timestamp, thread_id, detector, hitn, pid, tid, E, time, totEdep
 Create the `totEdep` plot with the main analyzer API:
 
 ```sh
-python3 -m analyzer digitized.csv totEdep --kind csv --save b2_totEdep.png
+gemc-analyzer digitized.csv totEdep --kind csv --save b2_totEdep.png
 ```
 
 Or create the same style of histogram without third-party Python packages:
 
 ```sh
-python3 -B analyzer/svg_plot.py b2_t0_digitized.csv totEdep --out b2_totEdep.svg --bins 30
+python3 -m pygemc.analyzer.svg_plot b2_t0_digitized.csv totEdep --out b2_totEdep.svg --bins 30
 ```
 
 ### Run B2 With ROOT Output
@@ -332,7 +328,7 @@ b2_t0.root
 Read the ROOT file from Python if you want to inspect or manipulate the data before plotting:
 
 ```python
-from analyzer import plot_variable, read_output
+from pygemc import plot_variable, read_output
 
 output = read_output("b2_t0.root", kind="root")
 print(output.summary())
@@ -353,13 +349,13 @@ plot_variable(
 The Python inspection step is not required for plotting. To plot directly from the command line, use:
 
 ```sh
-python3 -m analyzer b2_t0.root totEdep --kind root --detector flux --save b2_root_totEdep.png
+gemc-analyzer b2_t0.root totEdep --kind root --detector flux --save b2_root_totEdep.png
 ```
 
 If matplotlib reports that its default cache directory is not writable, set a writable `MPLCONFIGDIR`:
 
 ```sh
-MPLCONFIGDIR=. python3 -m analyzer b2_t0.root totEdep --kind root --detector flux --save b2_root_totEdep.png
+MPLCONFIGDIR=. gemc-analyzer b2_t0.root totEdep --kind root --detector flux --save b2_root_totEdep.png
 ```
 
 ## Extending Readers

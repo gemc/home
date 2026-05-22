@@ -126,7 +126,7 @@ gemc counter.yaml -n=10000
 Plot the digitized `totEdep` variable — the total energy deposited in each flux hit:
 
 ```shell
-python3 -m analyzer counter_t0_digitized.csv totEdep --kind csv --bins 50
+gemc-analyzer counter_t0_digitized.csv totEdep --kind csv --bins 50
 ```
 
 {% include figure.html

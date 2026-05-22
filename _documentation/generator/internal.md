@@ -99,7 +99,7 @@ width="70%"
 Analyzer command:
 
 ```shell
-python3 -m analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
+gemc-analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
 ```
 
 <br/>
@@ -126,7 +126,7 @@ width="70%"
 Analyzer command:
 
 ```shell
-python3 -m analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
+gemc-analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
 ```
 
 <br/>
@@ -152,7 +152,7 @@ width="70%"
 Analyzer command:
 
 ```shell
-python3 -m analyzer generated_tracked.csv phi --kind csv --bins 50 --linear-y
+gemc-analyzer generated_tracked.csv phi --kind csv --bins 50 --linear-y
 ```
 
 <br/>
@@ -177,7 +177,7 @@ width="70%"
 Analyzer command:
 
 ```shell
-python3 -m analyzer generated_tracked.csv p --kind csv --bins 50 --linear-y
+gemc-analyzer generated_tracked.csv p --kind csv --bins 50 --linear-y
 ```
 
 <br/>
@@ -202,7 +202,7 @@ width="70%"
 Analyzer command:
 
 ```shell
-python3 -m analyzer generated_tracked.csv p --kind csv --bins 50 --linear-y
+gemc-analyzer generated_tracked.csv p --kind csv --bins 50 --linear-y
 ```
 
 <br/>
@@ -228,7 +228,7 @@ width="70%"
 Analyzer command:
 
 ```shell
-python3 -m analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
+gemc-analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
 ```
 
 <br/>
@@ -253,7 +253,7 @@ width="70%"
 Analyzer command:
 
 ```shell
-python3 -m analyzer generated_tracked.csv phi --kind csv --bins 50 --linear-y
+gemc-analyzer generated_tracked.csv phi --kind csv --bins 50 --linear-y
 ```
 
 <br/>
@@ -280,7 +280,7 @@ width="70%"
 Analyzer command:
 
 ```shell
-python3 -m analyzer generated_tracked.csv vz --kind csv --bins 50 --linear-y
+gemc-analyzer generated_tracked.csv vz --kind csv --bins 50 --linear-y
 ```
 
 <br/>
@@ -307,7 +307,7 @@ width="70%"
 Analyzer command:
 
 ```shell
-python3 -m analyzer generated_tracked.csv vz --kind csv --bins 50 --linear-y
+gemc-analyzer generated_tracked.csv vz --kind csv --bins 50 --linear-y
 ```
 
 <br/>
@@ -335,7 +335,7 @@ width="70%"
 Analyzer command:
 
 ```shell
-python3 -m analyzer generated_tracked.csv vz --kind csv --bins 50 --linear-y
+gemc-analyzer generated_tracked.csv vz --kind csv --bins 50 --linear-y
 ```
 
 <br/>
@@ -367,7 +367,7 @@ width="70%"
 Analyzer command:
 
 ```shell
-python3 -m analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
+gemc-analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
 ```
 
 <br/>
