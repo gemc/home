@@ -6,7 +6,7 @@ categories: [news]
 tags: [generator, cherenkov, jupyter, screenshot]
 progress:
   - label: "Options Documentation"
-    value: 0
+    value: 100
   - label: "Geometry Documentation"
     value: 0
   - label: "Vertex Manipulation Documentation"
