@@ -1037,21 +1037,31 @@ pre:not(.highlight) {
 
 .small-icons {
   display: table;
+  min-width: 210px;
   width: auto !important;
   margin-right: auto;
   margin-left: auto;
   border-collapse: collapse;
+  font-size: 0.82em;
+  line-height: 1.35;
+}
+
+.small-icons td {
+  min-width: 92px;
+  padding: 6px 10px;
+  border-color: transparent;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 .small-icons img {
-  width: 30px;
+  width: 32px;
   height: auto;
 }
 
-.profile-icons td {
-  padding: 0 2px;
-  text-align: center;
-  white-space: nowrap;
+.small-icons a {
+  display: inline-block;
 }
 
 @media (prefers-color-scheme: dark) {
