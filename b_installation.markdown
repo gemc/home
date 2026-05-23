@@ -4,7 +4,7 @@ title: Installation
 permalink: /installation/
 
 development_tag: dev
-latest_tag: 0.1
+latest_tag: 0.2
 dev_tag: dev
 development_release_date: <small><time> → released nightly</time></small>
 latest_release_date: <small><time>→ released on 04/29/2026</time></small>
@@ -38,7 +38,6 @@ See the [license conditions](/home/license/).
 ## Table of Contents
 
 - [Build and Install GEMC from source code](#build-and-install-gemc-from-source)
-- [Pyvista](#pyvista)
 - [GEMC using Docker](#gemc-using-docker)
 - [GEMC using Apptainer](#gemc-using-apptainer)
 
@@ -152,8 +151,9 @@ export PATH={{ page.path_prefix }}/$GEMC_VERSION/bin:{{ page.path_prefix }}/$GEM
 ```
 
 `GEMC_VERSION` selects which installation to use. The second PATH entry adds the bundled Python
-environment, making `pygemc`, `gemc-analyzer`, and `gemc-system-template` available on the command
-line without any additional activation step.
+virtual environment so that `python3` resolves to the venv interpreter — making `import pygemc`
+available in your scripts without any activation step or separate `pip install`. It also exposes the
+`gemc-analyzer` and `gemc-system-template` command-line tools.
 
 
 <br/>
