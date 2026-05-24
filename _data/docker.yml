@@ -1,5 +1,11 @@
 images:
   - id: AlmaLinux
+    osversion: 10
+    tag: ghcr.io/gemc/src:dev-almalinux-10
+    amd64: yes
+    arm64: yes
+    gemcv: dev
+  - id: AlmaLinux
     osversion: 9.4
     tag: ghcr.io/gemc/src:dev-almalinux-9.4
     amd64: yes
@@ -18,14 +24,20 @@ images:
     arm64: yes
     gemcv: dev
   - id: Fedora
-    osversion: 42
-    tag: ghcr.io/gemc/src:dev-fedora-42
+    osversion: 44
+    tag: ghcr.io/gemc/src:dev-fedora-44
     amd64: yes
     arm64: yes
     gemcv: dev
   - id: Ubuntu
     osversion: 24.04
     tag: ghcr.io/gemc/src:dev-ubuntu-24.04
+    amd64: yes
+    arm64: yes
+    gemcv: dev
+  - id: Ubuntu
+    osversion: 26.04
+    tag: ghcr.io/gemc/src:dev-ubuntu-26.04
     amd64: yes
     arm64: yes
     gemcv: dev

@@ -312,12 +312,14 @@ One-line installation commands for basic packages and dependencies on MacOS and 
 {% capture tab1 %}
 
 ```shell
-dnf install -y --allowerasing git make cmake gcc-c++ gdb valgrind expat-devel mariadb-devel \
-sqlite-devel python3-devel ninja-build mesa-libGLU-devel libX11-devel libXpm-devel libXft-devel \
-libXt-devel libXmu-devel libXrender-devel xorg-x11-server-Xvfb xrandr bzip2 wget curl nano bash \
-zsh hostname gedit environment-modules pv which psmisc procps mailcap net-tools rsync patch \
-bash-completion xterm x11vnc openbox lxqt-panel dejavu-sans-mono-fonts qt6-qtbase-devel root liblsan \
-libasan libubsan libtsan tbb 
+dnf install -y --allowerasing git make cmake gcc-c++ gdb valgrind libxcrypt-devel \
+expat-devel zlib zlib-devel mariadb-devel sqlite-devel python3-devel ninja-build \
+mesa-libGL-devel mesa-libGLU-devel libX11-devel libXpm-devel libXft-devel \
+libXt-devel libXmu-devel libXrender-devel xorg-x11-server-Xvfb xrandr \
+bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
+psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
+xterm x11vnc openbox lxqt-panel dejavu-sans-mono-fonts \
+qt6-qtbase-devel qt6-qtsvg qt6-qtsvg-devel root liblsan libasan libubsan libtsan tbb
 ```
 
 {% endcapture %}
@@ -325,12 +327,14 @@ libasan libubsan libtsan tbb
 {% capture tab2 %}
 
 ```shell
-dnf install -y --allowerasing git make cmake gcc-c++ gdb valgrind expat-devel mariadb-devel \
-sqlite-devel python3-devel ninja-build mesa-libGLU-devel libX11-devel libXpm-devel libXft-devel \
-libXt-devel libXmu-devel libXrender-devel xorg-x11-server-Xvfb xrandr bzip2 wget curl nano bash 
-zsh hostname gedit environment-modules pv which psmisc procps mailcap net-tools rsync patch \
-bash-completion xterm x11vnc openbox tint2 dejavu-sans-mono-fonts qt6-qtbase-devel root liblsan \
-libasan libubsan libtsan tbb
+dnf install -y --allowerasing git make cmake gcc-c++ gdb valgrind libxcrypt-devel \
+expat-devel zlib zlib-devel mariadb-devel sqlite-devel python3-devel ninja-build \
+mesa-libGL-devel mesa-libGLU-devel libX11-devel libXpm-devel libXft-devel \
+libXt-devel libXmu-devel libXrender-devel xorg-x11-server-Xvfb xrandr \
+bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
+psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
+xterm x11vnc openbox tint2 dejavu-sans-mono-fonts \
+qt6-qtbase-devel qt6-qtsvg qt6-qtsvg-devel root liblsan libasan libubsan libtsan tbb
 ```
 
 {% endcapture %}
@@ -338,13 +342,14 @@ libasan libubsan libtsan tbb
 {% capture tab3 %}
 
 ```shell
-DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata git make cmake \
-g++ gdb valgrind libexpat1-dev libmysqlclient-dev libsqlite3-dev python3-dev ninja-build \
-libglu1-mesa-dev libx11-dev libxpm-dev libxft-dev libxt-dev libxmu-dev libxrender-dev \
-xvfb x11-xserver-utils bzip2 wget curl nano bash zsh hostname gedit environment-modules pv \
-which ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion xterm \
-x11vnc openbox tint2 dbus-x11 fonts-dejavu-core qt6-base-dev libqt6opengl6t64 \
-libqt6openglwidgets6t64 qt6-base-dev-tools liblsan0 libasan8 libubsan1 libtsan2 libtbb12
+dnf install -y --allowerasing git make cmake gcc-c++ gdb valgrind libxcrypt-devel \
+expat-devel zlib zlib-devel mariadb-devel sqlite-devel python3-devel ninja-build \
+mesa-libGL-devel mesa-libGLU-devel libX11-devel libXpm-devel libXft-devel \
+libXt-devel libXmu-devel libXrender-devel \
+bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
+psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
+xterm dejavu-sans-mono-fonts \
+qt6-qtbase-devel qt6-qtsvg qt6-qtsvg-devel root liblsan libasan libubsan libtsan tbb
 ```
 
 {% endcapture %}
@@ -352,13 +357,16 @@ libqt6openglwidgets6t64 qt6-base-dev-tools liblsan0 libasan8 libubsan1 libtsan2 
 {% capture tab4 %}
 
 ```shell
-DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata git make cmake \
-g++ gdb valgrind libexpat1-dev libmariadb-dev libsqlite3-dev python3-dev ninja-build \
-libglu1-mesa-dev libx11-dev libxpm-dev libxft-dev libxt-dev libxmu-dev libxrender-dev \
-xvfb x11-xserver-utils bzip2 wget curl nano bash zsh hostname gedit environment-modules pv \
-which ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion xterm \
-x11vnc openbox tint2 dbus-x11 fonts-dejavu-core qt6-base-dev libqt6opengl6 libqt6openglwidgets6 \
-qt6-base-dev-tools liblsan0 libasan8 libubsan1 libtsan2 libtbb12 
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata \
+git make cmake g++ gdb valgrind libcrypt-dev libexpat1-dev zlib1g zlib1g-dev \
+libmysqlclient-dev libsqlite3-dev python3-dev python3-venv ninja-build \
+libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxpm-dev libxft-dev \
+libxt-dev libxmu-dev libxrender-dev xvfb x11-xserver-utils \
+bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
+ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
+xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
+qt6-base-dev libqt6opengl6 libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
+liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 ```
 
 {% endcapture %}
@@ -366,13 +374,16 @@ qt6-base-dev-tools liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 {% capture tab5 %}
 
 ```shell
-pacman-key --init && pacman-key --populate
-pacman -Sy --noconfirm archlinux-keyring
-pacman -Syu --noconfirm --needed git make cmake gcc gdb valgrind expat mariadb mariadb-libs \
-sqlite python python-pip ninja mesa glu libx11 libxpm libxft libxt libxmu libxrender \
-xorg-server-xvfb xorg-xrandr bzip2 wget curl nano bash zsh inetutils gedit pv which fakeroot \
-psmisc procps mailcap net-tools rsync patch bash-completion ncurses xterm tigervnc openbox \
-ttf-dejavu qt6-base root gcc-libs tbb 
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata \
+git make cmake g++ gdb valgrind libcrypt-dev libexpat1-dev zlib1g zlib1g-dev \
+libmysqlclient-dev libsqlite3-dev python3-dev python3-venv ninja-build \
+libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxpm-dev libxft-dev \
+libxt-dev libxmu-dev libxrender-dev xvfb x11-xserver-utils \
+bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
+ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
+xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
+qt6-base-dev libqt6opengl6 libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
+liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 ```
 
 {% endcapture %}
@@ -380,33 +391,69 @@ ttf-dejavu qt6-base root gcc-libs tbb
 {% capture tab6 %}
 
 ```shell
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata \
+git make cmake g++ gdb valgrind libcrypt-dev libexpat1-dev zlib1g zlib1g-dev \
+libmariadb-dev libsqlite3-dev python3-dev python3-venv ninja-build \
+libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxpm-dev libxft-dev \
+libxt-dev libxmu-dev libxrender-dev xvfb x11-xserver-utils \
+bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
+ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
+xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
+qt6-base-dev libqt6opengl6-dev libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
+liblsan0 libasan8 libubsan1 libtsan2 libtbb12
+```
 
-brew install gnu-tar cmake mysql qt freeglut modules sqlite meson 
+{% endcapture %}
 
+{% capture tab7 %}
+
+```shell
+pacman-key --init && pacman-key --populate
+pacman -Sy --noconfirm archlinux-keyring
+pacman -Syu --noconfirm --needed git make cmake gcc gdb valgrind expat zlib \
+mariadb mariadb-libs sqlite python python-pip ninja mesa glu \
+libx11 libxpm libxft libxt libxmu libxrender xorg-server-xvfb xorg-xrandr \
+bzip2 wget curl nano bash zsh inetutils gedit pv which fakeroot \
+psmisc procps mailcap net-tools rsync patch bash-completion ncurses python-numpy \
+xterm tigervnc openbox ttf-dejavu qt6-base qt6-svg root gcc-libs tbb
+```
+
+{% endcapture %}
+
+{% capture tab8 %}
+
+```shell
+brew install gnu-tar cmake mysql qt freeglut modules sqlite meson
 ```
 
 {% endcapture %}
 
 {% include tabs.html
 id="install_requirements"
-count=6
-tab1_title="Fedora"     
+count=8
+tab1_title="Fedora 44"
 tab1_content=tab1
 
-tab2_title="AlmaLinux"  
+tab2_title="AlmaLinux 9"
 tab2_content=tab2
 
-tab3_title="Ubuntu"     
+tab3_title="AlmaLinux 10"
 tab3_content=tab3
 
-tab4_title="Debian"     
+tab4_title="Ubuntu 24.04"
 tab4_content=tab4
 
-tab5_title="Arch Linux" 
+tab5_title="Ubuntu 26.04"
 tab5_content=tab5
 
-tab6_title="MacOS" 
+tab6_title="Debian 13"
 tab6_content=tab6
+
+tab7_title="Arch Linux"
+tab7_content=tab7
+
+tab8_title="MacOS"
+tab8_content=tab8
 %}
 
 <br/>
