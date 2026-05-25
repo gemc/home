@@ -5,12 +5,6 @@ images:
     amd64: yes
     arm64: yes
     gemcv: dev
-  - id: AlmaLinux
-    osversion: 9.4
-    tag: ghcr.io/gemc/src:dev-almalinux-9.4
-    amd64: yes
-    arm64: yes
-    gemcv: dev
   - id: ArchLinux
     osversion: latest
     tag: ghcr.io/gemc/src:dev-archlinux-latest

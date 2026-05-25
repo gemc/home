@@ -330,10 +330,10 @@ qt6-qtbase-devel qt6-qtsvg qt6-qtsvg-devel root liblsan libasan libubsan libtsan
 dnf install -y --allowerasing git make cmake gcc-c++ gdb valgrind libxcrypt-devel \
 expat-devel zlib zlib-devel mariadb-devel sqlite-devel python3-devel ninja-build \
 mesa-libGL-devel mesa-libGLU-devel libX11-devel libXpm-devel libXft-devel \
-libXt-devel libXmu-devel libXrender-devel xorg-x11-server-Xvfb xrandr \
+libXt-devel libXmu-devel libXrender-devel \
 bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
 psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
-xterm x11vnc openbox tint2 dejavu-sans-mono-fonts \
+xterm dejavu-sans-mono-fonts \
 qt6-qtbase-devel qt6-qtsvg qt6-qtsvg-devel root liblsan libasan libubsan libtsan tbb
 ```
 
@@ -342,14 +342,16 @@ qt6-qtbase-devel qt6-qtsvg qt6-qtsvg-devel root liblsan libasan libubsan libtsan
 {% capture tab3 %}
 
 ```shell
-dnf install -y --allowerasing git make cmake gcc-c++ gdb valgrind libxcrypt-devel \
-expat-devel zlib zlib-devel mariadb-devel sqlite-devel python3-devel ninja-build \
-mesa-libGL-devel mesa-libGLU-devel libX11-devel libXpm-devel libXft-devel \
-libXt-devel libXmu-devel libXrender-devel \
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata \
+git make cmake g++ gdb valgrind libcrypt-dev libexpat1-dev zlib1g zlib1g-dev \
+libmysqlclient-dev libsqlite3-dev python3-dev python3-venv ninja-build \
+libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxpm-dev libxft-dev \
+libxt-dev libxmu-dev libxrender-dev xvfb x11-xserver-utils \
 bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
-psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
-xterm dejavu-sans-mono-fonts \
-qt6-qtbase-devel qt6-qtsvg qt6-qtsvg-devel root liblsan libasan libubsan libtsan tbb
+ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
+xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
+qt6-base-dev libqt6opengl6 libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
+liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 ```
 
 {% endcapture %}
@@ -376,23 +378,6 @@ liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 ```shell
 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata \
 git make cmake g++ gdb valgrind libcrypt-dev libexpat1-dev zlib1g zlib1g-dev \
-libmysqlclient-dev libsqlite3-dev python3-dev python3-venv ninja-build \
-libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxpm-dev libxft-dev \
-libxt-dev libxmu-dev libxrender-dev xvfb x11-xserver-utils \
-bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
-ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
-xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
-qt6-base-dev libqt6opengl6 libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
-liblsan0 libasan8 libubsan1 libtsan2 libtbb12
-```
-
-{% endcapture %}
-
-{% capture tab6 %}
-
-```shell
-DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata \
-git make cmake g++ gdb valgrind libcrypt-dev libexpat1-dev zlib1g zlib1g-dev \
 libmariadb-dev libsqlite3-dev python3-dev python3-venv ninja-build \
 libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxpm-dev libxft-dev \
 libxt-dev libxmu-dev libxrender-dev xvfb x11-xserver-utils \
@@ -405,7 +390,7 @@ liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 
 {% endcapture %}
 
-{% capture tab7 %}
+{% capture tab6 %}
 
 ```shell
 pacman-key --init && pacman-key --populate
@@ -420,7 +405,7 @@ xterm tigervnc openbox ttf-dejavu qt6-base qt6-svg root gcc-libs tbb
 
 {% endcapture %}
 
-{% capture tab8 %}
+{% capture tab7 %}
 
 ```shell
 brew install gnu-tar cmake mysql qt freeglut modules sqlite meson
@@ -430,30 +415,27 @@ brew install gnu-tar cmake mysql qt freeglut modules sqlite meson
 
 {% include tabs.html
 id="install_requirements"
-count=8
+count=7
 tab1_title="Fedora 44"
 tab1_content=tab1
 
-tab2_title="AlmaLinux 9"
+tab2_title="AlmaLinux 10"
 tab2_content=tab2
 
-tab3_title="AlmaLinux 10"
+tab3_title="Ubuntu 24.04"
 tab3_content=tab3
 
-tab4_title="Ubuntu 24.04"
+tab4_title="Ubuntu 26.04"
 tab4_content=tab4
 
-tab5_title="Ubuntu 26.04"
+tab5_title="Debian 13"
 tab5_content=tab5
 
-tab6_title="Debian 13"
+tab6_title="Arch Linux"
 tab6_content=tab6
 
-tab7_title="Arch Linux"
+tab7_title="MacOS"
 tab7_content=tab7
-
-tab8_title="MacOS"
-tab8_content=tab8
 %}
 
 <br/>
