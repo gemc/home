@@ -498,6 +498,56 @@ table.csv-preview td {
   text-align: center;
 }
 
+table.publications-table {
+  table-layout: fixed;
+  font-size: 0.92rem;
+  line-height: 1.35;
+}
+
+table.publications-table th,
+table.publications-table td {
+  vertical-align: top;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+table.publications-table td {
+  height: 3.9rem;
+}
+
+table.publications-table th:first-child,
+table.publications-table td:first-child,
+table.publications-table th:last-child,
+table.publications-table td:last-child {
+  width: 4.5rem;
+  white-space: nowrap;
+}
+
+table.publications-table th:nth-child(2),
+table.publications-table td:nth-child(2) {
+  width: 56%;
+}
+
+table.publications-table th:nth-child(3),
+table.publications-table td:nth-child(3) {
+  width: 8rem;
+}
+
+table.publications-table a {
+  display: inline;
+  line-height: inherit;
+  vertical-align: baseline;
+}
+
+table.publications-table td:nth-child(2) a {
+  display: -webkit-box;
+  max-height: 2.7em;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
 @media (max-width: 760px) {
   table {
     display: block;
@@ -520,6 +570,11 @@ table.csv-preview td {
   table.zebra.compact-table {
     width: max-content;
     min-width: 100%;
+  }
+
+  table.publications-table {
+    width: 100%;
+    min-width: 44rem;
   }
 }
 
