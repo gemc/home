@@ -2,6 +2,7 @@
 {% assign columns = include.columns | default: 1 | plus: 0 %}
 {% assign section_breaks = include.section_breaks | default: 1 | plus: 0 %}
 {% assign link_target = include.link_target | default: "_self" %}
+{% assign exclude_title = include.exclude_title %}
 {% assign owner_only_cats = site.notes_owner_only_categories %}
 
 <div class="directory-page directory-container">
@@ -17,6 +18,9 @@
 
 			<div class="directory-links" style="column-count: {{ columns }};">
 				{% for item in group.items %}
+					{% if exclude_title and item.title == exclude_title %}
+						{% continue %}
+					{% endif %}
 					{% assign href = item.link | default: item.link1 %}
 					<div class="directory-entry">
 						<a href="{{ href | escape }}"

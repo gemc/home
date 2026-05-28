@@ -7,7 +7,7 @@ development_tag: dev
 latest_tag: 0.2
 dev_tag: dev
 development_release_date: <small><time> → released nightly</time></small>
-latest_release_date: <small><time>→ released on 04/29/2026</time></small>
+latest_release_date: <small><time>→ released on 05/21/2026</time></small>
 repo_link: https://github.com/gemc/src
 release_notes: https://github.com/gemc/src/releases
 path_prefix: /path/to/gemc
@@ -29,11 +29,15 @@ See the [license conditions](/home/license/).
 
 <br/>
 
-> [!NOTE]
-> Use the most recent GEMC release to ensure you are taking advantage of
-> the latest bug fixes and new features. This also helps the developers to provide the best support.
 
-<br/><br/>
+Choose the installation path that matches what you need:
+
+- **Python API only:** install the PyPI `pygemc` package for geometry building, PyVista previews, and output analysis without the `gemc` executable.
+- **Native packages:** coming soon for Homebrew and Linux package managers, for a native `gemc` installation without managing a source build.
+- **Full local build:** build `gemc` from source for the Geant4 simulation executable and the bundled `pygemc` Python environment.
+- **Ready-to-run environment:** use Docker or Apptainer when you do not want to manage local Geant4 dependencies.
+
+<br/>
 
 ## Table of Contents
 
@@ -49,7 +53,6 @@ See the [license conditions](/home/license/).
 <br/><br/>
 
 ## Package Installation
-
 
 <br/>
 
@@ -85,18 +88,6 @@ For the full simulation application, use the source build or container options b
 
 <br/>
 
-### Coming Soon: Homebrew and RPM Packages
-
-Native package-manager support is planned but not yet available.
-
-- **Homebrew** packages are planned for macOS users who want command-line installation without managing a source build.
-- **RPM** packages are planned for Linux distributions and HPC environments where centrally managed packages are preferred.
-
-Until these packages are available, use the PyPI package for the Python API, containers for ready-to-run environments,
-or the source build for a full local GEMC installation.
-
-<br/><br/>
-
 ## Build and Install GEMC from Source
 
 Please see the [Software Prerequisites and Geant4 Installation](#software-prerequisites-and-geant4-installation)
@@ -106,16 +97,16 @@ in the appendix for the requirements.
 
 ### 1. Obtain the source
 
-For illustration, we will use  `{{ page.path_prefix }}` as the installation location, `{{ page.latest_tag }}`
-as the version to be installed, `source` as where to place the source code.
-Replace `{{ page.latest_tag }}` with `{{ page.dev_tag }}` if you want to install the development release.
-
-Create the paths and cd to the version directory:
+Set the versioned installation prefix once, so you can copy and paste the commands below. Change `gprefix`
+to the GEMC version and location you want to install.
 
 ```shell
-mkdir -p {{ page.path_prefix }}/{{ page.latest_tag }}/source
-cd {{ page.path_prefix }}/{{ page.latest_tag }}
+gprefix={{ page.path_prefix }}/{{ page.latest_tag }}
 ```
+
+The source code will be cloned into `$gprefix/source`, and GEMC will be installed into `$gprefix`.
+For the development release, set `gprefix={{ page.path_prefix }}/{{ page.dev_tag }}` and use the development tab.
+
 
 Download the code:
 
@@ -123,7 +114,8 @@ Download the code:
 Download the latest release:
 
 ```shell
-cd {{ page.path_prefix }}/{{ page.latest_tag }}
+mkdir -p "$gprefix"
+cd "$gprefix"
 git clone -c advice.detachedHead=false --recurse-submodules --branch {{ page.latest_tag }} {{ page.repo_link }} source
 ```
 
@@ -133,8 +125,9 @@ git clone -c advice.detachedHead=false --recurse-submodules --branch {{ page.lat
 At your own risk, clone the repository to get the development version:
 
 ```shell
-cd {{ page.path_prefix }}/{{ page.dev_tag }}
-git clone --depth=1 {{ page.repo_link }} source
+mkdir -p "$gprefix"
+cd "$gprefix"
+git clone --depth=1 --recurse-submodules {{ page.repo_link }} source
 ```
 
 {% endcapture %}
@@ -159,14 +152,14 @@ tab2_content=tab2
 
 ### 2. Compile and install GEMC
 
-The [meson](https://mesonbuild.com) build system is used to compile and install GEMC.
+The [Meson](https://mesonbuild.com) build system is used to compile and install GEMC.
 
 The **setup** phase will check for the required dependencies and fetch external libraries.
 Here we use a `build` directory inside `source`:
 
 ```shell
-cd {{ page.path_prefix }}/{{ page.latest_tag }}/source
-meson setup build --native-file=core.ini --prefix={{ page.path_prefix }}/{{ page.latest_tag }}
+cd "$gprefix/source"
+meson setup build --native-file=core.ini --prefix="$gprefix"
 ```
 
 The **compile** phase will build the code and external libraries. The **install** phase will
@@ -177,7 +170,7 @@ meson compile -C build
 meson install -C build
 ```
 
-Optionally, after installation, `meson test -v` will run several tests of various components of GEMC.
+Optionally, after installation, run `meson test -C build -v` to test the configured GEMC build.
 
 <br/>
 
@@ -187,7 +180,7 @@ Optionally, after installation, `meson test -v` will run several tests of variou
 - The setup option `-Di_test=true` will enable the GUI interfaces in the tests.
 - Use `-v` at build time for verbose output.
 - To wipe out the build directory and start over, use `rm -rf build` and then re-run setup.
-- Use `-jN` to set the number of threads during compilation
+- Use `-jN` to set the number of threads during compilation.
 
 <br/>
 
@@ -196,38 +189,29 @@ Optionally, after installation, `meson test -v` will run several tests of variou
 Add these lines to your shell configuration file (e.g. `~/.bashrc` or `~/.zshrc`):
 
 ```shell
-export GEMC_VERSION={{ page.latest_tag }}
-export PATH={{ page.path_prefix }}/$GEMC_VERSION/bin:{{ page.path_prefix }}/$GEMC_VERSION/python_env/bin:$PATH
+export gprefix={{ page.path_prefix }}/{{ page.latest_tag }}
+export PATH=$gprefix/bin:$gprefix/python_env/bin:$PATH
 ```
 
-`GEMC_VERSION` selects which installation to use. The second PATH entry adds the bundled Python
+The second PATH entry adds the bundled Python
 virtual environment so that `python3` resolves to the venv interpreter — making `import pygemc`
 available in your scripts without any activation step or separate `pip install`. It also exposes the
 `gemc-analyzer` and `gemc-system-template` command-line tools.
 
-
-<br/>
-
-## Pyvista
-
-[PyVista](https://pyvista.org) is bundled with the GEMC Python environment and installed
-automatically during `meson install`. No additional steps are needed.
-
-Pass `-pv` (static pyvista window) or `-pvb` (interactive Qt GUI) to any geometry builder script:
+Check the installed simulator and Python tools with:
 
 ```shell
-python3 my_detector.py -pv
+gemc -v
+gemc-system-template --help
+gemc-analyzer --help
 ```
 
-> [!NOTE]
-> On headless servers, the Qt-based viewer (`-pvb`) requires a display. Use `-pv` or run
-> with a virtual framebuffer. The geometry builder scripts work normally without any display.
 
 <br/><br/>
 
-## GEMC using Docker
+## Using Docker
 
-You can use docker to run GEMC. The available images are listed below.
+You can use Docker to run GEMC. The available images are listed below.
 Both `arm64` and `amd64` are supported (except on Arch Linux images which are `amd64` only [^1]).
 
 {:.zebra}
@@ -270,20 +254,17 @@ GEO_FLAGS=(-e GEOMETRY=1920x1200)
 docker run -it --rm -v {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} $VPORTS $VNC_BIND $VNC_PASS $GEO_FLAGS {{ site.data.docker.images[0].tag }}
 ```
 
-Then point your browser to [` http://localhost:6080/vnc.html`](  http://localhost:6080/vnc.html ) to access the
+Then point your browser to [`http://localhost:6080/vnc.html`](http://localhost:6080/vnc.html) to access the
 graphical interface.
 
 <br/>
 
 
 
+## Using Apptainer
 
-<br/><br/>
-
-## GEMC using Apptainer
-
-Linux hosts can use `apptainer` (formerly `singularity`) to run docker containers.
-You can use it with the docker images above. It runs similarly to docker - but the entrypoint needs to be
+Linux hosts can use `apptainer` (formerly `singularity`) to run Docker containers.
+You can use it with the Docker images above. It runs similarly to Docker, but the entrypoint needs to be
 sourced explicitly.
 
 ```

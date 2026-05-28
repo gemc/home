@@ -15,7 +15,7 @@ gparticlefile:
     filename: events.lund
 ```
 
-The `format` value is case-insensitive (`lund`, `Lund`, and `LUND` are all valid).
+The %%format%% value is case-insensitive (%%lund%%, %%Lund%%, and %%LUND%% are all valid).
 
 <br/>
 
@@ -42,7 +42,7 @@ In single-threaded mode, LUND event 0 is used for GEMC event 0, LUND event 1 for
 In multi-threaded mode, Geant4 distributes event IDs to worker threads; each LUND event is still assigned
 to exactly one GEMC event.
 
-If `gparticle` is also present, each GEMC event receives the `gparticle` particles
+If %%gparticle%% is also present, each GEMC event receives the %%gparticle%% particles
 **plus** the matching LUND event record.
 
 <br/>

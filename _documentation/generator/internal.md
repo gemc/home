@@ -9,14 +9,14 @@ description: GEMC gparticle and gparticlefile generator options
 
 The internal GEMC generator is configured with two cumulative options.
 
-`gparticle` defines inline particle sources. Each entry adds one particle (or a group of
+%%gparticle%% defines inline particle sources. Each entry adds one particle (or a group of
 identical copies) to every event. Multiple entries can be combined in the same list.
 
-`gparticlefile` loads event records from a file. The built-in reader supports the
+%%gparticlefile%% loads event records from a file. The built-in reader supports the
 [LUND format](lund_format).
 
-When both options are present, every generated event receives all particles from `gparticle`
-**plus** all particles from the matching event record in each `gparticlefile` source.
+When both options are present, every generated event receives all particles from %%gparticle%%
+**plus** all particles from the matching event record in each %%gparticlefile%% source.
 
 Both options can be set from the YAML steering card or the command line:
 
@@ -35,44 +35,44 @@ gemc -gparticle="[{name: e-, p: 2300, theta: 23.0}]"
 
 <br/>
 
-## `gparticle`
+## %%gparticle%%
 
 ### Fields
 
-`name` and `p` are required. All other fields are optional.
+%%name%% and %%p%% are required. All other fields are optional.
 
 | Field | Default | Description |
 |-------|---------|-------------|
-| `name` | required | Geant4 particle name, e.g. `e-`, `proton`, `gamma`, `pi+` |
-| `p` | required | Nominal momentum magnitude, interpreted with `punit` |
-| `multiplicity` | `1` | Number of copies generated per event; each copy is independently randomized |
-| `punit` | `MeV` | Unit for `p` and `delta_p`. Use `MeV` or `GeV` |
-| `delta_p` | `0` | Momentum spread around `p` |
-| `randomMomentumModel` | `uniform` | `uniform`: flat in `[p − delta_p, p + delta_p]`; `gaussian`: Gaussian with sigma `delta_p` |
-| `theta` | `0` | Nominal polar angle (from the z-axis) |
-| `delta_theta` | `0` | Polar-angle spread around `theta` |
-| `randomThetaModel` | `uniform` | `uniform`: flat in `[θ − Δθ, θ + Δθ]`; `gaussian`: Gaussian sigma `delta_theta`; `cosine`: cos(θ) uniform, with rejection sampling within the window (see note below) |
-| `phi` | `0` | Nominal azimuthal angle |
-| `delta_phi` | `0` | Azimuthal-angle spread. **Always applied with the uniform model** — there is no `randomPhiModel` |
-| `aunit` | `deg` | Unit for `theta`, `delta_theta`, `phi`, `delta_phi`. Use `deg` or `rad` |
-| `vx` | `0` | Nominal vertex x |
-| `vy` | `0` | Nominal vertex y |
-| `vz` | `0` | Nominal vertex z |
-| `delta_vx` | `0` | Vertex x spread |
-| `delta_vy` | `0` | Vertex y spread |
-| `delta_vz` | `0` | Vertex z spread |
-| `vunit` | `cm` | Unit for vertex positions and spreads |
-| `randomVertexModel` | `uniform` | `uniform`: each component flat in `[v − δv, v + δv]`; `gaussian`: Gaussian sigma per component; `sphere`: uniform sampling within a spherical volume (see note below) |
+| %%name%% | required | Geant4 particle name, e.g. %%e-%%, %%proton%%, %%gamma%%, %%pi+%% |
+| %%p%% | required | Nominal momentum magnitude, interpreted with %%punit%% |
+| %%multiplicity%% | %%1%% | Number of copies generated per event; each copy is independently randomized |
+| %%punit%% | %%MeV%% | Unit for %%p%% and %%delta_p%%. Use %%MeV%% or %%GeV%% |
+| %%delta_p%% | %%0%% | Momentum spread around %%p%% |
+| %%randomMomentumModel%% | %%uniform%% | %%uniform%%: flat in %%[p - delta_p, p + delta_p]%%; %%gaussian%%: Gaussian with sigma %%delta_p%% |
+| %%theta%% | %%0%% | Nominal polar angle (from the z-axis) |
+| %%delta_theta%% | %%0%% | Polar-angle spread around %%theta%% |
+| %%randomThetaModel%% | %%uniform%% | %%uniform%%: flat in %%[theta - delta_theta, theta + delta_theta]%%; %%gaussian%%: Gaussian sigma %%delta_theta%%; %%cosine%%: cos(theta) uniform, with rejection sampling within the window (see note below) |
+| %%phi%% | %%0%% | Nominal azimuthal angle |
+| %%delta_phi%% | %%0%% | Azimuthal-angle spread. **Always applied with the uniform model**; there is no %%randomPhiModel%% |
+| %%aunit%% | %%deg%% | Unit for %%theta%%, %%delta_theta%%, %%phi%%, and %%delta_phi%%. Use %%deg%% or %%rad%% |
+| %%vx%% | %%0%% | Nominal vertex x |
+| %%vy%% | %%0%% | Nominal vertex y |
+| %%vz%% | %%0%% | Nominal vertex z |
+| %%delta_vx%% | %%0%% | Vertex x spread |
+| %%delta_vy%% | %%0%% | Vertex y spread |
+| %%delta_vz%% | %%0%% | Vertex z spread |
+| %%vunit%% | %%cm%% | Unit for vertex positions and spreads |
+| %%randomVertexModel%% | %%uniform%% | %%uniform%%: each component flat in %%[v - delta_v, v + delta_v]%%; %%gaussian%%: Gaussian sigma per component; %%sphere%%: uniform sampling within a spherical volume (see note below) |
 
 > [!NOTE]
-> **cosine theta model** — samples θ such that cos(θ) is uniform using rejection sampling
-> within `[theta − delta_theta, theta + delta_theta]`. For narrow windows the acceptance rate
-> can be low. This model is most efficient when `delta_theta` covers a large fraction of
-> the full range `[0, 180°]`.
+> **cosine theta model**: samples theta such that cos(theta) is uniform using rejection sampling
+> within %%[theta - delta_theta, theta + delta_theta]%%. For narrow windows the acceptance rate
+> can be low. This model is most efficient when %%delta_theta%% covers a large fraction of
+> the full range %%[0, 180 deg]%%.
 
 > [!NOTE]
-> **sphere vertex model** — generates vertices uniformly within a spherical volume centred on
-> the nominal vertex. Set `delta_vx`, `delta_vy`, `delta_vz` all equal to the desired sphere
+> **sphere vertex model**: generates vertices uniformly within a spherical volume centered on
+> the nominal vertex. Set %%delta_vx%%, %%delta_vy%%, and %%delta_vz%% all equal to the desired sphere
 > radius. Using different values for the three components changes the effective sampling sphere
 > size.
 

@@ -8,7 +8,7 @@ permalink: /documentation/quickstart/
 
 This quickstart walks through a minimal but complete GEMC simulation:
 
-1. Generate a geometry system with a target and a flux detector using `system_template.py`.
+1. Generate a geometry system with a target and a %%flux%% detector using `system_template.py`.
 2. Build the geometry database with Python.
 3. Shoot protons at the target and count the tracks crossing the detector.
 
@@ -37,7 +37,7 @@ Writing files for experiment &gt;examples&lt;, system template &gt;counter&lt; u
     * default
 </pre>
 
-The generated files define a geometry with a methane-gas target and a `flux` detector,
+The generated files define a geometry with a methane-gas target and a %%flux%% detector,
 and include a YAML steering card that shoots protons at the target.
 
 To see all available options:
@@ -80,7 +80,7 @@ The script creates `gemc.db` in the current directory and reports what it stored
 
 <iframe
   src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/documentation/counter.vtksz"
-  title="Interactive VTK.js view of the cpunter geometry"
+  title="Interactive VTK.js view of the counter geometry"
   width="100%"
   height="620"
   style="border:1px solid #d0d7de; border-radius:1px;"
@@ -123,7 +123,7 @@ Run 10,000 events to get good statistics:
 gemc counter.yaml -n=10000
 ```
 
-Plot the digitized `totEdep` variable — the total energy deposited in each flux hit:
+Plot the digitized %%totEdep%% variable: the total energy deposited in each %%flux%% hit.
 
 ```shell
 gemc-analyzer counter_t0_digitized.csv totEdep --kind csv --bins 50
@@ -139,8 +139,8 @@ caption="Total energy deposited in the flux detector for 10,000 generated proton
 
 ## Output
 
-The YAML steering card writes two output formats: `csv` and `json`. Output filenames include
-`_t<T>` where `T` is the thread number, e.g. `counter_t0_digitized.csv` and `counter_t0.json`.
+The YAML steering card writes two output formats: %%csv%% and %%json%%. Output filenames include
+%%_t<T>%%, where %%T%% is the thread number, for example %%counter_t0_digitized.csv%% and %%counter_t0.json%%.
 
 The CSV format produces several files per thread:
 
@@ -256,14 +256,14 @@ define_materials(cfg)
 build_counter(cfg)
 ```
 
-`autogeometry` declares the `counter` system inside the `examples` experiment and returns a
-configuration parameters that are passed to the builders.
+`autogeometry` declares the %%counter%% system inside the %%examples%% experiment and returns the
+configuration parameters passed to the builders.
 
 <br/>
 
 ## Defining the geometry: `geometry.py`
 
-`build_counter` creates two volumes: a cylindrical methane-gas target and a rectangular flux detector:
+`build_counter` creates two volumes: a cylindrical methane-gas target and a rectangular %%flux%% detector:
 
 ```python
 def build_flux_box(configuration):
@@ -287,7 +287,7 @@ def build_target(configuration):
 ```
 
 `make_box` and `make_tube` are helper methods that set the solid type and parameters in one call.
-The flux box is assigned the `flux` digitization, which records a hit for every track that crosses it.
+The %%flux_box%% volume is assigned the %%flux%% digitization, which records a hit for every track that crosses it.
 
 No Geant4 C++ objects (`G4VSolid`, `G4LogicalVolume`, `G4PVPlacement`, etc.) appear in the script.
 GEMC constructs them internally from the database entries written by `publish`.
@@ -296,7 +296,7 @@ GEMC constructs them internally from the database entries written by `publish`.
 
 ## Defining the material: `materials.py`
 
-The target uses a custom `methaneGas` material defined by atom count:
+The target uses a custom %%methaneGas%% material defined by atom count:
 
 ```python
 gmaterial = GMaterial("methaneGas")
@@ -345,7 +345,7 @@ root: G4Box, 15*cm, 15*cm, 15*cm, G4_AIR   # world volume
 ```
 
 Remove `nthreads: 1` to use all available cores; each thread writes its own output file.
-Add a `gstreamer` entry with `format: root` for ROOT output.
+Add a %%gstreamer%% entry with %%format: root%% for ROOT output.
 
 The %%root%% entry defines the Geant4 world volume inline in the steering card.
 %%root%% could also be defined in the geometry scripts.

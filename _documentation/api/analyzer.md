@@ -6,7 +6,7 @@ title: Analyzer
 # GEMC Analyzer
 
 `analyzer` is a small Python package for reading GEMC output files and plotting
-variables by name. It currently focuses on CSV and ROOT output from `gstreamer`,
+variables by name. It currently focuses on CSV and ROOT output from %%gstreamer%%,
 with a reader structure that can be extended to other formats later.
 
 ## Dependencies
@@ -24,7 +24,7 @@ pip install uproot
 ROOT prerequisites:
 
 - GEMC must be built with ROOT support and the ROOT streamer plugin available.
-- The run must use `gstreamer` format `root`.
+- The run must use %%gstreamer%% format %%root%%.
 - Reading ROOT files from Python does not require importing C++ ROOT; the analyzer uses `uproot`.
 
 The dependency-free SVG helper in `pygemc.analyzer.svg_plot` only uses the Python standard library. It is useful on minimal systems where `pandas`, `numpy`, and `matplotlib` are not installed.
@@ -38,7 +38,7 @@ The CSV streamer writes two flattened files per worker thread:
 <rootname>_t<thread>_digitized.csv
 ```
 
-For one thread and `filename: b2`, the files are typically:
+For one thread and %%filename: b2%%, the files are typically:
 
 ```text
 b2_t0_true_info.csv
@@ -69,11 +69,11 @@ The true-info output includes tracking columns like:
 processName, avgTime, avgx, avgy, avgz, hitn, pid, tid, mtid, vx, vy, vz, mvx, mvy, mvz, totalEDeposited
 ```
 
-When the matching digitized CSV is available, the analyzer also adds `E` to true-info tables by matching rows on event, detector, hit, PID, and track ID. In that case `E` is the track total energy, while `totalEDeposited` remains the deposited energy.
+When the matching digitized CSV is available, the analyzer also adds %%E%% to true-info tables by matching rows on event, detector, hit, PID, and track ID. In that case %%E%% is the track total energy, while %%totalEDeposited%% remains the deposited energy.
 
-The `vx`, `vy`, and `vz` columns are the current track vertex coordinates. The `mvx`, `mvy`, and `mvz` columns are the mother-track vertex coordinates when the mother track was available to GEMC hit processing; otherwise they use the GEMC uninitialized numeric sentinel. The `mtid` column stores the mother track id.
+The %%vx%%, %%vy%%, and %%vz%% columns are the current track vertex coordinates. The %%mvx%%, %%mvy%%, and %%mvz%% columns are the mother-track vertex coordinates when the mother track was available to GEMC hit processing; otherwise they use the GEMC uninitialized numeric sentinel. The %%mtid%% column stores the mother track ID.
 
-The ROOT streamer writes one ROOT file per worker thread. For one thread and `filename: b2`, the file is typically:
+The ROOT streamer writes one ROOT file per worker thread. For one thread and %%filename: b2%%, the file is typically:
 
 ```text
 b2_t0.root
@@ -111,7 +111,7 @@ output = read_output("b2_t0", kind="csv")
 print(output.summary())
 ```
 
-Plot `totEdep` grouped by `pid`:
+Plot %%totEdep%% grouped by %%pid%%:
 
 ```python
 from pygemc import plot_variable, read_output
@@ -295,7 +295,7 @@ Expected columns include:
 evn, timestamp, thread_id, detector, hitn, pid, tid, E, time, totEdep
 ```
 
-Create the `totEdep` plot with the main analyzer API:
+Create the %%totEdep%% plot with the main analyzer API:
 
 ```sh
 gemc-analyzer digitized.csv totEdep --kind csv --save b2_totEdep.png

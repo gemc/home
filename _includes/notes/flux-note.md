@@ -1,8 +1,8 @@
 <blockquote class="doc-important" markdown="1">
 
-**flux**
+**`flux`**
 
-The `flux` digitization collects all `G4Steps` into hits by using the track id: all steps within a
+The `flux` digitization collects all `G4Step` objects into hits by using the track ID: all steps within a
 sensitive element produced by the same track define a single hit. Different tracks' steps in the
 same sensitive element are collected in separate hits. 
 This digitization can be used to count and analyze the tracks passing through a volume.
@@ -20,14 +20,14 @@ Track 3 creates one hit: < cell2, hit #3 >.<br/>
 "
 %}
 
-The **DIGITIZED VARIABLES** below, resulting from the flux digitization, are stored in the output.
+The **digitized variables** below, resulting from the `flux` digitization, are stored in the output.
 
-- the sensitive element `identifier`, assigned by the user. For example
-  - sector
-  - layer
+- the sensitive element `identifier`, assigned by the user. For example:
+  - `sector`
+  - `layer`
 - `hitn`: hit number
-- `pid`: particle id
-- `tid`: track id
+- `pid`: particle ID
+- `tid`: track ID
 - `E`: track energy
 - `time`: time of the hit
 - `totEdep`: total energy deposited by the track

@@ -2,7 +2,7 @@
 layout: default
 title: "Simple flux"
 ---
-{% include directory.html data=site.data.examples columns=5 section_breaks=4 %}
+{% include directory.html data=site.data.examples columns=5 section_breaks=4 exclude_title="Quickstart" %}
 
 
 
@@ -11,7 +11,7 @@ title: "Simple flux"
 
 <br/>
 
-This example uses the **flux digitization** to save true and digitized information in the output.
+This example uses the %%flux%% digitization to save true and digitized information in the output.
 
 {% assign example = site.data.examples | where: "title", "Simple Flux" | first %}
 
@@ -22,7 +22,7 @@ You can run this example in your browser: [![{{ example.title }}]({{ example.bad
 ## Quickstart
 
 Copy the example to your current directory.
-To create the geometry, run 10 events, and produce `ROOT` and `CSV` output files:
+To create the geometry, run 10 events, and produce ROOT and CSV output files:
 
 ```shell
 cp -r $GEMC_HOME/examples/basic/simple_flux .
@@ -39,8 +39,8 @@ The geometry, shown below, is defined in `simple_flux.py`.
 
 The world (a box named %%root%%) contains:
 
-- %%target%%, a cylindrical liquid hydrogen target (`G4_lH2`)
-- %%FluxPlane%%, a box made of air (`G4_AIR`) and assigned the `flux` digitization
+- %%target%%, a cylindrical liquid hydrogen target (%%G4_lH2%%)
+- %%FluxPlane%%, a box made of air (%%G4_AIR%%) and assigned the %%flux%% digitization
 
 
 {% include figure.html
@@ -93,7 +93,7 @@ gparticle:
 
 ## Digitization
 
-The %%FluxPlane%% is associated with the `flux` digitization (one of the available GEMC pre-built routines)
+The %%FluxPlane%% is associated with the %%flux%% digitization (one of the available GEMC prebuilt routines)
 in `simple_flux.py`, with identifier %%flux_plane = 1%%.
 
 ```python
@@ -105,7 +105,7 @@ gvolume.set_identifier("flux_plane", 1)
 
 {% include notes/flux-note.md %}
 
-In this case, the `identifier` contains one name: **flux_plane**.
+In this case, the %%identifier%% contains one name: %%flux_plane%%.
 
 In addition to the digitized variables, the true information is saved on the output stream.
 
@@ -140,8 +140,8 @@ Modify `simple_flux.yaml` as needed, in particular to add particles, control the
 
 ## Output
 
-The `gstreamer` option is used to select the name and format of the output. Two simultaneous streams are selected, 
-`ROOT` and `CSV`:
+The %%gstreamer%% option selects the output name and format. Two simultaneous streams are selected:
+ROOT and CSV.
 
 ```yaml
 gstreamer:
@@ -151,8 +151,8 @@ gstreamer:
     filename: simple_flux
 ```
 
-Because `flux` is a per-event digitization, GEMC will produce one output file per thread.
-For `ROOT` files, you can use `hadd` to merge the files.
+Because %%flux%% is a per-event digitization, GEMC will produce one output file per thread.
+For ROOT files, you can use `hadd` to merge the files.
 
 
 {% include notes/output-note.md %}

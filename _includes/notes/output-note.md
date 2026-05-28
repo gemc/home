@@ -2,7 +2,7 @@
 
 **gstreamer**
 
-The `gstreamer` option allows select the name and format of the output.
+The `gstreamer` option selects the output name and format.
 Run `gemc help gstreamer` to check its documentation:
 	
 	-gstreamer=<sequence> ......: define a gstreamer output
@@ -42,4 +42,3 @@ Run `gemc help gstreamer` to check its documentation:
 	  - run-based digitization (like <dosimeter>) will have one output file
 
 </blockquote>
-

@@ -2,7 +2,7 @@
 layout: default
 title: "Materials"
 ---
-{% include directory.html data=site.data.examples columns=5 section_breaks=4 %}
+{% include directory.html data=site.data.examples columns=5 section_breaks=4 exclude_title="Quickstart" %}
 
 
 
@@ -41,11 +41,11 @@ They differ only in color and material definition:
 
 | Tube | Volume name | Material | Definition method |
 |------|-------------|----------|-------------------|
-| 1 | %%tube_carbon%% | `G4_C` | Geant4 built-in (graphite) |
-| 2 | %%tube_water%% | `custom_water` | Molecular composition (H₂O) |
-| 3 | %%tube_mixture%% | `air_water_mixture` | Fractional masses (80% air, 20% water) |
-| 4 | %%tube_scintillator%% | `my_scintillator` | NaI-like with scintillation properties |
-| 5 | %%tube_optical%% | `optical_glass` | SiO₂ with index of refraction |
+| 1 | %%tube_carbon%% | %%G4_C%% | Geant4 built-in (graphite) |
+| 2 | %%tube_water%% | %%custom_water%% | Molecular composition (H2O) |
+| 3 | %%tube_mixture%% | %%air_water_mixture%% | Fractional masses (80% air, 20% water) |
+| 4 | %%tube_scintillator%% | %%my_scintillator%% | NaI-like with scintillation properties |
+| 5 | %%tube_optical%% | %%optical_glass%% | SiO2 with index of refraction |
 
 
 Interactive viewer:

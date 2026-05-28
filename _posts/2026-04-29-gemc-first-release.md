@@ -18,9 +18,9 @@ The code is stable enough at this point to call this a release.
 The core of GEMC is now complete and includes:
 
 - Python API to create geometry and materials
-- Support for ASCII, SQLite, GDML, CAD meshes volume imports
+- Support for ASCII, SQLite, GDML, and CAD mesh volume imports
 - Custom extensibility of digitization, output formats, electromagnetic fields 
-- Built-in dosimeter, flux, particle_counter 
+- Built-in %%dosimeter%%, %%flux%%, and %%particle_counter%%
 - Built-in ASCII, CSV, JSON, ROOT output 
 - PyVista 3D visualization
 

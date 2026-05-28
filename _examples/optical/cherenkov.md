@@ -2,7 +2,7 @@
 layout: default
 title: "Cherenkov"
 ---
-{% include directory.html data=site.data.examples columns=5 section_breaks=4 %}
+{% include directory.html data=site.data.examples columns=5 section_breaks=4 exclude_title="Quickstart" %}
 
 [default-img]: /home/assets/images/examples/cherenkov/default.png
 [CO2-img]: /home/assets/images/examples/cherenkov/co2.png
@@ -28,7 +28,7 @@ You can run this example in your browser: [![{{ example.title }}]({{ example.bad
 ## Quickstart
 
 Copy the example to your current directory.
-To create the geometry, run 10 events, and produce `ROOT` and `CSV` output files:
+To create the geometry, run 10 events, and produce ROOT and CSV output files:
 
 ```shell
 cp -r $GEMC_HOME/examples/optical/cherenkov .
@@ -41,20 +41,20 @@ gemc cherenkov.yaml -n=10
 
 ## Geometry
 
-The geometry, shown below, is defined in `cherenkov.py`. It is produced in three variations: `default`, `CO2`, and `C4F10`.
+The geometry, shown below, is defined in `cherenkov.py`. It is produced in three variations: %%default%%, %%CO2%%, and %%C4F10%%.
 
 The world (a box named %%root%%) contains a %%radiator%% box. The radiator material depends on the selected variation:
 
 {:.zebra .compact-table}
 
-| variation | material                   | color | 
+| variation | material                   | color |
 |-----------|----------------------------|-------|
-| default   | Carbon tetrafluoride `CF4` | red   |
-| CO2       | Carbon dioxide `CO2`       | blue  |
-| C4F10     | Perfluorobutane `C4F10`    | green |
+| %%default%% | Carbon tetrafluoride %%CF4%% | red   |
+| %%CO2%%     | Carbon dioxide %%CO2%%       | blue  |
+| %%C4F10%%   | Perfluorobutane %%C4F10%%    | green |
 
 
-- a `flux` detector composed of four boxes (%%detector_left%%, %%detector_right%%, %%detector_top%%, and %%detector_bottom%%). This leaves a small hole in the center for the beam.
+- a %%flux%% detector composed of four boxes (%%detector_left%%, %%detector_right%%, %%detector_top%%, and %%detector_bottom%%). This leaves a small hole in the center for the beam.
 
 
 {% include figure.html
@@ -101,10 +101,10 @@ gparticle:
 
 ## Digitization
 
-The detector volumes are associated with the `flux` digitization (one of the available GEMC pre-built routines)
+The detector volumes are associated with the %%flux%% digitization (one of the available GEMC prebuilt routines)
 in `cherenkov.py`.
 
-The identifier is used to distinguish the different detector boxes:
+The %%identifier%% is used to distinguish the different detector boxes:
 
 ```python
 backplate.digitization = "flux"
@@ -133,14 +133,14 @@ gemc cherenkov.yaml -gui
 
 
 Modify `cherenkov.yaml` as needed, in particular to add particles, control the number of threads, or change the output.
-Because this example uses `flux` digitization for optical photons, `recordZeroEdep` must be set to `true`.
-Optical photons deposit zero energy, and the `flux` digitization does not record zero-energy hits by default.
+Because this example uses %%flux%% digitization for optical photons, %%recordZeroEdep%% must be set to %%true%%.
+Optical photons deposit zero energy, and the %%flux%% digitization does not record zero-energy hits by default.
 
 <br/>
 
 ### Variations
 
-Within the YAML file, the variation is set to `CO2`. You can replace it with `default` or `C4F10`
+Within the YAML file, the variation is set to %%CO2%%. You can replace it with %%default%% or %%C4F10%%
 to change the material. For example:
 
 ```yaml
@@ -150,7 +150,7 @@ gsystem:
 ```
 
 Different radiator materials produce different photon yields and angles, as shown below.
-Use the variation name in the `gstreamer` filename when you want separate output files for each variation.
+Use the variation name in the %%gstreamer%% filename when you want separate output files for each variation.
 
 
 <br/>
@@ -160,15 +160,15 @@ Use the variation name in the `gstreamer` filename when you want separate output
 | ![defaulty-img] | ![CO2y-img] | ![C4F10y-img] |
 
 <p class="image-caption">
-  Left: default (<code>CF4</code>) radiator, Center: <code>CO2</code>, Right: <code>C4F10</code>.
+  Left: default (<span class="gstring">CF4</span>) radiator, Center: <span class="gstring">CO2</span>, Right: <span class="gstring">C4F10</span>.
 </p>
 
 <br/>
 
 ## Output
 
-The `gstreamer` option is used to select the name and format of the output. Two simultaneous streams are selected, 
-`CSV` and `ROOT`:
+The %%gstreamer%% option selects the output name and format. Two simultaneous streams are selected:
+CSV and ROOT.
 
 ```yaml
 gstreamer:
@@ -178,8 +178,8 @@ gstreamer:
     filename: cherenkov
 ```
 
-Because `flux` is a per-event digitization, GEMC will produce one output file per thread.
-For `ROOT` files, you can use `hadd` to merge the files.
+Because %%flux%% is a per-event digitization, GEMC will produce one output file per thread.
+For ROOT files, you can use `hadd` to merge the files.
 
 {% include notes/output-note.md %}
 

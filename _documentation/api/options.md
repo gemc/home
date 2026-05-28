@@ -75,7 +75,7 @@ Each run writes the resolved configuration to:
 <executable>.<conf_yaml>.yaml
 ```
 
-The default `conf_yaml` value is `saved_configuration`, so a `gemc` run normally
+The default %%conf_yaml%% value is %%saved_configuration%%, so a `gemc` run normally
 writes:
 
 ```text
@@ -127,8 +127,8 @@ gemc -gstreamer="[{format: root, filename: out}, {format: csv, filename: out}]"
 ```
 
 Some structured options require mandatory keys. Optional keys are filled from
-defaults. For example, `gparticle` requires `name` and `p`; fields such as
-`theta`, `phi`, `multiplicity`, and units have defaults.
+defaults. For example, %%gparticle%% requires %%name%% and %%p%%; fields such as
+%%theta%%, %%phi%%, %%multiplicity%%, and units have defaults.
 
 ## Dot Notation
 
@@ -276,7 +276,7 @@ definition from YAML unchanged:
 gemc run.yaml -n=10000 -runno=22
 ```
 
-This command replaces the `gparticle` list from YAML:
+This command replaces the %%gparticle%% list from YAML:
 
 ```sh
 gemc run.yaml -gparticle="[{name: proton, p: 1200, theta: 14}]"

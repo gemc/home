@@ -8,7 +8,7 @@ description: Create materials
 # Materials
 
 GEMC supports four ways to assign a material to a volume: referencing a Geant4 built-in,
-referencing a GEMC pre-built special material, composing by atom count, or composing by
+referencing a GEMC prebuilt special material, composing by atom count, or composing by
 fractional mass. Optical properties can be attached to any custom material.
 
 All custom materials are created with the `GMaterial` class.
@@ -38,7 +38,7 @@ gvolume.material = "G4_PLASTIC_SC_VINYLTOLUENE"
 
 <br/>
 
-## GEMC pre-built special materials
+## GEMC prebuilt special materials
 
 GEMC defines a small set of isotopically pure materials that are not in the NIST database.
 These are built automatically at startup and can be used like any Geant4 material:
@@ -122,7 +122,7 @@ mixture.addMaterialWithFractionalMass("G4_WATER", 0.20)
 mixture.publish(cfg)
 ```
 
-Component names may be Geant4 built-ins (`G4_*`), GEMC pre-built specials, or the names of custom
+Component names may be Geant4 built-ins (%%G4_*%%), GEMC prebuilt specials, or the names of custom
 materials that have already been published.
 
 ```python
