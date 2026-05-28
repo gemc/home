@@ -37,13 +37,63 @@ See the [license conditions](/home/license/).
 
 ## Table of Contents
 
-- [Build and Install GEMC from source code](#build-and-install-gemc-from-source)
-- [GEMC using Docker](#gemc-using-docker)
-- [GEMC using Apptainer](#gemc-using-apptainer)
+- [Package Installation](#package-installation)
+- [Build source code](#build-and-install-gemc-from-source)
+- [Using Docker](#gemc-using-docker)
+- [Using Apptainer](#gemc-using-apptainer)
 
 **Appendix**:
 - [Software Prerequisites and Geant4 Installation](#software-prerequisites-and-geant4-installation)
 - [Supported and tested platforms](#supported-and-tested-platforms)
+
+<br/><br/>
+
+## Package Installation
+
+
+<br/>
+
+### `pygemc` Python Package
+
+
+
+`pygemc` is available from [PyPI](https://pypi.org/project/pygemc/).
+Use a virtual environment for direct `pip` installs:
+
+```shell
+python3 -m venv ~/venv/pygemc
+source ~/venv/pygemc/bin/activate
+python -m pip install --upgrade pip
+python -m pip install pygemc
+```
+
+To update an existing installation:
+
+```shell
+python -m pip install --upgrade pygemc
+```
+
+The optional ROOT-file analysis dependencies can be installed with:
+
+```shell
+python -m pip install "pygemc[root]"
+```
+
+[PyPI](https://pypi.org/project/pygemc/) does not install the `gemc` executable but can be used to 
+create and visualize geometry or analyze results. 
+For the full simulation application, use the source build or container options below.
+
+<br/>
+
+### Coming Soon: Homebrew and RPM Packages
+
+Native package-manager support is planned but not yet available.
+
+- **Homebrew** packages are planned for macOS users who want command-line installation without managing a source build.
+- **RPM** packages are planned for Linux distributions and HPC environments where centrally managed packages are preferred.
+
+Until these packages are available, use the PyPI package for the Python API, containers for ready-to-run environments,
+or the source build for a full local GEMC installation.
 
 <br/><br/>
 
@@ -467,4 +517,3 @@ tab7_content=tab7
 <br/>
 <br/>
 <br/>
-
