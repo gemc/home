@@ -31,6 +31,18 @@ layout: default
 
 [PyPI-badge]: https://img.shields.io/pypi/v/pygemc.svg?cacheSeconds=300
 
+[PyGemc-Nightly]: https://github.com/gemc/pygemc/actions/workflows/dev_release.yml
+
+[PyGemc-Nightly-badge]: https://github.com/gemc/pygemc/actions/workflows/dev_release.yml/badge.svg
+
+[PyGemc-Publish]: https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml
+
+[PyGemc-Publish-badge]: https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml/badge.svg
+
+[PyGemc-Tests]: https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml
+
+[PyGemc-Tests-badge]: https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml/badge.svg
+
 
 {% include gemc-logo.svg %}
 
@@ -200,7 +212,8 @@ and streams the output data (Steps 2–5).
 
 A detector can be reused across experiments, with configuration changes such as component shifts,
 material changes, or volume additions and removals.
-GEMC supports these geometry versions using %%variation%% strings and/or %%run%% numbers to adapt to different simulation
+GEMC supports these geometry versions using %%variation%% strings and/or %%run%% numbers to adapt to different
+simulation
 setups.
 
 {% include figure.html
@@ -251,15 +264,25 @@ with a variation string or run number in the configuration file or command-line 
 GEMC is built, tested, and deployed as Docker images by GitHub CI on several platforms and on both ARM64 and AMD64
 architectures.
 
+**gemc**
+
 {:.zebra}
 
-| Deployment and Testing | [![CI][CI-badge]][CI]                |
-| Doxygen | [![Docs][Docs-badge]][Docs]          |
-| Nightly Release | [![Nightly][Nightly-badge]][Nightly] |
-| Homepage | [![Site][Site-badge]][Site]          |
-| Sanitizer | [![Sanitize][Sanitize-badge]][Sanitize]          |
-| CodeQL | [![CodeQL][CodeQL-badge]][CodeQL]          |
-| pygemc on PyPI | [![pygemc PyPI][PyPI-badge]][PyPI] |
+| Deployment and Testing | [![CI][CI-badge]][CI]                             |
+| Doxygen                | [![Docs][Docs-badge]][Docs]                       |
+| Nightly Release        | [![Nightly][Nightly-badge]][Nightly]              |
+| Homepage               | [![Site][Site-badge]][Site]                       |
+| Sanitizer              | [![Sanitize][Sanitize-badge]][Sanitize]           |
+| CodeQL                 | [![CodeQL][CodeQL-badge]][CodeQL]                 |
+
+**pygemc**
+
+{:.zebra}
+
+| Nightly Dev Release    | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
+| Publish to PyPI        | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
+| Tests                  | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]              |
+| on PyPI                | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
 
 <br/><br/>
 
