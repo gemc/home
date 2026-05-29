@@ -304,7 +304,7 @@ Bibitem:
 
 ## Source Code and License
 
-The GEMC source code on [GitHub](https://github.com/gemc/src) is distributed under
+The [GEMC source code](https://github.com/gemc/src) is distributed under
 an [open source license](/home/license/).
 
 <br/><br/>
