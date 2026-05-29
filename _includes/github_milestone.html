@@ -1,6 +1,14 @@
 {% assign milestone_number = include.milestone | default: 1 %}
+{% assign repo_name = include.repo %}
+
+{% if repo_name %}
+{% assign repo_key = repo_name | replace: "/", "_" | replace: "-", "_" %}
+{% assign milestone_key = repo_key | append: "_milestone_" | append: milestone_number %}
+{% assign issues_key = repo_key | append: "_milestone_" | append: milestone_number | append: "_issues" %}
+{% else %}
 {% assign milestone_key = "milestone_" | append: milestone_number %}
 {% assign issues_key = "milestone_" | append: milestone_number | append: "_issues" %}
+{% endif %}
 
 {% assign milestone = site.data.github[milestone_key] %}
 {% assign issues = site.data.github[issues_key] %}
@@ -76,11 +84,12 @@
 </section>
 {% else %}
 <p>
-    No GitHub milestone data found for milestone {{ milestone_number }}.
+    No GitHub milestone data found for {% if repo_name %}{{ repo_name }} {% endif %}milestone {{ milestone_number }}.
 </p>
 {% endif %}
 <br/>
 
+{% unless include.show_progress == false %}
 ## Features progress
 
 <br/>
@@ -90,4 +99,4 @@
 {% endfor %}
 
 <br/>
-
+{% endunless %}

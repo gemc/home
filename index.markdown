@@ -176,11 +176,12 @@ gvolume.publish(cfg)
 Detector definitions are stored in databases. A typical workflow has one user-authored step:
 
 {% include figure.html
-src="assets/images/gemcArchitecture.png"
+src="assets/images/gemcArchitecture.svg"
 alt="Database-driven architecture"
 caption="
-Users fill databases with detector definitions through the Python API (Step 1).
-GEMC executes the remaining simulation steps.
+Users define detector databases through the Python API (Step 1).
+GEMC then builds Geant4 objects, transports particles to create hits, applies digitization and electronics emulation,
+and streams the output data (Steps 2–5).
 "
 %}
 

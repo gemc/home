@@ -92,6 +92,16 @@ def main():
     parser.add_argument("--owner", default="gemc")
     parser.add_argument("--repo", default="src")
     parser.add_argument("--milestone", type=int, default=1)
+    parser.add_argument(
+        "--repo-milestone",
+        action="append",
+        default=[],
+        metavar="REPO:MILESTONE",
+        help=(
+            "Additional repo and milestone to fetch. REPO may be a short repo name "
+            "using --owner, or owner/repo. Can be repeated."
+        ),
+    )
     parser.add_argument("--output-dir", default="_data/github")
 
     args = parser.parse_args()
@@ -101,26 +111,59 @@ def main():
         or os.environ.get("GH_TOKEN")
     )
 
-    owner = urllib.parse.quote(args.owner)
-    repo = urllib.parse.quote(args.repo)
-    milestone = args.milestone
-
     output_dir = Path(args.output_dir)
 
+    targets = [(args.owner, args.repo, args.milestone)]
+    targets.extend(parse_repo_milestone(value, args.owner) for value in args.repo_milestone)
+
+    for owner, repo, milestone in targets:
+        fetch_and_write_milestone(owner, repo, milestone, output_dir, token)
+
+
+def parse_repo_milestone(value, default_owner):
+    if ":" not in value:
+        raise SystemExit("--repo-milestone must use REPO:MILESTONE, for example pygemc:1")
+
+    repo_part, milestone_part = value.rsplit(":", 1)
+    if "/" in repo_part:
+        owner, repo = repo_part.split("/", 1)
+    else:
+        owner, repo = default_owner, repo_part
+
+    try:
+        milestone = int(milestone_part)
+    except ValueError as error:
+        raise SystemExit(f"Invalid milestone number in --repo-milestone {value!r}") from error
+
+    return owner, repo, milestone
+
+
+def fetch_and_write_milestone(owner, repo, milestone, output_dir, token):
+    api_owner = urllib.parse.quote(owner)
+    api_repo = urllib.parse.quote(repo)
+
     milestone_url = (
-        f"{API_BASE}/repos/{owner}/{repo}/milestones/{milestone}"
+        f"{API_BASE}/repos/{api_owner}/{api_repo}/milestones/{milestone}"
     )
 
     issues_url = (
-        f"{API_BASE}/repos/{owner}/{repo}/issues?"
+        f"{API_BASE}/repos/{api_owner}/{api_repo}/issues?"
         f"milestone={milestone}&state=all&per_page=100"
     )
+
+    print(f"Fetching {owner}/{repo} milestone {milestone}")
 
     milestone_data, _ = github_get(milestone_url, token=token)
     issues_data = github_get_paginated(issues_url, token=token)
 
-    write_json(output_dir / f"milestone_{milestone}.json", milestone_data)
-    write_json(output_dir / f"milestone_{milestone}_issues.json", issues_data)
+    repo_key = repo.replace("-", "_")
+    write_json(output_dir / f"{repo_key}_milestone_{milestone}.json", milestone_data)
+    write_json(output_dir / f"{repo_key}_milestone_{milestone}_issues.json", issues_data)
+
+    # Preserve the historic filenames used by existing GEMC src roadmap posts.
+    if owner == "gemc" and repo == "src":
+        write_json(output_dir / f"milestone_{milestone}.json", milestone_data)
+        write_json(output_dir / f"milestone_{milestone}_issues.json", issues_data)
 
 
 if __name__ == "__main__":

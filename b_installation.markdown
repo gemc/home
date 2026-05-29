@@ -5,11 +5,15 @@ permalink: /installation/
 
 development_tag: dev
 latest_tag: 0.2
+latest_pytag: v0.2.0
 dev_tag: dev
 development_release_date: <small><time> → released nightly</time></small>
 latest_release_date: <small><time>→ released on 05/21/2026</time></small>
+latest_prelease_date: <small><time>→ released on 05/28/2026</time></small>
 repo_link: https://github.com/gemc/src
+prepo_link: https://github.com/gemc/src
 release_notes: https://github.com/gemc/src/releases
+prelease_notes: https://github.com/gemc/pygemc/releases
 path_prefix: /path/to/gemc
 docker_local_mount: ~/mywork
 docker_remote_mount: /mywork
@@ -24,7 +28,8 @@ See the [license conditions](/home/license/).
 ### Release Notes
 
 - [`development`]({{ page.release_notes }}/tag/{{ page.development_tag }}) {{ page.development_release_date }}{: .meta }
-- [`{{ page.latest_tag }}`]({{ page.release_notes }}/tag/{{ page.latest_tag }}) {{ page.latest_release_date }}{: .meta }
+- `gemc` [`{{ page.latest_tag }}`]({{ page.release_notes }}/tag/{{ page.latest_tag }}) {{ page.latest_release_date }}{: .meta }
+- `pygemc` [`{{ page.latest_pytag }}`]({{ page.prelease_notes }}/tag/{{ page.latest_pytag }}) {{ page.latest_prelease_date }}{: .meta }
 - [`All Releases`]({{ page.release_notes }})
 
 <br/>

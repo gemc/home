@@ -139,11 +139,7 @@ def write_index(path, entries, detail_dir_name, base_link):
     lines = [
         page_front_matter("GEMC Options Reference"),
         "# GEMC Options Reference\n\n",
-        "This page is generated from `gemc -h`. Each option links to the detailed output from `gemc help <option>`.\n\n",
-        "Regenerate it with:\n\n",
-        "```sh\n",
-        "python3 scripts/generate_options_docs.py\n",
-        "```\n\n",
+        "This page is generated from `gemc -h`. Click each item for help.<br/><br/>\n\n",
     ]
 
     for kind, heading in (("switch", "Switches"), ("option", "Options")):
@@ -154,24 +150,41 @@ def write_index(path, entries, detail_dir_name, base_link):
         lines.extend(
             [
                 f"## {heading}\n\n",
-                "| Name | Shape | Description |\n",
-                "| --- | --- | --- |\n",
             ]
         )
+        if kind == "switch":
+            lines.extend(
+                [
+                    "| Name | Description |\n",
+                    "| --- | --- |\n",
+                ]
+            )
+        else:
+            lines.extend(
+                [
+                    "| Name | Shape | Description |\n",
+                    "| --- | --- | --- |\n",
+                ]
+            )
 
         for entry in group:
             slug = slugify(entry["name"])
             link = f"{base_link}/{detail_dir_name}/{slug}"
             shape = entry["shape"] or ""
-            lines.append(
-                "| "
-                f"[`{entry['name']}`]({link})"
-                " | "
-                f"`{markdown_escape_table_cell(shape)}`"
-                " | "
-                f"{markdown_escape_table_cell(entry['description'])}"
-                " |\n"
-            )
+            name_link = f"[`{entry['name']}`]({link})"
+            description = markdown_escape_table_cell(entry["description"])
+            if kind == "switch":
+                lines.append(f"| {name_link}<br/> | {description} |\n")
+            else:
+                lines.append(
+                    "| "
+                    f"{name_link}"
+                    " | "
+                    f"`{markdown_escape_table_cell(shape)}`"
+                    " | "
+                    f"{description}"
+                    " |\n"
+                )
 
         lines.append("\n")
 

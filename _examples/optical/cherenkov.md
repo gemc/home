@@ -4,12 +4,12 @@ title: "Cherenkov"
 ---
 {% include directory.html data=site.data.examples columns=5 section_breaks=4 exclude_title="Quickstart" %}
 
-[default-img]: /home/assets/images/examples/cherenkov/default.png
-[CO2-img]: /home/assets/images/examples/cherenkov/co2.png
-[C4F10-img]: /home/assets/images/examples/cherenkov/c4f10.png
-[defaulty-img]: /home/assets/images/examples/cherenkov/default_yield.png
-[CO2y-img]: /home/assets/images/examples/cherenkov/co2_yield.png
-[C4F10y-img]: /home/assets/images/examples/cherenkov/c4f10_yield.png
+[low-img]: /home/assets/images/examples/cherenkov/low_index_radiator.png
+[medium-img]: /home/assets/images/examples/cherenkov/medium_index_radiator.png
+[high-img]: /home/assets/images/examples/cherenkov/high_index_radiator.png
+[lowy-img]: /home/assets/images/examples/cherenkov/low_index_radiator_y_vs_x.png
+[mediumy-img]: /home/assets/images/examples/cherenkov/medium_index_radiator_y_vs_x.png
+[highy-img]: /home/assets/images/examples/cherenkov/high_index_radiator_y_vs_x.png
 
 
 # Cherenkov Example 
@@ -18,6 +18,8 @@ title: "Cherenkov"
 <br/>
 
 This example shows how to activate Cherenkov radiation in a GEMC detector.
+The three radiator names are neutral demonstration labels. Their optical constants may be unphysical and should
+not be read as definitions of real materials.
 
 {% assign example = site.data.examples | where: "title", "Cherenkov" | first %}
 
@@ -28,39 +30,34 @@ You can run this example in your browser: [![{{ example.title }}]({{ example.bad
 ## Quickstart
 
 Copy the example to your current directory.
-To create the geometry, run 10 events, and produce ROOT and CSV output files:
+To create the geometry, run 1 event, and produce ROOT and CSV output files:
 
 ```shell
 cp -r $GEMC_HOME/examples/optical/cherenkov .
 cd cherenkov
 ./cherenkov.py
-gemc cherenkov.yaml -n=10
+gemc cherenkov.yaml -n=1
 ```
 
 <br/>
 
 ## Geometry
 
-The geometry, shown below, is defined in `cherenkov.py`. It is produced in three variations: %%default%%, %%CO2%%, and %%C4F10%%.
+The geometry, shown below, is defined in `cherenkov.py`. It is produced in three variations:
+%%default%%, %%mediumIndexRadiator%%, and %%highIndexRadiator%%.
 
 The world (a box named %%root%%) contains a %%radiator%% box. The radiator material depends on the selected variation:
 
 {:.zebra .compact-table}
 
-| variation | material                   | color |
-|-----------|----------------------------|-------|
-| %%default%% | Carbon tetrafluoride %%CF4%% | red   |
-| %%CO2%%     | Carbon dioxide %%CO2%%       | blue  |
-| %%C4F10%%   | Perfluorobutane %%C4F10%%    | green |
+| variation | material | color | refractive-index range |
+|-----------|----------|-------|------------------------|
+| %%default%% | %%lowIndexRadiator%% | red | 1.0010-1.0013 |
+| %%mediumIndexRadiator%% | %%mediumIndexRadiator%% | blue | 1.0110-1.0150 |
+| %%highIndexRadiator%% | %%highIndexRadiator%% | green | 1.0500-1.0530 |
 
 
 - a %%flux%% detector composed of four boxes (%%detector_left%%, %%detector_right%%, %%detector_top%%, and %%detector_bottom%%). This leaves a small hole in the center for the beam.
-
-
-{% include figure.html
-src="assets/images/examples/cherenkov/geometry.png"
-caption="Cherenkov geometry. The CF4 default radiator (red, style = 2 renders it as a cloud) is the medium generating Cherenkov radiation."
-%}
 
 Interactive viewer:
 
@@ -73,6 +70,10 @@ Interactive viewer:
   loading="lazy">
 </iframe>
 
+{% include figure.html
+src="assets/images/examples/cherenkov/high_index_radiator.png"
+caption="Cherenkov geometry with 1 generated electron. The highIndexRadiator volume (green, style = 2 renders it as a cloud) is the medium generating Cherenkov radiation."
+%}
 
 <br/>
 
@@ -140,27 +141,29 @@ Optical photons deposit zero energy, and the %%flux%% digitization does not reco
 
 ### Variations
 
-Within the YAML file, the variation is set to %%CO2%%. You can replace it with %%default%% or %%C4F10%%
+Within the YAML file, the variation is set to %%mediumIndexRadiator%%. You can replace it with %%default%% or %%highIndexRadiator%%
 to change the material. For example:
 
 ```yaml
 gsystem:
   - name: cherenkov
-    variation: C4F10
+    variation: highIndexRadiator
 ```
 
 Different radiator materials produce different photon yields and angles, as shown below.
+Their optical constants are demonstration values and may be unphysical.
 Use the variation name in the %%gstreamer%% filename when you want separate output files for each variation.
 
 
 <br/>
 
 |:---------------:|:-----------:|:-----------:|
-| ![default-img]  | ![CO2-img]  | ![C4F10-img] |
-| ![defaulty-img] | ![CO2y-img] | ![C4F10y-img] |
+| ![low-img]  | ![medium-img]  | ![high-img] |
+| ![lowy-img] | ![mediumy-img] | ![highy-img] |
 
 <p class="image-caption">
-  Left: default (<span class="gstring">CF4</span>) radiator, Center: <span class="gstring">CO2</span>, Right: <span class="gstring">C4F10</span>.
+  Left: default (<span class="gstring">lowIndexRadiator</span>), Center: <span class="gstring">mediumIndexRadiator</span>,
+  Right: <span class="gstring">highIndexRadiator</span>.
 </p>
 
 <br/>
@@ -187,10 +190,11 @@ For ROOT files, you can use `hadd` to merge the files.
 
 ## Plotting with the GEMC Analyzer
 
-Run GEMC with 1,000 events first. The default YAML file writes `cherenkov_t0_digitized.csv` and `cherenkov_t0_true_info.csv`.
+Run GEMC with 1 event first. The default YAML file writes `cherenkov_t0_digitized.csv` and
+`cherenkov_t0_true_info.csv`.
 
 ```shell
-gemc cherenkov.yaml -n=1000
+gemc cherenkov.yaml -n=1
 ```
 
 Plot the digitized photon energy:
@@ -208,6 +212,12 @@ python3 -m analyzer cherenkov_t0_true_info.csv E --kind csv --data true_info
 ```
 
 ![Cherenkov true track total energy plot](/home/assets/images/examples/cherenkov/analyzer_true_energy.png){:width="70%"}
+
+Plot the optical-photon hit positions in the y-vs-x plane, with x and y limits in cm:
+
+```shell
+python3 -m analyzer cherenkov_t0_true_info.csv --kind csv --data true_info --plot yvsx --xlim -20 20 --ylim -20 20
+```
 
 <br/>
 

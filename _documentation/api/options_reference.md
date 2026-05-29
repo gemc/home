@@ -5,26 +5,20 @@ title: 'GEMC Options Reference'
 
 # GEMC Options Reference
 
-This page is generated from `gemc -h`. Each option links to the detailed output from `gemc help <option>`.
-
-Regenerate it with:
-
-```sh
-python3 scripts/generate_options_docs.py
-```
+This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 
 ## Switches
 
-| Name | Shape | Description |
-| --- | --- | --- |
-| [`checkOverlaps`](/home/documentation/api/options/checkoverlaps) | `` | check geant4 volume overlaps at construction time |
-| [`gui`](/home/documentation/api/options/gui) | `` | use Graphical User Interface |
-| [`i`](/home/documentation/api/options/i) | `` | use interactive batch mode |
-| [`printSystemsMaterials`](/home/documentation/api/options/printsystemsmaterials) | `` | print the materials used in this simulation |
-| [`recordZeroEdep`](/home/documentation/api/options/recordzeroedep) | `` | Record particle even if they do not deposit energy in the sensitive volumes |
-| [`showPhysics`](/home/documentation/api/options/showphysics) | `` | Log Geant4 Physics Available Modules that can be used with the "phys_list" option and exit |
-| [`showPredefinedMaterials`](/home/documentation/api/options/showpredefinedmaterials) | `` | log GEMC Predefined Materials |
-| [`useDawn`](/home/documentation/api/options/usedawn) | `` | Take a dawn screenshot |
+| Name | Description |
+| --- | --- |
+| [`checkOverlaps`](/home/documentation/api/options/checkoverlaps)<br/> | check geant4 volume overlaps at construction time |
+| [`gui`](/home/documentation/api/options/gui)<br/> | use Graphical User Interface |
+| [`i`](/home/documentation/api/options/i)<br/> | use interactive batch mode |
+| [`printSystemsMaterials`](/home/documentation/api/options/printsystemsmaterials)<br/> | print the materials used in this simulation |
+| [`recordZeroEdep`](/home/documentation/api/options/recordzeroedep)<br/> | Record particle even if they do not deposit energy in the sensitive volumes |
+| [`showPhysics`](/home/documentation/api/options/showphysics)<br/> | Log Geant4 Physics Available Modules that can be used with the "phys_list" option and exit |
+| [`showPredefinedMaterials`](/home/documentation/api/options/showpredefinedmaterials)<br/> | log GEMC Predefined Materials |
+| [`useDawn`](/home/documentation/api/options/usedawn)<br/> | Take a dawn screenshot |
 
 ## Options
 
