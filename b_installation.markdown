@@ -14,6 +14,8 @@ repo_link: https://github.com/gemc/src
 prepo_link: https://github.com/gemc/src
 release_notes: https://github.com/gemc/src/releases
 prelease_notes: https://github.com/gemc/pygemc/releases
+binary_tag: dev
+binary_geant4_tag: 11.4.1
 path_prefix: /path/to/gemc
 docker_local_mount: ~/mywork
 docker_remote_mount: /mywork
@@ -35,33 +37,28 @@ See the [license conditions](/home/license/).
 <br/>
 
 
-Choose the installation path that matches what you need:
-
-- **Python API only:** install the PyPI `pygemc` package for geometry building, PyVista previews, and output analysis without the `gemc` executable.
-- **Native packages:** coming soon for Homebrew and Linux package managers, for a native `gemc` installation without managing a source build.
-- **Full local build:** build `gemc` from source for the Geant4 simulation executable and the bundled `pygemc` Python environment.
-- **Ready-to-run environment:** use Docker or Apptainer when you do not want to manage local Geant4 dependencies.
-
 <br/>
 
 ## Table of Contents
 
-- [Package Installation](#package-installation)
-- [Build source code](#build-and-install-gemc-from-source)
-- [Using Docker](#gemc-using-docker)
-- [Using Apptainer](#gemc-using-apptainer)
+- [Install via a package manager](#install-via-a-package-manager)
+- [Download a pre-compiled binary distribution](#download-a-pre-compiled-binary-distribution)
+- [Build from source](#build-from-source)
+- [Run in a Docker container](#run-in-a-docker-container)
+- [Run using Apptainer](#run-using-apptainer)
 
 **Appendix**:
-- [Software Prerequisites and Geant4 Installation](#software-prerequisites-and-geant4-installation)
+- [Software Prerequisites for binary installation](#software-prerequisites-for-binary-installation)
+- [Software Prerequisites and Geant4 Installation for full GEMC build](#software-prerequisites-and-geant4-installation-for-full-gemc-build)
 - [Supported and tested platforms](#supported-and-tested-platforms)
 
 <br/><br/>
 
-## Package Installation
+## Install via a package manager
 
 <br/>
 
-### `pygemc` Python Package
+### Python API
 
 
 
@@ -71,14 +68,7 @@ Use a virtual environment for direct `pip` installs:
 ```shell
 python3 -m venv ~/venv/pygemc
 source ~/venv/pygemc/bin/activate
-python -m pip install --upgrade pip
 python -m pip install pygemc
-```
-
-To update an existing installation:
-
-```shell
-python -m pip install --upgrade pygemc
 ```
 
 The optional ROOT-file analysis dependencies can be installed with:
@@ -89,15 +79,208 @@ python -m pip install "pygemc[root]"
 
 [PyPI](https://pypi.org/project/pygemc/) does not install the `gemc` executable but can be used to 
 create and visualize geometry or analyze results. 
-For the full simulation application, use the source build or container options below.
+For the full simulation application, use the options below.
 
 <br/>
 
-## Build and Install GEMC from Source
 
-Please see the [Software Prerequisites and Geant4 Installation](#software-prerequisites-and-geant4-installation)
-in the appendix for the requirements.
 
+### Download a pre-compiled binary distribution
+
+Linux binary tarballs contain the `gemc` executable, installed support files, and a small set of smoke-test executables.
+Install the packages listed in [Software Prerequisites for binary installation](#software-prerequisites-for-binary-installation)
+before unpacking the tarball.
+
+Choose an installation directory first:
+
+```shell
+gemc_home=/path/to/gemc
+mkdir -p "$gemc_home"
+cd "$gemc_home"
+```
+
+The use the commands from the tab that matches your Linux distribution and CPU architecture. 
+
+{% capture tab1 %}
+
+```shell
+archive=gemc-dev-geant4-{{ page.binary_geant4_tag }}-fedora-44-amd64.tar.gz
+curl -L -o "$archive" "{{ page.release_notes }}/download/{{ page.binary_tag }}/$archive"
+tar -xzf "$archive" -C "$gemc_home" --strip-components=1
+./install_geant4_data.sh
+```
+
+{% endcapture %}
+
+{% capture tab2 %}
+
+```shell
+archive=gemc-dev-geant4-{{ page.binary_geant4_tag }}-fedora-44-arm64.tar.gz
+curl -L -o "$archive" "{{ page.release_notes }}/download/{{ page.binary_tag }}/$archive"
+tar -xzf "$archive" -C "$gemc_home" --strip-components=1
+./install_geant4_data.sh
+```
+
+{% endcapture %}
+
+{% capture tab3 %}
+
+```shell
+archive=gemc-dev-geant4-{{ page.binary_geant4_tag }}-almalinux-10-amd64.tar.gz
+curl -L -o "$archive" "{{ page.release_notes }}/download/{{ page.binary_tag }}/$archive"
+tar -xzf "$archive" -C "$gemc_home" --strip-components=1
+./install_geant4_data.sh
+```
+
+{% endcapture %}
+
+{% capture tab4 %}
+
+```shell
+archive=gemc-dev-geant4-{{ page.binary_geant4_tag }}-almalinux-10-arm64.tar.gz
+curl -L -o "$archive" "{{ page.release_notes }}/download/{{ page.binary_tag }}/$archive"
+tar -xzf "$archive" -C "$gemc_home" --strip-components=1
+./install_geant4_data.sh
+```
+
+{% endcapture %}
+
+{% capture tab5 %}
+
+```shell
+archive=gemc-dev-geant4-{{ page.binary_geant4_tag }}-ubuntu-24.04-amd64.tar.gz
+curl -L -o "$archive" "{{ page.release_notes }}/download/{{ page.binary_tag }}/$archive"
+tar -xzf "$archive" -C "$gemc_home" --strip-components=1
+./install_geant4_data.sh
+```
+
+{% endcapture %}
+
+{% capture tab6 %}
+
+```shell
+archive=gemc-dev-geant4-{{ page.binary_geant4_tag }}-ubuntu-24.04-arm64.tar.gz
+curl -L -o "$archive" "{{ page.release_notes }}/download/{{ page.binary_tag }}/$archive"
+tar -xzf "$archive" -C "$gemc_home" --strip-components=1
+./install_geant4_data.sh
+```
+
+{% endcapture %}
+
+{% capture tab7 %}
+
+```shell
+archive=gemc-dev-geant4-{{ page.binary_geant4_tag }}-ubuntu-26.04-amd64.tar.gz
+curl -L -o "$archive" "{{ page.release_notes }}/download/{{ page.binary_tag }}/$archive"
+tar -xzf "$archive" -C "$gemc_home" --strip-components=1
+./install_geant4_data.sh
+```
+
+{% endcapture %}
+
+{% capture tab8 %}
+
+```shell
+archive=gemc-dev-geant4-{{ page.binary_geant4_tag }}-ubuntu-26.04-arm64.tar.gz
+curl -L -o "$archive" "{{ page.release_notes }}/download/{{ page.binary_tag }}/$archive"
+tar -xzf "$archive" -C "$gemc_home" --strip-components=1
+./install_geant4_data.sh
+```
+
+{% endcapture %}
+
+{% capture tab9 %}
+
+```shell
+archive=gemc-dev-geant4-{{ page.binary_geant4_tag }}-debian-13-amd64.tar.gz
+curl -L -o "$archive" "{{ page.release_notes }}/download/{{ page.binary_tag }}/$archive"
+tar -xzf "$archive" -C "$gemc_home" --strip-components=1
+./install_geant4_data.sh
+```
+
+{% endcapture %}
+
+{% capture tab10 %}
+
+```shell
+archive=gemc-dev-geant4-{{ page.binary_geant4_tag }}-debian-13-arm64.tar.gz
+curl -L -o "$archive" "{{ page.release_notes }}/download/{{ page.binary_tag }}/$archive"
+tar -xzf "$archive" -C "$gemc_home" --strip-components=1
+./install_geant4_data.sh
+```
+
+{% endcapture %}
+
+{% capture tab11 %}
+
+```shell
+archive=gemc-dev-geant4-{{ page.binary_geant4_tag }}-archlinux-latest-amd64.tar.gz
+curl -L -o "$archive" "{{ page.release_notes }}/download/{{ page.binary_tag }}/$archive"
+tar -xzf "$archive" -C "$gemc_home" --strip-components=1
+./install_geant4_data.sh
+```
+
+{% endcapture %}
+
+{% include tabs.html
+id="install_binary_tarball"
+count=11
+tab1_title="Fedora 44 amd64"
+tab1_content=tab1
+
+tab2_title="Fedora 44 arm64"
+tab2_content=tab2
+
+tab3_title="AlmaLinux 10 amd64"
+tab3_content=tab3
+
+tab4_title="AlmaLinux 10 arm64"
+tab4_content=tab4
+
+tab5_title="Ubuntu 24.04 amd64"
+tab5_content=tab5
+
+tab6_title="Ubuntu 24.04 arm64"
+tab6_content=tab6
+
+tab7_title="Ubuntu 26.04 amd64"
+tab7_content=tab7
+
+tab8_title="Ubuntu 26.04 arm64"
+tab8_content=tab8
+
+tab9_title="Debian 13 amd64"
+tab9_content=tab9
+
+tab10_title="Debian 13 arm64"
+tab10_content=tab10
+
+tab11_title="Arch Linux amd64"
+tab11_content=tab11
+%}
+
+<br/>
+After installation, source the GEMC environment file. This step could 
+go into your `.bashrc` or `.zshrc` file:
+
+```shell
+source /path/to/gemc/gemc.env
+```
+
+Run a few checks to verify the installation; 
+
+```shell
+gemc -v
+test_gdynamic_plugin_load
+test_gdata_event_verbose
+```
+
+<br/>
+
+## Build from Source
+
+You will need Geant4 to build GEMC.  Check the [Software Prerequisites and Geant4 Installation for full GEMC build](#software-prerequisites-and-geant4-installation-for-full-gemc-build)
+in the appendix for the complete list of requirements. 
 <br/>
 
 ### 1. Obtain the source
@@ -214,7 +397,7 @@ gemc-analyzer --help
 
 <br/><br/>
 
-## Using Docker
+## Run in a Docker container
 
 You can use Docker to run GEMC. The available images are listed below.
 Both `arm64` and `amd64` are supported (except on Arch Linux images which are `amd64` only [^1]).
@@ -266,7 +449,7 @@ graphical interface.
 
 
 
-## Using Apptainer
+## Run using Apptainer
 
 Linux hosts can use `apptainer` (formerly `singularity`) to run Docker containers.
 You can use it with the Docker images above. It runs similarly to Docker, but the entrypoint needs to be
@@ -320,7 +503,102 @@ and run apptainer again.
 
 <br/>
 
-## Software Prerequisites and Geant4 Installation
+## Software Prerequisites for binary installation
+
+<br/>
+
+Binary tarball installations need only the runtime packages required by the `gemc` executable and the tools used
+to download and unpack the archive. ROOT is intentionally not included in this list.
+
+<br/>
+
+{% capture btab1 %}
+
+```shell
+dnf install -y --allowerasing ca-certificates curl gzip tar expat sqlite-libs zlib \
+libX11 libXext libXmu libXt mesa-libEGL mesa-libGL qt6-qtbase qt6-qtsvg tbb
+```
+
+{% endcapture %}
+
+{% capture btab2 %}
+
+```shell
+dnf install -y --allowerasing ca-certificates curl gzip tar expat sqlite-libs zlib \
+libX11 libXext libXmu libXt mesa-libEGL mesa-libGL qt6-qtbase qt6-qtsvg tbb
+```
+
+{% endcapture %}
+
+{% capture btab3 %}
+
+```shell
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata \
+ca-certificates curl gzip tar libexpat1 libsqlite3-0 zlib1g \
+libegl1 libgl1 libx11-6 libxext6 libxmu6 libxt6 \
+libqt6core6t64 libqt6gui6 libqt6widgets6 libqt6opengl6 libqt6openglwidgets6 libqt6svg6 libtbb12
+```
+
+{% endcapture %}
+
+{% capture btab4 %}
+
+```shell
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata \
+ca-certificates curl gzip tar libexpat1 libsqlite3-0 zlib1g \
+libegl1 libgl1 libx11-6 libxext6 libxmu6 libxt6 \
+libqt6core6t64 libqt6gui6 libqt6widgets6 libqt6opengl6 libqt6openglwidgets6 libqt6svg6 libtbb12
+```
+
+{% endcapture %}
+
+{% capture btab5 %}
+
+```shell
+DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata \
+ca-certificates curl gzip tar libexpat1 libsqlite3-0 zlib1g \
+libegl1 libgl1 libx11-6 libxext6 libxmu6 libxt6 \
+libqt6core6t64 libqt6gui6 libqt6widgets6 libqt6opengl6 libqt6openglwidgets6 libqt6svg6 libtbb12
+```
+
+{% endcapture %}
+
+{% capture btab6 %}
+
+```shell
+pacman-key --init && pacman-key --populate
+pacman -Sy --noconfirm archlinux-keyring
+pacman -Syu --noconfirm --needed ca-certificates curl gzip tar expat sqlite zlib \
+libx11 libxext libxmu libxt mesa qt6-base qt6-svg tbb
+```
+
+{% endcapture %}
+
+{% include tabs.html
+id="binary_install_requirements"
+count=6
+tab1_title="Fedora 44"
+tab1_content=btab1
+
+tab2_title="AlmaLinux 10"
+tab2_content=btab2
+
+tab3_title="Ubuntu 24.04"
+tab3_content=btab3
+
+tab4_title="Ubuntu 26.04"
+tab4_content=btab4
+
+tab5_title="Debian 13"
+tab5_content=btab5
+
+tab6_title="Arch Linux"
+tab6_content=btab6
+%}
+
+<br/>
+
+## Software Prerequisites and Geant4 Installation for full GEMC build
 
 <br/>
 

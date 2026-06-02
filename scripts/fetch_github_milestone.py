@@ -160,11 +160,6 @@ def fetch_and_write_milestone(owner, repo, milestone, output_dir, token):
     write_json(output_dir / f"{repo_key}_milestone_{milestone}.json", milestone_data)
     write_json(output_dir / f"{repo_key}_milestone_{milestone}_issues.json", issues_data)
 
-    # Preserve the historic filenames used by existing GEMC src roadmap posts.
-    if owner == "gemc" and repo == "src":
-        write_json(output_dir / f"milestone_{milestone}.json", milestone_data)
-        write_json(output_dir / f"milestone_{milestone}_issues.json", issues_data)
-
 
 if __name__ == "__main__":
     main()
