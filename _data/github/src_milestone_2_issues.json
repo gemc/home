@@ -321,7 +321,7 @@
       "total": 0
     },
     "timeline_url": "https://api.github.com/repos/gemc/src/issues/96/timeline",
-    "title": "fix detector not showing in the guy if running with just gemc -gui",
+    "title": "fix detector not showing in the gui if running with just gemc -gui",
     "type": {
       "color": "red",
       "created_at": "2024-01-25T14:29:12Z",
@@ -332,7 +332,7 @@
       "node_id": "IT_kwDOAMwCa84AGjnT",
       "updated_at": "2024-07-26T10:30:03Z"
     },
-    "updated_at": "2026-05-29T20:32:10Z",
+    "updated_at": "2026-06-02T16:05:39Z",
     "url": "https://api.github.com/repos/gemc/src/issues/96",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",

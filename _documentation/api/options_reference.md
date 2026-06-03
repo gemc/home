@@ -38,6 +38,7 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`check_overlaps`](/home/documentation/api/options/check_overlaps) | `<value>` | check overlaps |
 | [`ebuffer`](/home/documentation/api/options/ebuffer) | `<value>` | number of events kept in memory before flushing them to the filestream |
 | [`gstreamer`](/home/documentation/api/options/gstreamer) | `<sequence>` | define a gstreamer output |
+| [`splash_time`](/home/documentation/api/options/splash_time) | `<value>` | splash display time in seconds |
 | [`phys_list`](/home/documentation/api/options/phys_list) | `<value>` | Select Physics List |
 | [`gparticle`](/home/documentation/api/options/gparticle) | `<sequence>` | define the generator particle(s) |
 | [`gparticlefile`](/home/documentation/api/options/gparticlefile) | `<sequence>` | define generator particles from file(s) |
