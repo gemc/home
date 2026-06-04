@@ -213,6 +213,14 @@ gparticle:
 gemc materials.yaml -n=10
 ```
 
+Scene annotations and decorations are kept in `annotations.yaml`. Run the main YAML by itself for an uncluttered view,
+or pass both YAML files to include the labels and scale decoration:
+
+```shell
+gemc materials.yaml -n=10
+gemc materials.yaml annotations.yaml -n=10
+```
+
 Add `-gui` to run interactively.
 
 <br/>

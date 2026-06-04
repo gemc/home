@@ -132,6 +132,7 @@ The file `cherenkov.yaml` can be used to run the setup. Add `-gui` to run intera
 gemc cherenkov.yaml -gui
 ```
 
+The YAML sets `g4view.cloudPoints: 60000` so cloud-style volumes are dense enough for the rendered geometry screenshots.
 
 Modify `cherenkov.yaml` as needed, in particular to add particles, control the number of threads, or change the output.
 Because this example uses %%flux%% digitization for optical photons, %%recordZeroEdep%% must be set to %%true%%.

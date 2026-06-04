@@ -179,12 +179,15 @@ These flags are accepted by any Python geometry script that uses `autogeometry`:
 |------|----------|-------------|
 | `-pv` | — | Open an interactive PyVista window after building geometry |
 | `-pvb` | — | Open a background (non-blocking) PyVista window |
+| `-pvbg` | `<color>` | Set the PyVista background color as a name, hex color, or `r g b` triple |
+| `-pvbgt` | `<color>` | Set the optional top color for a PyVista background gradient; use `none` for a flat background |
 | `-pvvtk` | `<name>` | Export geometry to `<name>.vtksz` for web viewing |
 | `-pvz` | `<zoom>` | Camera zoom factor for the exported VTK scene (e.g. `0.07`) |
 
 ```shell
 ./detector.py -pv                        # interactive window
 ./detector.py -pvvtk detector -pvz 0.02  # export vtksz
+./detector.py -pvvtk detector -pvbg "0.92 0.92 0.98" -pvbgt none
 ```
 
 To generate an offscreen screenshot via the Geant4 renderer:

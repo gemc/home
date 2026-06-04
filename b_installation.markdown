@@ -7,7 +7,7 @@ development_tag: dev
 latest_tag: 0.2
 latest_pytag: v0.2.0
 dev_tag: dev
-development_release_date: <small><time> → released nightly</time></small>
+development_release_date: <small><time> → released nightly, shows commits</time></small>
 latest_release_date: <small><time>→ released on 05/21/2026</time></small>
 latest_prelease_date: <small><time>→ released on 05/28/2026</time></small>
 repo_link: https://github.com/gemc/src
@@ -29,13 +29,9 @@ See the [license conditions](/home/license/).
 
 ### Release Notes
 
-- [`development`]({{ page.release_notes }}/tag/{{ page.development_tag }}) {{ page.development_release_date }}{: .meta }
 - `gemc` [`{{ page.latest_tag }}`]({{ page.release_notes }}/tag/{{ page.latest_tag }}) {{ page.latest_release_date }}{: .meta }
 - `pygemc` [`{{ page.latest_pytag }}`]({{ page.prelease_notes }}/tag/{{ page.latest_pytag }}) {{ page.latest_prelease_date }}{: .meta }
-- [`All Releases`]({{ page.release_notes }})
-
-<br/>
-
+- [`dev`]({{ page.release_notes }}/tag/{{ page.development_tag }}) {{ page.development_release_date }}{: .meta }
 
 <br/>
 
@@ -47,10 +43,10 @@ See the [license conditions](/home/license/).
 - [Run in a Docker container](#run-in-a-docker-container)
 - [Run using Apptainer](#run-using-apptainer)
 
-**Appendix**:
-- [Software Prerequisites for binary installation](#software-prerequisites-for-binary-installation)
-- [Software Prerequisites and Geant4 Installation for full GEMC build](#software-prerequisites-and-geant4-installation-for-full-gemc-build)
-- [Supported and tested platforms](#supported-and-tested-platforms)
+- *Appendix*:
+  - [Software Prerequisites for binary installation](#software-prerequisites-for-binary-installation)
+  - [Software Prerequisites and Geant4 Installation for the GEMC build](#software-prerequisites-and-geant4-installation-for-gemc-build)
+  - [Supported and tested platforms](#supported-and-tested-platforms)
 
 <br/><br/>
 
@@ -71,6 +67,12 @@ source ~/venv/pygemc/bin/activate
 python -m pip install pygemc
 ```
 
+The optional Jupyter modules used by PyVista VTK export can be installed with:
+
+```shell
+python -m pip install "pygemc[jupyter]"
+```
+
 The optional ROOT-file analysis dependencies can be installed with:
 
 ```shell
@@ -79,7 +81,6 @@ python -m pip install "pygemc[root]"
 
 [PyPI](https://pypi.org/project/pygemc/) does not install the `gemc` executable but can be used to 
 create and visualize geometry or analyze results. 
-For the full simulation application, use the options below.
 
 <br/>
 
@@ -87,8 +88,9 @@ For the full simulation application, use the options below.
 
 ### Download a pre-compiled binary distribution
 
-Linux binary tarballs contain the `gemc` executable, installed support files, and a small set of smoke-test executables.
-Install the packages listed in [Software Prerequisites for binary installation](#software-prerequisites-for-binary-installation)
+Linux binary tarballs contain the `gemc` executable and the examples (but not `pygemc`).
+
+Make sure to check the [Software Prerequisites for binary installation](#software-prerequisites-for-binary-installation)
 before unpacking the tarball.
 
 Choose an installation directory first:
@@ -99,7 +101,8 @@ mkdir -p "$gemc_home"
 cd "$gemc_home"
 ```
 
-The use the commands from the tab that matches your Linux distribution and CPU architecture. 
+Then, use the commands from the tab that matches your Linux distribution and CPU architecture. 
+This will install GEMC and the Geant4 data files.
 
 {% capture tab1 %}
 
@@ -260,7 +263,7 @@ tab11_content=tab11
 %}
 
 <br/>
-After installation, source the GEMC environment file. This step could 
+After the installation, source the GEMC environment file. This step could 
 go into your `.bashrc` or `.zshrc` file:
 
 ```shell
@@ -275,12 +278,15 @@ test_gdynamic_plugin_load
 test_gdata_event_verbose
 ```
 
+
 <br/>
 
 ## Build from Source
 
-You will need Geant4 to build GEMC.  Check the [Software Prerequisites and Geant4 Installation for full GEMC build](#software-prerequisites-and-geant4-installation-for-full-gemc-build)
+You will need Geant4 to build GEMC.  Check the 
+[Software Prerequisites and Geant4 Installation for the GEMC build](#software-prerequisites-and-geant4-installation-for-gemc-build)
 in the appendix for the complete list of requirements. 
+
 <br/>
 
 ### 1. Obtain the source
@@ -598,7 +604,7 @@ tab6_content=btab6
 
 <br/>
 
-## Software Prerequisites and Geant4 Installation for full GEMC build
+## Software Prerequisites and Geant4 Installation for the GEMC build
 
 <br/>
 

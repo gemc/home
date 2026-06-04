@@ -41,7 +41,7 @@ The window is divided into three zones:
 The Geant4 3D visualization window.
 
 {% include figure.html
-src="assets/images/documentation/display_gui_annotated.png"
+src="assets/images/documentation/display_gui.svg"
 alt="GEMC GUI Display page"
 caption="Display page: view toggles, camera/light sliders, view properties, slice planes, and log output."
 %}
@@ -61,7 +61,7 @@ The **View** tab exposes:
 A searchable Geant4 command browser.
 
 {% include figure.html
-src="assets/images/documentation/display_g4dialog_annotated.png"
+src="assets/images/documentation/display_g4dialog.svg"
 alt="GEMC GUI G4Dialog page"
 caption="G4Dialog page: filter commands by name, browse the tree, read contextual help, and execute commands from the prompt."
 %}
@@ -78,7 +78,7 @@ caption="G4Dialog page: filter commands by name, browse the tree, read contextua
 The Setup page reads the geometry database and presents the available experiments and systems in a tree view.
 
 {% include figure.html
-src="assets/images/documentation/display_setup_annotated.png"
+src="assets/images/documentation/display_setup.svg"
 alt="GEMC GUI Setup page"
 caption="Setup page: enable or disable systems, pick a variation and run number per system, then click Reload."
 %}
@@ -112,7 +112,7 @@ The green square (availability indicator) means the selected combination exists 
 The Volumes page shows the complete detector geometry as a hierarchical tree, organized by system.
 
 {% include figure.html
-src="assets/images/documentation/display_volumes_annotated.png"
+src="assets/images/documentation/display_volumes.svg"
 alt="GEMC GUI Volumes page"
 caption="Volumes page: toggle visibility, change colors, and inspect per-volume properties."
 %}
