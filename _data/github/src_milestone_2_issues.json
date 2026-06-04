@@ -1945,7 +1945,7 @@
       }
     ],
     "author_association": "CONTRIBUTOR",
-    "body": "\nToggle Buttons:\n\n- [x] hidden line removals\n- [x] anti aliasing\n- [x] auxiliary edges\n- [x] show field lines\n\n\nProperties:\n\n- [x] perspective, orthogonal\n- [x] sides / circle: 3 buttons with low, med, high resolution \n\n# Options:\n\n- [x] add axes\n- [x] add scale\n- [ ] culling\n- [ ] background color\n\n\n# Volumes - mutually exclusive \n\n- [ ] force solid\n- [ ] force lines\n- [ ] force cloud (this is not working?)\n\n\n# Utilities\n\n- [ ] draw marker at location\n- [ ] draw text at location\n- [ ] open new view button\n- [ ] drawLogicalVolume with overolaps\n- [ ] center and twinkle\n",
+    "body": "\nToggle Buttons:\n\n- [x] hidden line removals\n- [x] anti aliasing\n- [x] auxiliary edges\n- [x] show field lines\n\n\nProperties:\n\n- [x] perspective, orthogonal\n- [x] sides / circle: 3 buttons with low, med, high resolution \n\n# Options:\n\n- [x] add axes\n- [x] add scale\n- [ ] culling\n- [x] background color\n\n\n# Volumes - mutually exclusive \n\n- [x] force solid\n- [x] force lines\n- [x] force cloud (this is not working?)\n\n\n# Utilities\n\n- [ ] draw marker at location\n- [x] draw text at location\n- [ ] open new view button\n- [ ] drawLogicalVolume with overolaps\n- [ ] center and twinkle\n",
     "closed_at": null,
     "closed_by": null,
     "comments": 0,
@@ -2057,7 +2057,7 @@
       "node_id": "IT_kwDOAMwCa84AGjnX",
       "updated_at": "2024-10-08T09:35:31Z"
     },
-    "updated_at": "2026-06-04T14:13:37Z",
+    "updated_at": "2026-06-04T14:48:48Z",
     "url": "https://api.github.com/repos/gemc/src/issues/28",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",

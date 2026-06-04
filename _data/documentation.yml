@@ -20,6 +20,26 @@
   category: "Materials"
   link: "/home/documentation/materials/optical_properties"
 
+- title: "Overview"
+  category: "Sensitivity"
+  link: "/home/documentation/sensitivity"
+
+- title: "Flux"
+  category: "Sensitivity"
+  link: "/home/documentation/sensitivity/flux"
+
+- title: "Dosimeter"
+  category: "Sensitivity"
+  link: "/home/documentation/sensitivity/dosimeter"
+
+- title: "Particle Counters"
+  category: "Sensitivity"
+  link: "/home/documentation/sensitivity/particle_counters"
+
+- title: "Photon Detectors"
+  category: "Sensitivity"
+  link: "/home/documentation/sensitivity/photon_detectors"
+
 
 
 

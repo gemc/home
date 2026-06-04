@@ -93,7 +93,7 @@ gparticle:
 
 ## Digitization
 
-The %%FluxPlane%% is associated with the %%flux%% digitization (one of the available GEMC prebuilt routines)
+The %%FluxPlane%% sensitivity is specified with the %%flux%% digitization (one of the available GEMC prebuilt routines)
 in `simple_flux.py`, with identifier %%flux_plane = 1%%.
 
 ```python
@@ -175,7 +175,7 @@ gemc simple_flux.yaml -n=10000
 Plot the digitized total energy deposited:
 
 ```shell
-python3 -m analyzer simple_flux_t0_digitized.csv totEdep --kind csv
+gemc-analyzer simple_flux_t0_digitized.csv totEdep --kind csv
 ```
 
 ![simple flux total energy deposited plot](/home/assets/images/examples/simple_flux/analyzer_totEdep.png){:width="70%"}
@@ -183,7 +183,7 @@ python3 -m analyzer simple_flux_t0_digitized.csv totEdep --kind csv
 Plot the true particle track total energy:
 
 ```shell
-python3 -m analyzer simple_flux_t0_true_info.csv E --kind csv --data true_info
+gemc-analyzer simple_flux_t0_true_info.csv E --kind csv --data true_info
 ```
 
 ![simple flux true track total energy plot](/home/assets/images/examples/simple_flux/analyzer_true_energy.png){:width="70%"}

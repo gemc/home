@@ -57,7 +57,7 @@ The world (a box named %%root%%) contains a %%radiator%% box. The radiator mater
 | %%highIndexRadiator%% | %%highIndexRadiator%% | green | 1.0500-1.0530 |
 
 
-- a %%flux%% detector composed of four boxes (%%detector_left%%, %%detector_right%%, %%detector_top%%, and %%detector_bottom%%). This leaves a small hole in the center for the beam.
+- a %%gPhotonDetector%% detector composed of four boxes (%%detector_left%%, %%detector_right%%, %%detector_top%%, and %%detector_bottom%%). This leaves a small hole in the center for the beam.
 
 Interactive viewer:
 
@@ -102,13 +102,13 @@ gparticle:
 
 ## Digitization
 
-The detector volumes are associated with the %%flux%% digitization (one of the available GEMC prebuilt routines)
+The detector volume sensitivities are specified with the %%gPhotonDetector%% digitization (one of the available GEMC prebuilt routines)
 in `cherenkov.py`.
 
 The %%identifier%% is used to distinguish the different detector boxes:
 
 ```python
-backplate.digitization = "flux"
+backplate.digitization = "gPhotonDetector"
 backplate.set_identifier("detector", panel_id)
 ```
 
@@ -135,8 +135,8 @@ gemc cherenkov.yaml -gui
 The YAML sets `g4view.cloudPoints: 60000` so cloud-style volumes are dense enough for the rendered geometry screenshots.
 
 Modify `cherenkov.yaml` as needed, in particular to add particles, control the number of threads, or change the output.
-Because this example uses %%flux%% digitization for optical photons, %%recordZeroEdep%% must be set to %%true%%.
-Optical photons deposit zero energy, and the %%flux%% digitization does not record zero-energy hits by default.
+The %%gPhotonDetector%% digitization records optical photons even when they deposit zero energy, so %%recordZeroEdep%%
+is not required for this example.
 
 <br/>
 
@@ -182,7 +182,7 @@ gstreamer:
     filename: cherenkov
 ```
 
-Because %%flux%% is a per-event digitization, GEMC will produce one output file per thread.
+Because %%gPhotonDetector%% is a per-event digitization, GEMC will produce one output file per thread.
 For ROOT files, you can use `hadd` to merge the files.
 
 {% include notes/output-note.md %}
@@ -201,24 +201,18 @@ gemc cherenkov.yaml -n=1
 Plot the digitized photon energy:
 
 ```shell
-python3 -m analyzer cherenkov_t0_digitized.csv E --kind csv
+gemc-analyzer cherenkov_t0_digitized.csv E --kind csv
 ```
 
 ![Cherenkov digitized energy plot](/home/assets/images/examples/cherenkov/analyzer_digitized_energy.png){:width="70%"}
 
-Plot the true particle track total energy:
-
-```shell
-python3 -m analyzer cherenkov_t0_true_info.csv E --kind csv --data true_info
-```
-
-![Cherenkov true track total energy plot](/home/assets/images/examples/cherenkov/analyzer_true_energy.png){:width="70%"}
-
 Plot the optical-photon hit positions in the y-vs-x plane, with x and y limits in cm:
 
 ```shell
-python3 -m analyzer cherenkov_t0_true_info.csv --kind csv --data true_info --plot yvsx --xlim -20 20 --ylim -20 20
+gemc-analyzer cherenkov_t0_true_info.csv --kind csv --data true_info --plot yvsx --xlim -20 20 --ylim -20 20
 ```
+
+![Cherenkov medium-index optical-photon y-vs-x plot](/home/assets/images/examples/cherenkov/medium_index_radiator_y_vs_x.png){:width="70%"}
 
 <br/>
 
