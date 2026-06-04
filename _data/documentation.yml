@@ -1,6 +1,10 @@
 - title: "Quickstart"
-  category: "Quickstart"
+  category: "Api"
   link: "/home/documentation/quickstart"
+
+- title: "Quickstart"
+  category: "Gui"
+  link: "/home/documentation/gui/gui_quickstart"
 
 
 
@@ -28,23 +32,23 @@
 
 
 - title: "PyVista API"
-  category: "api"
+  category: "Api"
   link: "/home/documentation/api/pyvista_api"
 
 - title: "Color Reference"
-  category: "api"
+  category: "Api"
   link: "/home/documentation/api/pyvista_colors"
 
 - title: "Analyzer"
-  category: "api"
+  category: "Api"
   link: "/home/documentation/api/analyzer"
 
 - title: "Options"
-  category: "api"
+  category: "Api"
   link: "/home/documentation/api/options"
 
 - title: "Options Reference"
-  category: "api"
+  category: "Api"
   link: "/home/documentation/api/options_reference"
 
 

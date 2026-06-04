@@ -27,6 +27,11 @@ layout: default
 
 [CodeQL-badge]: https://github.com/gemc/src/actions/workflows/codeql.yml/badge.svg
 
+[Binary-Tarballs]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml
+
+[Binary-Tarballs-badge]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml/badge.svg
+
+
 [PyPI]: https://pypi.org/project/pygemc/
 
 [PyPI-badge]: https://img.shields.io/pypi/v/pygemc.svg?cacheSeconds=300
@@ -268,12 +273,13 @@ architectures.
 
 {:.zebra}
 
-| Deployment and Testing | [![CI][CI-badge]][CI]                             |
-| Doxygen                | [![Docs][Docs-badge]][Docs]                       |
-| Nightly Release        | [![Nightly][Nightly-badge]][Nightly]              |
-| Homepage               | [![Site][Site-badge]][Site]                       |
-| Sanitizer              | [![Sanitize][Sanitize-badge]][Sanitize]           |
-| CodeQL                 | [![CodeQL][CodeQL-badge]][CodeQL]                 |
+| Deployment and Testing | [![CI][CI-badge]][CI]                                        |
+| Sanitizer              | [![Sanitize][Sanitize-badge]][Sanitize]                      |
+| Binary Tarballs        | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] | 
+| CodeQL                 | [![CodeQL][CodeQL-badge]][CodeQL]                            |
+| Doxygen                | [![Docs][Docs-badge]][Docs]                                  |
+| Nightly Release        | [![Nightly][Nightly-badge]][Nightly]                         |
+| Homepage               | [![Site][Site-badge]][Site]                                  |
 
 **pygemc**
 
@@ -282,7 +288,7 @@ architectures.
 | Nightly Dev Release    | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
 | Publish to PyPI        | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
 | Tests                  | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]              |
-| on PyPI                | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
+| PyPI                   | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
 
 <br/><br/>
 

@@ -39,6 +39,7 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`ebuffer`](/home/documentation/api/options/ebuffer) | `<value>` | number of events kept in memory before flushing them to the filestream |
 | [`gstreamer`](/home/documentation/api/options/gstreamer) | `<sequence>` | define a gstreamer output |
 | [`splash_time`](/home/documentation/api/options/splash_time) | `<value>` | splash display time in seconds |
+| [`splash_scale`](/home/documentation/api/options/splash_scale) | `<value>` | splash image scale factor |
 | [`phys_list`](/home/documentation/api/options/phys_list) | `<value>` | Select Physics List |
 | [`gparticle`](/home/documentation/api/options/gparticle) | `<sequence>` | define the generator particle(s) |
 | [`gparticlefile`](/home/documentation/api/options/gparticlefile) | `<sequence>` | define generator particles from file(s) |
@@ -49,6 +50,7 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`g4camera`](/home/documentation/api/options/g4camera) | `<sequence>` | Defines the geant4 camera view point |
 | [`g4light`](/home/documentation/api/options/g4light) | `<sequence>` | Defines the geant4 light source direction |
 | [`dawn`](/home/documentation/api/options/dawn) | `<sequence>` | Defines the dawn view point |
+| [`g4decoration`](/home/documentation/api/options/g4decoration) | `<sequence>` | Adds optional Geant4 scene decorations |
 | [`g4text`](/home/documentation/api/options/g4text) | `<sequence>` | Insert texts in the current scene |
 | [`gmultipoles`](/home/documentation/api/options/gmultipoles) | `<sequence>` | define the e.m. gmultipoles |
 | [`conf_yaml`](/home/documentation/api/options/conf_yaml) | `<value>` | the prefix for filename that store the used options |

@@ -1,6 +1,6 @@
 {
   "closed_at": null,
-  "closed_issues": 2,
+  "closed_issues": 7,
   "created_at": "2026-05-14T13:55:18Z",
   "creator": {
     "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -23,16 +23,16 @@
     "url": "https://api.github.com/users/maureeungaro",
     "user_view_type": "public"
   },
-  "description": "- Pygemc module \n- Generators in GUI \n- Photon detection\n\n<br/>",
+  "description": "- Pygemc module \n- Generators in GUI \n- Photon detection\n- Annotations in GUI\n- Binary Tarballs\n\n<br/>",
   "due_on": "2026-06-30T00:00:00Z",
   "html_url": "https://github.com/gemc/src/milestone/2",
   "id": 15925680,
   "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
   "node_id": "MI_kwDODkwbjc4A8wGw",
   "number": 2,
-  "open_issues": 7,
+  "open_issues": 3,
   "state": "open",
   "title": "GEMC Version 0.3",
-  "updated_at": "2026-05-29T20:35:04Z",
+  "updated_at": "2026-06-04T02:00:31Z",
   "url": "https://api.github.com/repos/gemc/src/milestones/2"
 }
