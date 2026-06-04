@@ -31,7 +31,7 @@ and a PyVista `mesh`. All other parameters are optional:
 | `mother` | `str` | `None` | Parent volume name; `None` → placed directly in the world |
 | `material` | `str` | `None` | Geant4 material name (e.g. `"G4_AIR"`) |
 | `mfield` | `str` | `None` | Magnetic field name |
-| `color` | `str` | `"white"` | Color name or hex string (see [Color Reference](/home/documentation/visualizationDocs/pyvista_colors)) |
+| `color` | `str` | `"white"` | Color name or hex string (see [Color Reference](/home/documentation/api/pyvista_colors)) |
 | `opacity` | `float` | `1.0` | Opacity from `0.0` (invisible) to `1.0` (fully opaque) |
 | `position` | `(x, y, z)` | `(0,0,0)` | Local translation relative to mother, in mm |
 | `rotation` | `(rx, ry, rz)` | `(0,0,0)` | Intrinsic ZYX Euler angles in degrees |

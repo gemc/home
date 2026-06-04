@@ -5,17 +5,25 @@ description: Explore and select Geant4 Physics modules
 order: 40
 ---
 
-The Geant4 Physics is determined with the option **physicsList**. By default, gemc uses **FTFP_BERT** .
+The Geant4 physics list is selected with the `phys_list` option. By default, GEMC uses `FTFP_BERT`.
 
 <br/>
 ### Usage:
 
 <br/>
-In the jcard, add this line to select the desired physics:
- ```
-"physicsList": "your choice of physics"
-```  
- The option can be composed by: 
+In YAML, add this line to select the desired physics:
+
+```yaml
+phys_list: "FTFP_BERT + G4OpticalPhysics"
+```
+
+From the command line:
+
+```shell
+gemc -phys_list="FTFP_BERT + G4OpticalPhysics"
+```
+
+The option can be composed by:
 
 - The main geant4 module (mandatory field). For example: **QGSP_BIC** 
 - Optional: a replacement for the default electromagnetic physics list, specified by adding its code
@@ -29,7 +37,7 @@ In the jcard, add this line to select the desired physics:
  - "**QGSP_BIC_PEN + G4OpticalPhysics + G4RadioactiveDecayPhysics**" will use the **QGSP_BIC** module,    replace its e.m. physics with the **G4EmPenelopePhysics**, and add G4OpticalPhysics and G4RadioactiveDecayPhysics
 
 <br/>
-### Geant4 Version Name: geant4-11-00-patch-03 [MT]  (16-September-2022)
+### Geant4 Version Name: geant4-11-04-patch-01 [MT]  (13-March-2026)
 
 <br/>
 #### Modules:

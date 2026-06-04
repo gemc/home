@@ -54,6 +54,22 @@ radiators with different refractive indices.
 
 <br/>
 
+## Optical materials in variations
+
+When a detector uses geometry variations, declare every optical material that may be used by any
+variation in every variation. This includes materials that are not assigned to a volume in the current
+variation.
+
+For example, the Cherenkov example has three radiator materials: %%lowIndexRadiator%%,
+%%mediumIndexRadiator%%, and %%highIndexRadiator%%. Each variation publishes all three material
+definitions, then assigns the radiator volume to the material selected by that variation.
+
+This keeps the Geant4 optical material tables complete when the setup tab reloads geometry or changes
+the selected variation before a run. It is especially important for Cherenkov tracking, where
+%%G4Cerenkov%% uses the material optical-property tables during stepping.
+
+<br/>
+
 ## Absorption length
 
 `absorptionLength` controls how far optical photons travel before being absorbed.

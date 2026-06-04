@@ -52,11 +52,11 @@ The volumes are built within a system using the python interface. <br/>
 		<br/>
 		To print the corresponding code:<br/>
 		<br/>
-		<p style="font-family:courier;">> scigTemplate.py -gv G4Box -gvp '30, 40, 60' -silent</p>
+		<p style="font-family:courier;">> gemc-system-template -gv G4Box -gvp '30, 40, 60' -silent</p>
 		<br/>
 		To print the generic code:<br/>
 		<br/>
-		<p style="font-family:courier;">> scigTemplate.py -gv G4Box</p>
+		<p style="font-family:courier;">> gemc-system-template -gv G4Box</p>
 		<br/>
 	</p>
 		
@@ -95,11 +95,11 @@ The volumes are built within a system using the python interface. <br/>
 		<br/>
 		To print the corresponding code:<br/>
 		<br/>
-		<p style="font-family:courier;">> scigTemplate.py -gv G4Tubs -gvp '10, 15, 20, 0, 90' -silent</p>
+		<p style="font-family:courier;">> gemc-system-template -gv G4Tubs -gvp '10, 15, 20, 0, 90' -silent</p>
 		<br/>
 		To print the generic code:<br/>
 		<br/>
-		<p style="font-family:courier;">> scigTemplate.py -gv G4Tubs</p>
+		<p style="font-family:courier;">> gemc-system-template -gv G4Tubs</p>
 		<br/>
 		<br/>
 	</p>
@@ -114,7 +114,7 @@ The volumes are built within a system using the python interface. <br/>
 <div class="align-items-center">
 	<p>
 		<br/>
-		Function: <b>make_cone(rin1, rout1, rin2, rout2, length, phi_start, phi_total, lunit1='mm', lunit2='deg')</b><br/>
+		Function: <b>make_cons(rin1, rout1, rin2, rout2, length, phi_start, phi_total, lunit1='mm', lunit2='deg')</b><br/>
 		<br/>
 		Creates a geant4 Cone or Conical section<br/>
 		<br/>
@@ -137,15 +137,15 @@ The volumes are built within a system using the python interface. <br/>
 		<br/>
 		Creates a cone with rin1=5mm, rout1=10mm, rin2=20mm, rout2=25mm, length=40mm, phi_start=0deg, phi_total=270deg:<br/>
 		<br/>
-		<p style="font-family:courier;">> make_cone(5, 10, 20, 25, 40, 0, 270)</p>
+		<p style="font-family:courier;">> make_cons(5, 10, 20, 25, 40, 0, 270)</p>
 		<br/>
 		To print the corresponding code:<br/>
 		<br/>
-		<p style="font-family:courier;">> scigTemplate.py -gv G4Cons -gvp '5, 10, 20, 25, 40, 0, 270' -silent</p>
+		<p style="font-family:courier;">> gemc-system-template -gv G4Cons -gvp '5, 10, 20, 25, 40, 0, 270' -silent</p>
 		<br/>
 		To print the generic code:<br/>
 		<br/>
-		<p style="font-family:courier;">> scigTemplate.py -gv G4Cons</p>
+		<p style="font-family:courier;">> gemc-system-template -gv G4Cons</p>
 		<br/>
 		<br/>
 	</p>
@@ -184,11 +184,11 @@ The volumes are built within a system using the python interface. <br/>
 		<br/>
 		To print the corresponding code:<br/>
 		<br/>
-		<p style="font-family:courier;">> scigTemplate.py -gv G4Trd -gvp '30, 10, 40, 15, 60' -silent</p>
+		<p style="font-family:courier;">> gemc-system-template -gv G4Trd -gvp '30, 10, 40, 15, 60' -silent</p>
 		<br/>
 		To print the generic code:<br/>
 		<br/>
-		<p style="font-family:courier;">> scigTemplate.py -gv G4Trd</p>
+		<p style="font-family:courier;">> gemc-system-template -gv G4Trd</p>
 		<br/>
 		<br/>
 		<br/>
@@ -204,7 +204,7 @@ The volumes are built within a system using the python interface. <br/>
 <div class="align-items-center">
 	<p>
 		<br/>
-		Function: <b>make_trap_from_angular_wedges(pz, py, px, pltx, lunit1='mm')</b><br/>
+		Function: <b>make_trap_from_right_angular_wedges(pz, py, px, pltx, lunit1='mm')</b><br/>
 		<br/>
 		Creates a geant4 Generic Trapezoid: right Angular Wedge (4 parameters)<br/>
 		<br/>
@@ -224,15 +224,15 @@ The volumes are built within a system using the python interface. <br/>
 		TO VERIFY:<br/>
 		Creates a trapezoid with pz=30mm, py=40mm, px=50mm, pltx=20mm:<br/>
 		<br/>
-		<p style="font-family:courier;">> make_trap_from_angular_wedges(30, 40, 50, 20)</p>
+		<p style="font-family:courier;">> make_trap_from_right_angular_wedges(30, 40, 50, 20)</p>
 		<br/>
 		To print the corresponding code:<br/>
 		<br/>
-		<p style="font-family:courier;">> scigTemplate.py -gv G4TrapRAW -gvp '30, 40, 50, 20' -silent</p>
+		<p style="font-family:courier;">> gemc-system-template -gv G4TrapRAW -gvp '30, 40, 50, 20' -silent</p>
 		<br/>
 		To print the generic code:<br/>
 		<br/>
-		<p style="font-family:courier;">> scigTemplate.py -gv G4TrapRAW</p>
+		<p style="font-family:courier;">> gemc-system-template -gv G4TrapRAW</p>
 		<br/>
 		<br/>
 	</p>
@@ -279,11 +279,11 @@ The volumes are built within a system using the python interface. <br/>
 		<br/>
 		To print the corresponding code:<br/>
 		<br/>
-		<p style="font-family:courier;">> scigTemplate.py -gv G4TrapG -gvp '30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130' -silent</p>
+		<p style="font-family:courier;">> gemc-system-template -gv G4TrapG -gvp '30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130' -silent</p>
 		<br/>
 		To print the generic code:<br/>
 		<br/>
-		<p style="font-family:courier;">> scigTemplate.py -gv G4TrapG</p>
+		<p style="font-family:courier;">> gemc-system-template -gv G4TrapG</p>
 		<br/>
 		<br/>
 	</p>
@@ -430,4 +430,3 @@ The volumes are built within a system using the python interface. <br/>
 	</div>
 </div>
 <hr style="color:black; opacity: 0.8"><br/>
-

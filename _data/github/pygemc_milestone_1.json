@@ -1,6 +1,6 @@
 {
   "closed_at": null,
-  "closed_issues": 0,
+  "closed_issues": 1,
   "created_at": "2026-05-29T14:03:23Z",
   "creator": {
     "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -30,9 +30,9 @@
   "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/1/labels",
   "node_id": "MI_kwDOSjCyF84A9jhO",
   "number": 1,
-  "open_issues": 1,
+  "open_issues": 0,
   "state": "open",
   "title": "pygemc v0.3.0",
-  "updated_at": "2026-06-04T14:28:36Z",
+  "updated_at": "2026-06-04T18:30:44Z",
   "url": "https://api.github.com/repos/gemc/pygemc/milestones/1"
 }

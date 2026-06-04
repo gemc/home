@@ -12,7 +12,7 @@ title: "PyVista Geometry Visualization"
 
 GEMC uses [PyVista](https://docs.pyvista.org/) to visualize detector geometry directly from Python.
 Geometry can be viewed interactively, exported as a `.vtksz` file for web-based display, or rendered
-as a screenshot. See the [PyVista API documentation](/home/documentation/visualizationDocs/pyvista_api)
+as a screenshot. See the [PyVista API documentation](/home/documentation/api/pyvista_api)
 for the full API reference.
 
 <br/>

@@ -153,7 +153,7 @@ or as a quoted command-line value.
 Print all available options for the executable:
 
 ```sh
-gemc -help
+gemc -h
 ```
 
 Print detailed help for one option:

@@ -18,8 +18,8 @@ To build native Geant4 volumes, a set of functions and templates to build the Ge
 
 The following command displays the code needed to build a volume, for example a %%G4Box%% of 30 x 40 x 50 cm:
 
-```python
-scigTemplate.py -gv G4Box  -gvp '30 40 50 cm'
+```shell
+gemc-system-template -gv G4Box -gvp '30 40 50 cm'
 ```
 
 <script src="https://gist.github.com/maureeungaro/abd7d5efbae00a61107e4b210eff1dd8.js"></script>
@@ -47,7 +47,7 @@ Let's go over each line. The lines commented out with `#` set the default values
 13. volume's sensitivity: this is the name of the digitization plugin associated with the volume
 14. volume's identifier: unique set of pairs (string, id) that identifies the volume
 
-The type builders can be listed with `scigTemplate.py -sl` and can be found [here](geometryDocs/solidTypes).
+The type builders can be listed with `gemc-system-template -sl` and can be found [here](solidTypes).
 
 <br/>
 
