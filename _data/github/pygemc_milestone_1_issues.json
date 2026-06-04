@@ -80,7 +80,7 @@
         "url": "https://api.github.com/users/maureeungaro",
         "user_view_type": "public"
       },
-      "description": "Add functionality to analyzer, like `plot_y_vs_x`\nStarting analyzer coverage tests",
+      "description": "- Add functionality to analyzer, like `plot_y_vs_x`\n- Starting analyzer coverage tests\n\n<br/>",
       "due_on": "2026-06-18T00:00:00Z",
       "html_url": "https://github.com/gemc/pygemc/milestone/1",
       "id": 16136270,
@@ -90,7 +90,7 @@
       "open_issues": 1,
       "state": "open",
       "title": "pygemc v0.3.0",
-      "updated_at": "2026-05-29T17:06:26Z",
+      "updated_at": "2026-06-04T14:28:36Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/1"
     },
     "node_id": "I_kwDOSjCyF88AAAABDySPag",

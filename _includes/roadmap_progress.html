@@ -1,0 +1,22 @@
+{% if page.milestones %}
+<section class="roadmap-progress">
+  <br/>
+  <h2>Milestones Progress</h2>
+  <br/>
+  {% for m in page.milestones %}
+    {% assign repo_key = m.repo | replace: "/", "_" | replace: "-", "_" %}
+    {% assign milestone_key = repo_key | append: "_milestone_" | append: m.number %}
+    {% assign ms = site.data.github[milestone_key] %}
+    {% if ms %}
+      {% assign total = ms.open_issues | plus: ms.closed_issues %}
+      {% if total > 0 %}
+        {% assign pct = ms.closed_issues | times: 100 | divided_by: total %}
+      {% else %}
+        {% assign pct = 0 %}
+      {% endif %}
+      {% include progress-item.html label=ms.title value=pct %}
+    {% endif %}
+  {% endfor %}
+  <br/>
+</section>
+{% endif %}

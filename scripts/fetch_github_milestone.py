@@ -113,14 +113,19 @@ def main():
 
     output_dir = Path(args.output_dir)
 
-    targets = [(args.owner, args.repo, args.milestone)]
+    targets = [(args.owner, args.repo, args.milestone, None)]
     targets.extend(parse_repo_milestone(value, args.owner) for value in args.repo_milestone)
 
-    for owner, repo, milestone in targets:
-        fetch_and_write_milestone(owner, repo, milestone, output_dir, token)
+    for owner, repo, milestone, alias in targets:
+        fetch_and_write_milestone(owner, repo, milestone, output_dir, token, alias=alias)
 
 
 def parse_repo_milestone(value, default_owner):
+    # Optional alias prefix: ALIAS=OWNER/REPO:MILESTONE or ALIAS=REPO:MILESTONE
+    alias = None
+    if "=" in value:
+        alias, value = value.split("=", 1)
+
     if ":" not in value:
         raise SystemExit("--repo-milestone must use REPO:MILESTONE, for example pygemc:1")
 
@@ -135,10 +140,10 @@ def parse_repo_milestone(value, default_owner):
     except ValueError as error:
         raise SystemExit(f"Invalid milestone number in --repo-milestone {value!r}") from error
 
-    return owner, repo, milestone
+    return owner, repo, milestone, alias
 
 
-def fetch_and_write_milestone(owner, repo, milestone, output_dir, token):
+def fetch_and_write_milestone(owner, repo, milestone, output_dir, token, alias=None):
     api_owner = urllib.parse.quote(owner)
     api_repo = urllib.parse.quote(repo)
 
@@ -156,7 +161,7 @@ def fetch_and_write_milestone(owner, repo, milestone, output_dir, token):
     milestone_data, _ = github_get(milestone_url, token=token)
     issues_data = github_get_paginated(issues_url, token=token)
 
-    repo_key = repo.replace("-", "_")
+    repo_key = alias if alias else repo.replace("-", "_")
     write_json(output_dir / f"{repo_key}_milestone_{milestone}.json", milestone_data)
     write_json(output_dir / f"{repo_key}_milestone_{milestone}_issues.json", issues_data)
 

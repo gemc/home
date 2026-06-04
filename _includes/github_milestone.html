@@ -88,15 +88,3 @@
 </p>
 {% endif %}
 <br/>
-
-{% unless include.show_progress == false %}
-## Features progress
-
-<br/>
-
-{% for item in page.progress %}
-  {% include progress-item.html label=item.label value=item.value %}
-{% endfor %}
-
-<br/>
-{% endunless %}

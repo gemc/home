@@ -1,16 +1,12 @@
 ---
-layout: post
+layout: roadmap
 title: "Roadmap to GEMC 0.2"
 date: 2026-05-13
-categories: [news]
+categories: [roadmap]
 tags: [generator, cherenkov, jupyter, screenshot]
-progress:
-  - label: "Simple Flux example"
-    value: 100
-  - label: "Materials example "
-    value: 100
-  - label: "Pyvista example "
-    value: 100
+milestones:
+  - repo: src
+    number: 1
 ---
 
 New features, improvements, and issue resolutions planned for the next release.

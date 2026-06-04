@@ -1,25 +1,26 @@
 ---
-layout: post
+layout: roadmap
 title: "Roadmap to GEMC 0.3"
 date: 2026-05-21
-categories: [news]
+categories: [roadmap]
 tags: [generator, cherenkov, jupyter, screenshot]
-progress:
-  - label: "Options Documentation"
-    value: 100
-  - label: "Geometry Documentation"
-    value: 0
-  - label: "Vertex Manipulation Documentation"
-    value: 0
-  - label: "pygemc Documentation"
-    value: 40
-
+milestones:
+  - repo: src
+    number: 2
+  - repo: pygemc
+    number: 1
+  - repo: clas12-systems
+    number: 1
 ---
 
 New features, improvements, and issue resolutions planned for the next release.
 
+Included are the milestones for pygemc and clas12-systems.
+
 See also the [Project Roadmap](https://github.com/orgs/gemc/projects/1/views/4).
 
-{% include github_milestone.html repo="src" milestone=2 show_progress=false %}
+{% include github_milestone.html repo="src" milestone=2 %}
 
 {% include github_milestone.html repo="pygemc" milestone=1 %}
+
+{% include github_milestone.html repo="clas12-systems" milestone=1 %}

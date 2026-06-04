@@ -6,6 +6,8 @@
 
     {% if include.post.categories contains "release" %}
       <span class="release-card__badge">Release</span>
+    {% elsif include.post.categories contains "roadmap" %}
+      <span class="news-card__badge news-card__badge--roadmap">Roadmap</span>
     {% elsif include.post.categories contains "news" %}
       <span class="news-card__badge">News</span>
     {% endif %}
