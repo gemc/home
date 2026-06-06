@@ -15,7 +15,8 @@ milestones:
 
 New features, improvements, and issue resolutions planned for the next release.
 
-Included are the milestones for pygemc and clas12-systems.
+Included are the milestones for [pygemc](https://github.com/gemc/pygemc) 
+and [clas12-systems](https://github.com/gemc/clas12-systems).
 
 See also the [Project Roadmap](https://github.com/orgs/gemc/projects/1/views/4).
 

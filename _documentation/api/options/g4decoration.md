@@ -25,7 +25,9 @@ gemc help g4decoration
    • scaleColor: scale color as 'r g b' or a named colorDefault value: 0.9 0.9 0.9
    • axes: add simple XYZ axesDefault value: false
    • eventID: add event ID text at end of eventDefault value: false
+   • eventIDSize: event ID font size in pointsDefault value: 24
    • date: add a date stampDefault value: false
+   • dateSize: date font size in pointsDefault value: 24
    • logo2D: add the 2D Geant4 logoDefault value: false
    • logo: add the 3D Geant4 logoDefault value: false
    • frame: add a frame around the viewDefault value: false
