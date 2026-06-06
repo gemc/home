@@ -1,432 +1,392 @@
 ---
 layout: default
-title: Native geant4 solid types builders
-description: use python to create volumes based on geant4 solids
+title: Native Geant4 Solid Types
+description: Python builders for every supported Geant4 solid, with interactive 3-D previews
 ---
-This document describes how to use python to build the volumes described in the <a href="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Detector/Geometry/geomSolids.html">Geant4 User Guide</a><br/><br/>
-The volumes are built within a system using the python interface. <br/>
-<br/><br/>Each geant4 solid's constructor is documented below.<br/><br/>
-<table style="width:60% ">
-<tr>
-</tr>
-<tr>
-    <td><a href="#G4Box">G4Box</a>                    <img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aBox.jpg" style="width: 30px; height: 30px; padding: 0px"/></td>
-    <td><a href="#G4Tubs">G4Tubs</a>                    <img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTubs.jpg" style="width: 30px; height: 30px; padding: 0px"/></td>
-    <td><a href="#G4Cons">G4Cons</a>                    <img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aCons.jpg" style="width: 30px; height: 30px; padding: 0px"/></td>
-    <td><a href="#G4Trd">G4Trd</a>                    <img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTrd.jpg" style="width: 30px; height: 30px; padding: 0px"/></td>
-</tr>
-<tr>
-    <td><a href="#G4TrapRAW">G4TrapRAW</a>                    <img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTrap.jpg" style="width: 30px; height: 30px; padding: 0px"/></td>
-    <td><a href="#G4TrapG">G4TrapG</a>                    <img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/wTrap.jpg" style="width: 30px; height: 30px; padding: 0px"/></td>
-    <td><a href="#G4Trap8">G4Trap8</a>                    <img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTrap.jpg" style="width: 30px; height: 30px; padding: 0px"/></td>
-    <td><a href="#G4Trap">G4Trap</a>                    <img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTrap.jpg" style="width: 30px; height: 30px; padding: 0px"/></td>
-</tr>
-<tr>
-    <td><a href="#G4Sphere">G4Sphere</a>                    <img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aSphere.jpg" style="width: 30px; height: 30px; padding: 0px"/></td>
-    <td><a href="#G4Polycone">G4Polycone</a>                    <img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aBREPSolidPCone.jpg" style="width: 30px; height: 30px; padding: 0px"/></td>
-</tr>
-</table><br/><br/>
-<h4 id="G4Box">G4Box: <i>Simple Box</i> </h4>
-<div class="align-items-center">
-	<p>
-		<br/>
-		Function: <b>make_box(dx, dy, dz, lunit='mm')</b><br/>
-		<br/>
-		Creates a geant4 Box<br/>
-		<br/>
-		<i><b>Parameters:</b></i> <br/>
 
-		<br/>
-		dx : half length in x<br/>
-		dy : half length in y<br/>
-		dz : half length in z<br/>
-		lunit: length unit (optional; default: mm)<br/>
-		<br/>
-		<br/>
-		<i><b>Example:</b></i> <br/>
+This page lists every supported Geant4 solid and its Python builder function.
+The full Geant4 geometry guide is at the
+[Geant4 User Guide](https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/Detector/Geometry/geomSolids.html).
 
-		<br/>
-		Creates a box with dx=30mm, dy=40mm, dz=60mm:<br/>
-		<br/>
-		<p style="font-family:courier;">> make_box(30, 40, 60)</p>
-		<br/>
-		To print the corresponding code:<br/>
-		<br/>
-		<p style="font-family:courier;">> gemc-system-template -gv G4Box -gvp '30, 40, 60' -silent</p>
-		<br/>
-		To print the generic code:<br/>
-		<br/>
-		<p style="font-family:courier;">> gemc-system-template -gv G4Box</p>
-		<br/>
-	</p>
-		
-	<div>
-		<img  src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aBox.jpg"/>
-	</div>
-</div>
-<hr style="color:black; opacity: 0.8"><br/>
+Each solid is built inside a `GVolume` via one of the `make_*` methods described below.
 
-<h4 id="G4Tubs">G4Tubs: <i>Cylindrical Section or Tube</i> </h4>
-<div class="align-items-center">
-	<p>
-		<br/>
-		Function: <b>make_tube(rin, rout, length, phistart, phitotal, lunit1='mm', lunit2='deg')</b><br/>
-		<br/>
-		Creates a geant4 Cylindrical Section or Tube<br/>
-		<br/>
-		<i><b>Parameters:</b></i> <br/>
+---
 
-		<br/>
-		rin : inner radius<br/>
-		rout : outer radius<br/>
-		length : tube half length in z<br/>
-		phistart : starting phi angle<br/>
-		phitotal : total phi angle<br/>
-		lunit1: length unit (optional; default: mm)<br/>
-		lunit2: angle unit (optional; default: deg)<br/>
-		<br/>
-		<br/>
-		<i><b>Example:</b></i> <br/>
+<h2 id="G4Box">G4Box — Simple Box</h2>
 
-		<br/>
-		Creates a tube with rin=10mm, rout=15mm, length=20mm, phistart=0deg, phitotal=90deg:<br/>
-		<br/>
-		<p style="font-family:courier;">> make_tube(10, 15, 20, 0, 90)</p>
-		<br/>
-		To print the corresponding code:<br/>
-		<br/>
-		<p style="font-family:courier;">> gemc-system-template -gv G4Tubs -gvp '10, 15, 20, 0, 90' -silent</p>
-		<br/>
-		To print the generic code:<br/>
-		<br/>
-		<p style="font-family:courier;">> gemc-system-template -gv G4Tubs</p>
-		<br/>
-		<br/>
-	</p>
-		
-	<div>
-		<img  src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTubs.jpg"/>
-	</div>
-</div>
-<hr style="color:black; opacity: 0.8"><br/>
+```python
+gvolume.make_box(dx, dy, dz, lunit='mm')
+```
 
-<h4 id="G4Cons">G4Cons: <i>Cone or Conical section</i> </h4>
-<div class="align-items-center">
-	<p>
-		<br/>
-		Function: <b>make_cons(rin1, rout1, rin2, rout2, length, phi_start, phi_total, lunit1='mm', lunit2='deg')</b><br/>
-		<br/>
-		Creates a geant4 Cone or Conical section<br/>
-		<br/>
-		<i><b>Parameters:</b></i> <br/>
+{% capture left_box %}
+| Parameter | Description |
+|-----------|-------------|
+| `dx` | half-length in X |
+| `dy` | half-length in Y |
+| `dz` | half-length in Z |
+| `lunit` | length unit (default: `mm`) |
+{% endcapture %}
 
-		<br/>
-		rin1 : inner radius at -dz<br/>
-		rout1 : outer radius at -dz<br/>
-		rin2 : inner radius at +dz<br/>
-		rout2 : outer radius at +dz<br/>
-		length : cone half length in z<br/>
-		phi_start : starting phi angle<br/>
-		phi_total : total phi angle<br/>
-		lunit1: length unit (optional; default: mm)<br/>
-		lunit2: angle unit (optional; default: deg)<br/>
-		<br/>
-		<br/>
-		<i><b>Example:</b></i> <br/>
+{% capture right_box %}
+<img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aBox.jpg"
+     alt="G4Box" style="max-width:100%; max-height:220px; object-fit:contain;" />
+{% endcapture %}
 
-		<br/>
-		Creates a cone with rin1=5mm, rout1=10mm, rin2=20mm, rout2=25mm, length=40mm, phi_start=0deg, phi_total=270deg:<br/>
-		<br/>
-		<p style="font-family:courier;">> make_cons(5, 10, 20, 25, 40, 0, 270)</p>
-		<br/>
-		To print the corresponding code:<br/>
-		<br/>
-		<p style="font-family:courier;">> gemc-system-template -gv G4Cons -gvp '5, 10, 20, 25, 40, 0, 270' -silent</p>
-		<br/>
-		To print the generic code:<br/>
-		<br/>
-		<p style="font-family:courier;">> gemc-system-template -gv G4Cons</p>
-		<br/>
-		<br/>
-	</p>
-		
-	<div>
-		<img  src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aCons.jpg"/>
-	</div>
-</div>
-<hr style="color:black; opacity: 0.8"><br/>
+{% include two_col_md.html left="1fr" right="220px" left_content=left_box right_content=right_box %}
 
-<h4 id="G4Trd">G4Trd: <i>Trapezoid</i> </h4>
-<div class="align-items-center">
-	<p>
-		<br/>
-		Function: <b>make_trapezoid(dx1, dx2, dy1, dy2, z, lunit='mm')</b><br/>
-		<br/>
-		Creates a geant4 Trapezoid<br/>
-		<br/>
-		<i><b>Parameters:</b></i> <br/>
+```python
+gvolume.make_box(30, 20, 10)           # 30×20×10 mm half-lengths
+gvolume.make_box(3, 2, 1, lunit='cm')  # same in cm
+```
 
-		<br/>
-		dx1 : half length in x at -dz<br/>
-		dx2 : half-length in x at +dz<br/>
-		dy1 : half-length in y at -dz<br/>
-		dy2 : half-length in y at +dz<br/>
-		z : half-length in z<br/>
-		lunit: length unit (optional; default: mm)<br/>
-		<br/>
-		<br/>
-		<i><b>Example:</b></i> <br/>
+```shell
+gemc-system-template -gv G4Box -gvp '30, 20, 10' -silent
+```
 
-		<br/>
-		Creates a trapezoid with dx1=30mm, dx2=10mm, dy1=40mm, dy2=15mm, z=60mm:<br/>
-		<br/>
-		<p style="font-family:courier;">> make_trapezoid(30, 10, 40, 15, 60)</p>
-		<br/>
-		To print the corresponding code:<br/>
-		<br/>
-		<p style="font-family:courier;">> gemc-system-template -gv G4Trd -gvp '30, 10, 40, 15, 60' -silent</p>
-		<br/>
-		To print the generic code:<br/>
-		<br/>
-		<p style="font-family:courier;">> gemc-system-template -gv G4Trd</p>
-		<br/>
-		<br/>
-		<br/>
-	</p>
-		
-	<div>
-		<img  src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTrd.jpg"/>
-	</div>
-</div>
-<hr style="color:black; opacity: 0.8"><br/>
+<iframe
+  src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/documentation/solidTypes/G4Box.vtksz"
+  title="Interactive 3-D view of G4Box"
+  width="100%" height="400"
+  style="border:1px solid #d0d7de; border-radius:1px;"
+  loading="lazy">
+</iframe>
 
-<h4 id="G4TrapRAW">G4TrapRAW: <i>Generic Trapezoid: right Angular Wedge (4 parameters)</i> </h4>
-<div class="align-items-center">
-	<p>
-		<br/>
-		Function: <b>make_trap_from_right_angular_wedges(pz, py, px, pltx, lunit1='mm')</b><br/>
-		<br/>
-		Creates a geant4 Generic Trapezoid: right Angular Wedge (4 parameters)<br/>
-		<br/>
-		<i><b>Parameters:</b></i> <br/>
+<br/>
 
-		<br/>
-		pz : Length along Z<br/>
-		py : Length along Y<br/>
-		px : Length along X at the wider side<br/>
-		pltx : Length along X at the narrower side (plTX<=pX)<br/>
-		unit: length unit (optional; default: mm)<br/>
-		<br/>
-		<br/>
-		<i><b>Example:</b></i> <br/>
+---
 
-		<br/>
-		TO VERIFY:<br/>
-		Creates a trapezoid with pz=30mm, py=40mm, px=50mm, pltx=20mm:<br/>
-		<br/>
-		<p style="font-family:courier;">> make_trap_from_right_angular_wedges(30, 40, 50, 20)</p>
-		<br/>
-		To print the corresponding code:<br/>
-		<br/>
-		<p style="font-family:courier;">> gemc-system-template -gv G4TrapRAW -gvp '30, 40, 50, 20' -silent</p>
-		<br/>
-		To print the generic code:<br/>
-		<br/>
-		<p style="font-family:courier;">> gemc-system-template -gv G4TrapRAW</p>
-		<br/>
-		<br/>
-	</p>
-		
-	<div>
-		<img  src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTrap.jpg"/>
-	</div>
-</div>
-<hr style="color:black; opacity: 0.8"><br/>
+<h2 id="G4Tubs">G4Tubs — Cylindrical Section or Tube</h2>
 
-<h4 id="G4TrapG">G4TrapG: <i>Generic Trapezoid: general trapezoid (11 parameters)</i> </h4>
-<div class="align-items-center">
-	<p>
-		<br/>
-		<br/>
-		Function: <b>make_general_trapezoid(pDz, pTheta, pPhi, pDy1, pDx1, pDx2, pAlp1, pDy2, pDx3, pDx4, pAlp2, lunit1='mm', lunit2='deg')</b><br/>
-		<br/>
-		Creates a geant4 Generic Trapezoid: general trapezoid (11 parameters)<br/>
-		<br/>
-		<i><b>Parameters:</b></i> <br/>
+```python
+gvolume.make_tube(rin, rout, length, phistart, phitotal, lunit1='mm', lunit2='deg')
+```
 
-		<br/>
-		pDz: Half Z length - distance from the origin to the bases<br/>
-		pTheta: Polar angle of the line joining the centres of the bases at -/+pDz<br/>
-		pPhi: Azimuthal angle of the line joining the centre of the base at -pDz to the centre of the base at +pDz<br/>
-		pDy1: Half Y length of the base at -pDz<br/>
-		pDy2: Half Y length of the base at +pDz<br/>
-		pDx1: Half X length at smaller Y of the base at -pDz<br/>
-		pDx2: Half X length at bigger Y of the base at -pDz<br/>
-		pDx3: Half X length at smaller Y of the base at +pDz<br/>
-		pDx4: Half X length at bigger y of the base at +pDz<br/>
-		pAlp1: Angle between the Y-axis and the centre line of the base at -pDz (lower endcap)<br/>
-		pAlp2: Angle between the Y-axis and the centre line of the base at +pDz (upper endcap)<br/>
-		lunit1: length unit (optional; default: mm)<br/>
-		lunit2: angle unit (optional; default: deg)<br/>
-		<br/>
-		<br/>
-		<i><b>Example:</b></i> <br/>
+{% capture left_tubs %}
+| Parameter | Description |
+|-----------|-------------|
+| `rin` | inner radius |
+| `rout` | outer radius |
+| `length` | half-length in Z |
+| `phistart` | starting φ angle |
+| `phitotal` | total φ angle |
+| `lunit1` | length unit (default: `mm`) |
+| `lunit2` | angle unit (default: `deg`) |
+{% endcapture %}
 
-		<br/>
-		Creates a trapezoid with pDz=30mm, pTheta=40deg, pPhi=50deg, pDy1=60mm, pDx1=70mm, pDx2=80mm, pAlp1=90deg, pDy2=100mm, pDx3=110mm, pDx4=120mm, pAlp2=130deg:<br/>
-		<br/>
-		<p style="font-family:courier;">> make_general_trapezoid(30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130)</p>
-		<br/>
-		To print the corresponding code:<br/>
-		<br/>
-		<p style="font-family:courier;">> gemc-system-template -gv G4TrapG -gvp '30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130' -silent</p>
-		<br/>
-		To print the generic code:<br/>
-		<br/>
-		<p style="font-family:courier;">> gemc-system-template -gv G4TrapG</p>
-		<br/>
-		<br/>
-	</p>
-		
-	<div>
-		<img  src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/wTrap.jpg"/>
-	</div>
-</div>
-<hr style="color:black; opacity: 0.8"><br/>
+{% capture right_tubs %}
+<img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTubs.jpg"
+     alt="G4Tubs" style="max-width:100%; max-height:220px; object-fit:contain;" />
+{% endcapture %}
 
-<h4 id="G4Trap8">G4Trap8: <i>Generic Trapezoid: from eight points (24 parameters)</i> </h4>
-<div class="align-items-center">
-	<p>
-		<br/>
-		<br/>
-		Function: <b>make_trap_from_vertices(v1x, v1y, v1z, v2x, v2y, v2z, v3x, v3y, v3z, v4x, v4y, v4z, v5x, v5y, v5z, v6x, v6y,</b><br/>
-		v6z, v7x, v7y, v7z, v8x, v8y, v8z, lunit1='mm')<br/>
-		<br/>
-		Creates a geant4 Generic Trapezoid: from eight points (24 parameters)<br/>
-		<br/>
-		<i><b>Parameters:</b></i> <br/>
+{% include two_col_md.html left="1fr" right="220px" left_content=left_tubs right_content=right_tubs %}
 
-		<br/>
-		v1x, v1y, v1z: Coordinates of the first vertex<br/>
-		v2x, v2y, v2z: Coordinates of the second vertex<br/>
-		v3x, v3y, v3z: Coordinates of the third vertex<br/>
-		v4x, v4y, v4z: Coordinates of the fourth vertex<br/>
-		v5x, v5y, v5z: Coordinates of the fifth vertex<br/>
-		v6x, v6y, v6z: Coordinates of the sixth vertex<br/>
-		v7x, v7y, v7z: Coordinates of the seventh vertex<br/>
-		v8x, v8y, v8z: Coordinates of the eighth vertex<br/>
-		lunit1: length unit (optional; default: mm)<br/>
-		<br/>
-		v1, v2 | Edge with smaller Y of the base at -z<br/>
-		v3, v4 | Edge with bigger Y of the base at -z<br/>
-		v5, v6 | Edge with smaller Y of the base at +z<br/>
-		v7, v8 | Edge with bigger Y of the base at +z<br/>
-		<br/>
-		<br/>
-		<i><b>Example:</b></i> <br/>
+```python
+gvolume.make_tube(10, 20, 30, 0, 360)    # full tube
+gvolume.make_tube(0, 15, 25, 0, 270)     # three-quarter open cylinder
+```
 
-		<br/>
-		MISSING, build one<br/>
-		<br/>
-		<br/>
-	</p>
-		
-	<div>
-		<img  src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTrap.jpg"/>
-	</div>
-</div>
-<hr style="color:black; opacity: 0.8"><br/>
+```shell
+gemc-system-template -gv G4Tubs -gvp '10, 20, 30, 0, 360' -silent
+```
 
-<h4 id="G4Trap">G4Trap: <i>Generic Trapezoid: will call the G4Trap constructor based on the number of parameters</i> </h4>
-<div class="align-items-center">
-	<p>
-		<br/>
-		<br/>
-		Function: <b>make_trap(params, lunit1='mm', lunit2='deg')</b><br/>
-		<br/>
-		Creates a geant4 Generic Trapezoid: will call the G4Trap constructor based on the number of parameters<br/>
-		<br/>
-		<i><b>Parameters:</b></i> <br/>
+<iframe
+  src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/documentation/solidTypes/G4Tubs.vtksz"
+  title="Interactive 3-D view of G4Tubs"
+  width="100%" height="400"
+  style="border:1px solid #d0d7de; border-radius:1px;"
+  loading="lazy">
+</iframe>
 
-		<br/>
-		params: list of parameters<br/>
-		lunit1: length unit (optional; default: mm)<br/>
-		lunit2: angle unit (optional; default: deg)<br/>
-		<br/>
-		<br/>
-		<i><b>Example::</b></i> <br/>
+<br/>
 
-		<br/>
-		MISSING, build one<br/>
-		<br/>
-		<br/>
-	</p>
-		
-	<div>
-		<img  src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTrap.jpg"/>
-	</div>
-</div>
-<hr style="color:black; opacity: 0.8"><br/>
+---
 
-<h4 id="G4Sphere">G4Sphere: <i>Sphere or Spherical Shell Section</i> </h4>
-<div class="align-items-center">
-	<p>
-		<br/>
-		Function: <b>make_sphere(rmin, rmax, sphi, dphi, stheta, dtheta, lunit1='mm', lunit2='deg')</b><br/>
-		<br/>
-		Creates a geant4 Sphere or Spherical Shell Section<br/>
-		<br/>
-		<i><b>Parameters:</b></i> <br/>
+<h2 id="G4Cons">G4Cons — Cone or Conical Section</h2>
 
-		<br/>
-		rmin: inner radius<br/>
-		rmax: outer radius<br/>
-		sphi: starting phi angle<br/>
-		dphi: delta phi angle<br/>
-		stheta: starting theta angle<br/>
-		dtheta: delta theta angle<br/>
-		lunit1: length unit (optional; default: mm)<br/>
-		lunit2: angle unit (optional; default: deg)<br/>
-		<br/>
-		<br/>
-	</p>
-		
-	<div>
-		<img  src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aSphere.jpg"/>
-	</div>
-</div>
-<hr style="color:black; opacity: 0.8"><br/>
+```python
+gvolume.make_cons(rin1, rout1, rin2, rout2, length, phi_start, phi_total,
+                  lunit1='mm', lunit2='deg')
+```
 
-<h4 id="G4Polycone">G4Polycone: <i>Polycons</i> </h4>
-<div class="align-items-center">
-	<p>
-		<br/>
-		Function: <b>make_polycone(phiStart, phiTotal, zplane, iradius, oradius, lunit1='mm', lunit2='deg')</b><br/>
-		<br/>
-		Creates a geant4 Polycone<br/>
-		<br/>
-		<i><b>Parameters:</b></i> <br/>
+{% capture left_cons %}
+| Parameter | Description |
+|-----------|-------------|
+| `rin1` | inner radius at −dz |
+| `rout1` | outer radius at −dz |
+| `rin2` | inner radius at +dz |
+| `rout2` | outer radius at +dz |
+| `length` | half-length in Z |
+| `phi_start` | starting φ angle |
+| `phi_total` | total φ angle |
+{% endcapture %}
 
-		<br/>
-		phiStart: starting phi angle<br/>
-		phiTotal: total phi angle<br/>
-		zplane: list of z coordinates<br/>
-		iradius: list of inner radii<br/>
-		oradius: list of outer radii<br/>
-		lunit1: length unit (optional; default: mm)<br/>
-		lunit2: angle unit (optional; default: deg)<br/>
-		<br/>
-		<br/>
-		<i><b>Example:</b></i> <br/>
+{% capture right_cons %}
+<img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aCons.jpg"
+     alt="G4Cons" style="max-width:100%; max-height:220px; object-fit:contain;" />
+{% endcapture %}
 
-		<br/>
-		MISSING, build one<br/>
-		<br/>
-		<br/>
-	</p>
-		
-	<div>
-		<img  src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aBREPSolidPCone.jpg"/>
-	</div>
-</div>
-<hr style="color:black; opacity: 0.8"><br/>
+{% include two_col_md.html left="1fr" right="220px" left_content=left_cons right_content=right_cons %}
+
+```python
+gvolume.make_cons(5, 15, 15, 25, 30, 0, 270)   # hollow truncated cone, 270°
+gvolume.make_cons(0, 10, 0, 20, 40, 0, 360)     # solid cone, full rotation
+```
+
+```shell
+gemc-system-template -gv G4Cons -gvp '5, 15, 15, 25, 30, 0, 270' -silent
+```
+
+<iframe
+  src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/documentation/solidTypes/G4Cons.vtksz"
+  title="Interactive 3-D view of G4Cons"
+  width="100%" height="400"
+  style="border:1px solid #d0d7de; border-radius:1px;"
+  loading="lazy">
+</iframe>
+
+<br/>
+
+---
+
+<h2 id="G4Trd">G4Trd — Trapezoid</h2>
+
+```python
+gvolume.make_trapezoid(dx1, dx2, dy1, dy2, z, lunit='mm')
+```
+
+{% capture left_trd %}
+| Parameter | Description |
+|-----------|-------------|
+| `dx1` | half-length X at −dz |
+| `dx2` | half-length X at +dz |
+| `dy1` | half-length Y at −dz |
+| `dy2` | half-length Y at +dz |
+| `z` | half-length in Z |
+| `lunit` | length unit (default: `mm`) |
+{% endcapture %}
+
+{% capture right_trd %}
+<img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTrd.jpg"
+     alt="G4Trd" style="max-width:100%; max-height:220px; object-fit:contain;" />
+{% endcapture %}
+
+{% include two_col_md.html left="1fr" right="220px" left_content=left_trd right_content=right_trd %}
+
+```python
+gvolume.make_trapezoid(20, 10, 15, 8, 25)
+```
+
+```shell
+gemc-system-template -gv G4Trd -gvp '20, 10, 15, 8, 25' -silent
+```
+
+<iframe
+  src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/documentation/solidTypes/G4Trd.vtksz"
+  title="Interactive 3-D view of G4Trd"
+  width="100%" height="400"
+  style="border:1px solid #d0d7de; border-radius:1px;"
+  loading="lazy">
+</iframe>
+
+<br/>
+
+---
+
+<h2 id="G4Trap">G4Trap — General Trapezoid</h2>
+
+Three builder functions map to the three Geant4 G4Trap constructors.
+
+### 11-parameter general trapezoid
+
+```python
+gvolume.make_general_trapezoid(pDz, pTheta, pPhi,
+                                pDy1, pDx1, pDx2, pAlp1,
+                                pDy2, pDx3, pDx4, pAlp2,
+                                lunit1='mm', lunit2='deg')
+```
+
+{% capture left_trapg %}
+| Parameter | Description |
+|-----------|-------------|
+| `pDz` | half-length in Z |
+| `pTheta` | polar angle of axis joining face centres |
+| `pPhi` | azimuthal angle of that axis |
+| `pDy1` | half-length Y at −pDz |
+| `pDx1` | half-length X at small Y of −pDz face |
+| `pDx2` | half-length X at large Y of −pDz face |
+| `pAlp1` | tilt of −pDz face from Y axis |
+| `pDy2` | half-length Y at +pDz |
+| `pDx3` | half-length X at small Y of +pDz face |
+| `pDx4` | half-length X at large Y of +pDz face |
+| `pAlp2` | tilt of +pDz face from Y axis |
+{% endcapture %}
+
+{% capture right_trapg %}
+<img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/wTrap.jpg"
+     alt="G4Trap general" style="max-width:100%; max-height:220px; object-fit:contain;" />
+{% endcapture %}
+
+{% include two_col_md.html left="1fr" right="220px" left_content=left_trapg right_content=right_trapg %}
+
+```python
+gvolume.make_general_trapezoid(25, 5, 10, 12, 15, 10, 8, 10, 12, 8, 5)
+```
+
+```shell
+gemc-system-template -gv G4TrapG -gvp '25, 5, 10, 12, 15, 10, 8, 10, 12, 8, 5' -silent
+```
+
+### 4-parameter right-angular wedge
+
+```python
+gvolume.make_trap_from_right_angular_wedges(pz, py, px, pltx, unit='mm')
+```
+
+{% capture left_trapraw %}
+| Parameter | Description |
+|-----------|-------------|
+| `pz` | length along Z |
+| `py` | length along Y |
+| `px` | length along X at the wider side |
+| `pltx` | length along X at the narrower side (`pltx` ≤ `px`) |
+| `unit` | length unit (default: `mm`) |
+{% endcapture %}
+
+{% capture right_trapraw %}
+<img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTrap.jpg"
+     alt="G4Trap right-angular wedge" style="max-width:100%; max-height:220px; object-fit:contain;" />
+{% endcapture %}
+
+{% include two_col_md.html left="1fr" right="220px" left_content=left_trapraw right_content=right_trapraw %}
+
+```shell
+gemc-system-template -gv G4TrapRAW -gvp '30, 40, 50, 20' -silent
+```
+
+### 8-vertex form (24 parameters)
+
+```python
+gvolume.make_trap_from_vertices(v1x, v1y, v1z, v2x, v2y, v2z,
+                                 v3x, v3y, v3z, v4x, v4y, v4z,
+                                 v5x, v5y, v5z, v6x, v6y, v6z,
+                                 v7x, v7y, v7z, v8x, v8y, v8z, lunit1='mm')
+```
+
+{% capture left_trap8 %}
+| Vertices | Description |
+|----------|-------------|
+| `v1, v2` | edge at small Y of −z face |
+| `v3, v4` | edge at large Y of −z face |
+| `v5, v6` | edge at small Y of +z face |
+| `v7, v8` | edge at large Y of +z face |
+{% endcapture %}
+
+{% capture right_trap8 %}
+<img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aTrap.jpg"
+     alt="G4Trap 8-vertex" style="max-width:100%; max-height:220px; object-fit:contain;" />
+{% endcapture %}
+
+{% include two_col_md.html left="1fr" right="220px" left_content=left_trap8 right_content=right_trap8 %}
+
+<iframe
+  src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/documentation/solidTypes/G4Trap.vtksz"
+  title="Interactive 3-D view of G4Trap"
+  width="100%" height="400"
+  style="border:1px solid #d0d7de; border-radius:1px;"
+  loading="lazy">
+</iframe>
+
+<br/>
+
+---
+
+<h2 id="G4Sphere">G4Sphere — Sphere or Spherical Shell Section</h2>
+
+```python
+gvolume.make_sphere(rmin, rmax, sphi, dphi, stheta, dtheta,
+                    lunit1='mm', lunit2='deg')
+```
+
+{% capture left_sphere %}
+| Parameter | Description |
+|-----------|-------------|
+| `rmin` | inner radius |
+| `rmax` | outer radius |
+| `sphi` | starting φ angle |
+| `dphi` | delta φ angle |
+| `stheta` | starting θ angle |
+| `dtheta` | delta θ angle |
+{% endcapture %}
+
+{% capture right_sphere %}
+<img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aSphere.jpg"
+     alt="G4Sphere" style="max-width:100%; max-height:220px; object-fit:contain;" />
+{% endcapture %}
+
+{% include two_col_md.html left="1fr" right="220px" left_content=left_sphere right_content=right_sphere %}
+
+```python
+gvolume.make_sphere(10, 20, 0, 270, 10, 120)   # partial shell
+gvolume.make_sphere(0, 15, 0, 360, 0, 180)     # full solid sphere
+```
+
+```shell
+gemc-system-template -gv G4Sphere -gvp '10, 20, 0, 270, 10, 120' -silent
+```
+
+<iframe
+  src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/documentation/solidTypes/G4Sphere.vtksz"
+  title="Interactive 3-D view of G4Sphere"
+  width="100%" height="400"
+  style="border:1px solid #d0d7de; border-radius:1px;"
+  loading="lazy">
+</iframe>
+
+<br/>
+
+---
+
+<h2 id="G4Polycone">G4Polycone — Polycone</h2>
+
+```python
+gvolume.make_polycone(phiStart, phiTotal, zplane, iradius, oradius,
+                      lunit1='mm', lunit2='deg')
+```
+
+{% capture left_pcone %}
+| Parameter | Description |
+|-----------|-------------|
+| `phiStart` | starting φ angle |
+| `phiTotal` | total φ angle |
+| `zplane` | list of Z coordinates of cross-section planes |
+| `iradius` | list of inner radii at each Z plane |
+| `oradius` | list of outer radii at each Z plane |
+{% endcapture %}
+
+{% capture right_pcone %}
+<img src="https://geant4-userdoc.web.cern.ch/UsersGuides/ForApplicationDeveloper/html/_images/aBREPSolidPCone.jpg"
+     alt="G4Polycone" style="max-width:100%; max-height:220px; object-fit:contain;" />
+{% endcapture %}
+
+{% include two_col_md.html left="1fr" right="220px" left_content=left_pcone right_content=right_pcone %}
+
+```python
+zplane  = [-30, -10,  10,  30]
+iradius = [  0,  10,  10,   0]
+oradius = [ 15,  20,  20,  15]
+gvolume.make_polycone(0, 360, zplane, iradius, oradius)
+```
+
+```shell
+gemc-system-template -gv G4Polycone -gvp '0, 360, -30, -10, 10, 30, 0, 10, 10, 0, 15, 20, 20, 15' -silent
+```
+
+<iframe
+  src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/documentation/solidTypes/G4Polycone.vtksz"
+  title="Interactive 3-D view of G4Polycone"
+  width="100%" height="400"
+  style="border:1px solid #d0d7de; border-radius:1px;"
+  loading="lazy">
+</iframe>
+
+<br/>

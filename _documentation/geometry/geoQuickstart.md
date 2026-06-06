@@ -22,7 +22,22 @@ The following command displays the code needed to build a volume, for example a 
 gemc-system-template -gv G4Box -gvp '30 40 50 cm'
 ```
 
-<script src="https://gist.github.com/maureeungaro/abd7d5efbae00a61107e4b210eff1dd8.js"></script>
+```python
+from gvolume import GVolume
+
+gvolume = GVolume('my_volume')
+gvolume.make_box(30, 40, 50, 'cm')
+gvolume.material = 'G4_AIR'
+# gvolume.mother     = 'root'
+# gvolume.position   = '0*cm, 0*cm, 0*cm'
+# gvolume.set_rotation(0, 0, 0)
+# gvolume.color      = '778899'
+# gvolume.style      = 1
+# gvolume.visible    = 1
+# gvolume.digitization = 'none'
+# gvolume.set_identifier('id', 1)
+gvolume.publish(cfg)
+```
 
 You can paste it in `geometry.py` and modify it as needed with your desired parameters.
 

@@ -12,12 +12,32 @@
 
 
 
+- title: "Geo Quickstart"
+  category: "Geometry"
+  link: "/home/documentation/geometry/geoQuickstart"
+
+- title: "GVolume Properties"
+  category: "Geometry"
+  link: "/home/documentation/geometry/geometry_building"
+
+- title: "Solid Types"
+  category: "Geometry"
+  link: "/home/documentation/geometry/solidTypes"
+
+- title: "CAD Imports"
+  category: "Geometry"
+  link: "/home/documentation/geometry/cad_imports"
+
+- title: "Mirrors"
+  category: "Geometry"
+  link: "/home/documentation/geometry/mirrors"
+
 - title: "Materials"
-  category: "Materials"
+  category: "Geometry"
   link: "/home/documentation/materials/materials"
 
 - title: "Optical Properties"
-  category: "Materials"
+  category: "Geometry"
   link: "/home/documentation/materials/optical_properties"
 
 - title: "Overview"
@@ -39,8 +59,6 @@
 - title: "Photon Detectors"
   category: "Sensitivity"
   link: "/home/documentation/sensitivity/photon_detectors"
-
-
 
 
 
