@@ -1820,3 +1820,52 @@ li input[type="checkbox"] {
     --gstring-border: rgba(126, 231, 135, 0.02);
   }
 }
+
+/* ========================================================================== */
+/* Milestone assignees                                                        */
+/* ========================================================================== */
+
+.milestone-assignees {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-left: 0.6rem;
+  vertical-align: middle;
+}
+
+.milestone-assignee {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1rem 0.4rem 0.1rem 0.2rem;
+  border: 1px solid var(--table-zebra-border);
+  border-radius: 999px;
+  background: var(--table-zebra-even);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 120ms, color 120ms;
+}
+
+.milestone-assignee img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.milestone-assignee:hover {
+  border-color: var(--link);
+  color: var(--link);
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .milestone-assignee {
+    border-color: var(--table-zebra-border);
+    background: var(--table-zebra-even);
+  }
+}

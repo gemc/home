@@ -75,6 +75,17 @@
             <span class="milestone-state">
               {{ issue.state }}
             </span>
+
+            {% if issue.assignees and issue.assignees.size > 0 %}
+            <span class="milestone-assignees">
+              {% for assignee in issue.assignees %}
+              <a href="{{ assignee.html_url }}" class="milestone-assignee" title="{{ assignee.login }}">
+                <img src="{{ assignee.avatar_url }}" alt="{{ assignee.login }}" width="18" height="18" />
+                <span>@{{ assignee.login }}</span>
+              </a>
+              {% endfor %}
+            </span>
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
