@@ -79,10 +79,10 @@ This is defined in the YAML file:
 ```yaml
 gparticle:
   - name: proton
-    p: 2000
-    vz: -3
-    delta_vx: 0.1
-    delta_vy: 0.1
+    p: 2000*MeV
+    vz: -3*cm
+    delta_vx: 0.1*cm
+    delta_vy: 0.1*cm
     multiplicity: 10
 ```
 

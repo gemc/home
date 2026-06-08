@@ -40,13 +40,13 @@ Structured options use YAML lists of maps:
 ```yaml
 gparticle:
   - name: e-
-    p: 5000
+    p: 5*GeV
 ```
 
 Equivalent command line:
 
 ```sh
-gemc -gparticle="[{name: e-, p: 5000}]"
+gemc -gparticle="[{name: e-, p: 5*GeV}]"
 ```
 
 Quote structured command-line values so the shell does not split the YAML-like
@@ -191,13 +191,13 @@ gemc -n=1000 -runno=11 -nthreads=4 -phys_list=FTFP_BERT -verbosity.gemc=1
 ```yaml
 gparticle:
   - name: e-
-    p: 5000
+    p: 5*GeV
 ```
 
 Equivalent command line:
 
 ```sh
-gemc -gparticle="[{name: e-, p: 5000}]"
+gemc -gparticle="[{name: e-, p: 5*GeV}]"
 ```
 
 ### Geometry System
@@ -266,7 +266,7 @@ n: 1000
 runno: 1
 gparticle:
   - name: e-
-    p: 1000
+    p: 1*GeV
 ```
 
 This command runs 10,000 events with run number 22 and leaves the particle
@@ -279,5 +279,5 @@ gemc run.yaml -n=10000 -runno=22
 This command replaces the %%gparticle%% list from YAML:
 
 ```sh
-gemc run.yaml -gparticle="[{name: proton, p: 1200, theta: 14}]"
+gemc run.yaml -gparticle="[{name: proton, p: 1200*MeV, theta: 14*deg}]"
 ```

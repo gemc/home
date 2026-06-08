@@ -325,8 +325,8 @@ nthreads: 1          # single thread → one output file per format
 
 gparticle:
   - name: proton
-    p: 1500          # momentum in MeV/c
-    vz: -5.0         # vertex z in cm, just before the target
+    p: 1500*MeV      # momentum
+    vz: -5*cm        # vertex z, just before the target
 
 verbosity:
   - gsystem: 1

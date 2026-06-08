@@ -24,18 +24,32 @@ Both options can be set from the YAML steering card or the command line:
 # YAML steering card
 gparticle:
   - name: e-
-    p: 2300
-    theta: 23.0
+    p: 2300*MeV
+    theta: 23*deg
 ```
 
 ```shell
 # equivalent command-line form
-gemc -gparticle="[{name: e-, p: 2300, theta: 23.0}]"
+gemc -gparticle="[{name: e-, p: 2300*MeV, theta: 23*deg}]"
 ```
 
 <br/>
 
 ## %%gparticle%%
+
+### Unit convention
+
+All kinematic values accept an explicit Geant4 unit attached with `*`, for example
+`4*GeV`, `23*deg`, `0.4*rad`, `-10*cm`, `1.5*mm`. This is the recommended form.
+
+If a plain number without a unit is given, GEMC falls back to the field default and
+logs a warning:
+
+| Field group | Default unit |
+|-------------|-------------|
+| Momentum (`p`, `delta_p`) | `MeV` |
+| Angles (`theta`, `delta_theta`, `phi`, `delta_phi`) | `deg` |
+| Vertex (`vx`, `vy`, `vz`, `delta_vx`, `delta_vy`, `delta_vz`) | `cm` |
 
 ### Fields
 
@@ -44,24 +58,21 @@ gemc -gparticle="[{name: e-, p: 2300, theta: 23.0}]"
 | Field | Default | Description |
 |-------|---------|-------------|
 | %%name%% | required | Geant4 particle name, e.g. %%e-%%, %%proton%%, %%gamma%%, %%pi+%% |
-| %%p%% | required | Nominal momentum magnitude, interpreted with %%punit%% |
+| %%p%% | required | Nominal momentum magnitude with unit, e.g. `4*GeV` or `4000*MeV` |
 | %%multiplicity%% | %%1%% | Number of copies generated per event; each copy is independently randomized |
-| %%punit%% | %%MeV%% | Unit for %%p%% and %%delta_p%%. Use %%MeV%% or %%GeV%% |
-| %%delta_p%% | %%0%% | Momentum spread around %%p%% |
+| %%delta_p%% | %%0*MeV%% | Momentum spread around %%p%% |
 | %%randomMomentumModel%% | %%uniform%% | %%uniform%%: flat in %%[p - delta_p, p + delta_p]%%; %%gaussian%%: Gaussian with sigma %%delta_p%% |
-| %%theta%% | %%0%% | Nominal polar angle (from the z-axis) |
-| %%delta_theta%% | %%0%% | Polar-angle spread around %%theta%% |
+| %%theta%% | %%0*deg%% | Nominal polar angle (from the z-axis), e.g. `23*deg` or `0.4*rad` |
+| %%delta_theta%% | %%0*deg%% | Polar-angle spread around %%theta%% |
 | %%randomThetaModel%% | %%uniform%% | %%uniform%%: flat in %%[theta - delta_theta, theta + delta_theta]%%; %%gaussian%%: Gaussian sigma %%delta_theta%%; %%cosine%%: cos(theta) uniform, with rejection sampling within the window (see note below) |
-| %%phi%% | %%0%% | Nominal azimuthal angle |
-| %%delta_phi%% | %%0%% | Azimuthal-angle spread. **Always applied with the uniform model**; there is no %%randomPhiModel%% |
-| %%aunit%% | %%deg%% | Unit for %%theta%%, %%delta_theta%%, %%phi%%, and %%delta_phi%%. Use %%deg%% or %%rad%% |
-| %%vx%% | %%0%% | Nominal vertex x |
-| %%vy%% | %%0%% | Nominal vertex y |
-| %%vz%% | %%0%% | Nominal vertex z |
-| %%delta_vx%% | %%0%% | Vertex x spread |
-| %%delta_vy%% | %%0%% | Vertex y spread |
-| %%delta_vz%% | %%0%% | Vertex z spread |
-| %%vunit%% | %%cm%% | Unit for vertex positions and spreads |
+| %%phi%% | %%0*deg%% | Nominal azimuthal angle |
+| %%delta_phi%% | %%0*deg%% | Azimuthal-angle spread. **Always applied with the uniform model**; there is no %%randomPhiModel%% |
+| %%vx%% | %%0*cm%% | Nominal vertex x |
+| %%vy%% | %%0*cm%% | Nominal vertex y |
+| %%vz%% | %%0*cm%% | Nominal vertex z |
+| %%delta_vx%% | %%0*cm%% | Vertex x spread |
+| %%delta_vy%% | %%0*cm%% | Vertex y spread |
+| %%delta_vz%% | %%0*cm%% | Vertex z spread |
 | %%randomVertexModel%% | %%uniform%% | %%uniform%%: each component flat in %%[v - delta_v, v + delta_v]%%; %%gaussian%%: Gaussian sigma per component; %%sphere%%: uniform sampling within a spherical volume (see note below) |
 
 > [!NOTE]
@@ -85,8 +96,8 @@ gemc -gparticle="[{name: e-, p: 2300, theta: 23.0}]"
 ```yaml
 gparticle:
   - name: e-
-    p: 2300
-    theta: 23.0
+    p: 2.3*GeV
+    theta: 23*deg
 ```
 
 {% include figure.html
@@ -104,16 +115,14 @@ gemc-analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
 
 <br/>
 
-**Explicit units with theta spread of 0.2 rad**
+**Theta spread of 0.2 rad**
 
 ```yaml
 gparticle:
   - name: e-
-    p: 2.3
-    punit: GeV
-    theta: 0.4
-    delta_theta: 0.2
-    aunit: rad
+    p: 2.3*GeV
+    theta: 0.4*rad
+    delta_theta: 0.2*rad
 ```
 
 {% include figure.html
@@ -137,9 +146,9 @@ gemc-analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
 gparticle:
   - name: proton
     multiplicity: 10
-    p: 1200
-    theta: 14.0
-    delta_phi: 180.0
+    p: 1200*MeV
+    theta: 14*deg
+    delta_phi: 180*deg
 ```
 
 {% include figure.html
@@ -162,8 +171,8 @@ gemc-analyzer generated_tracked.csv phi --kind csv --bins 50 --linear-y
 ```yaml
 gparticle:
   - name: e-
-    p: 2300
-    delta_p: 100
+    p: 2300*MeV
+    delta_p: 100*MeV
     randomMomentumModel: uniform
 ```
 
@@ -187,8 +196,8 @@ gemc-analyzer generated_tracked.csv p --kind csv --bins 50 --linear-y
 ```yaml
 gparticle:
   - name: e-
-    p: 2300
-    delta_p: 100
+    p: 2300*MeV
+    delta_p: 100*MeV
     randomMomentumModel: gaussian
 ```
 
@@ -212,9 +221,9 @@ gemc-analyzer generated_tracked.csv p --kind csv --bins 50 --linear-y
 ```yaml
 gparticle:
   - name: e-
-    p: 2300
-    theta: 23.0
-    delta_theta: 5.0
+    p: 2300*MeV
+    theta: 23*deg
+    delta_theta: 5*deg
     randomThetaModel: cosine
 ```
 
@@ -238,9 +247,9 @@ gemc-analyzer generated_tracked.csv theta --kind csv --bins 50 --linear-y
 ```yaml
 gparticle:
   - name: e-
-    p: 2300
-    phi: 45.0
-    delta_phi: 20.0
+    p: 2300*MeV
+    phi: 45*deg
+    delta_phi: 20*deg
 ```
 
 {% include figure.html
@@ -263,11 +272,10 @@ gemc-analyzer generated_tracked.csv phi --kind csv --bins 50 --linear-y
 ```yaml
 gparticle:
   - name: e-
-    p: 2300
-    vx: 0.0
-    vy: 0.0
-    vz: -10.0
-    vunit: cm
+    p: 2300*MeV
+    vx: 0*cm
+    vy: 0*cm
+    vz: -10*cm
 ```
 
 {% include figure.html
@@ -290,10 +298,9 @@ gemc-analyzer generated_tracked.csv vz --kind csv --bins 50 --linear-y
 ```yaml
 gparticle:
   - name: e-
-    p: 2300
-    vz: 0.0
-    delta_vz: 2.0
-    vunit: cm
+    p: 2300*MeV
+    vz: 0*cm
+    delta_vz: 2*cm
     randomVertexModel: uniform
 ```
 
@@ -317,11 +324,10 @@ gemc-analyzer generated_tracked.csv vz --kind csv --bins 50 --linear-y
 ```yaml
 gparticle:
   - name: e-
-    p: 2300
-    delta_vx: 1.0
-    delta_vy: 1.0
-    delta_vz: 5.0
-    vunit: mm
+    p: 2300*MeV
+    delta_vx: 1*mm
+    delta_vy: 1*mm
+    delta_vz: 5*mm
     randomVertexModel: gaussian
 ```
 
@@ -348,13 +354,13 @@ Here one electron (fixed angle) and two protons (smeared angle) are generated pe
 ```yaml
 gparticle:
   - name: e-
-    p: 2300
-    theta: 23.0
+    p: 2300*MeV
+    theta: 23*deg
   - name: proton
     multiplicity: 2
-    p: 1200
-    theta: 14.0
-    delta_theta: 10.0
+    p: 1200*MeV
+    theta: 14*deg
+    delta_theta: 10*deg
 ```
 
 {% include figure.html

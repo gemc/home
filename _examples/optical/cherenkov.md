@@ -92,8 +92,8 @@ This is defined in the YAML file:
 ```yaml
 gparticle:
   - name: e-
-    p: 1000
-    vz: -50
+    p: 1000*MeV
+    vz: -50*cm
 ```
 
 
