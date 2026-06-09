@@ -2,6 +2,27 @@
   category: "Api"
   link: "/home/documentation/quickstart"
 
+- title: "PyVista API"
+  category: "Api"
+  link: "/home/documentation/api/pyvista_api"
+
+- title: "Color Reference"
+  category: "Api"
+  link: "/home/documentation/api/pyvista_colors"
+
+- title: "Analyzer"
+  category: "Api"
+  link: "/home/documentation/api/analyzer"
+
+- title: "Options"
+  category: "Api"
+  link: "/home/documentation/api/options"
+
+- title: "Options Reference"
+  category: "Api"
+  link: "/home/documentation/api/options_reference"
+
+
 - title: "Quickstart"
   category: "Gui"
   link: "/home/documentation/gui/gui_quickstart"
@@ -77,25 +98,34 @@
 
 
 
-- title: "PyVista API"
-  category: "Api"
-  link: "/home/documentation/api/pyvista_api"
 
-- title: "Color Reference"
-  category: "Api"
-  link: "/home/documentation/api/pyvista_colors"
+- title: "Introduction"
+  category: "Output"
+  link: "/home/documentation/output/index"
 
-- title: "Analyzer"
-  category: "Api"
-  link: "/home/documentation/api/analyzer"
+- title: "ASCII"
+  category: "Output"
+  link: "/home/documentation/output/ascii"
 
-- title: "Options"
-  category: "Api"
-  link: "/home/documentation/api/options"
+- title: "CSV"
+  category: "Output"
+  link: "/home/documentation/output/csv"
 
-- title: "Options Reference"
-  category: "Api"
-  link: "/home/documentation/api/options_reference"
+- title: "json"
+  category: "Output"
+  link: "/home/documentation/output/json"
+
+- title: "ROOT"
+  category: "Output"
+  link: "/home/documentation/output/root"
+
+- title: "gplugin"
+  category: "Output"
+  link: "/home/documentation/output/gplugin"
+
+
+
+
 
 
 
