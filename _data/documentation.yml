@@ -60,6 +60,10 @@
   category: "Sensitivity"
   link: "/home/documentation/sensitivity/photon_detectors"
 
+- title: "GPlugins"
+  category: "Sensitivity"
+  link: "/home/documentation/sensitivity/gplugins"
+
 
 
 

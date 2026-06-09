@@ -31,6 +31,7 @@ to distinguish the sensitive elements you want to analyze, such as sector, layer
 | [`dosimeter`](/home/documentation/sensitivity/dosimeter) | run | Integrated deposited energy and dose |
 | [`particle_counter`](/home/documentation/sensitivity/particle_counters) | event | Per-%%pid%% counting |
 | [`gPhotonDetector`](/home/documentation/sensitivity/photon_detectors) | event | Optical-photon detectors |
+| [Custom plugin](/home/documentation/sensitivity/gplugins) | any | User-defined electronics model via `.gplugin` |
 
 <br/>
 
@@ -55,3 +56,7 @@ Use `particle_counter` when hits in the same sensitive element should be grouped
 
 Use `gPhotonDetector` for Cherenkov and other optical examples where only optical photons should be
 recorded.
+
+Write a [custom plugin](/home/documentation/sensitivity/gplugins) when you need a detector-specific
+electronics model such as time-to-distance conversion, charge sharing, TDC jitter, or calibration
+corrections loaded from a database.

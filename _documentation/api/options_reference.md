@@ -27,6 +27,7 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`nthreads`](/home/documentation/api/options/nthreads) | `<value>` | sets number of threads. |
 | [`randomEngine`](/home/documentation/api/options/randomengine) | `<value>` | randomEngine |
 | [`seed`](/home/documentation/api/options/seed) | `<value>` | seed |
+| [`plugin_path`](/home/documentation/api/options/plugin_path) | `<value>` | colon-separated list of directories to search for .gplugin files |
 | [`gsystem`](/home/documentation/api/options/gsystem) | `<sequence>` | defines the group of volumes in a system |
 | [`gmodifier`](/home/documentation/api/options/gmodifier) | `<sequence>` | modify volume existence or placement |
 | [`root`](/home/documentation/api/options/root) | `<value>` | root volume definition |
