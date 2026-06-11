@@ -56,6 +56,7 @@ gemc help debug
    • gmagneto: gmagneto verbosity level or debug switchDefault value: 0
    • gboard: gboard verbosity level or debug switchDefault value: 0
    • gtree: gtree verbosity level or debug switchDefault value: 0
+   • pmaker: pmaker verbosity level or debug switchDefault value: 0
 
 
    Debug information Types:

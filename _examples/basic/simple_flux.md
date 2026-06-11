@@ -43,11 +43,6 @@ The world (a box named %%root%%) contains:
 - %%FluxPlane%%, a box made of air (%%G4_AIR%%) and assigned the %%flux%% digitization
 
 
-{% include figure.html
-src="assets/images/examples/simple_flux/geometry.png"
-caption="simple_flux geometry, rendered by PyVista: the target and the sensitive flux detector FluxPlane"
-%}
-
 Interactive viewer:
 
 <iframe
@@ -70,11 +65,10 @@ Interactive viewer:
 
 <br/>
 
+
 ## Generator
 
-The default kinematics is a 2 GeV proton generated along the z-axis just before the target.
-A beam size of 0.1 cm is used.
-This is defined in the YAML file:
+The particle kinematics are defined in the YAML file:
 
 ```yaml
 gparticle:
@@ -86,7 +80,7 @@ gparticle:
     multiplicity: 10
 ```
 
-{% include notes/particles-note.md %}
+See also the [Internal Generator Documentation]( /home/documentation/generator/internal ) for more information.
 
 <br/>
 
@@ -101,11 +95,10 @@ gvolume.digitization = "flux"
 gvolume.set_identifier("flux_plane", 1)
 ```
 
-
-
-{% include notes/flux-note.md %}
-
 In this case, the %%identifier%% contains one name: %%flux_plane%%.
+
+See the [Flux Documentation]( /home/documentation/sensitivity/flux ) for more information.
+
 
 In addition to the digitized variables, the true information is saved on the output stream.
 
@@ -121,7 +114,7 @@ In addition to the digitized variables, the true information is saved on the out
 Use the Python script `simple_flux.py` to build the detector. By default, the setup is stored in a SQLite file
 named `gemc.db`. Command-line options can define the database type, variations, and run number.
 
-{% include notes/python-api-note.md %}
+See the [Buidling Geometry]( /home/documentation/geometry/geometry_building ) for more information.
 
 
 <br/>
@@ -138,16 +131,22 @@ Modify `simple_flux.yaml` as needed, in particular to add particles, control the
 
 <br/>
 
+## Running Events
+
+{% include figure.html
+src="assets/images/examples/simple_flux/gemc_view.png"
+caption="Simple flux simulation: proton tracks traversing the flux detector volumes."
+%}
+
+<br/>
+
 ## Output
 
-The %%gstreamer%% option selects the output name and format. Two simultaneous streams are selected:
-ROOT and CSV.
+The %%gstreamer%% option selects the output filenames and the format:
 
 ```yaml
 gstreamer:
   - format: csv
-    filename: simple_flux
-  - format: root
     filename: simple_flux
 ```
 
@@ -155,35 +154,31 @@ Because %%flux%% is a per-event digitization, GEMC will produce one output file 
 For ROOT files, you can use `hadd` to merge the files.
 
 
-{% include notes/output-note.md %}
-
-
-
-
+See also the [Output Documentation]( /home/documentation/output ) for more information.
 
 
 <br/>
 
 ## Plotting with the GEMC Analyzer
 
-Run GEMC with 10,000 events first. The default YAML file writes `simple_flux_t0_digitized.csv` and `simple_flux_t0_true_info.csv`.
+Run GEMC with 10,000 events first. The default YAML file writes `simple_flux_t0_digitized.csv`.
 
 ```shell
 gemc simple_flux.yaml -n=10000
 ```
 
-Plot the digitized total energy deposited:
+Plot the total energy deposited per hit:
 
 ```shell
 gemc-analyzer simple_flux_t0_digitized.csv totEdep --kind csv
 ```
 
-![simple flux total energy deposited plot](/home/assets/images/examples/simple_flux/analyzer_totEdep.png){:width="70%"}
+![Simple Flux total energy deposited per hit](/home/assets/images/examples/simple_flux/analyzer_totEdep.png){:width="70%"}
 
-Plot the true particle track total energy:
+Plot the true particle track energy:
 
 ```shell
 gemc-analyzer simple_flux_t0_true_info.csv E --kind csv --data true_info
 ```
 
-![simple flux true track total energy plot](/home/assets/images/examples/simple_flux/analyzer_true_energy.png){:width="70%"}
+![Simple Flux true particle track energy](/home/assets/images/examples/simple_flux/analyzer_true_energy.png){:width="70%"}

@@ -62,14 +62,6 @@ Interactive viewer:
 <br/>
 
 
-{% include figure.html
-src="assets/images/examples/materials/geometry.png"
-caption="Materials example geometry: five tubes along the z-axis, each using a different material definition. You can see the 
-scintillation properties of the NaI-like scintillator the 4th volume and the Cherenkov radiation in the 5th."
-%}
-
-<br/>
-
 ## Material Definitions
 
 ### Tube 1 — Geant4 built-in material
@@ -141,7 +133,6 @@ scintillator.birksConstant      = 0.00152
 scintillator.publish(cfg)
 ```
 
-{% include notes/physics-list-note.md %}
 
 <br/>
 
@@ -179,19 +170,19 @@ phys_list: FTFP_BERT + G4OpticalPhysics
 
 ## Generator
 
-A 2 GeV proton beam along the z-axis traverses all five tubes in sequence.
+The particle kinematics are defined in the YAML file:
 
 ```yaml
 gparticle:
   - name: proton
     p: 2000*MeV
-    vz: -3*cm
+    vz: -2*cm
     delta_vx: 0.1*cm
     delta_vy: 0.1*cm
-    multiplicity: 10
+    multiplicity: 1
 ```
 
-{% include notes/particles-note.md %}
+See also the [Internal Generator Documentation]( /home/documentation/generator/internal ) for more information.
 
 <br/>
 
@@ -203,7 +194,7 @@ gparticle:
 ./materials.py
 ```
 
-{% include notes/python-api-note.md %}
+See the [Buidling Geometry]( /home/documentation/geometry/geometry_building ) for more information.
 
 <br/>
 
@@ -225,6 +216,15 @@ Add `-gui` to run interactively.
 
 <br/>
 
+## Running Events
+
+{% include figure.html
+src="assets/images/examples/materials/gemc_view.png"
+caption="Materials simulation: particles traversing the material samples."
+%}
+
+<br/>
+
 ## Output
 
 Two output streams are configured in the YAML file:
@@ -233,8 +233,6 @@ Two output streams are configured in the YAML file:
 gstreamer:
   - format: csv
     filename: material
-  - format: root
-    filename: material
 ```
 
-{% include notes/output-note.md %}
+See also the [Output Documentation]( /home/documentation/output ) for more information.

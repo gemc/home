@@ -75,6 +75,10 @@ src="assets/images/examples/cherenkov/high_index_radiator.png"
 caption="Cherenkov geometry with 1 generated electron. The highIndexRadiator volume (green, style = 2 renders it as a cloud) is the medium generating Cherenkov radiation."
 %}
 
+
+See the [Buidling Geometry]( /home/documentation/geometry/geometry_building ) for more information.
+
+
 <br/>
 
 ## Physics List
@@ -86,8 +90,7 @@ caption="Cherenkov geometry with 1 generated electron. The highIndexRadiator vol
 
 ## Generator
 
-The default kinematics is a 1 GeV electron beam generated along the z-axis near the start of the radiator.
-This is defined in the YAML file:
+The particle kinematics are defined in the YAML file:
 
 ```yaml
 gparticle:
@@ -95,6 +98,8 @@ gparticle:
     p: 1000*MeV
     vz: -50*cm
 ```
+
+See also the [Internal Generator Documentation]( /home/documentation/generator/internal ) for more information.
 
 
 <br/>
@@ -111,6 +116,8 @@ The %%identifier%% is used to distinguish the different detector boxes:
 backplate.digitization = "gPhotonDetector"
 backplate.set_identifier("detector", panel_id)
 ```
+
+See the [Flux Documentation]( /home/documentation/sensitivity/gPhotonDetector ) for more information.
 
 
 <br/>
@@ -158,62 +165,63 @@ Use the variation name in the %%gstreamer%% filename when you want separate outp
 
 <br/>
 
-|:---------------:|:-----------:|:-----------:|
-| ![low-img]  | ![medium-img]  | ![high-img] |
-| ![lowy-img] | ![mediumy-img] | ![highy-img] |
+|:---:|:---:|:---:|
+| ![low index radiator](/home/assets/images/examples/cherenkov/low_index_radiator.png) | ![medium index radiator](/home/assets/images/examples/cherenkov/medium_index_radiator.png) | ![high index radiator](/home/assets/images/examples/cherenkov/high_index_radiator.png) |
+| ![low index radiator y vs x](/home/assets/images/examples/cherenkov/low_index_radiator_y_vs_x.png) | ![medium index radiator y vs x](/home/assets/images/examples/cherenkov/medium_index_radiator_y_vs_x.png) | ![high index radiator y vs x](/home/assets/images/examples/cherenkov/high_index_radiator_y_vs_x.png) |
 
 <p class="image-caption">
-  Left: default (<span class="gstring">lowIndexRadiator</span>), Center: <span class="gstring">mediumIndexRadiator</span>,
-  Right: <span class="gstring">highIndexRadiator</span>.
+  Left: <span class="gstring">lowIndexRadiator</span>, Center: <span class="gstring">mediumIndexRadiator</span>, Right: <span class="gstring">highIndexRadiator</span>.
 </p>
+
+<br/>
+
+## Running Events
+
+{% include figure.html
+src="assets/images/examples/cherenkov/gemc_view.png"
+caption="Cherenkov simulation: electron beam entering the radiator volume."
+%}
 
 <br/>
 
 ## Output
 
-The %%gstreamer%% option selects the output name and format. Two simultaneous streams are selected:
-CSV and ROOT.
+The %%gstreamer%% option selects the output filenames and the format:
+
 
 ```yaml
 gstreamer:
   - format: csv
-    filename: cherenkov
-  - format: root
     filename: cherenkov
 ```
 
 Because %%gPhotonDetector%% is a per-event digitization, GEMC will produce one output file per thread.
 For ROOT files, you can use `hadd` to merge the files.
 
-{% include notes/output-note.md %}
+See also the [Output Documentation]( /home/documentation/output ) for more information.
 
 <br/>
 
 ## Plotting with the GEMC Analyzer
 
-Run GEMC with 1 event first. The default YAML file writes `cherenkov_t0_digitized.csv` and
-`cherenkov_t0_true_info.csv`.
+Run GEMC with 1 events first. The default YAML file writes `cherenkov_t0_digitized.csv`.
 
 ```shell
 gemc cherenkov.yaml -n=1
 ```
 
-Plot the digitized photon energy:
+Plot the total energy deposited per hit:
 
 ```shell
-gemc-analyzer cherenkov_t0_digitized.csv E --kind csv
+gemc-analyzer cherenkov_t0_digitized.csv totEdep --kind csv
 ```
 
-![Cherenkov digitized energy plot](/home/assets/images/examples/cherenkov/analyzer_digitized_energy.png){:width="70%"}
+![Cherenkov total energy deposited per hit](/home/assets/images/examples/cherenkov/analyzer_totEdep.png){:width="70%"}
 
-Plot the optical-photon hit positions in the y-vs-x plane, with x and y limits in cm:
+Plot the y vs x hit positions:
 
 ```shell
 gemc-analyzer cherenkov_t0_true_info.csv --kind csv --data true_info --plot yvsx --xlim -20 20 --ylim -20 20
 ```
 
-![Cherenkov medium-index optical-photon y-vs-x plot](/home/assets/images/examples/cherenkov/medium_index_radiator_y_vs_x.png){:width="70%"}
-
-<br/>
-
-<br/>
+![Cherenkov y vs x hit positions](/home/assets/images/examples/cherenkov/analyzer_yvsx.png){:width="70%"}

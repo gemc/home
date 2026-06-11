@@ -33,7 +33,7 @@
 
 
 
-- title: "Geo Quickstart"
+- title: "Quickstart"
   category: "Geometry"
   link: "/home/documentation/geometry/geoQuickstart"
 
@@ -44,6 +44,10 @@
 - title: "Solid Types"
   category: "Geometry"
   link: "/home/documentation/geometry/solidTypes"
+
+- title: "Structure Helpers"
+  category: "Geometry"
+  link: "/home/documentation/geometry/structure"
 
 - title: "CAD Imports"
   category: "Geometry"

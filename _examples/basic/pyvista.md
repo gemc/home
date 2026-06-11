@@ -53,13 +53,6 @@ Interactive viewer:
 
 <br/>
 
-{% include figure.html
-src="assets/images/examples/pyvista/geometry.png"
-caption="PyVista example geometry (rendered by gemc). Box container (ghostwhite, semi-transparent), cylinder (steelblue), sphere (tomato), rotated box (gold, 35° around Z)."
-%}
-
-<br/>
-
 ## Usage
 
 ### Building the geometry

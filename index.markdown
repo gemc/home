@@ -3,9 +3,14 @@ layout: default
 
 ---
 
-[CI]: https://github.com/gemc/src/actions/workflows/dockers_deploy_and_test.yml
+[test]: https://github.com/gemc/src/actions/workflows/test.yml
 
-[CI-badge]: https://github.com/gemc/src/actions/workflows/dockers_deploy_and_test.yml/badge.svg
+[test-badge]: https://github.com/gemc/src/actions/workflows/test.yml/badge.svg
+
+[deploy]: https://github.com/gemc/src/actions/workflows/deploy.yml
+
+[deploy-badge]: https://github.com/gemc/src/actions/workflows/deploy.yml/badge.svg
+
 
 [Docs]: https://github.com/gemc/src/actions/workflows/doxygen.yml
 
@@ -80,7 +85,6 @@ Highlights:
 No installation needed. Click a badge to launch a live **JupyterLab** session in your browser:
 
 {% assign visible_examples = site.data.examples | where: "display", true %}
-
 
 
 <table class="zebra compact-table">
@@ -273,8 +277,9 @@ architectures.
 
 {:.zebra}
 
-| Deployment and Testing | [![CI][CI-badge]][CI]                                        |
+| Tests                  | [![test][test-badge]][test]                                  |
 | Sanitizer              | [![Sanitize][Sanitize-badge]][Sanitize]                      |
+| Image Deploy           | [![deploy][deploy-badge]][deploy]                            |
 | Binary Tarballs        | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] | 
 | CodeQL                 | [![CodeQL][CodeQL-badge]][CodeQL]                            |
 | Doxygen                | [![Docs][Docs-badge]][Docs]                                  |
