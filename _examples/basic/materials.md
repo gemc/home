@@ -17,6 +17,9 @@ fractional mass, and adding optical properties for scintillation or Cherenkov ra
 
 <br/>
 
+{% assign example = site.data.examples | where: "title", "Materials" | first %}
+You can run this example in your browser: [![{{ example.title }}]({{ example.badge }})]({{ example.binder }}){:target="_blank" rel="noopener noreferrer"} 
+
 ## Quickstart
 
 Copy the example to your current directory.
@@ -194,11 +197,11 @@ See also the [Internal Generator Documentation]( /home/documentation/generator/i
 ./materials.py
 ```
 
-See the [Buidling Geometry]( /home/documentation/geometry/geometry_building ) for more information.
+See also the [Building Geometry]( /home/documentation/geometry/geometry_building ) for more information.
 
 <br/>
 
-### Running gemc
+### Running GEMC
 
 ```shell
 gemc materials.yaml -n=10

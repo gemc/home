@@ -76,15 +76,13 @@ caption="Cherenkov geometry with 1 generated electron. The highIndexRadiator vol
 %}
 
 
-See the [Buidling Geometry]( /home/documentation/geometry/geometry_building ) for more information.
-
-
 <br/>
 
 ## Physics List
 
 `FTFP_BERT + G4OpticalPhysics` is used by default in the YAML file. The optical physics component is required to produce optical photons.
 
+{% include notes/physics-list-note.md %}
 
 <br/>
 
@@ -129,9 +127,11 @@ See the [Flux Documentation]( /home/documentation/sensitivity/gPhotonDetector ) 
 Use the Python script `cherenkov.py` to build the detector. By default, the setup is stored in a SQLite file
 named `gemc.db`. Command-line options can define the database type, variations, and run number.
 
+See also the [Building Geometry]( /home/documentation/geometry/geometry_building ) for more information.
+
 <br/>
 
-### Running gemc
+### Running GEMC
 
 The file `cherenkov.yaml` can be used to run the setup. Add `-gui` to run interactively:
 
@@ -204,7 +204,7 @@ See also the [Output Documentation]( /home/documentation/output ) for more infor
 
 ## Plotting with the GEMC Analyzer
 
-Run GEMC with 1 events first. The default YAML file writes `cherenkov_t0_digitized.csv`.
+Run GEMC with 1 event first. The default YAML file writes `cherenkov_t0_digitized.csv`.
 
 ```shell
 gemc cherenkov.yaml -n=1

@@ -65,7 +65,7 @@ Interactive viewer:
 
 <br/>
 
-### Running gemc
+### Running GEMC
 
 ```shell
 gemc pyvista.yaml -n=10

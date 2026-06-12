@@ -114,12 +114,12 @@ In addition to the digitized variables, the true information is saved on the out
 Use the Python script `simple_flux.py` to build the detector. By default, the setup is stored in a SQLite file
 named `gemc.db`. Command-line options can define the database type, variations, and run number.
 
-See the [Buidling Geometry]( /home/documentation/geometry/geometry_building ) for more information.
+See also the [Building Geometry]( /home/documentation/geometry/geometry_building ) for more information.
 
 
 <br/>
 
-### Running gemc
+### Running GEMC
 
 The file `simple_flux.yaml` can be used to run the setup. Add `-gui` to run interactively:
 

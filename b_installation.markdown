@@ -37,8 +37,8 @@ See the [license conditions](/home/license/).
 
 ## Table of Contents
 
-- [Install via a package manager](#install-via-a-package-manager)
-- [Download a pre-compiled binary distribution](#download-a-pre-compiled-binary-distribution)
+- [Install the Python API](#install-the-python-api)
+- [Download a precompiled binary distribution](#download-a-precompiled-binary-distribution)
 - [Build from source](#build-from-source)
 - [Run in a Docker container](#run-in-a-docker-container)
 - [Run using Apptainer](#run-using-apptainer)
@@ -50,13 +50,9 @@ See the [license conditions](/home/license/).
 
 <br/><br/>
 
-## Install via a package manager
+## Install the Python API
 
 <br/>
-
-### Python API
-
-
 
 `pygemc` is available from [PyPI](https://pypi.org/project/pygemc/).
 Use a virtual environment for direct `pip` installs:
@@ -84,9 +80,7 @@ create and visualize geometry or analyze results.
 
 <br/>
 
-
-
-### Download a pre-compiled binary distribution
+## Download a precompiled binary distribution
 
 Linux binary tarballs contain the `gemc` executable and the examples (but not `pygemc`).
 
@@ -263,14 +257,14 @@ tab11_content=tab11
 %}
 
 <br/>
-After the installation, source the GEMC environment file. This step could 
-go into your `.bashrc` or `.zshrc` file:
+After installation, source the GEMC environment file. Add this line to `.bashrc` or `.zshrc` if you
+want it available in every shell:
 
 ```shell
 source /path/to/gemc/gemc.env
 ```
 
-Run a few checks to verify the installation; 
+Run a few checks to verify the installation:
 
 ```shell
 gemc -v
@@ -281,7 +275,7 @@ test_gdata_event_verbose
 
 <br/>
 
-## Build from Source
+## Build from source
 
 You will need Geant4 to build GEMC.  Check the 
 [Software Prerequisites and Geant4 Installation for the GEMC build](#software-prerequisites-and-geant4-installation-for-gemc-build)
@@ -316,7 +310,7 @@ git clone -c advice.detachedHead=false --recurse-submodules --branch {{ page.lat
 {% endcapture %}
 
 {% capture tab2 %}
-At your own risk, clone the repository to get the development version:
+Clone the repository to build the nightly development version:
 
 ```shell
 mkdir -p "$gprefix"
@@ -378,7 +372,7 @@ Optionally, after installation, run `meson test -C build -v` to test the configu
 
 <br/>
 
-### Post Installation
+### Post installation
 
 Add these lines to your shell configuration file (e.g. `~/.bashrc` or `~/.zshrc`):
 
@@ -417,8 +411,8 @@ Both `arm64` and `amd64` are supported (except on Arch Linux images which are `a
 {% endfor %}
 
 It is recommended to bind a local directory to save and store your work.
-For illustration purposes, below we will bind the image path `{{ page.docker_remote_mount }}`
-to the local dir `{{ page.docker_local_mount }}` and we will use the image `{{ site.data.docker.images[0].tag }}`.
+For illustration, the commands below bind the container path `{{ page.docker_remote_mount }}` to
+`{{ page.docker_local_mount }}` and use the image `{{ site.data.docker.images[0].tag }}`.
 
 [^1]: For Apple Silicon Mac add the option `--platform linux/amd64` to the `docker run` command if you want to use the
 `archlinux amd64` images.
@@ -433,9 +427,9 @@ docker run -it --rm -v {{ page.docker_local_mount }}:{{ page.docker_remote_mount
 
 <br/>
 
-### Use a browser for the graphical interface:
+### Browser graphical interface
 
-Set these convenience variables for the interactive (choose your own password):
+Set these convenience variables for the interactive session. Choose your own password:
 
 ```shell
 VPORTS=(-p 6080:6080 -p 5900:5900)
@@ -475,7 +469,8 @@ gemc -v
 <br/>
 
 > [!WARNING]
-> The graphical interface, in particular OpenGL windows, may not work properly in apptainer if connecting to a remote host
+> The graphical interface, especially OpenGL windows, may not work properly in Apptainer when you
+> connect through a remote host.
 
 
 <br/>
@@ -483,8 +478,8 @@ gemc -v
 <blockquote class="doc-important" markdown="1">
 **Note**
 
-Apptainer uses a default cache directory to store the images. If that becomes full, one can use
-environment variables to point to a location with enough disk space.
+Apptainer uses a default cache directory to store images. If it becomes full, set the cache and
+temporary directories to a location with enough disk space.
 For example, set `sim_cache` to somewhere with enough space:
 
 ```shell

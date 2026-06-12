@@ -15,6 +15,10 @@ arranged in a complete ring. It demonstrates the `distribute_on_circle` API to r
 volume at equal angular intervals around a circle and shows how to size the paddles so that
 adjacent faces are nearly contiguous.
 
+
+{% assign example = site.data.examples | where: "title", "Scintillator Barrel" | first %}
+You can run this example in your browser: [![{{ example.title }}]({{ example.badge }})]({{ example.binder }}){:target="_blank" rel="noopener noreferrer"} 
+
 <br/>
 
 ## Quickstart
@@ -126,7 +130,7 @@ Use the Python script `scintillator_barrel.py` to build the detector. By default
 is stored in a SQLite file named `gemc.db`. Command-line options can define the database type,
 variations, and run number.
 
-See the [Buidling Geometry]( /home/documentation/geometry/geometry_building ) for more information.
+See also the [Building Geometry]( /home/documentation/geometry/geometry_building ) for more information.
 
 <br/>
 
@@ -143,6 +147,19 @@ add threads, or select output formats.
 
 <br/>
 
+## Running Events
+
+The view below shows the barrel end-on after one event, with 3 protons fired radially
+outward at θ = 90°. Each proton traverses one scintillator paddle.
+
+{% include figure.html
+src="assets/images/examples/scintillator_barrel/gemc_view.png"
+caption="Scintillator barrel viewed end-on along the beam axis. Three protons at θ = 90°
+travel radially outward, each depositing energy in one paddle."
+%}
+
+<br/>
+
 ## Output
 
 The %%gstreamer%% option selects the output filenames and the format:
@@ -154,19 +171,6 @@ gstreamer:
 ```
 
 See also the [Output Documentation]( /home/documentation/output ) for more information.
-
-<br/>
-
-## Running Events
-
-The view below shows the barrel end-on after one event, with 3 protons fired radially
-outward at θ = 90°. Each proton traverses one scintillator paddle.
-
-{% include figure.html
-src="assets/images/examples/scintillator_barrel/gemc_view.png"
-caption="Scintillator barrel viewed end-on along the beam axis. Three protons at θ = 90°
-travel radially outward, each depositing energy in one paddle."
-%}
 
 <br/>
 

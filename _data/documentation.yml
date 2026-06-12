@@ -1,25 +1,25 @@
 - title: "Quickstart"
-  category: "Api"
+  category: "API"
   link: "/home/documentation/quickstart"
 
 - title: "PyVista API"
-  category: "Api"
+  category: "API"
   link: "/home/documentation/api/pyvista_api"
 
 - title: "Color Reference"
-  category: "Api"
+  category: "API"
   link: "/home/documentation/api/pyvista_colors"
 
 - title: "Analyzer"
-  category: "Api"
+  category: "API"
   link: "/home/documentation/api/analyzer"
 
 - title: "Options"
-  category: "Api"
+  category: "API"
   link: "/home/documentation/api/options"
 
 - title: "Options Reference"
-  category: "Api"
+  category: "API"
   link: "/home/documentation/api/options_reference"
 
 
@@ -115,7 +115,7 @@
   category: "Output"
   link: "/home/documentation/output/csv"
 
-- title: "json"
+- title: "JSON"
   category: "Output"
   link: "/home/documentation/output/json"
 
@@ -123,7 +123,7 @@
   category: "Output"
   link: "/home/documentation/output/root"
 
-- title: "gplugin"
+- title: "GPlugin"
   category: "Output"
   link: "/home/documentation/output/gplugin"
 

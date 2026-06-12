@@ -239,7 +239,7 @@ The JSON format keeps all hits for each event in a single file per thread (`coun
 
 <br/>
 
-# More Details
+# More details
 
 The following sections explain the main files in more detail.
 
@@ -344,8 +344,8 @@ gstreamer:
 root: G4Box, 15*cm, 15*cm, 15*cm, G4_AIR   # world volume
 ```
 
-Remove `nthreads: 1` to use all available cores; each thread writes its own output file.
-Add a %%gstreamer%% entry with %%format: root%% for ROOT output.
+Remove `nthreads: 1` to use all available cores; each thread writes its own output file. Add a
+%%gstreamer%% entry with %%format: root%% for ROOT output.
 
 The %%root%% entry defines the Geant4 world volume inline in the steering card.
 %%root%% could also be defined in the geometry scripts.
