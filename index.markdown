@@ -11,7 +11,6 @@ layout: default
 
 [deploy-badge]: https://github.com/gemc/src/actions/workflows/deploy.yml/badge.svg
 
-
 [Docs]: https://github.com/gemc/src/actions/workflows/doxygen.yml
 
 [Docs-badge]: https://github.com/gemc/src/actions/workflows/doxygen.yml/badge.svg
@@ -35,7 +34,6 @@ layout: default
 [Binary-Tarballs]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml
 
 [Binary-Tarballs-badge]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml/badge.svg
-
 
 [PyPI]: https://pypi.org/project/pygemc/
 
@@ -88,24 +86,12 @@ No installation needed. Click a badge to launch a live **JupyterLab** session in
 
 
 <table class="zebra compact-table">
-  <thead>
-    <tr>
-      <th>MyBinder</th>
-      <th>Codespaces</th>
-      <th>Example</th>
-    </tr>
-  </thead>
   <tbody>
     {% for example in visible_examples %}
     <tr>
       <td>
         <a href="{{ example.binder }}" target="_blank" rel="noopener noreferrer">
           <img src="{{ example.badge }}" alt="{{ example.title }}">
-        </a>
-      </td>
-      <td>
-        <a href="{{ example.codespaces }}" target="_blank" rel="noopener noreferrer">
-          <img src="{{ example.codespaces_badge }}" alt="{{ example.title }} Codespaces">
         </a>
       </td>
       <td>{{ example.header }}</td>
@@ -277,23 +263,23 @@ architectures.
 
 {:.zebra}
 
-| Tests                  | [![test][test-badge]][test]                                  |
-| Sanitizer              | [![Sanitize][Sanitize-badge]][Sanitize]                      |
-| Image Deploy           | [![deploy][deploy-badge]][deploy]                            |
-| Binary Tarballs        | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] | 
-| CodeQL                 | [![CodeQL][CodeQL-badge]][CodeQL]                            |
-| Doxygen                | [![Docs][Docs-badge]][Docs]                                  |
-| Nightly Release        | [![Nightly][Nightly-badge]][Nightly]                         |
-| Homepage               | [![Site][Site-badge]][Site]                                  |
+| Tests | [![test][test-badge]][test]                                  |
+| Sanitizer | [![Sanitize][Sanitize-badge]][Sanitize]                      |
+| Image Deploy | [![deploy][deploy-badge]][deploy]                            |
+| Binary Tarballs | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] |
+| CodeQL | [![CodeQL][CodeQL-badge]][CodeQL]                            |
+| Doxygen | [![Docs][Docs-badge]][Docs]                                  |
+| Nightly Release | [![Nightly][Nightly-badge]][Nightly]                         |
+| Homepage | [![Site][Site-badge]][Site]                                  |
 
 **pygemc**
 
 {:.zebra}
 
-| Nightly Dev Release    | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
-| Publish to PyPI        | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
-| Tests                  | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]              |
-| PyPI                   | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
+| Nightly Dev Release | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
+| Publish to PyPI | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
+| Tests | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]              |
+| PyPI | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
 
 <br/><br/>
 
