@@ -45,6 +45,7 @@
       .topbar-btn { fill: var(--chrome); stroke: var(--border); stroke-width: 1; }
       .page-btn   { fill: var(--chrome); stroke: var(--border); stroke-width: 1; }
       .page-active{ fill: var(--active); }
+      .mono-icon  { color: var(--ink); }
       .section-box{ fill: var(--section); stroke: var(--border); stroke-width: 1; }
       .input-box  { fill: var(--input);   stroke: var(--border); stroke-width: 1; }
       .slider-track{ fill: var(--border); }
@@ -86,18 +87,9 @@
     <text x="24" y="38" text-anchor="middle" fill="currentColor" font-size="8" font-family="Arial">Display</text>
   </g>
 
-  <!-- G4Dialog — icon: src/gui/images/buttons/dialog_1.svg -->
+  <!-- Setup — icon: src/gui/images/buttons/setup_1.svg -->
   <rect x="11" y="160" width="90" height="90" rx="10" class="page-btn"/>
   <g transform="translate(11,160) scale(1.875)" style="color:var(--muted)">
-    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
-    <line x1="6" y1="12" x2="42" y2="12" stroke="currentColor" stroke-width="1"/>
-    <text x="24" y="25" text-anchor="middle" fill="currentColor" font-size="10" font-family="Monaco">&gt;_</text>
-    <text x="24" y="38" text-anchor="middle" fill="currentColor" font-size="8" font-family="Arial">G4Dialog</text>
-  </g>
-
-  <!-- Setup — icon: src/gui/images/buttons/setup_1.svg -->
-  <rect x="11" y="260" width="90" height="90" rx="10" class="page-btn"/>
-  <g transform="translate(11,260) scale(1.875)" style="color:var(--muted)">
     <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
     <rect x="10.5" y="8"  width="6" height="6" fill="currentColor"/>
     <rect x="17.5" y="8"  width="6" height="6" fill="currentColor"/>
@@ -115,8 +107,8 @@
   </g>
 
   <!-- Volumes — icon: src/gui/images/buttons/tree_1.svg -->
-  <rect x="11" y="360" width="90" height="90" rx="10" class="page-btn"/>
-  <g transform="translate(11,360) scale(1.875)" style="color:var(--muted)">
+  <rect x="11" y="260" width="90" height="90" rx="10" class="page-btn"/>
+  <g transform="translate(11,260) scale(1.875)" style="color:var(--muted)">
     <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
     <ellipse cx="16" cy="16" rx="6" ry="3" fill="none" stroke="currentColor" stroke-width="1"/>
     <rect x="10" y="16" width="12" height="8" fill="none" stroke="currentColor" stroke-width="1"/>
@@ -129,6 +121,34 @@
     <text x="24" y="38" text-anchor="middle" fill="currentColor" font-size="8" font-family="Arial">Volumes</text>
   </g>
 
+  <!-- G4Dialog — icon: src/gui/images/buttons/dialog_1.svg -->
+  <rect x="11" y="360" width="90" height="90" rx="10" class="page-btn"/>
+  <g transform="translate(11,360) scale(1.875)" style="color:var(--muted)">
+    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+    <line x1="6" y1="12" x2="42" y2="12" stroke="currentColor" stroke-width="1"/>
+    <text x="24" y="25" text-anchor="middle" fill="currentColor" font-size="10" font-family="Monaco">&gt;_</text>
+    <text x="24" y="38" text-anchor="middle" fill="currentColor" font-size="8" font-family="Arial">G4Dialog</text>
+  </g>
+
+  <!-- Generator — icon: src/gui/images/buttons/generator_1.svg -->
+  <rect x="11" y="460" width="90" height="90" rx="10" class="page-btn"/>
+  <g transform="translate(11,460) scale(1.875)" style="color:var(--muted)">
+    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+    <circle cx="17" cy="19" r="4"  stroke="currentColor" stroke-width="0.6" opacity="0.30"/>
+    <circle cx="17" cy="19" r="8"  stroke="currentColor" stroke-width="0.6" opacity="0.25"/>
+    <circle cx="17" cy="19" r="12" stroke="currentColor" stroke-width="0.6" opacity="0.20"/>
+    <path d="M17,19 Q27,13 37,11" stroke="currentColor" stroke-width="1.1" opacity="0.60" stroke-linecap="round"/>
+    <path d="M17,19 Q28,19 38,19" stroke="currentColor" stroke-width="1.1" opacity="0.60" stroke-linecap="round"/>
+    <path d="M17,19 Q27,24 37,27" stroke="currentColor" stroke-width="1.1" opacity="0.55" stroke-linecap="round"/>
+    <path d="M17,19 Q11,13 8,10"  stroke="currentColor" stroke-width="1.0" opacity="0.40" stroke-linecap="round"/>
+    <circle cx="37" cy="11" r="1.8" fill="currentColor" opacity="0.75"/>
+    <circle cx="38" cy="19" r="1.8" fill="currentColor" opacity="0.75"/>
+    <circle cx="37" cy="27" r="1.8" fill="currentColor" opacity="0.65"/>
+    <circle cx="8"  cy="10" r="1.6" fill="currentColor" opacity="0.50"/>
+    <circle cx="17" cy="19" r="3.0" fill="currentColor" opacity="0.85"/>
+    <text x="24" y="38" text-anchor="middle" fill="currentColor" font-size="7" font-family="Arial">Generator</text>
+  </g>
+
   <!-- ── main content panel ─────────────────────────────────────── -->
   <rect x="120" y="56" width="848" height="736" rx="8" fill="var(--panel)" stroke="var(--border)" stroke-width="0.5"/>
 
@@ -137,33 +157,91 @@
   <text x="461" y="81" text-anchor="middle" fill="white" font-size="12" font-family="Avenir,Arial,sans-serif">View</text>
   <text x="552" y="81" text-anchor="middle" class="ui-small">Utilities</text>
 
-  <!-- ── six red toggle buttons ─────────────────────────────────── -->
-  <rect x="148" y="97" width="84" height="72" rx="9" fill="var(--toggle)"/>
-  <text x="190" y="137" class="toggle-lbl">Hidden</text>
-  <text x="190" y="151" class="toggle-lbl">Lines</text>
+  <!-- ── four SVG toggle buttons ────────────────────────────────── -->
+  <rect x="148" y="104" width="78" height="78" rx="9" class="page-btn"/>
+  <g transform="translate(151,107) scale(1.5)" style="color:#6e6e73">
+    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+    <rect x="11" y="14" width="12" height="8" fill="none" stroke="currentColor" stroke-width="1.3"
+          stroke-linejoin="round"/>
+    <rect x="20" y="12" width="12" height="8" fill="none" stroke="currentColor" stroke-width="1"
+          stroke-dasharray="2,1.5" stroke-linejoin="round"/>
+    <line x1="11" y1="14" x2="20" y2="12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <line x1="23" y1="14" x2="32" y2="12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <line x1="23" y1="22" x2="32" y2="20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <line x1="11" y1="22" x2="20" y2="20" stroke="currentColor" stroke-width="1"
+          stroke-dasharray="2,1.5" stroke-linecap="round"/>
+    <text x="24" y="31" font-size="7.5" text-anchor="middle" font-family="Arial"
+          fill="currentColor" font-weight="500">Hidden</text>
+    <text x="24" y="38" font-size="7.5" text-anchor="middle" font-family="Arial"
+          fill="currentColor" font-weight="500">Lines</text>
+  </g>
 
-  <rect x="241" y="97" width="84" height="72" rx="9" fill="var(--toggle)"/>
-  <text x="283" y="137" class="toggle-lbl">Anti</text>
-  <text x="283" y="151" class="toggle-lbl">Aliasing</text>
+  <rect x="236" y="104" width="78" height="78" rx="9" class="page-btn"/>
+  <g transform="translate(239,107) scale(1.5)" style="color:#6e6e73">
+    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+    <rect x="11" y="19.5" width="2.5" height="2.5" fill="currentColor"/>
+    <rect x="13.5" y="17" width="2.5" height="2.5" fill="currentColor"/>
+    <rect x="16" y="14.5" width="2.5" height="2.5" fill="currentColor"/>
+    <rect x="18.5" y="12" width="2.5" height="2.5" fill="currentColor"/>
+    <line x1="25" y1="12" x2="25" y2="22" stroke="currentColor" stroke-width="0.8"
+          stroke-dasharray="2,1.5" opacity="0.5"/>
+    <line x1="27" y1="22" x2="37" y2="12" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round"/>
+    <text x="24" y="31" font-size="7.5" text-anchor="middle" font-family="Arial"
+          fill="currentColor" font-weight="500">Anti</text>
+    <text x="24" y="38" font-size="7.5" text-anchor="middle" font-family="Arial"
+          fill="currentColor" font-weight="500">Aliasing</text>
+  </g>
 
-  <rect x="334" y="97" width="84" height="72" rx="9" fill="var(--toggle)"/>
-  <text x="376" y="137" class="toggle-lbl">Auxiliary</text>
-  <text x="376" y="151" class="toggle-lbl">Edges</text>
+  <rect x="324" y="104" width="78" height="78" rx="9" class="page-btn"/>
+  <g transform="translate(327,107) scale(1.5)" style="color:#6e6e73">
+    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+    <ellipse cx="24" cy="14" rx="11" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <line x1="13" y1="14" x2="13" y2="21" stroke="currentColor" stroke-width="1.5"
+          stroke-linecap="round"/>
+    <line x1="35" y1="14" x2="35" y2="21" stroke="currentColor" stroke-width="1.5"
+          stroke-linecap="round"/>
+    <ellipse cx="24" cy="21" rx="11" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    <ellipse cx="24" cy="16.3" rx="11" ry="2" fill="none" stroke="currentColor" stroke-width="1"
+             opacity="0.65"/>
+    <ellipse cx="24" cy="18.7" rx="11" ry="2" fill="none" stroke="currentColor" stroke-width="1"
+             opacity="0.65"/>
+    <text x="24" y="31" font-size="7.5" text-anchor="middle" font-family="Arial"
+          fill="currentColor" font-weight="500">Auxiliary</text>
+    <text x="24" y="38" font-size="7.5" text-anchor="middle" font-family="Arial"
+          fill="currentColor" font-weight="500">Edges</text>
+  </g>
 
-  <rect x="427" y="97" width="84" height="72" rx="9" fill="var(--toggle)"/>
-  <text x="469" y="137" class="toggle-lbl">Field</text>
-  <text x="469" y="151" class="toggle-lbl">Lines</text>
-
-  <rect x="520" y="97" width="72" height="72" rx="9" fill="var(--toggle)"/>
-  <text x="556" y="141" class="toggle-lbl">Axes</text>
-
-  <rect x="601" y="97" width="72" height="72" rx="9" fill="var(--toggle)"/>
-  <text x="637" y="141" class="toggle-lbl">Scale</text>
+  <rect x="412" y="104" width="78" height="78" rx="9" class="page-btn"/>
+  <g transform="translate(415,107) scale(1.5)" style="color:#6e6e73">
+    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
+    <path d="M11,13 C15,11.7 19,14.3 25,13 C31,11.7 35,14.3 38,13"
+          fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <polyline points="35,12 38,13 35,14" fill="none" stroke="currentColor" stroke-width="1.1"
+              stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M11,15.5 C15,14.2 19,16.8 25,15.5 C31,14.2 35,16.8 38,15.5"
+          fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <polyline points="35,14.5 38,15.5 35,16.5" fill="none" stroke="currentColor" stroke-width="1.1"
+              stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M11,18 C15,16.7 19,19.3 25,18 C31,16.7 35,19.3 38,18"
+          fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <polyline points="35,17 38,18 35,19" fill="none" stroke="currentColor" stroke-width="1.1"
+              stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M11,20.5 C15,19.2 19,21.8 25,20.5 C31,19.2 35,21.8 38,20.5"
+          fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    <polyline points="35,19.5 38,20.5 35,21.5" fill="none" stroke="currentColor" stroke-width="1.1"
+              stroke-linejoin="round" stroke-linecap="round"/>
+    <text x="24" y="31" font-size="7.5" text-anchor="middle" font-family="Arial"
+          fill="currentColor" font-weight="500">Field</text>
+    <text x="24" y="38" font-size="7.5" text-anchor="middle" font-family="Arial"
+          fill="currentColor" font-weight="500">Lines</text>
+  </g>
 
   <!-- Number of Field Points -->
-  <rect x="684" y="97" width="166" height="72" rx="7" class="section-box"/>
-  <text x="767" y="116" class="sec-title" text-anchor="middle">Number of Field Points</text>
-  <text x="767" y="150" text-anchor="middle" fill="var(--ink)" font-size="24" font-weight="600" font-family="Avenir,Arial,sans-serif">5</text>
+  <rect x="512" y="104" width="220" height="78" rx="7" class="section-box"/>
+  <text x="622" y="126" class="sec-title" text-anchor="middle">Number of Field Points</text>
+  <text x="622" y="164" text-anchor="middle" fill="var(--ink)" font-size="24" font-weight="600"
+        font-family="Avenir,Arial,sans-serif">5</text>
 
   <!-- ── Camera Direction section ───────────────────────────────── -->
   <rect x="136" y="188" width="596" height="172" rx="7" class="section-box"/>
@@ -184,6 +262,8 @@
   <text x="577" y="323" class="ui-small" text-anchor="middle">0</text>
   <rect x="606" y="308" width="20" height="20" rx="4" class="input-box"/>
   <text x="616" y="323" class="ui-small" text-anchor="middle">⌄</text>
+  <rect x="628" y="331" width="86" height="22" rx="5" class="topbar-btn"/>
+  <text x="671" y="346" class="ui-label" text-anchor="middle">Read View</text>
 
   <!-- ── View Properties section ────────────────────────────────── -->
   <rect x="746" y="188" width="204" height="172" rx="7" class="section-box"/>
@@ -220,7 +300,7 @@
   <text x="536" y="508" class="ui-small" text-anchor="middle">⌄</text>
 
   <!-- ── Scene Properties section ──────────────────────────────── -->
-  <rect x="638" y="376" width="312" height="172" rx="7" class="section-box"/>
+  <rect x="638" y="376" width="312" height="208" rx="7" class="section-box"/>
   <text x="654" y="396" class="sec-title">Scene Properties</text>
   <text x="654" y="422" class="ui-label">Culling:</text>
   <rect x="654" y="427" width="188" height="24" rx="5" class="input-box"/>
@@ -230,56 +310,65 @@
   <rect x="654" y="477" width="148" height="24" rx="5" class="input-box"/>
   <text x="724" y="494" class="ui-label" text-anchor="middle">custom</text>
   <rect x="808" y="477" width="24" height="24" rx="4" fill="#1a1a2e" stroke="var(--border)" stroke-width="1"/>
+  <text x="654" y="522" class="ui-label">Number of Cloud Points:</text>
+  <rect x="812" y="506" width="92" height="24" rx="5" class="input-box"/>
+  <text x="858" y="523" class="ui-label" text-anchor="middle">10,000</text>
+  <text x="654" y="557" class="ui-label">Explode Factor:</text>
+  <rect x="748" y="551" width="94" height="5" rx="2.5" class="slider-track"/>
+  <circle cx="748" cy="553.5" r="8" class="slider-thumb"/>
+  <text x="858" y="557" class="ui-small">1.00</text>
+  <rect x="888" y="541" width="50" height="24" rx="5" class="input-box"/>
+  <text x="913" y="558" class="ui-small" text-anchor="middle">Med</text>
 
   <!-- ── X / Y / Z slice rows ──────────────────────────────────── -->
   <!-- X -->
-  <text x="140" y="575" class="ui-label">X:</text>
-  <rect x="156" y="560" width="90" height="22" rx="4" class="input-box"/>
-  <text x="201" y="576" class="ui-label" text-anchor="middle">0</text>
-  <rect x="484" y="561" width="14" height="14" rx="2" class="input-box"/>
-  <text x="502" y="574" class="ui-label">On</text>
-  <rect x="540" y="561" width="14" height="14" rx="2" class="input-box"/>
-  <text x="558" y="574" class="ui-label">Flip</text>
+  <text x="140" y="612" class="ui-label">X:</text>
+  <rect x="156" y="597" width="90" height="22" rx="4" class="input-box"/>
+  <text x="201" y="613" class="ui-label" text-anchor="middle">0</text>
+  <rect x="484" y="598" width="14" height="14" rx="2" class="input-box"/>
+  <text x="502" y="611" class="ui-label">On</text>
+  <rect x="540" y="598" width="14" height="14" rx="2" class="input-box"/>
+  <text x="558" y="611" class="ui-label">Flip</text>
 
   <!-- Y -->
-  <text x="140" y="615" class="ui-label">Y:</text>
-  <rect x="156" y="600" width="90" height="22" rx="4" class="input-box"/>
-  <text x="201" y="616" class="ui-label" text-anchor="middle">0</text>
-  <rect x="484" y="601" width="14" height="14" rx="2" class="input-box"/>
-  <text x="502" y="614" class="ui-label">On</text>
-  <rect x="540" y="601" width="14" height="14" rx="2" class="input-box"/>
-  <text x="558" y="614" class="ui-label">Flip</text>
+  <text x="140" y="648" class="ui-label">Y:</text>
+  <rect x="156" y="633" width="90" height="22" rx="4" class="input-box"/>
+  <text x="201" y="649" class="ui-label" text-anchor="middle">0</text>
+  <rect x="484" y="634" width="14" height="14" rx="2" class="input-box"/>
+  <text x="502" y="647" class="ui-label">On</text>
+  <rect x="540" y="634" width="14" height="14" rx="2" class="input-box"/>
+  <text x="558" y="647" class="ui-label">Flip</text>
 
   <!-- Z -->
-  <text x="140" y="655" class="ui-label">Z:</text>
-  <rect x="156" y="640" width="90" height="22" rx="4" class="input-box"/>
-  <text x="201" y="656" class="ui-label" text-anchor="middle">0</text>
-  <rect x="484" y="641" width="14" height="14" rx="2" class="input-box"/>
-  <text x="502" y="654" class="ui-label">On</text>
-  <rect x="540" y="641" width="14" height="14" rx="2" class="input-box"/>
-  <text x="558" y="654" class="ui-label">Flip</text>
+  <text x="140" y="684" class="ui-label">Z:</text>
+  <rect x="156" y="669" width="90" height="22" rx="4" class="input-box"/>
+  <text x="201" y="685" class="ui-label" text-anchor="middle">0</text>
+  <rect x="484" y="670" width="14" height="14" rx="2" class="input-box"/>
+  <text x="502" y="683" class="ui-label">On</text>
+  <rect x="540" y="670" width="14" height="14" rx="2" class="input-box"/>
+  <text x="558" y="683" class="ui-label">Flip</text>
 
   <!-- Slices Style -->
-  <text x="140" y="684" class="ui-label">Slices Style</text>
-  <circle cx="158" cy="701" r="7" fill="var(--active)"/>
-  <circle cx="158" cy="701" r="3" fill="white"/>
-  <text x="171" y="706" class="ui-label">Intersection</text>
-  <circle cx="300" cy="701" r="7" fill="none" stroke="var(--border)" stroke-width="1.5"/>
-  <text x="313" y="706" class="ui-label">Union</text>
+  <text x="140" y="718" class="ui-label">Slices Style</text>
+  <circle cx="158" cy="735" r="7" fill="var(--active)"/>
+  <circle cx="158" cy="735" r="3" fill="white"/>
+  <text x="171" y="740" class="ui-label">Intersection</text>
+  <circle cx="300" cy="735" r="7" fill="none" stroke="var(--border)" stroke-width="1.5"/>
+  <text x="313" y="740" class="ui-label">Union</text>
 
   <!-- Clear Slices button -->
-  <rect x="136" y="718" width="816" height="30" rx="6" class="section-box"/>
-  <text x="544" y="738" class="ui-label" text-anchor="middle">✕  Clear Slices</text>
+  <rect x="136" y="752" width="816" height="30" rx="6" class="section-box"/>
+  <text x="544" y="772" class="ui-label" text-anchor="middle">✕  Clear Slices</text>
 
   <!-- ═════════════════════════════════════════════════════════════
        ANNOTATIONS
        ═════════════════════════════════════════════════════════════ -->
 
-  <!-- 1 · Toggle rendering options
+  <!-- 1 · SVG rendering toggles
        Label above buttons, arrow down to center of toggle row    -->
-  <line x1="459" y1="91" x2="459" y2="97" class="ann-line"/>
-  <rect x="340" y="72" width="238" height="20" rx="5" class="ann-box"/>
-  <text x="459" y="86" class="ann-text">Toggle rendering options</text>
+  <line x1="319" y1="96" x2="319" y2="104" class="ann-line"/>
+  <rect x="196" y="72" width="246" height="20" rx="5" class="ann-box"/>
+  <text x="319" y="86" class="ann-text">SVG rendering toggles</text>
 
   <!-- 2 · Slide to orbit camera
        Label inside camera box just below header, arrow to θ thumb -->
@@ -302,14 +391,19 @@
 
   <!-- 5 · Cut planes position
        Label right of On/Flip, horizontal arrow to X input       -->
-  <line x1="630" y1="571" x2="250" y2="571" class="ann-line"/>
-  <rect x="632" y="561" width="196" height="20" rx="5" class="ann-box"/>
-  <text x="730" y="575" class="ann-text">Cut planes position</text>
+  <line x1="630" y1="608" x2="250" y2="608" class="ann-line"/>
+  <rect x="632" y="598" width="196" height="20" rx="5" class="ann-box"/>
+  <text x="730" y="612" class="ann-text">Cut planes position</text>
 
   <!-- 6 · CUT Switch
        Label right of On/Flip on Y row, arrow left to Y "On" checkbox -->
-  <line x1="630" y1="611" x2="500" y2="608" class="ann-line"/>
-  <rect x="632" y="601" width="118" height="20" rx="5" class="ann-box"/>
-  <text x="691" y="615" class="ann-text">CUT Switch</text>
+  <line x1="630" y1="647" x2="500" y2="641" class="ann-line"/>
+  <rect x="632" y="637" width="118" height="20" rx="5" class="ann-box"/>
+  <text x="691" y="651" class="ann-text">CUT Switch</text>
+
+  <!-- 7 · Cloud and explode scene controls -->
+  <line x1="845" y1="601" x2="800" y2="555" class="ann-line"/>
+  <rect x="754" y="590" width="182" height="20" rx="5" class="ann-box"/>
+  <text x="845" y="604" class="ann-text">Cloud and explode</text>
 
 </svg>

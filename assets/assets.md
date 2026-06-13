@@ -97,30 +97,70 @@ all visual state.
 GUI pages are documented as hand-drawn SVGs in `assets/images/documentation/display_*.svg`.
 Each SVG contains the full schematic of the Qt UI plus annotation labels and arrows — no PNG embedding.
 
+## Source-first rebuild plan
+
+When rebuilding any GUI documentation SVG, do this from scratch from `../src/gemc` before editing pixels:
+
+1. Read the applicable Qt source and headers in `../src/gemc`, not only the existing SVG. For each page, list
+   the layout containers in order, then list every visible widget created in code.
+2. Cross-check page order from `../src/gemc/gui/leftButtons.cc` and
+   `../src/gemc/gui/rightContent.cc`. The left rail and active page must match that order.
+3. Copy source SVG icon geometry inline from `../src/gemc/.../*.svg`. Keep documentation SVGs self-contained; do
+   not reference files outside the published site.
+4. Draw the schematic only after the widget inventory is complete. Preserve group-box order, labels, button
+   text, spin boxes, combo boxes, sliders, color swatches, and tab names from source.
+5. Rebuild annotations after the UI drawing is current. Annotation arrows should target live controls, not old
+   coordinates inherited from previous diagrams.
+6. Validate all GUI diagrams with `xmllint --noout assets/images/documentation/display_*.svg`, render changed
+   files once with `rsvg-convert`, and run
+   `/Users/ungaro/.rubies/ruby-3.4.1/bin/bundle exec jekyll build`.
+
 **Key command:** when told **"annotate gui"** (or "reannotate gui"), re-read this section, inspect the
 corresponding screenshot (if one is provided or already on disk), adjust element positions and annotation
 coordinates in the relevant SVG, and rebuild all annotation entries from this spec. The SVGs are the
 source of truth; `scripts/annotate_gui.py` is obsolete.
 
 **Always derive UI structure from Qt source headers, not screenshots.** Key source files:
-- Display View tab: `src/g4display/tabs/g4displayview.h` — `QSlider` (camera/light θ/φ), `QComboBox` (presets, projection, precision, culling, background), `QCheckBox` (slice On/Flip), `QRadioButton` (Intersection/Union), `GQTToggleButtonWidget` (6 toggle buttons)
-- Volumes tree: `src/gtree/gtree.h` — `QTreeWidget` (3 cols: visibility checkbox, color button, name), right panel: `GQTButtonsWidget` (wireframe/solid/cloud), `QSlider` opacity, labels (type, daughters, name, material, mass, volume, density)
-- Setup tree: `src/dbselect/dbselectView.h` — `QStandardItemModel` (exp/system, volumes, variation, run cols), `ComboDelegate` for variation/run dropdowns, green/red status icon
-- G4 Commands: `src/g4dialog/tabs/gcommands.h` — `QLineEdit` search, `QTreeView` commands, `QTextEdit` help, `QListWidget` history, `QLineEdit` command entry
+- Display View tab: `src/gemc/g4display/tabs/g4displayview.h` — `QSlider` (camera/light theta/phi),
+  `QComboBox` (presets, projection, precision, culling, background), `QCheckBox` (slice On/Flip),
+  `QRadioButton` (Intersection/Union), `GQTToggleButtonWidget` (4 SVG toggle buttons)
+- Display Utilities tab: `src/gemc/g4display/tabs/g4displayutilities.h` — scene decoration checkboxes,
+  scale/frame fields, color swatches, and 2D/3D scene text annotation controls
+- Volumes tree: `src/gemc/gtree/gtree.h` and `src/gemc/gtree/right_widget.cc` — `QTreeWidget`
+  (visibility checkbox, color button, name), four `GQTButtonsWidget` style buttons
+  (wireframe/surface/cloud/centre-twinkle), `QSlider` opacity, full selected-volume labels, read-only
+  parameters text area, `Inspect <leaf>`, and `Draw Logical Overlaps <leaf>`
+- Setup tree: `src/gemc/dbselect/dbselectView.h` — `QStandardItemModel` (exp/system, volumes,
+  variation, run cols), `ComboDelegate` for the run dropdown, green/red status icon
+- G4 Commands: `src/gemc/g4dialog/tabs/gcommands.h` — `QLineEdit` search, `QTreeView` commands,
+  `QTextEdit` help, `QListWidget` history, `QLineEdit` command entry
+- Generator: `src/gemc/pmaker/pmakerView.cc` and `src/gemc/pmaker/pmakerTab.cc` — `QTabWidget` with one
+  particle tab per `Gparticle`, final `+` add tab, Particle/Momentum/Angles/Vertex group boxes, and two
+  `AngleCoverageWidget` instances: one for theta and `dtheta`, one for phi and `dphi`
 
 **Icon sources (embed inline as `<g>` elements — do NOT use `<image>` or external refs):**
-- Left-panel page buttons (90×90): `src/gui/images/buttons/display_1.svg`, `dialog_1.svg`, `setup_1.svg`, `tree_1.svg`
+- Left-panel page buttons (90×90): `src/gui/images/buttons/display_1.svg`, `setup_1.svg`, `tree_1.svg`,
+  `dialog_1.svg`, `generator_1.svg`
   - Embed with `transform="translate(11,Y) scale(1.875)"` — scales 48×48 icon to fill the 90×90 button
   - Active button: `style="color:white"` on the `<g>` (icons use `currentColor` throughout)
   - Inactive button: `style="color:var(--muted)"` on the `<g>`
-- Volumes style buttons (48×48): `src/gtree/images/wireframe_1.svg`, `surface_1.svg`, `cloud_1.svg`
+  - Current page order from `src/gemc/gui/leftButtons.cc`: Display, Setup, Volumes, G4Dialog, Generator
+- Volumes style buttons (48×48): `src/gemc/gtree/images/wireframe_1.svg`, `surface_1.svg`,
+  `cloud_1.svg`, `centre_1.svg`
   - Embed with `transform="translate(x,y)"` (scale 1:1) — icon is already 48×48
   - Active button: `style="color:white"`, button rect `fill="var(--active)"`
   - Inactive button: `style="color:var(--muted)"`, button rect `class="style-btn"`
+- Display View toggle buttons: `src/gemc/g4display/images/hidden_lines.svg`, `anti_aliasing.svg`,
+  `auxiliary_edges.svg`, `field_lines.svg`
+  - Copy the source SVG contents directly into inline `<g>` elements; do not redraw them by hand
+  - Keep the documentation SVG self-contained rather than linking to `../src`, which is not published with the
+    site
+  - Use monochrome `currentColor` artwork on small Qt-style buttons, matching the left page-button treatment
 
 **SVG style conventions (match `gemcArchitecture.svg`):**
 - Font: Avenir / "Segoe UI" / Arial
-- CSS variables: `--ink`, `--muted`, `--section`, `--border`, `--active`, `--panel` etc. with `@media (prefers-color-scheme: dark)` block
+- CSS variables: `--ink`, `--muted`, `--section`, `--border`, `--active`, `--panel`, etc. with
+  `@media (prefers-color-scheme: dark)` block
 - Annotation boxes: `.ann-box` (white fill, blue stroke `#1a50c0`), `.ann-text` bold 11.5 px
 - Annotation arrows: `.ann-line` stroke `#c8200e`, `marker-end: url(#arr)`, arrowhead `<marker id="arr">`
 - Toggle buttons: coral red `#e05a52`
@@ -130,12 +170,21 @@ source of truth; `scripts/annotate_gui.py` is obsolete.
 
 | Label                    | Target                                                                 |
 |--------------------------|------------------------------------------------------------------------|
-| Toggle rendering options | center of the 6 red toggle buttons — label bc above, arrow down        |
-| Slide to orbit camera    | camera θ slider thumb — label inside camera box below header           |
+| SVG rendering toggles    | center of the 4 SVG toggle buttons — label bc above, arrow down        |
+| Slide to orbit camera    | camera θ slider thumb and Read View button                             |
 | Projection and precision | TWO arrows: one → Projection dropdown, one → Sides per circle dropdown |
 | Reposition light source  | light θ slider thumb — label inside light box near bottom, arrow up    |
 | Cut planes position      | X input field — label right of On/Flip row, horizontal arrow left      |
 | CUT Switch               | Y-row "On" toggle (second On) — label right, arrow left                |
+| Cloud and explode        | cloud-points spinbox and explode slider/dropdown in Scene Properties   |
+
+## display_utilities.svg — Display Utilities tab (viewBox 0 0 980 720)
+
+| Label             | Target                    | Placement                         |
+|-------------------|---------------------------|-----------------------------------|
+| Utilities tab     | Utilities tab header      | top right, arrow to active tab    |
+| Scene decorations | Apply Decorations button  | label below group, arrow right    |
+| Add annotation text | Scene Text text field    | label below group, diagonal arrow |
 
 ## display_setup.svg — Setup page (viewBox 0 0 980 640)
 
@@ -143,35 +192,74 @@ Table columns (x dividers at 310, 394, 534, 720); column centers: volumes=352, v
 Data rows end at y=286; annotations live in the empty striped-row space below.
 Arrows are vertical at their column x, staggered in y so labels never overlap.
 
-| Label                    | Target                    | Placement                                                    |
-|--------------------------|---------------------------|--------------------------------------------------------------|
-| # matching volumes       | volumes column header     | tc x=352 y=406, arrow up to y=154                            |
-| Select variation         | variation column header   | tc x=464 y=462, arrow up to y=154                            |
-| Select run number        | run column header         | tc x=627 y=518, arrow up to y=154                            |
-| Check to include in sim. | toggle of simple_flux row | label right of data at x=728, horizontal arrow left to x=188 |
-| Click to reload geometry | Reload button             | label ending at x=868, short arrow right to Reload at x=908  |
+Annotations:
+- `# matching volumes`: target the volumes column header; place tc x=352 y=406, arrow up to y=154.
+- `Select variation`: target the variation column header; place tc x=464 y=462, arrow up to y=154.
+- `Select run number`: target the run column header; place tc x=627 y=518, arrow up to y=154.
+- `Check to include in sim.`: target the simple_flux row toggle; place label right of the data at x=728,
+  with a horizontal arrow left to x=188.
+- `Click to reload geometry`: target the Reload button; place label ending at x=868, with a short arrow right
+  to Reload at x=908.
 
-## display_volumes.svg — Volumes page (viewBox 0 0 980 560)
+## display_volumes.svg — Volumes page (viewBox 0 0 980 600)
 
-b2 geometry shown; chamber_0 selected. Tree columns: Visibility / Color / Name (x≈136–656). Right properties panel x=668–956.
+b2 geometry shown; chamber_0 selected. Tree columns: Visibility / Color / Name (x≈136–656). Right
+properties panel x=668–956.
+Right panel controls follow `right_widget.cc`: the top row is four 48×48 schematic style buttons representing
+the 96×96 Qt buttons (wireframe, surface, cloud, centre/twinkle), followed by opacity, labels, parameter text
+area, position, rotation, mother, description, `Inspect chamber_0`, and `Draw Logical Overlaps chamber_0`.
 
-| Label                  | Target                            | Placement                                                                 |
-|------------------------|-----------------------------------|---------------------------------------------------------------------------|
-| Check to show / hide   | tracker visibility checkbox       | ann-box tc x=148 y=392, arrow UP from y=390 to y=238 (tracker row)        |
-| Click to change color  | target color swatch button        | ann-box tc x=215 y=442, diagonal arrow to (193,216) (target color button) |
-| Volumes in system tree | Name column header                | ann-box bc x=420 y=98, arrow DOWN from y=118 to y=128                     |
-| Selected volume info   | Properties panel title            | ann-box bc x=800 y=98, arrow DOWN from y=118 to y=162                     |
-| Set transparency (0–1) | Opacity slider (right panel)      | ann-box bc x=800 y=370, horizontal arrow LEFT from (712,359) to (726,359) |
+Annotations:
+- `Check to show / hide`: target the tracker visibility checkbox; place ann-box tc x=148 y=392, arrow up
+  from y=390 to y=238.
+- `Click to change color`: target the target color swatch; place ann-box tc x=215 y=442, diagonal arrow to
+  (193,216).
+- `Volumes in system tree`: target the Name column header; place ann-box bc x=420 y=98, arrow down from
+  y=118 to y=128.
+- `Selected volume info`: target the properties panel title; place ann-box bc x=800 y=98, arrow down from
+  y=118 to y=162.
+- `Set transparency (0-1)`: target the opacity slider; place ann-box bc x=800 y=386, horizontal arrow from
+  (712,374) to (726,374).
+- `Style buttons`: target the representation button row, including the fourth centre/twinkle button.
+- `Inspect / overlaps`: target the two full-width action buttons at the bottom of the right panel.
 
 ## display_g4dialog.svg — G4Dialog page (viewBox 0 0 980 720)
 
-Layout: search strip y=50–82; command tree (x=112–542) + help panel (x=542–972) y=82–540; history y=540–636; command entry y=636–720.
+Layout: search strip y=50–82; command tree (x=112–542) and help panel (x=542–972) y=82–540; history
+y=540–636; command entry y=636–720.
 
-| Label                           | Target                       | Placement                                                                |
-|---------------------------------|------------------------------|--------------------------------------------------------------------------|
-| Commands filtered by search     | search input (w_search)      | ann-box tc x=411 y=8, arrow DOWN from y=30 to y=53 (top of input)        |
-| Click a command to select       | /run/beamOn selected row     | ann-box tc x=215 y=456, arrow UP from y=456 to y=232 (inside tree)       |
-| Parameters and help appear here | right help panel (w_help)    | ann-box tc x=663 y=456, arrow UP from y=456 to y=227 (help content)      |
-| History of executed commands    | history section header       | ann-box tc x=657 y=600 (right side), arrow UP from y=600 to y=556        |
-| Enter any Geant4 command        | command entry field (w_command) | ann-box tc x=217 y=600 (left side), arrow DOWN from y=622 to y=641    |
+Annotations:
+- `Commands filtered by search`: target `w_search`; place ann-box tc x=411 y=8, arrow down from y=30 to y=53.
+- `Click a command to select`: target the `/run/beamOn` selected row; place ann-box tc x=215 y=456, arrow up
+  from y=456 to y=232.
+- `Parameters and help appear here`: target `w_help`; place ann-box tc x=663 y=456, arrow up from y=456 to
+  y=227.
+- `History of executed commands`: target the history section header; place ann-box tc x=657 y=600, arrow up
+  from y=600 to y=556.
+- `Enter any Geant4 command`: target `w_command`; place ann-box tc x=217 y=600, arrow down from y=622 to
+  y=641.
 
+## display_generator.svg — Generator page (viewBox 0 0 980 720)
+
+The Generator page comes from `src/gemc/pmaker/pmakerView.cc` and `src/gemc/pmaker/pmakerTab.cc`. It is a
+`QTabWidget` with one tab per `Gparticle`, a final `+` tab that adds a default particle, and close buttons on
+particle tabs. Each particle tab contains a scroll area with group boxes for Particle, Momentum, Angles, and
+Vertex.
+
+The Angles group has two stacked rows separated by a horizontal line:
+
+- theta row: `thetaSpin`, `thetaSlider`, `dthetaSpin`, `dthetaSlider`, `thetaModelCombo`, and one
+  `AngleCoverageWidget`
+- phi row: `phiSpin`, `phiSlider`, `dphiSpin`, `dphiSlider`, and a second `AngleCoverageWidget`
+
+Each coverage widget is a 90×90 circle with a gray sector for `center +/- delta` and a red center-angle line.
+Do not draw only one angular coverage widget.
+
+| Label                     | Target                            | Placement                          |
+|---------------------------|-----------------------------------|------------------------------------|
+| One tab per particle      | active particle tab               | top center, arrow down to tab      |
+| Add particle              | `+` tab                           | upper right, arrow left to `+` tab |
+| Particle and multiplicity | Particle group controls           | right of group, arrow left         |
+| Momentum spread           | momentum delta field              | right of group, arrow left         |
+| Angular coverage          | theta/phi coverage preview circle | below/right of Angles, arrow up    |
+| Vertex model              | vertex model dropdown             | below/right of Vertex, arrow up    |

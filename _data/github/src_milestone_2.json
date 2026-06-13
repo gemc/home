@@ -1,6 +1,6 @@
 {
   "closed_at": null,
-  "closed_issues": 10,
+  "closed_issues": 39,
   "created_at": "2026-05-14T13:55:18Z",
   "creator": {
     "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -30,9 +30,9 @@
   "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
   "node_id": "MI_kwDODkwbjc4A8wGw",
   "number": 2,
-  "open_issues": 35,
+  "open_issues": 6,
   "state": "open",
   "title": "GEMC Version 0.3",
-  "updated_at": "2026-06-11T19:20:53Z",
+  "updated_at": "2026-06-13T13:53:34Z",
   "url": "https://api.github.com/repos/gemc/src/milestones/2"
 }

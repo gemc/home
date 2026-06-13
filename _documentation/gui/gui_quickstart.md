@@ -16,7 +16,7 @@ gemc counter.yaml -gui
 The window is divided into three zones:
 
 - **Top bar** — run controls and event counters.
-- **Left button bar** — four icon buttons that select the active page.
+- **Left button bar** — five icon buttons that select the active page.
 - **Right content area** — the page selected by the left bar.
 
 <br/>
@@ -43,33 +43,31 @@ The Geant4 3D visualization window.
 {% include figure.html
 src="assets/images/documentation/display_gui.svg"
 alt="GEMC GUI Display page"
-caption="Display page: view toggles, camera/light sliders, view properties, slice planes, and log output."
+caption="Display View tab: rendering toggles, camera/light sliders, view properties, slice planes, and log
+output."
 %}
 
 The **View** tab exposes:
 
-- **Camera** — theta/phi sliders and preset direction dropdowns to orbit the viewpoint.
+- **Camera** — theta/phi sliders and preset direction dropdowns to orbit the viewpoint; **Read View**
+  synchronizes the sliders from the current viewer orientation.
 - **Light** — theta/phi sliders to reposition the scene light source.
-- **View properties** — projection mode (perspective / orthographic) and circle-segmentation precision.
-- **Slices** — activate and position cutaway planes on X, Y, and Z; choose intersection or union mode for multiple planes.
-- **Toggles** — one-click switches for hidden edges, anti-aliasing, auxiliary edges, field lines, coordinate axes, and scale bar.
+- **View properties** — projection mode (perspective / orthographic), circle-segmentation precision,
+  culling, background color, cloud-point count, and explode factor.
+- **Slices** — activate and position cutaway planes on X, Y, and Z; choose intersection or union mode for
+  multiple planes.
+- **Toggles** — SVG buttons for hidden lines, anti-aliasing, auxiliary edges, and field lines.
 
-<br/>
-
-### Dialog
-
-A searchable Geant4 command browser.
+The **Utilities** tab exposes scene decorations and annotation text:
 
 {% include figure.html
-src="assets/images/documentation/display_g4dialog.svg"
-alt="GEMC GUI G4Dialog page"
-caption="G4Dialog page: filter commands by name, browse the tree, read contextual help, and execute commands from the prompt."
+src="assets/images/documentation/display_utilities.svg"
+alt="GEMC GUI Display Utilities tab"
+caption="Display Utilities tab: add scene decorations, scale bars, frames, event labels, and text annotations."
 %}
 
-- A filterable tree of all available Geant4 UI commands.
-- Contextual help and parameter descriptions for the selected command.
-- A command prompt for typing and executing commands directly.
-- History recall to repeat or modify previous commands.
+- **Scene Decorations** — add scale bars, axes, event IDs, dates, Geant4 logos, frames, and decoration colors.
+- **Scene Text** — add 2D or 3D annotation text with position, layout, color, unit, size, and pixel offsets.
 
 <br/>
 
@@ -136,3 +134,42 @@ All changes are applied to the Geant4 visualization immediately — no reload is
 3. Expand the tree and check only the volume of interest.
 4. Click its color button and choose a highlight color.
 5. Adjust the opacity to make surrounding volumes semi-transparent instead of hidden.
+
+<br/>
+
+### Dialog
+
+A searchable Geant4 command browser.
+
+{% include figure.html
+src="assets/images/documentation/display_g4dialog.svg"
+alt="GEMC GUI G4Dialog page"
+caption="G4Dialog page: filter commands, browse the tree, read help, and execute commands from the prompt."
+%}
+
+- A filterable tree of all available Geant4 UI commands.
+- Contextual help and parameter descriptions for the selected command.
+- A command prompt for typing and executing commands directly.
+- History recall to repeat or modify previous commands.
+
+<br/>
+
+### Generator
+
+> [!NOTE]
+> The Generator page is upcoming in the next release.
+
+The Generator page edits the particle definitions used by the internal event generator.
+
+{% include figure.html
+src="assets/images/documentation/display_generator.svg"
+alt="GEMC GUI Generator page"
+caption="Generator page: edit particles, multiplicity, momentum spread, angular coverage, and vertex model."
+%}
+
+- Each particle definition appears in its own tab.
+- Click the **+** tab to add another generated particle, or close a particle tab to remove it.
+- The **Particle** section selects the Geant4 particle name and multiplicity per event.
+- The **Momentum** section sets the central momentum, spread, and sampling model.
+- The **Angles** section sets theta/phi values, spreads, sampling models, and visual angular coverage.
+- The **Vertex** section sets the vertex position, spread, and sampling model.
