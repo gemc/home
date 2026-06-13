@@ -164,6 +164,19 @@ gemc help gsystem
 gemc help gstreamer
 ```
 
+Search every option and switch whose name or description contains a value. The
+match is case-insensitive and matches anywhere in the name or description:
+
+```sh
+gemc search particle
+gemc search stream
+gemc search overlap
+```
+
+Each match is printed with its detailed help, so `search` is a quick way to
+discover related options without scanning the full reference. Use
+`gemc help <value>` afterwards for the detailed help of a single option.
+
 The generated [Options Reference](/home/documentation/api/options_reference)
 contains links to the detailed help output for every option and switch.
 
