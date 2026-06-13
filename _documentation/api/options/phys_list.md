@@ -57,8 +57,8 @@ gemc help phys_list
    - _PEN to use G4EmPenelopePhysics
    - _SS to use G4EmStandardPhysicsSS
    - _WVI to use G4EmStandardPhysicsWVI
-   For example, FTFP_BERT_LIV would replace the default e.m. physics with the Livermode model
-   Additional physics can be loaded by adding its constructor name to the list using the  sign
+   For example, FTFP_BERT_LIV would replace the default e.m. physics with the Livermore model
+   Additional physics can be loaded by adding its constructor name to the list using the + sign
    For example: FTFP_BERT + G4OpticalPhysics. The available constructors are:
    - G4ChargeExchangePhysics
    - G4DecayPhysics
@@ -139,4 +139,7 @@ gemc help phys_list
    - G4StoppingPhysicsFritiofWithBinaryCascade
    - G4UnknownDecayPhysics
    - G4WeightWindowBiasing
+   Command-line examples:
+   -phys_list=FTFP_BERT
+   -phys_list="FTFP_BERT_EMZ + G4OpticalPhysics"
 ```

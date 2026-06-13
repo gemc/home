@@ -7,7 +7,7 @@ title: 'GEMC option: ascii_db'
 
 Type: `option`
 
-Description: sql host or sqlite file
+Description: ascii factory search path
 
 Generated from:
 
@@ -16,8 +16,9 @@ gemc help ascii_db
 ```
 
 ```text
--ascii_db=<value> ..........: sql host or sqlite file
+-ascii_db=<value> ..........: ascii factory search path
 
 
    ascii search path. Default is: ..
+   Example: -ascii_db=/path/to/geometry/text/files
 ```

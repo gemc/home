@@ -7,7 +7,7 @@ title: 'GEMC option: runno'
 
 Type: `option`
 
-Description: run number
+Description: geometry/conditions run number
 
 Generated from:
 
@@ -16,8 +16,12 @@ gemc help runno
 ```
 
 ```text
--runno=<value> .............: run number
+-runno=<value> .............: geometry/conditions run number
 
 
-   All systems share this run number
+   Run number used to select the geometry/conditions variation loaded from the
+   database; all systems share it. This is distinct from -run, the run number
+   assigned to generated events.
+   
+   Example: -runno=11
 ```

@@ -19,5 +19,7 @@ gemc help experiment
 -experiment=<value> ........: experiment selection
 
 
-   Each experiment has a subset of unique systems
+   Each experiment has a subset of unique systems.
+   
+   Example: -experiment=clas12
 ```

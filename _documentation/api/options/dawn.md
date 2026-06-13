@@ -18,11 +18,11 @@ gemc help dawn
 ```text
 -dawn=<sequence> ...........: Defines the dawn view point
 
-   • phi: dawn phiDefault value: 30
-   • theta: dawn thetaDefault value: 30
+   • phi: dawn camera phiDefault value: 30*deg
+   • theta: dawn camera thetaDefault value: 30*deg
 
 
-   Defines the dawn camera view point and take a dawn screenshot
+   Defines the dawn camera view point and takes a dawn screenshot
    
    Example: -dawn="[{phi: 20*deg, theta: 15*deg}]"
 ```

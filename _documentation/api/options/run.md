@@ -7,7 +7,7 @@ title: 'GEMC option: run'
 
 Type: `option`
 
-Description: sets run number
+Description: event run number
 
 Generated from:
 
@@ -16,10 +16,12 @@ gemc help run
 ```
 
 ```text
--run=<value> ...............: sets run number
+-run=<value> ...............: event run number
 
 
-   Not to be confused with the geant4 run number - g4runno is set automatically
+   Run number assigned to the generated events; it is also the key looked up in the
+   -run_weights file. This is distinct from -runno, which selects the geometry/conditions
+   variation from the database, and from the Geant4 run id g4runno, set automatically.
    
    Example: -run=12
 ```

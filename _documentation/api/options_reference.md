@@ -11,7 +11,6 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 
 | Name | Description |
 | --- | --- |
-| [`checkOverlaps`](/home/documentation/api/options/checkoverlaps)<br/> | check geant4 volume overlaps at construction time |
 | [`gui`](/home/documentation/api/options/gui)<br/> | run with the graphical user interface (Qt window) |
 | [`i`](/home/documentation/api/options/i)<br/> | drop into the interactive Geant4 terminal session (non-GUI mode) |
 | [`printSystemsMaterials`](/home/documentation/api/options/printsystemsmaterials)<br/> | print the materials used in this simulation |
@@ -32,9 +31,9 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`gmodifier`](/home/documentation/api/options/gmodifier) | `<sequence>` | modify volume existence or placement |
 | [`root`](/home/documentation/api/options/root) | `<value>` | root volume definition |
 | [`sql`](/home/documentation/api/options/sql) | `<value>` | sql host or sqlite file |
-| [`ascii_db`](/home/documentation/api/options/ascii_db) | `<value>` | sql host or sqlite file |
+| [`ascii_db`](/home/documentation/api/options/ascii_db) | `<value>` | ascii factory search path |
 | [`experiment`](/home/documentation/api/options/experiment) | `<value>` | experiment selection |
-| [`runno`](/home/documentation/api/options/runno) | `<value>` | run number |
+| [`runno`](/home/documentation/api/options/runno) | `<value>` | geometry/conditions run number |
 | [`useBackupMaterial`](/home/documentation/api/options/usebackupmaterial) | `<value>` | Backup material |
 | [`check_overlaps`](/home/documentation/api/options/check_overlaps) | `<value>` | check overlaps |
 | [`ebuffer`](/home/documentation/api/options/ebuffer) | `<value>` | number of events kept in memory before flushing them to the filestream |
@@ -45,7 +44,7 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`gparticle`](/home/documentation/api/options/gparticle) | `<sequence>` | define the generator particle(s) |
 | [`gparticlefile`](/home/documentation/api/options/gparticlefile) | `<sequence>` | define generator particles from file(s) |
 | [`n`](/home/documentation/api/options/n) | `<value>` | number of events to process |
-| [`run`](/home/documentation/api/options/run) | `<value>` | sets run number |
+| [`run`](/home/documentation/api/options/run) | `<value>` | event run number |
 | [`run_weights`](/home/documentation/api/options/run_weights) | `<value>` | File with run number and weights |
 | [`g4view`](/home/documentation/api/options/g4view) | `<sequence>` | Defines the geant4 viewer properties |
 | [`g4camera`](/home/documentation/api/options/g4camera) | `<sequence>` | Defines the geant4 camera view point |

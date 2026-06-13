@@ -20,4 +20,5 @@ gemc help sql
 
 
    sqlite file or sql host. Default is: gemc.db.
+   Example (sqlite file): -sql=myGeometry.sqlite
 ```

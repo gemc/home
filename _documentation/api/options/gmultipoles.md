@@ -31,5 +31,10 @@ gemc help gmultipoles
    • longitudinal: If true, return a uniform field aligned with rotaxis (solenoid-like)Default value: false
 
 
-   Adds gmultipoles field(s) to the simulation
+   Adds electromagnetic multipole field(s) to the simulation.
+   
+   Mandatory keys: name, pole_number, rotaxis, strength.
+   
+   Example (a quadrupole centered 30 cm downstream):
+   -gmultipoles="[{name: q1, pole_number: 4, rotaxis: Z, strength: 1.2, vz: 30*cm}]"
 ```
