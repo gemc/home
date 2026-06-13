@@ -7,7 +7,7 @@ title: 'GEMC option: gui'
 
 Type: `switch`
 
-Description: use Graphical User Interface
+Description: run with the graphical user interface (Qt window)
 
 Generated from:
 
@@ -16,7 +16,7 @@ gemc help gui
 ```
 
 ```text
--gui: use Graphical User Interface
+-gui: run with the graphical user interface (Qt window)
 
    •Default value is off
 ```

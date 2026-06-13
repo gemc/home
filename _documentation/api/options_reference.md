@@ -12,8 +12,8 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | Name | Description |
 | --- | --- |
 | [`checkOverlaps`](/home/documentation/api/options/checkoverlaps)<br/> | check geant4 volume overlaps at construction time |
-| [`gui`](/home/documentation/api/options/gui)<br/> | use Graphical User Interface |
-| [`i`](/home/documentation/api/options/i)<br/> | use interactive batch mode |
+| [`gui`](/home/documentation/api/options/gui)<br/> | run with the graphical user interface (Qt window) |
+| [`i`](/home/documentation/api/options/i)<br/> | drop into the interactive Geant4 terminal session (non-GUI mode) |
 | [`printSystemsMaterials`](/home/documentation/api/options/printsystemsmaterials)<br/> | print the materials used in this simulation |
 | [`recordZeroEdep`](/home/documentation/api/options/recordzeroedep)<br/> | Record particle even if they do not deposit energy in the sensitive volumes |
 | [`showPhysics`](/home/documentation/api/options/showphysics)<br/> | Log Geant4 Physics Available Modules that can be used with the "phys_list" option and exit |
@@ -54,8 +54,8 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`g4decoration`](/home/documentation/api/options/g4decoration) | `<sequence>` | Adds optional Geant4 scene decorations |
 | [`g4text`](/home/documentation/api/options/g4text) | `<sequence>` | Insert texts in the current scene |
 | [`gmultipoles`](/home/documentation/api/options/gmultipoles) | `<sequence>` | define the e.m. gmultipoles |
-| [`conf_yaml`](/home/documentation/api/options/conf_yaml) | `<value>` | the prefix for filename that store the used options |
-| [`tt`](/home/documentation/api/options/tt) | `<value>` | tests timeout (ms) |
+| [`conf_yaml`](/home/documentation/api/options/conf_yaml) | `<value>` | infix for the YAML file that records the resolved options |
+| [`tt`](/home/documentation/api/options/tt) | `<value>` | GUI test timeout (ms) |
 | [`verbosity`](/home/documentation/api/options/verbosity) | `<sequence>` | Sets the log verbosity for various classes |
 | [`debug`](/home/documentation/api/options/debug) | `<sequence>` | Sets the debug level for various classes |
 

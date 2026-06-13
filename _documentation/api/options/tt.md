@@ -7,7 +7,7 @@ title: 'GEMC option: tt'
 
 Type: `option`
 
-Description: tests timeout (ms)
+Description: GUI test timeout (ms)
 
 Generated from:
 
@@ -16,8 +16,11 @@ gemc help tt
 ```
 
 ```text
--tt=<value> ................: tests timeout (ms)
+-tt=<value> ................: GUI test timeout (ms)
 
 
-   Timeout in milliseconds for the code tests that have GUI.
+   Milliseconds a GUI-based test waits before it auto-closes, so the module
+   example/test programs can run unattended in CI.
+   
+   Example: -tt=1000
 ```

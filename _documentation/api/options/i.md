@@ -7,7 +7,7 @@ title: 'GEMC option: i'
 
 Type: `switch`
 
-Description: use interactive batch mode
+Description: drop into the interactive Geant4 terminal session (non-GUI mode)
 
 Generated from:
 
@@ -16,7 +16,7 @@ gemc help i
 ```
 
 ```text
--i: use interactive batch mode
+-i: drop into the interactive Geant4 terminal session (non-GUI mode)
 
    •Default value is off
 ```

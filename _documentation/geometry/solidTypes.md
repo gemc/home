@@ -32,7 +32,7 @@ gvolume.make_box(dx, dy, dz, lunit='mm')
      alt="G4Box" style="max-width:100%; max-height:220px; object-fit:contain;" />
 {% endcapture %}
 
-{% include two_col_md.html left="1fr" right="220px" left_content=left_box right_content=right_box %}
+{% include two_col_md.html left="1fr" right="220px" left_content=left_box right_content=right_box right_center=true %}
 
 ```python
 gvolume.make_box(30, 20, 10)           # 30×20×10 mm half-lengths
@@ -78,7 +78,7 @@ gvolume.make_tube(rin, rout, length, phistart, phitotal, lunit1='mm', lunit2='de
      alt="G4Tubs" style="max-width:100%; max-height:220px; object-fit:contain;" />
 {% endcapture %}
 
-{% include two_col_md.html left="1fr" right="220px" left_content=left_tubs right_content=right_tubs %}
+{% include two_col_md.html left="1fr" right="220px" left_content=left_tubs right_content=right_tubs right_center=true %}
 
 ```python
 gvolume.make_tube(10, 20, 30, 0, 360)    # full tube
@@ -125,7 +125,7 @@ gvolume.make_cons(rin1, rout1, rin2, rout2, length, phi_start, phi_total,
      alt="G4Cons" style="max-width:100%; max-height:220px; object-fit:contain;" />
 {% endcapture %}
 
-{% include two_col_md.html left="1fr" right="220px" left_content=left_cons right_content=right_cons %}
+{% include two_col_md.html left="1fr" right="220px" left_content=left_cons right_content=right_cons right_center=true %}
 
 ```python
 gvolume.make_cons(5, 15, 15, 25, 30, 0, 270)   # hollow truncated cone, 270°
@@ -170,7 +170,7 @@ gvolume.make_trapezoid(dx1, dx2, dy1, dy2, z, lunit='mm')
      alt="G4Trd" style="max-width:100%; max-height:220px; object-fit:contain;" />
 {% endcapture %}
 
-{% include two_col_md.html left="1fr" right="220px" left_content=left_trd right_content=right_trd %}
+{% include two_col_md.html left="1fr" right="220px" left_content=left_trd right_content=right_trd right_center=true %}
 
 ```python
 gvolume.make_trapezoid(20, 10, 15, 8, 25)
@@ -226,7 +226,7 @@ gvolume.make_general_trapezoid(pDz, pTheta, pPhi,
      alt="G4Trap general" style="max-width:100%; max-height:220px; object-fit:contain;" />
 {% endcapture %}
 
-{% include two_col_md.html left="1fr" right="220px" left_content=left_trapg right_content=right_trapg %}
+{% include two_col_md.html left="1fr" right="220px" left_content=left_trapg right_content=right_trapg right_center=true %}
 
 ```python
 gvolume.make_general_trapezoid(25, 5, 10, 12, 15, 10, 8, 10, 12, 8, 5)
@@ -257,7 +257,7 @@ gvolume.make_trap_from_right_angular_wedges(pz, py, px, pltx, unit='mm')
      alt="G4Trap right-angular wedge" style="max-width:100%; max-height:220px; object-fit:contain;" />
 {% endcapture %}
 
-{% include two_col_md.html left="1fr" right="220px" left_content=left_trapraw right_content=right_trapraw %}
+{% include two_col_md.html left="1fr" right="220px" left_content=left_trapraw right_content=right_trapraw right_center=true %}
 
 ```shell
 gemc-system-template -gv G4TrapRAW -gvp '30, 40, 50, 20' -silent
@@ -286,7 +286,7 @@ gvolume.make_trap_from_vertices(v1x, v1y, v1z, v2x, v2y, v2z,
      alt="G4Trap 8-vertex" style="max-width:100%; max-height:220px; object-fit:contain;" />
 {% endcapture %}
 
-{% include two_col_md.html left="1fr" right="220px" left_content=left_trap8 right_content=right_trap8 %}
+{% include two_col_md.html left="1fr" right="220px" left_content=left_trap8 right_content=right_trap8 right_center=true %}
 
 <iframe
   src="{{ site.baseurl }}/assets/vtkjs-viewer.html?fileURL={{ site.baseurl }}/assets/images/documentation/solidTypes/G4Trap.vtksz"
@@ -323,7 +323,7 @@ gvolume.make_sphere(rmin, rmax, sphi, dphi, stheta, dtheta,
      alt="G4Sphere" style="max-width:100%; max-height:220px; object-fit:contain;" />
 {% endcapture %}
 
-{% include two_col_md.html left="1fr" right="220px" left_content=left_sphere right_content=right_sphere %}
+{% include two_col_md.html left="1fr" right="220px" left_content=left_sphere right_content=right_sphere right_center=true %}
 
 ```python
 gvolume.make_sphere(10, 20, 0, 270, 10, 120)   # partial shell
@@ -368,7 +368,7 @@ gvolume.make_polycone(phiStart, phiTotal, zplane, iradius, oradius,
      alt="G4Polycone" style="max-width:100%; max-height:220px; object-fit:contain;" />
 {% endcapture %}
 
-{% include two_col_md.html left="1fr" right="220px" left_content=left_pcone right_content=right_pcone %}
+{% include two_col_md.html left="1fr" right="220px" left_content=left_pcone right_content=right_pcone right_center=true %}
 
 ```python
 zplane  = [-30, -10,  10,  30]

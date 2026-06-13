@@ -1,8 +1,11 @@
 <div class="two-col-grid two-col-centered"
      style="grid-template-columns: {{ include.left }} {{ include.right }};">
   <div>{{ include.left_content | markdownify }}</div>
+  {% if include.right_center %}
   <div style="display:flex; align-items:center; justify-content:center; height:100%;">
     {{ include.right_content | markdownify }}
   </div>
+  {% else %}
+  <div>{{ include.right_content | markdownify }}</div>
+  {% endif %}
 </div>
-

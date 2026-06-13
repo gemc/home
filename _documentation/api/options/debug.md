@@ -63,7 +63,12 @@ gemc help debug
    
    - false: (default): do not print debug information
    - true: print debug information
-   Example: -debug="[{gemc: true}]"
+   Each key names a class or module; run 'help debug' to list the available keys.
    
-   The YAML value can include multiple logger keys.
+   Example (on/off):       -debug.gemc=true
+   Example (several keys): -debug="[{gemc: true}, {<another_key>: 1}]"
+   
+   Equivalent YAML:
+   debug:
+   - gemc: true
 ```

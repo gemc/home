@@ -7,7 +7,7 @@ title: 'GEMC option: conf_yaml'
 
 Type: `option`
 
-Description: the prefix for filename that store the used options
+Description: infix for the YAML file that records the resolved options
 
 Generated from:
 
@@ -16,8 +16,11 @@ gemc help conf_yaml
 ```
 
 ```text
--conf_yaml=<value> .........: the prefix for filename that store the used options
+-conf_yaml=<value> .........: infix for the YAML file that records the resolved options
 
 
-   The default value appends "_saved_configuration" to the executable name.
+   On exit the resolved configuration is written to <executable>.<conf_yaml>.yaml,
+   so the default value produces, for example, gemc.saved_configuration.yaml.
+   
+   Example: -conf_yaml=run12   ->   saves to gemc.run12.yaml
 ```

@@ -65,7 +65,13 @@ gemc help verbosity
    - 1: log detailed information
    - 2: log extra detailed information
    
-   Example: -verbosity.gemc=1
+   Each key names a class or module; run 'help verbosity' to list the available keys.
    
-   The YAML value can include multiple logger keys.
+   Example (one key):      -verbosity.gemc=1
+   Example (several keys): -verbosity="[{gemc: 1}, {<another_key>: 2}]"
+   
+   Equivalent YAML:
+   verbosity:
+   - gemc: 1
+   - <another_key>: 2
 ```
