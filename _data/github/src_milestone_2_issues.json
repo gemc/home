@@ -2,6 +2,200 @@
   {
     "active_lock_reason": null,
     "assignee": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
+    "assignees": [
+      {
+        "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+        "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+        "followers_url": "https://api.github.com/users/maureeungaro/followers",
+        "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+        "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+        "gravatar_id": "",
+        "html_url": "https://github.com/maureeungaro",
+        "id": 7451841,
+        "login": "maureeungaro",
+        "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+        "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+        "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+        "repos_url": "https://api.github.com/users/maureeungaro/repos",
+        "site_admin": false,
+        "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+        "type": "User",
+        "url": "https://api.github.com/users/maureeungaro",
+        "user_view_type": "public"
+      }
+    ],
+    "author_association": "CONTRIBUTOR",
+    "body": "binary_tarballs.yml runs privileged: contents: write plus access to GITHUB_TOKEN. The discover job checks out ref: ${{ github.event.workflow_run.head_sha }} and then executes ./ci/distros_tags.sh from that checkout. An attacker can open a PR from a fork branch named main (so Deploy's branches: [main] filter matches), Deploy's jobs skip but the run concludes success, which triggers Binary Tarballs against the attacker's commit \u2014 running their modified distros_tags.sh with a write-scoped token. That's the TOCTOU privilege escalation CodeQL is flagging.\n",
+    "closed_at": "2026-06-13T20:43:43Z",
+    "closed_by": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
+    "comments": 1,
+    "comments_url": "https://api.github.com/repos/gemc/src/issues/169/comments",
+    "created_at": "2026-06-13T20:41:43Z",
+    "events_url": "https://api.github.com/repos/gemc/src/issues/169/events",
+    "html_url": "https://github.com/gemc/src/issues/169",
+    "id": 4656880175,
+    "issue_dependencies_summary": {
+      "blocked_by": 0,
+      "blocking": 0,
+      "total_blocked_by": 0,
+      "total_blocking": 0
+    },
+    "issue_field_values": [],
+    "labels": [
+      {
+        "color": "d73a4a",
+        "default": true,
+        "description": "Something isn't working",
+        "id": 1841634234,
+        "name": "bug",
+        "node_id": "MDU6TGFiZWwxODQxNjM0MjM0",
+        "url": "https://api.github.com/repos/gemc/src/labels/bug"
+      }
+    ],
+    "labels_url": "https://api.github.com/repos/gemc/src/issues/169/labels{/name}",
+    "locked": false,
+    "milestone": {
+      "closed_at": null,
+      "closed_issues": 46,
+      "created_at": "2026-05-14T13:55:18Z",
+      "creator": {
+        "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+        "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+        "followers_url": "https://api.github.com/users/maureeungaro/followers",
+        "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+        "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+        "gravatar_id": "",
+        "html_url": "https://github.com/maureeungaro",
+        "id": 7451841,
+        "login": "maureeungaro",
+        "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+        "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+        "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+        "repos_url": "https://api.github.com/users/maureeungaro/repos",
+        "site_admin": false,
+        "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+        "type": "User",
+        "url": "https://api.github.com/users/maureeungaro",
+        "user_view_type": "public"
+      },
+      "description": "- Pygemc module \n- Generators in GUI \n- Photon detection\n- Annotations in GUI\n- Binary Tarballs\n\n<br/>",
+      "due_on": "2026-06-30T00:00:00Z",
+      "html_url": "https://github.com/gemc/src/milestone/2",
+      "id": 15925680,
+      "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
+      "node_id": "MI_kwDODkwbjc4A8wGw",
+      "number": 2,
+      "open_issues": 0,
+      "state": "open",
+      "title": "GEMC Version 0.3",
+      "updated_at": "2026-06-14T21:53:03Z",
+      "url": "https://api.github.com/repos/gemc/src/milestones/2"
+    },
+    "node_id": "I_kwDODkwbjc8AAAABFZJaLw",
+    "number": 169,
+    "performed_via_github_app": null,
+    "pinned_comment": null,
+    "reactions": {
+      "+1": 0,
+      "-1": 0,
+      "confused": 0,
+      "eyes": 0,
+      "heart": 0,
+      "hooray": 0,
+      "laugh": 0,
+      "rocket": 0,
+      "total_count": 0,
+      "url": "https://api.github.com/repos/gemc/src/issues/169/reactions"
+    },
+    "repository_url": "https://api.github.com/repos/gemc/src",
+    "state": "closed",
+    "state_reason": "completed",
+    "sub_issues_summary": {
+      "completed": 0,
+      "percent_completed": 0,
+      "total": 0
+    },
+    "timeline_url": "https://api.github.com/repos/gemc/src/issues/169/timeline",
+    "title": "Checkout of untrusted code in a privileged context",
+    "type": {
+      "color": "red",
+      "created_at": "2024-01-25T14:29:12Z",
+      "description": "An unexpected problem or behavior",
+      "id": 1718739,
+      "is_enabled": true,
+      "name": "Bug",
+      "node_id": "IT_kwDOAMwCa84AGjnT",
+      "updated_at": "2024-07-26T10:30:03Z"
+    },
+    "updated_at": "2026-06-13T20:43:43Z",
+    "url": "https://api.github.com/repos/gemc/src/issues/169",
+    "user": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    }
+  },
+  {
+    "active_lock_reason": null,
+    "assignee": {
       "avatar_url": "https://avatars.githubusercontent.com/u/6391402?v=4",
       "events_url": "https://api.github.com/users/zhaozhiwen/events{/privacy}",
       "followers_url": "https://api.github.com/users/zhaozhiwen/followers",
@@ -87,7 +281,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -117,10 +311,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkK78w",
@@ -262,7 +456,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -292,10 +486,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkK6WA",
@@ -437,7 +631,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -467,10 +661,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkK55A",
@@ -612,7 +806,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -642,10 +836,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkK41w",
@@ -787,7 +981,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -817,10 +1011,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkK35A",
@@ -962,7 +1156,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -992,10 +1186,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkK3YA",
@@ -1137,7 +1331,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1167,10 +1361,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkK1YA",
@@ -1312,7 +1506,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1342,10 +1536,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkK0HQ",
@@ -1487,7 +1681,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1517,10 +1711,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKzhw",
@@ -1662,7 +1856,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1692,10 +1886,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKyrA",
@@ -1837,7 +2031,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1867,10 +2061,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKxoQ",
@@ -2012,7 +2206,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -2042,10 +2236,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKxGQ",
@@ -2187,7 +2381,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -2217,10 +2411,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKvjA",
@@ -2362,7 +2556,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -2392,10 +2586,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKu7Q",
@@ -2497,9 +2691,29 @@
     ],
     "author_association": "COLLABORATOR",
     "body": "`EventDispenser::variation` is default-constructed (`\"\"`) and never set from options, yet it is passed to `loadConstants`/`loadTT` for every run. Digitization routines that key calibration data on the variation receive an empty string instead of `\"default\"` (or the user's choice).\n\n**Affected files**\n- `gemc/eventDispenser/eventDispenser.h:67` (`std::string variation;` \u2014 no initializer)\n- `gemc/eventDispenser/eventDispenser.cc:25-75` (constructor reads `run_weights`, `run`, `n` \u2014 never `variation`)\n- `gemc/eventDispenser/eventDispenser.cc:143,150` (passes `variation` to `loadConstants`/`loadTT`)\n- `gemc/eventDispenser/eventDispenser_options.cc:17-58` (`defineOptions` \u2014 no `variation` option)\n\n**Details**\nThe member is declared without an initializer:\n\n```cpp\n/// Variation string passed to digitization routines when loading constants/translation tables.\nstd::string variation;\n```\n\nThe constructor never assigns it:\n\n```cpp\nstring filename  = gopt->getScalarString(\"run_weights\");\nuserRunno        = gopt->getScalarInt(\"run\");\nneventsToProcess = gopt->getScalarInt(\"n\");\n```\n\nbut `processEvents` forwards it on every run:\n\n```cpp\nif (digiRoutine->loadConstants(runNumber, variation) == false) { ... }\n...\nif (digiRoutine->loadTT(runNumber, variation) == false) { ... }\n```\n\nSo `variation` is always `\"\"`. Note the geometry side uses `\"default\"` as the variation default (`gemc/gsystem/gsystem_options.cc:43,94`), so the digitization and geometry sides disagree.\n\nThere is currently **no top-level `variation` option** to read: `\"variation\"` is only defined as a per-system sub-field of the `gsystem` option group (`gsystem_options.cc:94`), and `eventDispenser::defineOptions()` does not define one. So the fix must both define the option and read it.\n\n**Impact**\nAny `loadConstantsImpl`/`loadTTImpl` that selects calibration/translation data by variation gets an empty key, silently loading the wrong (or no) constants. Results differ from the geometry, which uses `\"default\"`. Run-dependent digitization is effectively un-versioned.\n\n**Proposed fix**\nAdd a top-level `variation` option mirroring the geometry default, then read it in the constructor.\n\nIn `gemc/eventDispenser/eventDispenser_options.cc`, inside `defineOptions()`:\n\n```diff\n \t// Option: run number\n \thelp = \"Not to be confused with the geant4 run number - g4runno is set automatically \\n \\n\";\n \thelp += \"Example: -run=12\\n\";\n \tgoptions.defineOption(GVariable(\"run\", 1, \"sets run number\"), help);\n+\n+\t// Option: digitization variation (constants / translation-table version selector).\n+\thelp = \"Variation passed to digitization routines when loading constants and translation tables.\\n\";\n+\thelp += \"Example: -variation=default\\n\";\n+\tgoptions.defineOption(GVariable(\"variation\", \"default\", \"digitization constants/TT variation\"), help);\n```\n\nIn `gemc/eventDispenser/eventDispenser.cc`, in the constructor:\n\n```diff\n \tstring filename  = gopt->getScalarString(\"run_weights\");\n \tuserRunno        = gopt->getScalarInt(\"run\");\n \tneventsToProcess = gopt->getScalarInt(\"n\");\n+\tvariation        = gopt->getScalarString(\"variation\");\n```\n\n`getScalarString` is the established accessor (already used for `run_weights` two lines above), so the option resolves to `\"default\"` unless the user overrides it, matching the geometry-side default.\n\n\n---\n_Split out from #102 (one issue per bug). Found via an AI-assisted code review with manual verification against commit `5f8ce875`._\n",
-    "closed_at": null,
-    "closed_by": null,
-    "comments": 0,
+    "closed_at": "2026-06-14T21:52:29Z",
+    "closed_by": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
+    "comments": 1,
     "comments_url": "https://api.github.com/repos/gemc/src/issues/124/comments",
     "created_at": "2026-06-06T01:38:20Z",
     "events_url": "https://api.github.com/repos/gemc/src/issues/124/events",
@@ -2517,7 +2731,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -2547,10 +2761,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKt2Q",
@@ -2570,8 +2784,8 @@
       "url": "https://api.github.com/repos/gemc/src/issues/124/reactions"
     },
     "repository_url": "https://api.github.com/repos/gemc/src",
-    "state": "open",
-    "state_reason": null,
+    "state": "closed",
+    "state_reason": "completed",
     "sub_issues_summary": {
       "completed": 0,
       "percent_completed": 0,
@@ -2580,7 +2794,7 @@
     "timeline_url": "https://api.github.com/repos/gemc/src/issues/124/timeline",
     "title": "[Medium] EventDispenser::variation is never initialized, always passing empty string to digitization",
     "type": null,
-    "updated_at": "2026-06-11T19:20:33Z",
+    "updated_at": "2026-06-14T21:52:29Z",
     "url": "https://api.github.com/repos/gemc/src/issues/124",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/6391402?v=4",
@@ -2652,8 +2866,28 @@
     ],
     "author_association": "COLLABORATOR",
     "body": "The packaged tarball's `INSTALL_TARBALL.md` claims \"GEMC is statically linked against Geant4,\" but the shipped `gemc` binary dynamically resolves the Geant4 and CLHEP shared libraries, which are not bundled. The install is therefore not runnable without a separately provided Geant4 runtime.\n\n**Affected files**\n- `ci/package_install.sh:42` (`cp -a \"${install_prefix}\" \"${package_root}\"` \u2014 copies the existing meson-install binary; no static relink)\n- `ci/package_install.sh:256` (INSTALL_TARBALL.md text: \"GEMC is statically linked against Geant4, so the Geant4 shared libraries are not included\")\n- `ci/package_install.sh:117-135` (gemc.env; already prepends `${GEMC_HOME}/lib` to `LD_LIBRARY_PATH` when a `lib/` dir exists)\n\n**Details**\nThe packaging step simply copies the meson install tree (line 42) and never performs a static link. Inspecting the resulting binary shows it dynamically loads ~30 `libG4*.so` plus `libCLHEP`:\n\n```\n$ ldd gemc\n  libG4run.so      => not found / resolved from external Geant4\n  libG4event.so    => ...\n  libCLHEP-*.so    => ...\n  (\u224830 core Geant4 libraries)\n```\n\nSo the documentation's premise is false: the libraries are omitted *and* they are required at runtime. The claim and the artifact contradict each other.\n\n**Impact**\nA user who follows `INSTALL_TARBALL.md` (download data, `source gemc.env`, run `gemc -v`) gets a \"cannot open shared object file\" failure because no Geant4/CLHEP libraries are present and none are guaranteed on the host. The tarball is not the self-contained package the docs imply.\n\n**Proposed fix**\n\nOption A (minimal / honest) \u2014 correct the documentation to match the artifact: state that GEMC is dynamically linked and that the user must supply a matching Geant4/CLHEP runtime on `LD_LIBRARY_PATH`.\n\n```diff\n ## Geant4 data\n \n-GEMC is statically linked against Geant4, so the Geant4 shared libraries are not included. Geant4 still loads physics data at runtime. Run:\n+GEMC is dynamically linked against Geant4 and CLHEP, so a matching Geant4/CLHEP\n+runtime (the same version this build was compiled against) must be available on\n+your system. Ensure its libraries are on \\`LD_LIBRARY_PATH\\` (for example by\n+sourcing the Geant4 \\`geant4.sh\\`) before running gemc. The Geant4 *data* files\n+are not bundled either; install them with the script below. Then run:\n \n \\`\\`\\`bash\n ./install_geant4_data.sh\n source ./gemc.env\n gemc -v\n \\`\\`\\`\n```\n\nOption B (thorough / genuinely self-contained) \u2014 bundle the runtime. After `cp -a`, copy the resolved Geant4 + CLHEP shared objects into `${package_root}/lib` and rely on the existing `gemc.env` block (lines 133-135) that already adds `${GEMC_HOME}/lib` to `LD_LIBRARY_PATH`:\n\n```bash\n# After line 42, collect the dynamic deps of the kept binary:\nmkdir -p \"${package_root}/lib\"\nldd \"${package_root}/bin/gemc\" \\\n  | awk '/libG4|libCLHEP/ {print $3}' \\\n  | while read -r so; do [[ -n \"$so\" ]] && cp -aL \"$so\" \"${package_root}/lib/\"; done\n```\n\nand update the doc to say the runtime is included. Option B makes the tarball truly portable but increases its size and must track the exact Geant4 build used.\n\nRecommend Option A now (it makes the artifact's contract truthful with a one-paragraph doc change) and track Option B as the real fix if self-contained distribution is a goal.\n\n\n---\n_Split out from #102 (one issue per bug). Found via an AI-assisted code review with manual verification against commit `5f8ce875`._\n",
-    "closed_at": null,
-    "closed_by": null,
+    "closed_at": "2026-06-13T20:45:29Z",
+    "closed_by": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
     "comments": 0,
     "comments_url": "https://api.github.com/repos/gemc/src/issues/123/comments",
     "created_at": "2026-06-06T01:38:16Z",
@@ -2672,7 +2906,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -2702,10 +2936,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKtVg",
@@ -2725,8 +2959,8 @@
       "url": "https://api.github.com/repos/gemc/src/issues/123/reactions"
     },
     "repository_url": "https://api.github.com/repos/gemc/src",
-    "state": "open",
-    "state_reason": null,
+    "state": "closed",
+    "state_reason": "completed",
     "sub_issues_summary": {
       "completed": 0,
       "percent_completed": 0,
@@ -2735,7 +2969,7 @@
     "timeline_url": "https://api.github.com/repos/gemc/src/issues/123/timeline",
     "title": "[Medium] Tarball is not self-contained: docs claim static Geant4 linking but gemc is dynamically linked",
     "type": null,
-    "updated_at": "2026-06-11T19:20:32Z",
+    "updated_at": "2026-06-13T20:45:29Z",
     "url": "https://api.github.com/repos/gemc/src/issues/123",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/6391402?v=4",
@@ -2847,7 +3081,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -2877,10 +3111,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKs1Q",
@@ -3022,7 +3256,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -3052,10 +3286,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKrKg",
@@ -3197,7 +3431,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -3227,10 +3461,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKpug",
@@ -3372,7 +3606,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -3402,10 +3636,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKolw",
@@ -3547,7 +3781,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -3577,10 +3811,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKnRg",
@@ -3722,7 +3956,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -3752,10 +3986,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKm0Q",
@@ -3897,7 +4131,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -3927,10 +4161,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKl1A",
@@ -4072,7 +4306,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -4102,10 +4336,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKlNA",
@@ -4247,7 +4481,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -4277,10 +4511,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKkSA",
@@ -4422,7 +4656,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -4452,10 +4686,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKi3A",
@@ -4597,7 +4831,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -4627,10 +4861,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKicQ",
@@ -4772,7 +5006,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -4802,10 +5036,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKg2g",
@@ -4947,7 +5181,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -4977,10 +5211,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKfxg",
@@ -5141,7 +5375,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -5171,10 +5405,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKeFw",
@@ -5325,7 +5559,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -5355,10 +5589,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKdXQ",
@@ -5500,7 +5734,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -5530,10 +5764,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKcYQ",
@@ -5675,7 +5909,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -5705,10 +5939,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKb8A",
@@ -5810,9 +6044,29 @@
     ],
     "author_association": "COLLABORATOR",
     "body": "`GRunHeader` is built from `G4Run::GetRunID()`, which is an internal Geant4 counter starting at 0 and incrementing per `/run/beamOn`. It is unrelated to the GEMC conditions run number the user requested, so run output is mislabeled.\n\n**Affected files**\n- `gemc/actions/run/gRunAction.cc:42-47` (`BeginOfRunAction`: `const auto run = aRun->GetRunID();` \u2192 `GRunHeader`)\n- `gemc/actions/run/gRunAction.cc:147-201` (`EndOfRunAction`: `runNumber = aRun->GetRunID()` reused for the merged header)\n- `gemc/gdata/run/gRunHeader.h:82,160` (stores `runID`)\n- `gemc/eventDispenser/eventDispenser.cc:128-167` (`processEvents`: the GEMC run number lives in `runEvents` keys; `/run/beamOn` issued at line 164)\n\n**Details**\n`BeginOfRunAction` labels the run header with the Geant4 run ID:\n\n```cpp\nvoid GRunAction::BeginOfRunAction(const G4Run *aRun) {\n\tconst auto thread_id = G4Threading::G4GetThreadId();\n\tconst auto run = aRun->GetRunID();\n\tauto run_header = std::make_unique<GRunHeader>(goptions, run, thread_id);\n```\n\n`EndOfRunAction` does the same when building the merged master header (`gRunAction.cc:199`). Meanwhile the real GEMC run number is `runNumber` in `EventDispenser::processEvents`, which is the key of `runEvents` and is *only* used to load constants/TT \u2014 it is never propagated to Geant4 or the header:\n\n```cpp\nfor (auto& run : runEvents) {\n    int runNumber = run.first;\n    int nevents   = run.second;\n    ...\n    g4uim->ApplyCommand(\"/run/beamOn \" + to_string(nevents));\n}\n```\n\nEach `/run/beamOn` makes Geant4 hand out a fresh internal run ID (0, 1, 2, \u2026). There is no `SetRunIDCounter` call anywhere in the tree, so `aRun->GetRunID()` never equals the GEMC run number. `gRunHeader.h` documents `runID` as an \"Application-defined run identifier\", confirming the intent is the GEMC number, not the Geant4 counter.\n\n**Impact**\nEvery run-level output record (and the per-run logging in `GRunHeader`'s constructor) is stamped with the wrong run number. With a run-weights file dispatching runs 11/12/13, the headers report 0/1/2. Downstream consumers keying on run number get incorrect conditions/run association.\n\n**Proposed fix (primary): set the Geant4 run-ID counter before each beamOn**\n\nSmallest correct change: seed Geant4's run-ID counter so `aRun->GetRunID()` equals the GEMC run number. `G4RunManager::SetRunIDCounter(G4int)` sets the ID assigned to the *next* generated run.\n\n```diff\n // geant4\n #include \"G4UImanager.hh\"\n+#include \"G4RunManager.hh\"\n```\n\n```diff\n int EventDispenser::processEvents() {\n \t// Get the Geant4 UI manager pointer used to apply macro commands.\n \tG4UImanager* g4uim = G4UImanager::GetUIpointer();\n \n \t// Iterate over each run in the run events map.\n \tfor (auto& run : runEvents) {\n \t\tint runNumber = run.first;\n \t\tint nevents   = run.second;\n \t\t...\n \t\tlog->info(1, \"Processing \", nevents, \" events in one go\");\n+\t\t// Make the Geant4 internal run ID match the GEMC conditions run number,\n+\t\t// so GRunHeader (built from aRun->GetRunID()) is labeled correctly.\n+\t\tG4RunManager::GetRunManager()->SetRunIDCounter(runNumber);\n \t\tg4uim->ApplyCommand(\"/run/beamOn \" + to_string(nevents));\n```\n\nUnder MT, `G4MTRunManager` derives from `G4RunManager`, so `GetRunManager()` returns the (master) manager and `SetRunIDCounter` propagates the ID to the worker runs created for that beamOn \u2014 keeping master and worker headers consistent.\n\n**Alternative:** thread the GEMC run number explicitly into `GRunHeader` (e.g. carry it through `GRunAction`/`goptions` from the `EventDispenser`) instead of relying on `GetRunID()`. This is more invasive (the run number must reach `BeginOfRunAction`/`EndOfRunAction`, which currently only see the `G4Run`), but avoids overloading Geant4's internal counter and is preferable if the internal run ID is needed elsewhere for its original meaning.\n\n\n---\n_Split out from #102 (one issue per bug). Found via an AI-assisted code review with manual verification against commit `5f8ce875`._\n",
-    "closed_at": null,
-    "closed_by": null,
-    "comments": 0,
+    "closed_at": "2026-06-14T21:53:03Z",
+    "closed_by": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
+    "comments": 1,
     "comments_url": "https://api.github.com/repos/gemc/src/issues/104/comments",
     "created_at": "2026-06-06T01:37:07Z",
     "events_url": "https://api.github.com/repos/gemc/src/issues/104/events",
@@ -5830,7 +6084,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -5860,10 +6114,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKbdA",
@@ -5883,8 +6137,8 @@
       "url": "https://api.github.com/repos/gemc/src/issues/104/reactions"
     },
     "repository_url": "https://api.github.com/repos/gemc/src",
-    "state": "open",
-    "state_reason": null,
+    "state": "closed",
+    "state_reason": "completed",
     "sub_issues_summary": {
       "completed": 0,
       "percent_completed": 0,
@@ -5893,7 +6147,7 @@
     "timeline_url": "https://api.github.com/repos/gemc/src/issues/104/timeline",
     "title": "[High] Run header stores the Geant4 internal run ID instead of the GEMC run number",
     "type": null,
-    "updated_at": "2026-06-11T19:20:06Z",
+    "updated_at": "2026-06-14T21:53:03Z",
     "url": "https://api.github.com/repos/gemc/src/issues/104",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/6391402?v=4",
@@ -6005,7 +6259,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -6035,10 +6289,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABEkKa7A",
@@ -6190,7 +6444,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -6220,10 +6474,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABD0m-BA",
@@ -6393,7 +6647,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -6423,10 +6677,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABD0l-8A",
@@ -6587,7 +6841,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -6617,10 +6871,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABC5akyw",
@@ -6790,7 +7044,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -6820,10 +7074,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABC3e6SQ",
@@ -6984,7 +7238,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -7014,10 +7268,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABC3YASQ",
@@ -7178,7 +7432,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -7208,10 +7462,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABCRCC8g",
@@ -7372,7 +7626,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -7402,10 +7656,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABCCt8iA",
@@ -7567,7 +7821,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -7597,10 +7851,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABB5G74Q",
@@ -7770,7 +8024,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -7800,10 +8054,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc8AAAABBC1a4A",
@@ -7964,7 +8218,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 42,
+      "closed_issues": 46,
       "created_at": "2026-05-14T13:55:18Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -7994,10 +8248,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/2/labels",
       "node_id": "MI_kwDODkwbjc4A8wGw",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 0,
       "state": "open",
       "title": "GEMC Version 0.3",
-      "updated_at": "2026-06-13T15:52:18Z",
+      "updated_at": "2026-06-14T21:53:03Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/2"
     },
     "node_id": "I_kwDODkwbjc7HziGX",
