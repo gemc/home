@@ -304,7 +304,7 @@ Download the latest release:
 ```shell
 mkdir -p "$gprefix"
 cd "$gprefix"
-git clone -c advice.detachedHead=false --recurse-submodules --branch {{ page.latest_tag }} {{ page.repo_link }} source
+git clone -c advice.detachedHead=false --branch {{ page.latest_tag }} {{ page.repo_link }} source
 ```
 
 {% endcapture %}
@@ -315,7 +315,7 @@ Clone the repository to build the nightly development version:
 ```shell
 mkdir -p "$gprefix"
 cd "$gprefix"
-git clone --depth=1 --recurse-submodules {{ page.repo_link }} source
+git clone --depth=1 {{ page.repo_link }} source
 ```
 
 {% endcapture %}

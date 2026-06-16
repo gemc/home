@@ -69,7 +69,7 @@ Highlights:
 
 - Python API to create geometry and materials
 - Geometry imports from ASCII, SQLite, GDML, and CAD mesh files
-- Built-in sensitive detectors: %%dosimeter%%, %%flux%%, and %%particle_counter%%
+- Built-in sensitive detectors: %%flux%%, %%dosimeter%%, %%particle_counter%%, and %%gPhotonDetector%%
 - Output formats: ASCII, CSV, JSON, and [ROOT](https://root.cern)
 - Built-in Python `analyzer` module for reading and plotting simulation output
 - [`pyvista`](https://pyvista.org) geometry visualization

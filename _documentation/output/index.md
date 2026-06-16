@@ -33,7 +33,6 @@ Multiple entries are allowed; GEMC instantiates all configured plugins in parall
 | [CSV](/home/documentation/output/csv) | `csv` | `.csv` | Python / pandas analysis |
 | [JSON](/home/documentation/output/json) | `json` | `.json` | Web tools, streaming pipelines |
 | [ROOT](/home/documentation/output/root) | `root` | `.root` | HEP analysis with ROOT TTrees |
-| [JLAB SRO](/home/documentation/output/jlabsro) | `jlabsro` | `.ev` | Jefferson Lab streaming readout frames |
 | [HIPO](/home/documentation/output/hipo) | `hipo` | `.hipo` | CLAS12 analysis with standard banks |
 
 HIPO is a separately installed plugin specific to the CLAS12 detector suite. The remaining
@@ -55,9 +54,8 @@ gstreamer:
   - format: root
     filename: myrun
     type: event       # default
-  - format: jlabsro
+  - format: csv
     filename: myrun
-    type: stream      # frame snapshots
 ```
 
 <br/>

@@ -18,7 +18,6 @@ Run `gemc help gstreamer` to check its documentation:
 
 	Supported formats:
 		
-      - jlabsro
 	  - root
 	  - ascii
 	  - csv
