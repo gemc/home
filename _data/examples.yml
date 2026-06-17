@@ -123,3 +123,21 @@
       label: high_index_radiator
       name: highIndexRadiator
 
+
+- title: "DC"
+  gallery_title: "CLAS12/DC"
+  header: "CLAS12 drift chamber geometry built from the clas12-systems geometry source"
+  category: "clas12"
+  link: "/home/examples/clas12/dc"
+  display: false
+  vtz_zoom: 0.0004
+  gallery: true
+  vtksz: "/home/assets/images/examples/dc/dc.vtksz"
+  snevents: 1
+  source_dir: "../clas12-systems/geometry_src/dc"
+  source_support:
+    - "clas12_common.py"
+    - "coatjava"
+    - "coatjava_factories"
+  gemc_args:
+    - "-plugin_path=/opt/projects/gemc/clas12-systems/build"

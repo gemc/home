@@ -123,12 +123,13 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 
 <div class="gallery-grid">
   {% for example in gallery_examples %}
+    {% assign gallery_title = example.gallery_title | default: example.title %}
     <article class="gallery-card">
-      <h3>{{ example.title }}</h3>
+      <h3>{{ gallery_title }}</h3>
       <iframe src="/home/assets/vtkjs-viewer.html?fileURL={{ example.vtksz }}"
-        title="Interactive VTK.js view of {{ example.title }}"
+        title="Interactive VTK.js view of {{ gallery_title }}"
         loading="lazy"></iframe>
-      <a href="{{ example.link }}">View example</a>
+      <a href="{{ example.link }}"> ➡ {{ gallery_title }} documentation</a>
     </article>
   {% endfor %}
 </div>
@@ -231,6 +232,8 @@ with a variation string or run number in the configuration file or command-line 
 {% if post.categories contains "news" %}
 {% assign show_post = true %}
 {% elsif post.categories contains "release" %}
+{% assign show_post = true %}
+{% elsif post.categories contains "roadmap" %}
 {% assign show_post = true %}
 {% endif %}
 

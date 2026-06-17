@@ -11,7 +11,8 @@ Run from the repository root:
     ~/venv/pygemc/bin/python scripts/generate_example_assets.py --plots     # analyzer plots + md update only
     ~/venv/pygemc/bin/python scripts/generate_example_assets.py b1 cherenkov   # selected examples
 
-Values (vtz_zoom, snevents, pevents, to_plot, variation_plots) are read from _data/examples.yml.
+Values (source_dir, source_support, gemc_args, vtz_zoom, snevents, pevents, to_plot, variation_plots) are read
+from _data/examples.yml.
 """
 
 import argparse
@@ -356,7 +357,7 @@ def run_plots(ex: dict, src_dir: Path, yaml_file: Path,
 
     print(f"  plots  (n={pevents}, vars={to_plot_str})", flush=True)
 
-    if not run_gemc_for_plots(src_dir, yaml_file, pevents):
+    if not run_gemc_for_plots(src_dir, yaml_file, pevents, extra_args=ex.get("gemc_args", [])):
         return
 
     for var in to_plot_list:
@@ -433,10 +434,10 @@ def _gsystem_arg(system_name: str, variation: str) -> str:
 
 def run_variation_screenshot(src_dir: Path, yaml_file: Path, asset_dir: Path,
                              system_name: str, variation: str,
-                             label: str, n: int) -> bool:
+                             label: str, n: int, gemc_args: list[str]) -> bool:
     """Run gemc for one variation and save gemc_run_1.png as <label>.png."""
     gsys = _gsystem_arg(system_name, variation)
-    cmd  = [str(GEMC), yaml_file.name, f"-g4view={G4VIEW}", f"-n={n}", gsys]
+    cmd  = [str(GEMC), yaml_file.name, f"-g4view={G4VIEW}", f"-n={n}", gsys] + gemc_args
     print(f"  variation screenshot {label}.png  ({variation}, n={n})", flush=True)
     print(f"  {_quote_cmd(cmd)}", flush=True)
     result = subprocess.run(cmd, cwd=src_dir, capture_output=True, text=True)
@@ -456,10 +457,10 @@ def run_variation_screenshot(src_dir: Path, yaml_file: Path, asset_dir: Path,
 
 def run_variation_analyzer(src_dir: Path, yaml_file: Path, asset_dir: Path,
                            system_name: str, variation: str,
-                           label: str, csv_base: str, n: int) -> bool:
+                           label: str, csv_base: str, n: int, gemc_args: list[str]) -> bool:
     """Run gemc then gemc-analyzer (yvsx) for one variation → <label>_y_vs_x.png."""
     gsys = _gsystem_arg(system_name, variation)
-    if not run_gemc_for_plots(src_dir, yaml_file, n, extra_args=[gsys]):
+    if not run_gemc_for_plots(src_dir, yaml_file, n, extra_args=[gsys, *gemc_args]):
         return False
 
     _, _, extra, _, _ = PLOT_CONFIG["yvsx"]
@@ -529,6 +530,7 @@ def run_variation_plots(ex: dict, src_dir: Path, yaml_file: Path,
 
     snevents    = ex.get("snevents", 1)
     pevents     = ex.get("pevents")
+    gemc_args   = ex.get("gemc_args", [])
     system_name = get_system_name(yaml_file) or slug
     csv_base    = get_csv_base(yaml_file)
 
@@ -539,10 +541,10 @@ def run_variation_plots(ex: dict, src_dir: Path, yaml_file: Path,
             continue
         if do_screenshots:
             run_variation_screenshot(src_dir, yaml_file, asset_dir,
-                                     system_name, variation, label, snevents)
+                                     system_name, variation, label, snevents, gemc_args)
         if do_plots and pevents and csv_base:
             run_variation_analyzer(src_dir, yaml_file, asset_dir,
-                                   system_name, variation, label, csv_base, pevents)
+                                   system_name, variation, label, csv_base, pevents, gemc_args)
 
     if do_plots and md_path and md_path.exists():
         table = build_variation_table(slug, variation_plots)
@@ -565,8 +567,9 @@ def process(ex: dict, do_screenshots: bool, do_vtk: bool, do_plots: bool):
 
     slug, stem = parse_vtksz_path(vtksz)
 
-    src_dir = SRC_EXAMPLES / category / stem
-    if not src_dir.is_dir():
+    source_dir = ex.get("source_dir")
+    src_dir = (REPO_ROOT / source_dir).resolve() if source_dir else SRC_EXAMPLES / category / stem
+    if not source_dir and not src_dir.is_dir():
         src_dir = SRC_EXAMPLES / category / slug
     if not src_dir.is_dir():
         print(f"  WARNING: source dir not found for '{title}' – skipping")
@@ -580,6 +583,15 @@ def process(ex: dict, do_screenshots: bool, do_vtk: bool, do_plots: bool):
     with tempfile.TemporaryDirectory(prefix="gemc_assets_") as tmpdir:
         work_dir = Path(tmpdir) / stem
         shutil.copytree(src_dir, work_dir)
+        for support in ex.get("source_support", []):
+            src_support = (src_dir.parent / support).resolve()
+            dst_support = work_dir.parent / support
+            if src_support.is_dir():
+                shutil.copytree(src_support, dst_support)
+            elif src_support.is_file():
+                shutil.copy2(src_support, dst_support)
+            else:
+                print(f"  WARNING: support path not found: {src_support}")
         print(f"  working copy: {work_dir}", flush=True)
 
         try:
@@ -591,7 +603,7 @@ def process(ex: dict, do_screenshots: bool, do_vtk: bool, do_plots: bool):
 
         if do_screenshots:
             ensure_db(work_dir, py_script)
-            run_screenshot(work_dir, yaml_file, asset_dir, snevents)
+            run_screenshot(work_dir, yaml_file, asset_dir, snevents, extra_args=ex.get("gemc_args", []))
 
         if do_vtk and pvz is not None:
             run_vtk(work_dir, py_script, yaml_file, asset_dir, stem, pvz)

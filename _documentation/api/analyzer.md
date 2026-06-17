@@ -73,6 +73,20 @@ When the matching digitized CSV is available, the analyzer also adds %%E%% to tr
 
 The %%vx%%, %%vy%%, and %%vz%% columns are the current track vertex coordinates. The %%mvx%%, %%mvy%%, and %%mvz%% columns are the mother-track vertex coordinates when the mother track was available to GEMC hit processing; otherwise they use the GEMC uninitialized numeric sentinel. The %%mtid%% column stores the mother track ID.
 
+When the run uses generated particles, the CSV streamer also writes a per-thread `generated_tracked` file holding the generated particle kinematics:
+
+```text
+b2_t0_generated_tracked.csv
+```
+
+It includes columns like:
+
+```text
+evn, timestamp, thread_id, bank, name, pid, type, multiplicity, p, theta, phi, vx, vy, vz
+```
+
+The analyzer reads it into the `generated_tracked` stream, exposing `p` (momentum), `theta`, and `phi` for plotting. When the selected stream is empty or lacks one of these, `plot_variable()` falls back to `generated_tracked` automatically.
+
 The ROOT streamer writes one ROOT file per worker thread. For one thread and %%filename: b2%%, the file is typically:
 
 ```text
@@ -111,6 +125,18 @@ output = read_output("b2_t0", kind="csv")
 print(output.summary())
 ```
 
+List the numeric quantities available to plot for a stream. The columns are only known after the data is read,
+so this is discovered at runtime rather than from a fixed list:
+
+```python
+from pygemc import available_variables, read_output
+
+output = read_output("b2_t0_generated_tracked.csv")
+print(available_variables(output, data="generated_tracked"))
+# {'evn': 'evn', 'pid': 'pid', 'multiplicity': 'Multiplicity',
+#  'p': 'Momentum (MeV)', 'theta': 'Theta (rad)', 'phi': 'Phi (rad)'}
+```
+
 Plot %%totEdep%% grouped by %%pid%%:
 
 ```python
@@ -147,6 +173,30 @@ Print a summary:
 gemc-analyzer digitized.csv
 ```
 
+### Discovering Plottable Quantities
+
+The quantities available to plot are the numeric columns of the file you load, so they are only known after
+the data is read. They are not part of `--help`, which is the static argument list printed before any file is
+opened.
+
+To see them, run the analyzer without a variable. The summary is followed by a `plottable <stream>: ...` line
+for each stream that is present:
+
+```sh
+gemc-analyzer digitized.csv
+```
+
+```text
+plottable digitized: E, evn, hitn, pid, tid, time, totEdep
+plottable generated_tracked: evn, multiplicity, p, phi, pid, theta
+```
+
+Then plot a name from that list, for example the generated momentum:
+
+```sh
+gemc-analyzer b2_t0_generated_tracked.csv p
+```
+
 Plot a digitized variable with matplotlib:
 
 ```sh
@@ -169,6 +219,16 @@ Plot a true-info track vertex coordinate:
 
 ```sh
 gemc-analyzer true_info.csv vx --kind csv --data true_info --save b2_vertex_x.png
+```
+
+Plot the generated particle quantities. A `.csv` file is auto-detected, and the generated `p`, `theta`, and
+`phi` resolve from the `generated_tracked` stream automatically, so neither `--kind csv` nor `--data
+generated_tracked` is needed:
+
+```sh
+gemc-analyzer b2_t0_generated_tracked.csv p --save b2_gen_p.png
+gemc-analyzer b2_t0_generated_tracked.csv theta --save b2_gen_theta.png
+gemc-analyzer b2_t0_generated_tracked.csv phi --save b2_gen_phi.png
 ```
 
 ## Analyzer Plot Examples

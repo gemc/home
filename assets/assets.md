@@ -10,8 +10,14 @@ Use `scripts/generate_example_assets.py` to regenerate all assets in one step:
 ~/venv/pygemc/bin/python scripts/generate_example_assets.py b1 cherenkov   # selected examples
 ```
 
-The script reads `vtz_zoom` and `snevents` from `_data/examples.yml` automatically.
+The script reads `source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, and `snevents` from
+`_data/examples.yml` automatically.
 The gemc binary is at `/opt/projects/gemc/src/build/bin/gemc` (no module load needed at runtime).
+
+Examples normally come from `/opt/projects/gemc/src/examples/<category>/<example>`. Entries with
+`source_dir` can point elsewhere, such as `../clas12-systems/geometry_src/dc`. Use `source_support` for sibling
+files or directories that the copied working tree needs at generation time.
+Use `gemc_args` for extra GEMC command-line arguments, such as a plugin path.
 
 The sections below document the manual steps the script automates.
 
@@ -57,8 +63,10 @@ The vtksz stem matches the basename in the `vtksz:` field in `_data/examples.yml
 | scintillator_barrel | basic | scintillator_barrel.py | scintillator_barrel |
 | simple_flux | basic | simple_flux.py | simple_flux |
 | cherenkov | optical | cherenkov.py | cherenkov |
+| dc | clas12 | dc.py | dc |
 
-`vtz_zoom` and `snevents` live in `_data/examples.yml` — do not duplicate them here.
+`source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, and `snevents` live in `_data/examples.yml` - do not
+duplicate them here.
 
 
 # Generate pyvista solids

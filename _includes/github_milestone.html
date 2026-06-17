@@ -10,14 +10,14 @@
 {% assign issues_key = "milestone_" | append: milestone_number | append: "_issues" %}
 {% endif %}
 
-{% assign milestone = site.data.github[milestone_key] %}
+{% assign github_milestone = site.data.github[milestone_key] %}
 {% assign issues = site.data.github[issues_key] %}
 
-{% if milestone %}
-{% assign total = milestone.open_issues | plus: milestone.closed_issues %}
+{% if github_milestone %}
+{% assign total = github_milestone.open_issues | plus: github_milestone.closed_issues %}
 
 {% if total > 0 %}
-{% assign percent = milestone.closed_issues | times: 100 | divided_by: total %}
+{% assign percent = github_milestone.closed_issues | times: 100 | divided_by: total %}
 {% else %}
 {% assign percent = 0 %}
 {% endif %}
@@ -26,32 +26,32 @@
 
 <section class="github-milestone">
     <h2>
-        <a href="{{ milestone.html_url }}">
-            {{ milestone.title }}
+        <a href="{{ github_milestone.html_url }}">
+            {{ github_milestone.title }}
         </a>
     </h2>
     <br/>
 
-    {% if milestone.description %}
+    {% if github_milestone.description %}
     <div class="milestone-description">
-        {{ milestone.description | markdownify }}
+        {{ github_milestone.description | markdownify }}
     </div>
     {% endif %}
 
     <p>
-        <strong>{{ milestone.closed_issues }}</strong> closed /
+        <strong>{{ github_milestone.closed_issues }}</strong> closed /
         <strong>{{ total }}</strong> total
         — <strong>{{ percent }}%</strong> complete
     </p>
 
-    <progress value="{{ milestone.closed_issues }}" max="{{ total }}">
+    <progress value="{{ github_milestone.closed_issues }}" max="{{ total }}">
         {{ percent }}%
     </progress>
 
-    {% if milestone.due_on %}
+    {% if github_milestone.due_on %}
     <p>
         <strong>Due:</strong>
-        {{ milestone.due_on | date: "%B %-d, %Y" }}
+        {{ github_milestone.due_on | date: "%B %-d, %Y" }}
     </p>
     {% endif %}
 
@@ -95,7 +95,8 @@
 </section>
 {% else %}
 <p>
-    No GitHub milestone data found for {% if repo_name %}{{ repo_name }} {% endif %}milestone {{ milestone_number }}.
+    No GitHub milestone data found for {% if repo_name %}{{ repo_name }} {% endif %}milestone
+    {{ milestone_number }}.
 </p>
 {% endif %}
 <br/>
