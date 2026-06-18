@@ -19,7 +19,7 @@ gemc help phys_list
 -phys_list=<value> .........: Select Physics List
 
 
-   Geant4 Version $Name: geant4-11-04-patch-01 $ Physics List: it contains a Geant4 physics module, optional e.m. replacement, and optional physics constructors
+   Geant4 Version $Name: geant4-11-04-patch-02 $ Physics List: it contains a Geant4 physics module, optional e.m. replacement, and optional physics constructors
    The available geant4 modules are:
    - FTFP_BERT
    - FTFP_BERT_ATL

@@ -18,15 +18,26 @@
 </script>
   <script>
     // The OfflineLocalView bundle calls render() immediately after synchronize(),
-    // without awaiting it, so the first frame can be drawn before the geometry
+    // without awaiting it, so the first frame is often drawn before the geometry
     // arrays are populated and before the iframe has settled its size. That is why
     // the view looks wrong until the first mouse interaction forces a re-render.
-    // Re-render a few times after load (no camera change, just clipping range +
-    // size + render) so the authored view shows correctly without interaction.
+    // The bundle stores the render window on window.global.renderWindow. We poll
+    // for it and re-render (clipping range + size + render, no camera change) until
+    // the scene actually has actors, plus a few extra frames, so the authored view
+    // shows correctly without any interaction.
     (function () {
-      function nudge() {
-        var rw = window.renderWindow;
-        if (!rw || !rw.getRenderers) return false;
+      function getRW() {
+        return (window.global && window.global.renderWindow) || window.renderWindow || null;
+      }
+      function sceneReady(rw) {
+        var rens = rw.getRenderers ? rw.getRenderers() : [];
+        for (var i = 0; i < rens.length; i++) {
+          var actors = rens[i].getActors ? rens[i].getActors() : [];
+          if (actors && actors.length) return true;
+        }
+        return false;
+      }
+      function nudge(rw) {
         try {
           (rw.getRenderers() || []).forEach(function (ren) {
             if (ren.resetCameraClippingRange) ren.resetCameraClippingRange();
@@ -40,18 +51,20 @@
             }
           });
           rw.render();
-          return true;
-        } catch (e) {
-          return false;
-        }
+        } catch (e) {}
       }
       function pump() {
-        var n = 0;
+        var ticks = 0, extra = 0;
         var id = setInterval(function () {
+          ticks += 1;
           window.dispatchEvent(new Event('resize'));
-          nudge();
-          if (++n >= 12) clearInterval(id);
-        }, 150);
+          var rw = getRW();
+          if (rw) {
+            nudge(rw);
+            if (sceneReady(rw)) extra += 1;
+          }
+          if (extra >= 5 || ticks >= 40) clearInterval(id);
+        }, 200);
       }
       if (document.readyState === 'complete') pump();
       else window.addEventListener('load', pump);
