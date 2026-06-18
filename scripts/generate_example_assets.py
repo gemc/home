@@ -11,8 +11,8 @@ Run from the repository root:
     ~/venv/pygemc/bin/python scripts/generate_example_assets.py --plots     # analyzer plots + md update only
     ~/venv/pygemc/bin/python scripts/generate_example_assets.py b1 cherenkov   # selected examples
 
-Values (source_dir, source_support, gemc_args, vtz_zoom, snevents, pevents, to_plot, variation_plots) are read
-from _data/examples.yml.
+Values (source_dir, source_support, gemc_args, vtz_zoom, pyvista-fast, snevents, pevents, to_plot,
+variation_plots) are read from _data/examples.yml.
 """
 
 import argparse
@@ -214,8 +214,10 @@ def run_screenshot(src_dir: Path, yaml_file: Path, asset_dir: Path, n: int,
 # ---------------------------------------------------------------------------
 
 def run_vtk(src_dir: Path, py_script: Path, yaml_file: Path,
-            asset_dir: Path, stem: str, pvz: float) -> bool:
+            asset_dir: Path, stem: str, pvz: float,
+            pyvista_fast: bool | None = None) -> bool:
     """Run the pygemc script with -pvvtk and --read-yaml to export .vtksz."""
+    asset_dir.mkdir(parents=True, exist_ok=True)
     out_base = asset_dir / stem
     cmd = [
         str(PYGEMC_PYTHON), py_script.name,
@@ -223,7 +225,11 @@ def run_vtk(src_dir: Path, py_script: Path, yaml_file: Path,
         "-pvvtk", str(out_base),
         "-pvz",   str(pvz),
     ]
-    print(f"  VTK  {stem}.vtksz  (pvz={pvz})", flush=True)
+    if pyvista_fast is True:
+        cmd.append("--pyvista-fast")
+    elif pyvista_fast is False:
+        cmd.append("--no-pyvista-fast")
+    print(f"  VTK  {stem}.vtksz  (pvz={pvz}, fast={pyvista_fast})", flush=True)
     result = subprocess.run(cmd, cwd=src_dir, env=_pygemc_env(),
                             capture_output=True, text=True)
     vtksz = Path(str(out_base) + ".vtksz")
@@ -560,6 +566,7 @@ def process(ex: dict, do_screenshots: bool, do_vtk: bool, do_plots: bool):
     category = ex.get("category", "")
     vtksz    = ex.get("vtksz", "")
     pvz      = ex.get("vtz_zoom")
+    pvfast   = ex.get("pyvista-fast")
     snevents = ex.get("snevents", 1)
 
     if not vtksz:
@@ -606,7 +613,7 @@ def process(ex: dict, do_screenshots: bool, do_vtk: bool, do_plots: bool):
             run_screenshot(work_dir, yaml_file, asset_dir, snevents, extra_args=ex.get("gemc_args", []))
 
         if do_vtk and pvz is not None:
-            run_vtk(work_dir, py_script, yaml_file, asset_dir, stem, pvz)
+            run_vtk(work_dir, py_script, yaml_file, asset_dir, stem, pvz, pvfast)
 
         if do_plots:
             ensure_db(work_dir, py_script)

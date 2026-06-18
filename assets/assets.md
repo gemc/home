@@ -10,7 +10,7 @@ Use `scripts/generate_example_assets.py` to regenerate all assets in one step:
 ~/venv/pygemc/bin/python scripts/generate_example_assets.py b1 cherenkov   # selected examples
 ```
 
-The script reads `source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, and `snevents` from
+The script reads `source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, `pyvista-fast`, and `snevents` from
 `_data/examples.yml` automatically.
 The gemc binary is at `/opt/projects/gemc/src/build/bin/gemc` (no module load needed at runtime).
 
@@ -53,6 +53,9 @@ PYTHONPATH=/opt/projects/gemc/pygemc/src \
 The `-pvvtk` path has no extension; pygemc appends `.vtksz` automatically.
 The vtksz stem matches the basename in the `vtksz:` field in `_data/examples.yml`.
 
+When an example sets `pyvista-fast: true` the script appends `--pyvista-fast`, forcing the fast rendering path
+that is well suited to large systems such as `ec`; `pyvista-fast: false` appends `--no-pyvista-fast` instead.
+
 ### Per-example reference
 
 | Example | category | script | vtksz stem |
@@ -64,9 +67,10 @@ The vtksz stem matches the basename in the `vtksz:` field in `_data/examples.yml
 | simple_flux | basic | simple_flux.py | simple_flux |
 | cherenkov | optical | cherenkov.py | cherenkov |
 | dc | clas12 | dc.py | dc |
+| ec | clas12 | ec.py | ec |
 
-`source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, and `snevents` live in `_data/examples.yml` - do not
-duplicate them here.
+`source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, `pyvista-fast`, and `snevents` live in
+`_data/examples.yml` - do not duplicate them here.
 
 
 # Generate pyvista solids

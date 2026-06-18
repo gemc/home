@@ -67,7 +67,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 0,
+      "closed_issues": 1,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -97,10 +97,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 9,
+      "open_issues": 8,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-17T19:03:08Z",
+      "updated_at": "2026-06-18T12:43:35Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABF1JXvA",
@@ -222,7 +222,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 0,
+      "closed_issues": 1,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -252,10 +252,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 9,
+      "open_issues": 8,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-17T19:03:08Z",
+      "updated_at": "2026-06-18T12:43:35Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABF1I-NA",
@@ -357,8 +357,28 @@
     ],
     "author_association": "COLLABORATOR",
     "body": "`convert_angle` accepts `'gon'` as a valid output unit (it is a key in `ANG_TO_RAD`) but only special-cases `deg`/`degree` on the return path. For `out='gon'` it falls through and returns the value in radians, not gradians.\n\n**Affected files**\n\n- `src/pygemc/api/g4_units.py:12-14` (`ANG_TO_RAD`)\n- `src/pygemc/api/g4_units.py:186-193` (`convert_angle`)\n\n**Details**\n\n```python\nANG_TO_RAD = {\n    'rad': 1.0, 'deg': math.pi / 180.0, 'degree': math.pi / 180.0, 'gon': math.pi / 200.0\n}\n...\ndef convert_angle(expr: str, out: str = 'deg') -> float:\n    if out not in ANG_TO_RAD and out not in ('deg', 'degree', 'rad'):\n        raise ValueError(f\"Unknown output angle unit: {out}\")\n    names = {**ANG_TO_RAD}\n    val_rad = _safe_eval(expr, names)\n    if out in ('deg', 'degree'):\n        return val_rad * (180.0 / math.pi)\n    return val_rad\n```\n\n`out='gon'` passes the validation guard but is not handled in the return logic, so the function returns `val_rad` (radians) unchanged. Callers requesting gradians silently get radians.\n\n**Impact**\n\nLow severity (gon is rarely used), but a silent wrong-unit result for a documented-as-valid output. The asymmetric handling (only deg/degree converted) is the root cause.\n\n**Proposed fix**\n\nConvert generally using the `ANG_TO_RAD` table for any output unit rather than special-casing degrees. `val_rad / ANG_TO_RAD[out]` gives the value in the requested unit (and reduces to the existing deg/rad behavior).\n\n```diff\n def convert_angle(expr: str, out: str = 'deg') -> float:\n-    if out not in ANG_TO_RAD and out not in ('deg', 'degree', 'rad'):\n+    if out not in ANG_TO_RAD:\n         raise ValueError(f\"Unknown output angle unit: {out}\")\n     names = {**ANG_TO_RAD}\n     val_rad = _safe_eval(expr, names)\n-    if out in ('deg', 'degree'):\n-        return val_rad * (180.0 / math.pi)\n-    return val_rad\n+    # Convert radians to the requested output unit via the conversion table.\n+    return val_rad / ANG_TO_RAD[out]\n```\n\nCheck: `out='deg'` \u2192 `val_rad / (pi/180) = val_rad * 180/pi` (same as before); `out='rad'` \u2192 `val_rad / 1.0` (unchanged); `out='gon'` \u2192 `val_rad / (pi/200)` (correct gradians). The redundant `out not in ('deg', 'degree', 'rad')` branch is removed since all three are already keys in `ANG_TO_RAD`.\n\n\n---\n_Split out from #102 (one issue per bug). Found via an AI-assisted code review with manual verification against commit `5f8ce875`._\n\n\n---\n_Migrated from gemc/src#139 (code lives in this repo, pulled into gemc/src as a Meson subproject)._",
-    "closed_at": null,
-    "closed_by": null,
+    "closed_at": "2026-06-18T12:43:35Z",
+    "closed_by": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
     "comments": 0,
     "comments_url": "https://api.github.com/repos/gemc/pygemc/issues/8/comments",
     "created_at": "2026-06-13T02:21:31Z",
@@ -387,7 +407,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 0,
+      "closed_issues": 1,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -417,10 +437,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 9,
+      "open_issues": 8,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-17T19:03:08Z",
+      "updated_at": "2026-06-18T12:43:35Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnyg",
@@ -440,8 +460,8 @@
       "url": "https://api.github.com/repos/gemc/pygemc/issues/8/reactions"
     },
     "repository_url": "https://api.github.com/repos/gemc/pygemc",
-    "state": "open",
-    "state_reason": null,
+    "state": "closed",
+    "state_reason": "completed",
     "sub_issues_summary": {
       "completed": 0,
       "percent_completed": 0,
@@ -450,7 +470,7 @@
     "timeline_url": "https://api.github.com/repos/gemc/pygemc/issues/8/timeline",
     "title": "[Low] convert_angle(out='gon') returns radians instead of gradians",
     "type": null,
-    "updated_at": "2026-06-17T18:38:16Z",
+    "updated_at": "2026-06-18T12:43:35Z",
     "url": "https://api.github.com/repos/gemc/pygemc/issues/8",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/6391402?v=4",
@@ -552,7 +572,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 0,
+      "closed_issues": 1,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -582,10 +602,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 9,
+      "open_issues": 8,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-17T19:03:08Z",
+      "updated_at": "2026-06-18T12:43:35Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnlg",
@@ -717,7 +737,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 0,
+      "closed_issues": 1,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -747,10 +767,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 9,
+      "open_issues": 8,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-17T19:03:08Z",
+      "updated_at": "2026-06-18T12:43:35Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnUw",
@@ -882,7 +902,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 0,
+      "closed_issues": 1,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -912,10 +932,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 9,
+      "open_issues": 8,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-17T19:03:08Z",
+      "updated_at": "2026-06-18T12:43:35Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnHg",
@@ -1047,7 +1067,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 0,
+      "closed_issues": 1,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1077,10 +1097,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 9,
+      "open_issues": 8,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-17T19:03:08Z",
+      "updated_at": "2026-06-18T12:43:35Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXm4A",
@@ -1212,7 +1232,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 0,
+      "closed_issues": 1,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1242,10 +1262,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 9,
+      "open_issues": 8,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-17T19:03:08Z",
+      "updated_at": "2026-06-18T12:43:35Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXmsg",
@@ -1377,7 +1397,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 0,
+      "closed_issues": 1,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1407,10 +1427,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 9,
+      "open_issues": 8,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-17T19:03:08Z",
+      "updated_at": "2026-06-18T12:43:35Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXmdA",

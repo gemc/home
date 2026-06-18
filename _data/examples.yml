@@ -9,6 +9,7 @@
   codespaces: "https://codespaces.new/gemc/binder-tutorials?devcontainer_path=.devcontainer%2Fquickstart%2Fdevcontainer.json&quickstart=1"
   codespaces_badge: "https://img.shields.io/badge/-quickstart-black.svg?logo=github"
   vtz_zoom: 0.025
+  pyvista-fast: false
   gallery: false
 
 - title: "b1"
@@ -21,6 +22,7 @@
   codespaces: "https://codespaces.new/gemc/binder-tutorials?devcontainer_path=.devcontainer%2Fb1%2Fdevcontainer.json&quickstart=1"
   codespaces_badge: "https://img.shields.io/badge/-b1-black.svg?logo=github"
   vtz_zoom: 0.007
+  pyvista-fast: false
   gallery: true
   vtksz: "/home/assets/images/examples/b1/b1.vtksz"
   snevents: 20
@@ -37,6 +39,7 @@
   codespaces: "https://codespaces.new/gemc/binder-tutorials?devcontainer_path=.devcontainer%2Fb2%2Fdevcontainer.json&quickstart=1"
   codespaces_badge: "https://img.shields.io/badge/-b2-black.svg?logo=github"
   vtz_zoom: 0.0005
+  pyvista-fast: false
   gallery: true
   vtksz: "/home/assets/images/examples/b2/b2.vtksz"
   snevents: 10
@@ -53,6 +56,7 @@
   codespaces: "https://codespaces.new/gemc/binder-tutorials?devcontainer_path=.devcontainer%2Fmaterials%2Fdevcontainer.json&quickstart=1"
   codespaces_badge: "https://img.shields.io/badge/-Materials-black.svg?logo=github"
   vtz_zoom: 0.12
+  pyvista-fast: false
   gallery: true
   vtksz: "/home/assets/images/examples/materials/material.vtksz"
 
@@ -66,6 +70,7 @@
   codespaces: "https://codespaces.new/gemc/binder-tutorials?devcontainer_path=.devcontainer%2Fscintillator_barrel%2Fdevcontainer.json&quickstart=1"
   codespaces_badge: "https://img.shields.io/badge/-Scintillator%20Barrel-black.svg?logo=github"
   vtz_zoom: 0.002
+  pyvista-fast: false
   gallery: true
   vtksz: "/home/assets/images/examples/scintillator_barrel/scintillator_barrel.vtksz"
   snevents: 10
@@ -78,6 +83,7 @@
   link: "/home/examples/basic/pyvista"
   display: false
   vtz_zoom: 0.07
+  pyvista-fast: false
 
 - title: "Simple Flux"
   header: "Record track information using the flux digitization"
@@ -89,6 +95,7 @@
   codespaces: "https://codespaces.new/gemc/binder-tutorials?devcontainer_path=.devcontainer%2Fsimple_flux%2Fdevcontainer.json&quickstart=1"
   codespaces_badge: "https://img.shields.io/badge/-Simple%20Flux-black.svg?logo=github"
   vtz_zoom: 0.015
+  pyvista-fast: false
   gallery: true
   vtksz: "/home/assets/images/examples/simple_flux/simple_flux.vtksz"
   snevents: 10
@@ -107,6 +114,7 @@
   codespaces: "https://codespaces.new/gemc/binder-tutorials?devcontainer_path=.devcontainer%2Fcherenkov%2Fdevcontainer.json&quickstart=1"
   codespaces_badge: "https://img.shields.io/badge/-Cherenkov-black.svg?logo=github"
   vtz_zoom:  0.0017
+  pyvista-fast: false
   gallery: true
   vtksz: "/home/assets/images/examples/cherenkov/cherenkov.vtksz"
   snevents: 1
@@ -131,10 +139,30 @@
   link: "/home/examples/clas12/dc"
   display: false
   vtz_zoom: 0.0004
+  pyvista-fast: false
   gallery: true
   vtksz: "/home/assets/images/examples/dc/dc.vtksz"
   snevents: 1
   source_dir: "../clas12-systems/geometry_src/dc"
+  source_support:
+    - "clas12_common.py"
+    - "coatjava"
+    - "coatjava_factories"
+  gemc_args:
+    - "-plugin_path=/opt/projects/gemc/clas12-systems/build"
+
+- title: "EC"
+  gallery_title: "CLAS12/EC"
+  header: "CLAS12 electromagnetic calorimeter geometry built from the clas12-systems geometry source"
+  category: "clas12"
+  link: "/home/examples/clas12/ec"
+  display: false
+  vtz_zoom: 0.0004
+  pyvista-fast: true
+  gallery: true
+  vtksz: "/home/assets/images/examples/ec/ec.vtksz"
+  snevents: 1
+  source_dir: "../clas12-systems/geometry_src/ec"
   source_support:
     - "clas12_common.py"
     - "coatjava"

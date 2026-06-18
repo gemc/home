@@ -183,12 +183,68 @@ These flags are accepted by any Python geometry script that uses `autogeometry`:
 | `-pvbgt` | `<color>` | Set the optional top color for a PyVista background gradient; use `none` for a flat background |
 | `-pvvtk` | `<name>` | Export geometry to `<name>.vtksz` for web viewing |
 | `-pvz` | `<zoom>` | Camera zoom factor for the exported VTK scene (e.g. `0.07`) |
+| `--pyvista-variation` | `<name>` | Upcoming in the next release: render only this variation |
+| `--pyvista-fast` | — | Upcoming in the next release: batch large scenes into fewer actors |
+| `--no-pyvista-fast` | — | Upcoming in the next release: force detailed actor-per-volume rendering |
+| `--pyvista-fast-threshold` | `<n>` | Upcoming in the next release: auto-batch above this volume count |
 
 ```shell
 ./detector.py -pv                        # interactive window
 ./detector.py -pvvtk detector -pvz 0.02  # export vtksz
 ./detector.py -pvvtk detector -pvbg "0.92 0.92 0.98" -pvbgt none
+./detector.py -pv --pyvista-variation default
+./detector.py -pv --pyvista-fast
 ```
+
+### Upcoming in the next release: variation selection
+
+For geometry scripts that publish more than one variation, PyVista renders only one variation. If no
+variation is specified, the first variation that publishes a PyVista-rendered volume is used. To choose a
+specific variation, pass `--pyvista-variation`:
+
+```shell
+./ec.py -pv --pyvista-variation rga_spring2018
+./ec.py -pvvtk ec_rga --pyvista-variation rga_spring2018
+```
+
+The normal database or ASCII output is unchanged: a script may still publish every variation. The PyVista
+selection affects only the interactive window, background plotter, and `.vtksz` export.
+
+When PyVista is enabled, the configuration summary prints the selected PyVista variation explicitly:
+
+```text
+▪︎ PyVista Variation: rga_spring2018
+```
+
+The variation/run summary is also printed as a table. Each row records the run number that was active when
+that variation was published:
+
+```text
+▪︎ Variation / Run:
+    Variation                     Run
+    ------------------------ --------
+    default                        11
+    ddvcs                    10000001
+```
+
+### Upcoming in the next release: fast PyVista rendering
+
+Large detector systems can contain thousands of volumes. Rendering one VTK actor per volume is useful for
+detailed debugging, but it is slow for systems such as EC. PyVista now defers actor creation until display or
+export time and automatically batches large scenes into fewer actors.
+
+By default, batching is enabled when the selected PyVista variation contains more than 1000 rendered volumes.
+Use `--pyvista-fast` to force batching, or `--no-pyvista-fast` to keep the detailed actor-per-volume mode:
+
+```shell
+./ec.py -pv --pyvista-variation default --pyvista-fast
+./ec.py -pv --pyvista-variation default --no-pyvista-fast
+./ec.py -pv --pyvista-fast-threshold 2500
+```
+
+Fast mode preserves the visual geometry, colors, opacity, and styles by grouping volumes with matching render
+properties. The tradeoff is that the batched actor represents a group of volumes instead of a single named
+volume, so detailed per-volume inspection should use `--no-pyvista-fast`.
 
 To generate an offscreen screenshot via the Geant4 renderer:
 
