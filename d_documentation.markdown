@@ -13,6 +13,7 @@ The documentation is organized by workflow:
 - **GUI**: Geant4 display setup and annotations.
 - **Geometry**: detector volumes, materials, CAD imports, mirrors, and reusable structures.
 - **Sensitivity**: built-in detector responses and custom digitization plugins.
+- **Fields**: multipole magnetic fields and plugin-backed field maps.
 - **Generator**: internal particle generation and LUND input files.
 - **Output**: file formats, streamer configuration, and custom output plugins.
 

@@ -138,7 +138,7 @@
   category: "clas12"
   link: "/home/examples/clas12/dc"
   display: false
-  vtz_zoom: 0.0004
+  vtz_zoom: 0.0003
   pyvista-fast: false
   gallery: true
   vtksz: "/home/assets/images/examples/dc/dc.vtksz"
@@ -157,7 +157,7 @@
   category: "clas12"
   link: "/home/examples/clas12/ec"
   display: false
-  vtz_zoom: 0.0004
+  vtz_zoom: 0.0003
   pyvista-fast: true
   gallery: true
   vtksz: "/home/assets/images/examples/ec/ec.vtksz"

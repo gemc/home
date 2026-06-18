@@ -92,6 +92,21 @@
 
 
 
+- title: "Overview"
+  category: "Fields"
+  link: "/home/documentation/fields/index"
+
+- title: "Multipoles"
+  category: "Fields"
+  link: "/home/documentation/fields/multipoles"
+
+- title: "Field Plugins"
+  category: "Fields"
+  link: "/home/documentation/fields/plugins"
+
+
+
+
 - title: "Internal"
   category: "Generator"
   link: "/home/documentation/generator/internal"

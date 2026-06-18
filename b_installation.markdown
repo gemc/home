@@ -666,6 +666,7 @@ bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
 ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
 xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
 qt6-base-dev libqt6opengl6 libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
+liblz4-dev liblzma-dev libzstd-dev \
 liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 ```
 
@@ -683,6 +684,7 @@ bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
 ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
 xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
 qt6-base-dev libqt6opengl6 libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
+liblz4-dev liblzma-dev libzstd-dev \
 liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 ```
 
@@ -700,6 +702,7 @@ bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
 ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
 xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
 qt6-base-dev libqt6opengl6-dev libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
+liblz4-dev liblzma-dev libzstd-dev \
 liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 ```
 
