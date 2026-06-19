@@ -22,6 +22,7 @@ gemc help gsystem
    • factory: factory name.Default value: sqlite
    • variation: geometry variationDefault value: default
    • annotations: optional system annotations. Examples: "mats_only" Default value: null
+   • digitization: optional digitization plugin name when it differs from the system name (shared plugin, e.g. "ecal" for the EC and PCAL systems)Default value: null
 
 
    A system definition includes the geometry location, factory and variation
