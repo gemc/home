@@ -1,0 +1,25 @@
+GEMC — Geant4 Monte-Carlo (documentation and website)
+Copyright 2006-2026 Maurizio Ungaro and Thomas Jefferson National Accelerator
+Facility (Jefferson Lab).
+
+This product includes the GEMC software developed by Maurizio Ungaro at
+Thomas Jefferson National Accelerator Facility (Jefferson Lab).
+
+------------------------------------------------------------------------------
+Third-party components
+------------------------------------------------------------------------------
+This repository builds the GEMC documentation website. It is generated with
+Jekyll and embeds third-party web assets (for example, the VTK.js viewer used to
+display interactive geometry scenes) that are separately licensed. Such
+components are provided under their respective licenses, and you must comply
+with those licenses in addition to the Apache License, Version 2.0 that covers
+the GEMC documentation content itself.
+
+------------------------------------------------------------------------------
+Citation
+------------------------------------------------------------------------------
+If you use GEMC in scientific work, please cite:
+
+  M. Ungaro, "Geant4 Monte-Carlo (GEMC) A database-driven simulation program,"
+  EPJ Web of Conferences 295, 05005 (2024).
+  https://doi.org/10.1051/epjconf/202429505005
