@@ -45,6 +45,7 @@ scientific visibility by citing:
 > M. Ungaro, "Geant4 Monte-Carlo (GEMC) A database-driven simulation program," EPJ Web of
 > Conferences 295, 05005 (2024). <https://doi.org/10.1051/epjconf/202429505005>
 
+{% raw %}
 ```bibtex
 @INPROCEEDINGS{2024EPJWC.29505005U,
        author = {{Ungaro}, Maurizio},
@@ -61,6 +62,7 @@ scientific visibility by citing:
       adsnote = {Provided by the SAO/NASA Astrophysics Data System}
 }
 ```
+{% endraw %}
 
 <br/>
 

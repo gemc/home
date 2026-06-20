@@ -65,6 +65,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - LICENSE        # published via license.md (/license/); raw file collides on case-insensitive FS
   - todo
   - scripts
   - node_modules
