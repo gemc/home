@@ -36,6 +36,11 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`runno`](/home/documentation/api/options/runno) | `<value>` | geometry/conditions run number |
 | [`useBackupMaterial`](/home/documentation/api/options/usebackupmaterial) | `<value>` | Backup material |
 | [`check_overlaps`](/home/documentation/api/options/check_overlaps) | `<value>` | check overlaps |
+| [`gmultipoles`](/home/documentation/api/options/gmultipoles) | `<sequence>` | define the e.m. gmultipoles |
+| [`gfields`](/home/documentation/api/options/gfields) | `<sequence>` | define a generic plugin-backed e.m. field |
+| [`global_field`](/home/documentation/api/options/global_field) | `<value>` | associate a field with the ROOT world volume |
+| [`fieldAt`](/home/documentation/api/options/fieldat) | `<value>` | query all configured fields at x y z |
+| [`fieldMapPoints`](/home/documentation/api/options/fieldmappoints) | `<value>` | ASCII file of x y z points for field queries |
 | [`ebuffer`](/home/documentation/api/options/ebuffer) | `<value>` | number of events kept in memory before flushing them to the filestream |
 | [`gstreamer`](/home/documentation/api/options/gstreamer) | `<sequence>` | define a gstreamer output |
 | [`splash_time`](/home/documentation/api/options/splash_time) | `<value>` | splash display time in seconds |
@@ -52,10 +57,6 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`dawn`](/home/documentation/api/options/dawn) | `<sequence>` | Defines the dawn view point |
 | [`g4decoration`](/home/documentation/api/options/g4decoration) | `<sequence>` | Adds optional Geant4 scene decorations |
 | [`g4text`](/home/documentation/api/options/g4text) | `<sequence>` | Insert texts in the current scene |
-| [`gmultipoles`](/home/documentation/api/options/gmultipoles) | `<sequence>` | define the e.m. gmultipoles |
-| [`gfields`](/home/documentation/api/options/gfields) | `<sequence>` | define a generic plugin-backed e.m. field |
-| [`fieldAt`](/home/documentation/api/options/fieldat) | `<value>` | query all configured fields at x y z |
-| [`fieldMapPoints`](/home/documentation/api/options/fieldmappoints) | `<value>` | ASCII file of x y z points for field queries |
 | [`conf_yaml`](/home/documentation/api/options/conf_yaml) | `<value>` | infix for the YAML file that records the resolved options |
 | [`tt`](/home/documentation/api/options/tt) | `<value>` | GUI test timeout (ms) |
 | [`verbosity`](/home/documentation/api/options/verbosity) | `<sequence>` | Sets the log verbosity for various classes |

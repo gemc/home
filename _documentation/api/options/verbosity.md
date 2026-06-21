@@ -39,6 +39,8 @@ gemc help verbosity
    • run_header: run_header verbosity level or debug switchDefault value: 0
    • gtranslationtable: gtranslationtable verbosity level or debug switchDefault value: 0
    • gsd: gsd verbosity level or debug switchDefault value: 0
+   • gfield: gfield verbosity level or debug switchDefault value: 0
+   • gmagneto: gmagneto verbosity level or debug switchDefault value: 0
    • gstreamer: gstreamer verbosity level or debug switchDefault value: 0
    • gsplash: gsplash verbosity level or debug switchDefault value: 0
    • gphysics: gphysics verbosity level or debug switchDefault value: 0
@@ -52,8 +54,6 @@ gemc help verbosity
    • g4display: g4display verbosity level or debug switchDefault value: 0
    • g4scene: g4scene verbosity level or debug switchDefault value: 0
    • g4dialog: g4dialog verbosity level or debug switchDefault value: 0
-   • gfield: gfield verbosity level or debug switchDefault value: 0
-   • gmagneto: gmagneto verbosity level or debug switchDefault value: 0
    • gboard: gboard verbosity level or debug switchDefault value: 0
    • gtree: gtree verbosity level or debug switchDefault value: 0
    • pmaker: pmaker verbosity level or debug switchDefault value: 0

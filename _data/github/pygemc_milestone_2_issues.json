@@ -67,7 +67,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 1,
+      "closed_issues": 3,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -97,10 +97,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 8,
+      "open_issues": 6,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-18T12:43:35Z",
+      "updated_at": "2026-06-21T18:19:39Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABF1JXvA",
@@ -222,7 +222,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 1,
+      "closed_issues": 3,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -252,10 +252,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 8,
+      "open_issues": 6,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-18T12:43:35Z",
+      "updated_at": "2026-06-21T18:19:39Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABF1I-NA",
@@ -407,7 +407,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 1,
+      "closed_issues": 3,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -437,10 +437,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 8,
+      "open_issues": 6,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-18T12:43:35Z",
+      "updated_at": "2026-06-21T18:19:39Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnyg",
@@ -572,7 +572,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 1,
+      "closed_issues": 3,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -602,10 +602,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 8,
+      "open_issues": 6,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-18T12:43:35Z",
+      "updated_at": "2026-06-21T18:19:39Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnlg",
@@ -737,7 +737,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 1,
+      "closed_issues": 3,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -767,10 +767,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 8,
+      "open_issues": 6,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-18T12:43:35Z",
+      "updated_at": "2026-06-21T18:19:39Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnUw",
@@ -872,8 +872,28 @@
     ],
     "author_association": "COLLABORATOR",
     "body": "`make_trap` dispatches to `make_trap_from_right_angular_wedges` and `make_trap_from_vertices` but passes `self` as the first argument. These are already-bound instance methods, so `self` is supplied automatically \u2014 the extra argument causes a `TypeError` for argument count.\n\n**Affected files**\n\n- `src/pygemc/api/gvolume.py:600-607` (`make_trap`)\n- `src/pygemc/api/gvolume.py:403` (`make_trap_from_right_angular_wedges` signature)\n- `src/pygemc/api/gvolume.py:504-513` (`make_trap_from_vertices` signature)\n\n**Details**\n\n```python\nif len(params) == 4:\n\tself.make_trap_from_right_angular_wedges(self, *params, lunit1)\nelif len(params) == 11:\n\tself.make_general_trapezoid(params[0], ..., lunit1, lunit2)\nelif len(params) == 24:\n\tself.make_trap_from_vertices(self, *params, lunit1)\n```\n\n`make_trap_from_right_angular_wedges(self, pz, py, px, pltx, unit='mm')` expects 4 positional values after `self`. The call passes `self` + 4 params + `lunit1` = 6 values into a 5-parameter bound method \u2192 `TypeError: too many positional arguments`. Same for `make_trap_from_vertices(self, v1x..v8z, lunit1='mm')`: it expects 24 vertex values; the call passes `self` + 24 + `lunit1` = 26 \u2192 error. (The 11-param branch is correct because it does not pass `self`.)\n\n**Impact**\n\n`make_trap` is completely broken for the 4-parameter (right angular wedge) and 24-parameter (eight-vertices) constructors \u2014 every such call raises `TypeError`. Only the 11-parameter path works.\n\n**Proposed fix**\n\nDrop the spurious `self` and pass `lunit1` by keyword so it maps to the `unit`/`lunit1` parameter rather than overflowing positionals.\n\n```diff\n \tif len(params) == 4:\n-\t\tself.make_trap_from_right_angular_wedges(self, *params, lunit1)\n+\t\tself.make_trap_from_right_angular_wedges(*params, unit=lunit1)\n \telif len(params) == 11:\n \t\tself.make_general_trapezoid(params[0], params[1], params[2], params[3], params[4],\n \t\t                            params[5], params[6], params[7], params[8], params[9],\n \t\t                            params[10], lunit1, lunit2)\n \telif len(params) == 24:\n-\t\tself.make_trap_from_vertices(self, *params, lunit1)\n+\t\tself.make_trap_from_vertices(*params, lunit1=lunit1)\n```\n\nArg-count check after the fix: 4 params \u2192 `make_trap_from_right_angular_wedges(pz, py, px, pltx, unit=lunit1)` (4 positional + 1 keyword, matches `(pz, py, px, pltx, unit)`); 24 params \u2192 `make_trap_from_vertices(v1x..v8z, lunit1=lunit1)` (24 positional + 1 keyword, matches the 24 vertex params + `lunit1`).\n\n\n---\n_Split out from #102 (one issue per bug). Found via an AI-assisted code review with manual verification against commit `5f8ce875`._\n\n\n---\n_Migrated from gemc/src#120 (code lives in this repo, pulled into gemc/src as a Meson subproject)._",
-    "closed_at": null,
-    "closed_by": null,
+    "closed_at": "2026-06-21T18:19:39Z",
+    "closed_by": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
     "comments": 0,
     "comments_url": "https://api.github.com/repos/gemc/pygemc/issues/5/comments",
     "created_at": "2026-06-13T02:21:26Z",
@@ -902,7 +922,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 1,
+      "closed_issues": 3,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -932,10 +952,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 8,
+      "open_issues": 6,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-18T12:43:35Z",
+      "updated_at": "2026-06-21T18:19:39Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnHg",
@@ -955,8 +975,8 @@
       "url": "https://api.github.com/repos/gemc/pygemc/issues/5/reactions"
     },
     "repository_url": "https://api.github.com/repos/gemc/pygemc",
-    "state": "open",
-    "state_reason": null,
+    "state": "closed",
+    "state_reason": "completed",
     "sub_issues_summary": {
       "completed": 0,
       "percent_completed": 0,
@@ -965,7 +985,7 @@
     "timeline_url": "https://api.github.com/repos/gemc/pygemc/issues/5/timeline",
     "title": "[High] make_trap() passes an extra `self` to already-bound methods, raising TypeError",
     "type": null,
-    "updated_at": "2026-06-17T18:38:15Z",
+    "updated_at": "2026-06-21T18:19:39Z",
     "url": "https://api.github.com/repos/gemc/pygemc/issues/5",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/6391402?v=4",
@@ -1037,8 +1057,28 @@
     ],
     "author_association": "COLLABORATOR",
     "body": "The radius-array length validation in `make_polycone` only raises an error when **both** `iradius` and `oradius` mismatch `nplanes`. If only one of them is wrong, the check passes and a malformed parameter string is emitted.\n\n**Affected files**\n\n- `src/pygemc/api/gvolume.py:668-673` (`make_polycone`)\n\n**Details**\n\n```python\nnplanes = len(zplane)\nif not len(iradius) == nplanes and not len(oradius) == nplanes:\n\tsys.exit(\n\t\t' Error: the G4Polycone array lengths do not match: zplane=' + str(\n\t\t\tlen(zplane)) + ', iradius=' + str(\n\t\t\tlen(iradius)) + ', oradius=' + str(len(oradius)))\n```\n\nThe condition is `(len(iradius) != nplanes) and (len(oradius) != nplanes)`. It is only true when **both** arrays are wrong. The common failure mode \u2014 one array has the wrong length \u2014 slips through, and the downstream loops build an inconsistent parameter list that Geant4 will reject (or worse, misinterpret).\n\n**Impact**\n\nMismatched polycone radius arrays are not caught at construction time, producing confusing downstream Geant4 errors or silently malformed geometry.\n\n**Proposed fix**\n\nUse `or` so either mismatch raises.\n\n```diff\n \tnplanes = len(zplane)\n-\tif not len(iradius) == nplanes and not len(oradius) == nplanes:\n+\tif len(iradius) != nplanes or len(oradius) != nplanes:\n \t\tsys.exit(\n \t\t\t' Error: the G4Polycone array lengths do not match: zplane=' + str(\n \t\t\t\tlen(zplane)) + ', iradius=' + str(\n \t\t\t\tlen(iradius)) + ', oradius=' + str(len(oradius)))\n```\n\n\n---\n_Split out from #102 (one issue per bug). Found via an AI-assisted code review with manual verification against commit `5f8ce875`._\n\n\n---\n_Migrated from gemc/src#119 (code lives in this repo, pulled into gemc/src as a Meson subproject)._",
-    "closed_at": null,
-    "closed_by": null,
+    "closed_at": "2026-06-21T18:18:12Z",
+    "closed_by": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
     "comments": 0,
     "comments_url": "https://api.github.com/repos/gemc/pygemc/issues/4/comments",
     "created_at": "2026-06-13T02:21:24Z",
@@ -1067,7 +1107,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 1,
+      "closed_issues": 3,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1097,10 +1137,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 8,
+      "open_issues": 6,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-18T12:43:35Z",
+      "updated_at": "2026-06-21T18:19:39Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXm4A",
@@ -1120,8 +1160,8 @@
       "url": "https://api.github.com/repos/gemc/pygemc/issues/4/reactions"
     },
     "repository_url": "https://api.github.com/repos/gemc/pygemc",
-    "state": "open",
-    "state_reason": null,
+    "state": "closed",
+    "state_reason": "completed",
     "sub_issues_summary": {
       "completed": 0,
       "percent_completed": 0,
@@ -1130,7 +1170,7 @@
     "timeline_url": "https://api.github.com/repos/gemc/pygemc/issues/4/timeline",
     "title": "[High] make_polycone() length check uses `and` instead of `or`, missing single-array mismatches",
     "type": null,
-    "updated_at": "2026-06-17T18:38:13Z",
+    "updated_at": "2026-06-21T18:18:12Z",
     "url": "https://api.github.com/repos/gemc/pygemc/issues/4",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/6391402?v=4",
@@ -1232,7 +1272,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 1,
+      "closed_issues": 3,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1262,10 +1302,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 8,
+      "open_issues": 6,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-18T12:43:35Z",
+      "updated_at": "2026-06-21T18:19:39Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXmsg",
@@ -1397,7 +1437,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 1,
+      "closed_issues": 3,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1427,10 +1467,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 8,
+      "open_issues": 6,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-18T12:43:35Z",
+      "updated_at": "2026-06-21T18:19:39Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXmdA",
