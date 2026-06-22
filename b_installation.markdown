@@ -82,7 +82,8 @@ create and visualize geometry or analyze results.
 
 ## Download a precompiled binary distribution
 
-Linux binary tarballs contain the `gemc` executable and the examples (but not `pygemc`).
+Binary tarballs contain the `gemc` executable and the examples (but not `pygemc`). Linux builds are available
+for `amd64` and `arm64`; the macOS build is native to Apple Silicon (`arm64`).
 
 Make sure to check the [Software Prerequisites for binary installation](#software-prerequisites-for-binary-installation)
 before unpacking the tarball.
@@ -219,9 +220,26 @@ tar -xzf "$archive" -C "$gemc_home" --strip-components=1
 
 {% endcapture %}
 
+{% capture tab12 %}
+
+The macOS asset is tagged with the build host's macOS and Clang versions, so its exact name floats over time.
+Resolve it from the `{{ page.binary_tag }}` release, then download and unpack:
+
+```shell
+archive=$(curl -sL https://api.github.com/repos/gemc/src/releases/tags/{{ page.binary_tag }} \
+  | grep -oE 'gemc-{{ page.binary_tag }}-geant4-{{ page.binary_geant4_tag }}-macosx[0-9]+-clang[0-9]+-arm64\.tar\.gz' \
+  | head -1)
+curl -L -o "$archive" "{{ page.release_notes }}/download/{{ page.binary_tag }}/$archive"
+tar -xzf "$archive" -C "$gemc_home" --strip-components=1
+xattr -dr com.apple.quarantine "$gemc_home"   # clear Gatekeeper quarantine on the downloaded binaries
+./install_geant4_data.sh
+```
+
+{% endcapture %}
+
 {% include tabs.html
 id="install_binary_tarball"
-count=11
+count=12
 tab1_title="Fedora 44 amd64"
 tab1_content=tab1
 
@@ -254,6 +272,9 @@ tab10_content=tab10
 
 tab11_title="Arch Linux amd64"
 tab11_content=tab11
+
+tab12_title="macOS arm64 (Apple Silicon)"
+tab12_content=tab12
 %}
 
 <br/>
@@ -575,9 +596,21 @@ libx11 libxext libxmu libxt mesa qt6-base qt6-svg tbb
 
 {% endcapture %}
 
+{% capture btab7 %}
+
+The binary links against Homebrew Qt, SQLite, expat, zlib, and TBB; XQuartz supplies the X11/OpenGL runtime
+used by the visualization.
+
+```shell
+brew install qt sqlite expat zlib tbb
+brew install --cask xquartz
+```
+
+{% endcapture %}
+
 {% include tabs.html
 id="binary_install_requirements"
-count=6
+count=7
 tab1_title="Fedora 44"
 tab1_content=btab1
 
@@ -595,6 +628,9 @@ tab5_content=btab5
 
 tab6_title="Arch Linux"
 tab6_content=btab6
+
+tab7_title="macOS"
+tab7_content=btab7
 %}
 
 <br/>
@@ -775,7 +811,7 @@ tab7_content=tab7
 
 ## Supported and tested platforms
 
-- MacOS: 26
+- macOS: 26 (Apple Silicon, `arm64`)
   {% for img in site.data.docker.images -%}
   {% if img.gemcv == "dev" %}
 - {{ img.id }}: {{ img.osversion }}
