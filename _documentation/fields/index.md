@@ -45,6 +45,40 @@ gemc mydetector.yaml
 
 <br/>
 
+## Attaching a field to geometry
+
+Defining a field only registers it — it stays inert until a volume uses it. There are two ways to
+apply a field to the geometry, and they can be combined:
+
+| Scope | How | Effect |
+|-------|-----|--------|
+| Per volume | Set the volume's `emfield` to a field name | The field manager is installed on that volume and **propagated to all its daughters** |
+| Global | `-global_field=<name>` on the command line (or `global_field: <name>` in YAML) | The field is installed on the ROOT world volume, so it applies **everywhere** |
+
+Because Geant4 uses the field manager of the nearest enclosing volume, a per-volume `emfield`
+**overrides** the global field locally. A common pattern is a global field for the whole apparatus
+plus a stronger, more specific field inside one magnet:
+
+```yaml
+gmultipoles:
+  - name: holding         # weak field everywhere
+    pole_number: 2
+    strength: 0.5
+    rotaxis: z
+  - name: magnet          # strong field inside one volume
+    pole_number: 4
+    strength: 1.2
+    rotaxis: z
+
+global_field: holding     # attach 'holding' to the ROOT world volume
+```
+
+The `magnet` field is then attached to a specific volume through that volume's `emfield` label, and
+wins over `holding` wherever the two overlap. The `<name>` given to `global_field` (or to a volume's
+`emfield`) must match the `name` of a field defined under `gmultipoles` or `gfields`.
+
+<br/>
+
 ## Common keys
 
 Every field entry — whichever route — accepts these integration controls:
