@@ -1,5 +1,6 @@
 - title: "Quickstart"
   category: "API"
+  description: "First run, Python visualization, analysis tools, and command-line options."
   link: "/home/documentation/quickstart"
 
 - title: "PyVista API"
@@ -23,8 +24,11 @@
   link: "/home/documentation/api/options_reference"
 
 
+
+
 - title: "The GEMC Interface"
   category: "Gui"
+  description: "Geant4 display setup and annotations."
   link: "/home/documentation/gui/gui_quickstart"
 
 - title: "Annotations"
@@ -33,8 +37,10 @@
 
 
 
+
 - title: "Quickstart"
   category: "Geometry"
+  description: "Detector volumes, materials, CAD imports, mirrors, and reusable structures."
   link: "/home/documentation/geometry/geoQuickstart"
 
 - title: "GVolume Properties"
@@ -65,8 +71,12 @@
   category: "Geometry"
   link: "/home/documentation/materials/optical_properties"
 
+
+
+
 - title: "Overview"
   category: "Sensitivity"
+  description: "Built-in detector responses and custom digitization plugins."
   link: "/home/documentation/sensitivity"
 
 - title: "Flux"
@@ -94,6 +104,7 @@
 
 - title: "Overview"
   category: "Fields"
+  description: "Multipole magnetic fields and plugin-backed field maps."
   link: "/home/documentation/fields/index"
 
 - title: "Multipoles"
@@ -109,6 +120,7 @@
 
 - title: "Internal"
   category: "Generator"
+  description: "Internal particle generation and LUND input files."
   link: "/home/documentation/generator/internal"
 
 - title: "LUND format"
@@ -120,6 +132,7 @@
 
 - title: "Introduction"
   category: "Output"
+  description: "File formats, streamer configuration, and custom output plugins."
   link: "/home/documentation/output/index"
 
 - title: "ASCII"
@@ -145,8 +158,10 @@
 
 
 
-
-
+- title: "Doxygen Documentation"
+  description: "Doxygen and related documentation."
+  category: "Support"
+  link: "https://gemc.github.io/src/"
 
 - title: "Geant4 Material Database"
   category: "Support"

@@ -14,7 +14,8 @@
 
 		<div class="directory-section{% if owner_only %} owner-only-section{% endif %}"
 		     {% unless forloop.last %}style="margin-bottom: {{ section_breaks }}em;"{% endunless %}>
-			<div class="section-title">{{ group.name | escape }}</div>
+			{% assign cat_desc = group.items | map: "description" | compact | first %}
+			<div class="section-title">{{ group.name | escape }}{% if cat_desc %} <span class="section-desc meta">{{ cat_desc | escape }}</span>{% endif %}</div>
 
 			<div class="directory-links" style="column-count: {{ columns }};">
 				{% for item in group.items %}

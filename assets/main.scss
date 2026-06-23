@@ -1300,6 +1300,11 @@ pre:not(.highlight) {
   display: block;
 }
 
+.directory-section .section-title .section-desc {
+  margin-left: 8px;
+  font-weight: 400;
+}
+
 .directory-links {
   margin-top: 0.35rem;
   column-gap: 2rem;
