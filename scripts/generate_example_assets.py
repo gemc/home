@@ -12,7 +12,7 @@ Run from the repository root:
     ~/venv/pygemc/bin/python scripts/generate_example_assets.py b1 cherenkov   # selected examples
 
 Values (source_dir, source_support, gemc_args, vtz_zoom, pyvista-fast, snevents, pevents, to_plot,
-variation_plots) are read from _data/examples.yml.
+variation_plots, and skip_asset_generation) are read from _data/examples.yml.
 """
 
 import argparse
@@ -571,6 +571,11 @@ def process(ex: dict, do_screenshots: bool, do_vtk: bool, do_plots: bool):
 
     if not vtksz:
         return
+    if ex.get("skip_asset_generation"):
+        print(f"\n{'─'*60}")
+        print(f"{title}  ({category})")
+        print("  skipped by _data/examples.yml")
+        return
 
     slug, stem = parse_vtksz_path(vtksz)
 
@@ -657,15 +662,33 @@ def main():
 
     filter_set   = {normalise(t) for t in args.examples}
     all_examples = load_examples()
-    targets = [
+    matching_examples = [
         ex for ex in all_examples
+        if not filter_set or normalise(ex.get("title", "")) in filter_set
+    ]
+    skipped_targets = [
+        ex for ex in matching_examples
+        if ex.get("skip_asset_generation")
+    ]
+    targets = [
+        ex for ex in matching_examples
         if ex.get("vtksz")
-        and (not filter_set or normalise(ex.get("title", "")) in filter_set)
+        and not ex.get("skip_asset_generation")
     ]
 
     if not targets:
+        if skipped_targets and filter_set:
+            for ex in skipped_targets:
+                print(f"{ex.get('title', '')}: skipped by _data/examples.yml")
+            print(f"\n{'─'*60}")
+            print("Done.")
+            return
         print("No matching examples with a vtksz entry found.")
         sys.exit(1)
+
+    if filter_set:
+        for ex in skipped_targets:
+            print(f"{ex.get('title', '')}: skipped by _data/examples.yml")
 
     for ex in targets:
         process(ex, do_screenshots, do_vtk, do_plots)

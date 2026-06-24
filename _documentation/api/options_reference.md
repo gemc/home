@@ -59,6 +59,7 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`g4light`](/home/documentation/api/options/g4light) | `<sequence>` | Defines the geant4 light source direction |
 | [`dawn`](/home/documentation/api/options/dawn) | `<sequence>` | Defines the dawn view point |
 | [`g4decoration`](/home/documentation/api/options/g4decoration) | `<sequence>` | Adds optional Geant4 scene decorations |
+| [`show_field_lines`](/home/documentation/api/options/show_field_lines) | `<value>` | number of field-line points to display |
 | [`g4text`](/home/documentation/api/options/g4text) | `<sequence>` | Insert texts in the current scene |
 | [`conf_yaml`](/home/documentation/api/options/conf_yaml) | `<value>` | infix for the YAML file that records the resolved options |
 | [`tt`](/home/documentation/api/options/tt) | `<value>` | GUI test timeout (ms) |

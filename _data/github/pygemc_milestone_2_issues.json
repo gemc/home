@@ -67,7 +67,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -97,10 +97,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 6,
+      "open_issues": 5,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-21T18:19:39Z",
+      "updated_at": "2026-06-23T19:36:57Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABF1JXvA",
@@ -222,7 +222,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -252,10 +252,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 6,
+      "open_issues": 5,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-21T18:19:39Z",
+      "updated_at": "2026-06-23T19:36:57Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABF1I-NA",
@@ -407,7 +407,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -437,10 +437,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 6,
+      "open_issues": 5,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-21T18:19:39Z",
+      "updated_at": "2026-06-23T19:36:57Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnyg",
@@ -572,7 +572,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -602,10 +602,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 6,
+      "open_issues": 5,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-21T18:19:39Z",
+      "updated_at": "2026-06-23T19:36:57Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnlg",
@@ -707,8 +707,28 @@
     ],
     "author_association": "COLLABORATOR",
     "body": "`GConfiguration.__init__` accepts `factory`, `variation`, `runno`, and `args` parameters but always discards them: it calls `get_arguments()` with no argument and then prefers the CLI values, whose argparse defaults are always truthy.\n\n**Affected files**\n\n- `src/pygemc/api/gconfiguration.py:72-107` (`get_arguments`)\n- `src/pygemc/api/gconfiguration.py:112-131` (`__init__`)\n\n**Details**\n\n`get_arguments` sets truthy defaults:\n\n```python\nparser.add_argument(\"-f\", \"--factory\", default=\"sqlite\", help=\"ascii, sqlite\")\nparser.add_argument(\"-v\", \"--variation\", default=\"default\", help=\"Set variation\")\nparser.add_argument(\"-r\", \"--run\", default=1, help=\"Set run number\")\n```\n\n`__init__` then does:\n\n```python\nself.args = get_arguments()  # expose args to scripts that use this class\n...\nself.runno = self.args.run if self.args.run else runno\nself.factory = self.args.factory if self.args.factory else factory # Prioritize command-line argument\nself.variation = self.args.variation if self.args.variation else variation # Prioritize command-line argument\n```\n\nTwo problems:\n\n1. The `args` parameter is dead \u2014 `get_arguments()` is called with no argument, so a caller passing `args=...` has no effect.\n2. Because the argparse defaults (`\"sqlite\"`, `\"default\"`, `1`) are always truthy, the `if self.args.X else ...` fallback never fires. A caller constructing `GConfiguration(exp, sys, factory=\"ascii\", variation=\"run2\", runno=5)` silently gets `sqlite`/`default`/`1`. The constructor arguments are unreachable.\n\n**Impact**\n\nProgrammatic configuration via constructor arguments is impossible; every `GConfiguration` is forced onto the CLI defaults. Scripts that try to set `factory=\"ascii\"` or a non-default variation/run silently produce wrong output (wrong storage backend, wrong variation rows, wrong run number).\n\n**Proposed fix**\n\nForward the provided `args` to `get_arguments`, change the argparse defaults to `None` so \"not provided\" is detectable, and fall back to the constructor value with `is not None`. Keep the existing default values as the constructor defaults so behavior is unchanged when nothing is supplied.\n\n```diff\n@@ def get_arguments(argv=None):\n-\tparser.add_argument(\"-f\", \"--factory\", default=\"sqlite\", help=\"ascii, sqlite\")\n-\tparser.add_argument(\"-v\", \"--variation\", default=\"default\", help=\"Set variation\")\n-\tparser.add_argument(\"-r\", \"--run\", default=1, help=\"Set run number\")\n+\tparser.add_argument(\"-f\", \"--factory\", default=None, help=\"ascii, sqlite\")\n+\tparser.add_argument(\"-v\", \"--variation\", default=None, help=\"Set variation\")\n+\tparser.add_argument(\"-r\", \"--run\", default=None, help=\"Set run number\")\n```\n\n```diff\n@@ class GConfiguration:\n \tdef __init__(\n \t\t\tself,\n \t\t\texperiment,\n \t\t\tsystem,\n-\t\t\tfactory=None,\n-\t\t\tvariation=None,\n+\t\t\tfactory=\"sqlite\",\n+\t\t\tvariation=\"default\",\n \t\t\trunno=1,\n \t\t\tverbosity=0,\n \t\t\targs=None,\n \t\t\tenable_pyvista: Optional[bool] = None,\n \t\t\tuse_background_plotter: bool = None,\n \t\t\tpyvista_vtksz: Optional[str] = None,\n \t):\n-\t\tself.args = get_arguments()  # expose args to scripts that use this class\n+\t\tself.args = get_arguments(args)  # expose args to scripts that use this class\n \t\tself.experiment = experiment\n \t\tself.system = system\n-\t\tself.runno = self.args.run if self.args.run else runno\n-\t\tself.factory = self.args.factory if self.args.factory else factory # Prioritize command-line argument\n-\t\tself.variation = self.args.variation if self.args.variation else variation # Prioritize command-line argument\n+\t\t# CLI value wins only when actually provided; otherwise honor the constructor value.\n+\t\tself.runno = self.args.run if self.args.run is not None else runno\n+\t\tself.factory = self.args.factory if self.args.factory is not None else factory\n+\t\tself.variation = self.args.variation if self.args.variation is not None else variation\n```\n\nThis keeps the documented \"CLI overrides\" precedence but makes constructor arguments effective when no CLI flag is passed, and makes the `args` parameter live.\n\n\n---\n_Split out from #102 (one issue per bug). Found via an AI-assisted code review with manual verification against commit `5f8ce875`._\n\n\n---\n_Migrated from gemc/src#122 (code lives in this repo, pulled into gemc/src as a Meson subproject)._",
-    "closed_at": null,
-    "closed_by": null,
+    "closed_at": "2026-06-23T19:36:57Z",
+    "closed_by": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
     "comments": 0,
     "comments_url": "https://api.github.com/repos/gemc/pygemc/issues/6/comments",
     "created_at": "2026-06-13T02:21:27Z",
@@ -737,7 +757,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -767,10 +787,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 6,
+      "open_issues": 5,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-21T18:19:39Z",
+      "updated_at": "2026-06-23T19:36:57Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnUw",
@@ -790,8 +810,8 @@
       "url": "https://api.github.com/repos/gemc/pygemc/issues/6/reactions"
     },
     "repository_url": "https://api.github.com/repos/gemc/pygemc",
-    "state": "open",
-    "state_reason": null,
+    "state": "closed",
+    "state_reason": "completed",
     "sub_issues_summary": {
       "completed": 0,
       "percent_completed": 0,
@@ -800,7 +820,7 @@
     "timeline_url": "https://api.github.com/repos/gemc/pygemc/issues/6/timeline",
     "title": "[Medium] GConfiguration ignores constructor args; argparse defaults clobber factory/variation/runno",
     "type": null,
-    "updated_at": "2026-06-17T18:38:15Z",
+    "updated_at": "2026-06-23T19:36:57Z",
     "url": "https://api.github.com/repos/gemc/pygemc/issues/6",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/6391402?v=4",
@@ -922,7 +942,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -952,10 +972,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 6,
+      "open_issues": 5,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-21T18:19:39Z",
+      "updated_at": "2026-06-23T19:36:57Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnHg",
@@ -1107,7 +1127,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1137,10 +1157,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 6,
+      "open_issues": 5,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-21T18:19:39Z",
+      "updated_at": "2026-06-23T19:36:57Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXm4A",
@@ -1272,7 +1292,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1302,10 +1322,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 6,
+      "open_issues": 5,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-21T18:19:39Z",
+      "updated_at": "2026-06-23T19:36:57Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXmsg",
@@ -1437,7 +1457,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1467,10 +1487,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 6,
+      "open_issues": 5,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-21T18:19:39Z",
+      "updated_at": "2026-06-23T19:36:57Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXmdA",

@@ -102,6 +102,36 @@
   pevents: 10000
   to_plot: totEdep, E
 
+- title: "Constant Field"
+  header: "Uniform longitudinal field displayed with field lines"
+  category: "fields"
+  link: "/home/examples/fields/constant"
+  display: false
+  skip_asset_generation: true
+
+- title: "Dipole Field"
+  header: "Ideal dipole field displayed with field lines"
+  category: "fields"
+  link: "/home/examples/fields/dipole"
+  display: false
+  skip_asset_generation: true
+
+- title: "Solenoid ASCII Field Map"
+  gallery_title: "Solenoid Field"
+  header: "Cylindrical ASCII field map loaded with the asciimap plugin"
+  category: "fields"
+  link: "/home/examples/fields/solenoid"
+  display: false
+  skip_asset_generation: true
+
+- title: "Torus ASCII Field Map"
+  gallery_title: "Torus Field"
+  header: "Phi-segmented ASCII field map loaded with the asciimap plugin"
+  category: "fields"
+  link: "/home/examples/fields/torus"
+  display: false
+  skip_asset_generation: true
+
 
 
 - title: "Cherenkov"

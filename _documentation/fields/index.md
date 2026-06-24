@@ -22,6 +22,7 @@ registry once per worker thread and hands each volume the field manager it needs
 |-------|----------|----------|
 | [Multipoles](/home/documentation/fields/multipoles) | `gmultipoles` | You want an ideal dipole, quadrupole, sextupole, … defined analytically |
 | [Field plugins](/home/documentation/fields/plugins) | `gfields` | A shared-library plugin supplies the field (mapped fields, custom models) |
+| [ASCII field maps](/home/documentation/fields/asciimap) | `gfields` (`type: asciimap`) | You have a measured field map in a data-only ASCII file |
 
 Both routes produce the same kind of runtime object — a `GField` — and share the same integration
 controls (`integration_stepper`, `minimum_step`).

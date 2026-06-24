@@ -34,4 +34,10 @@ gemc help gfields
    
    Example (clas12 binary mapped field from the clas12-systems plugin):
    -gfields="[{name: clas12, type: clas12bin, solenoid: solenoid_map, torus: torus_map}]"
+   
+   Example (generic ASCII field map, type asciimap): the data-only map file holds the
+   coordinate columns followed by the field components, while the grid is defined here.
+   -gfields="[{name: solenoid, type: asciimap, symmetry: cylindrical-z, map: solenoid.txt,
+   field_unit: T, coordinate1: 'transverse, 601, 0*m, 3*m',
+   coordinate2: 'longitudinal, 1201, -3*m, 3*m'}]"
 ```
