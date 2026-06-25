@@ -199,3 +199,41 @@
     - "coatjava_factories"
   gemc_args:
     - "-plugin_path=/opt/projects/gemc/clas12-systems/build"
+
+- title: "PCAL"
+  gallery_title: "CLAS12/PCAL"
+  header: "CLAS12 preshower calorimeter geometry built from the clas12-systems geometry source"
+  category: "clas12"
+  link: "/home/examples/clas12/pcal"
+  display: false
+  vtz_zoom: 0.0003
+  pyvista-fast: true
+  gallery: true
+  vtksz: "/home/assets/images/examples/pcal/pcal.vtksz"
+  snevents: 1
+  source_dir: "../clas12-systems/geometry_src/pcal"
+  source_support:
+    - "coatjava"
+    - "coatjava_factories"
+  gemc_args:
+    - "-no_field=all"
+    - "-plugin_path=/opt/projects/gemc/clas12-systems/build"
+
+- title: "FTOF"
+  gallery_title: "CLAS12/FTOF"
+  header: "CLAS12 forward time-of-flight geometry built from the clas12-systems geometry source"
+  category: "clas12"
+  link: "/home/examples/clas12/ftof"
+  display: false
+  vtz_zoom: 0.0003
+  pyvista-fast: true
+  gallery: true
+  vtksz: "/home/assets/images/examples/ftof/ftof.vtksz"
+  snevents: 1
+  source_dir: "../clas12-systems/geometry_src/ftof"
+  source_support:
+    - "clas12_common.py"
+    - "coatjava"
+    - "coatjava_factories"
+  gemc_args:
+    - "-plugin_path=/opt/projects/gemc/clas12-systems/build"
