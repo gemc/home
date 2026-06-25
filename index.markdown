@@ -11,6 +11,10 @@ layout: default
 
 [deploy-badge]: https://github.com/gemc/src/actions/workflows/deploy.yml/badge.svg
 
+[DockerHub]: https://hub.docker.com/r/gemc/gemc
+
+[DockerHub-badge]: https://img.shields.io/docker/pulls/gemc/gemc.svg
+
 [Docs]: https://github.com/gemc/src/actions/workflows/doxygen.yml
 
 [Docs-badge]: https://github.com/gemc/src/actions/workflows/doxygen.yml/badge.svg
@@ -269,6 +273,7 @@ architectures.
 | Tests | [![test][test-badge]][test]                                  |
 | Sanitizer | [![Sanitize][Sanitize-badge]][Sanitize]                      |
 | Image Deploy | [![deploy][deploy-badge]][deploy]                            |
+| Docker Hub | [![Docker Pulls][DockerHub-badge]][DockerHub]                |
 | Binary Tarballs | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] |
 | CodeQL | [![CodeQL][CodeQL-badge]][CodeQL]                            |
 | Doxygen | [![Docs][Docs-badge]][Docs]                                  |

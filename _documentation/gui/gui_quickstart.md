@@ -23,14 +23,14 @@ The window is divided into three zones:
 
 ## Top bar
 
-| Control | Description |
-|---------|-------------|
-| **N. Events** | Number of events to process per run. Edit the field to change it. |
-| **Run** | Execute one batch of N events, then update the event counter. |
-| **Cycle** | Run one batch every 2 seconds continuously. |
-| **Stop** | Stop a running cycle. |
-| **Event Number** | Cumulative count of events processed since launch. |
-| **Exit** | Quit GEMC. |
+| Control          | Description                                                         |
+|------------------|---------------------------------------------------------------------|
+| **N. Events**    | Number of events to process per run. Edit the field to change it.   |
+| **Run**          | Execute one batch of N events, then update the event counter.       |
+| **Cycle**        | Run one batch every 2 seconds continuously.                         |
+| **Stop**         | Stop a running cycle.                                               |
+| **Event Number** | Cumulative count of events processed since launch.                  |
+| **Exit**         | Quit GEMC.                                                          |
 
 <br/>
 
@@ -57,6 +57,13 @@ The **View** tab exposes:
 - **Slices** — activate and position cutaway planes on X, Y, and Z; choose intersection or union mode for
   multiple planes.
 - **Toggles** — SVG buttons for hidden lines, anti-aliasing, auxiliary edges, and field lines.
+
+<br/>
+
+> [!WARNING]
+> The **Slices** may not work correctly with some drivers, for example OGLIQt works but TOOLSSG_QT_GLES does not.
+
+<br/>
 
 The **Utilities** tab exposes scene decorations and annotation text:
 

@@ -431,6 +431,13 @@ Both `arm64` and `amd64` are supported (except on Arch Linux images which are `a
 | {{ img.id }} {{ img.osversion }} | {{ img.gemcv }} | ```{{ img.tag }}``` | {{ img.arm64 }} | {{ img.amd64 }} |
 {% endfor %}
 
+The addresses above are the [Docker Hub](https://hub.docker.com/r/gemc/gemc) images, published under the
+[Docker-Sponsored Open Source](https://www.docker.com/community/open-source/application/) program, which allows
+unlimited anonymous pulls. They are mirrored from the canonical
+[GitHub Container Registry](https://github.com/gemc/src/pkgs/container/src) build: the two registries carry
+identical content and tags. To pull from GHCR instead, replace the `docker.io/gemc/gemc:` prefix with
+`ghcr.io/gemc/src:` and keep the same tag, for example `ghcr.io/gemc/src:dev-ubuntu-24.04`.
+
 It is recommended to bind a local directory to save and store your work.
 For illustration, the commands below bind the container path `{{ page.docker_remote_mount }}` to
 `{{ page.docker_local_mount }}` and use the image `{{ site.data.docker.images[0].tag }}`.

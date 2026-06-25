@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#161d3a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- background -->
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect x="40" y="40" width="1200" height="560" rx="22" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="2"/>
+
+  <!-- GEMC logo, white currentColor, centered -->
+  <svg x="190" y="158" width="900" height="291" viewBox="0 0 680 220" style="color:#ffffff">
+    <defs>
+      <style>
+        .gemc-ring   { fill: none; stroke: currentColor; stroke-width: 0.7; opacity: 0.14; }
+        .gemc-track  { fill: none; stroke: currentColor; stroke-width: 0.9; opacity: 0.20; }
+        .gemc-hi     { fill: none; stroke: currentColor; stroke-width: 1.6; opacity: 0.65; }
+        .gemc-green  { fill: none; stroke: #3ecf8e; stroke-width: 1.6; opacity: 0.85; }
+        .gemc-amber  { fill: none; stroke: #f5a623; stroke-width: 1.4; opacity: 0.8;  }
+        .gemc-dot-hi    { fill: currentColor; opacity: 0.8; }
+        .gemc-dot-green { fill: #3ecf8e; }
+        .gemc-dot-amber { fill: #f5a623; }
+        .gemc-vertex    { fill: currentColor; opacity: 0.95; }
+        .gemc-word  { fill: currentColor; font-family: Georgia, 'Times New Roman', serif;
+                      font-size: 72px; font-weight: 700; letter-spacing: -2px; }
+        .gemc-tag   { fill: currentColor; opacity: 0.55;
+                      font-family: -apple-system, 'Segoe UI', sans-serif;
+                      font-size: 13px; font-weight: 400; letter-spacing: 2.8px; }
+      </style>
+    </defs>
+
+    <circle cx="110" cy="110" r="18" class="gemc-ring"/>
+    <circle cx="110" cy="110" r="36" class="gemc-ring"/>
+    <circle cx="110" cy="110" r="56" class="gemc-ring"/>
+    <circle cx="110" cy="110" r="78" class="gemc-ring"/>
+    <circle cx="110" cy="110" r="96" class="gemc-ring"/>
+
+    <path d="M110 110 Q145 75 185 58"     class="gemc-track"/>
+    <path d="M110 110 Q158 108 200 102"   class="gemc-track"/>
+    <path d="M110 110 Q148 138 188 160"   class="gemc-track"/>
+    <path d="M110 110 Q88  70  72  32"    class="gemc-track"/>
+    <path d="M110 110 Q72  115 35  118"   class="gemc-track"/>
+    <path d="M110 110 Q80  138 58  165"   class="gemc-track"/>
+
+    <path d="M110 110 Q148 82 196 60 Q215 50 238 44"    class="gemc-hi"/>
+    <path d="M110 110 Q162 115 210 118 Q232 119 255 118" class="gemc-hi"/>
+    <path d="M110 110 Q78  130 48  155 Q32  168 18  182" class="gemc-hi"/>
+
+    <path d="M110 110 Q152 145 198 172 Q220 184 244 192" class="gemc-green"/>
+    <path d="M110 110 Q130 88 170 72 Q192 63 215 56"     class="gemc-green"/>
+
+    <path d="M110 110 Q88  62  74  18"  class="gemc-amber"/>
+    <path d="M110 110 Q66  108 24  106" class="gemc-amber"/>
+
+    <circle cx="238" cy="44"  r="3.5" class="gemc-dot-hi"/>
+    <circle cx="255" cy="118" r="3.5" class="gemc-dot-hi"/>
+    <circle cx="196" cy="60"  r="2"   class="gemc-dot-hi"/>
+    <circle cx="18"  cy="182" r="2.5" class="gemc-dot-hi"/>
+
+    <circle cx="244" cy="192" r="3.5" class="gemc-dot-green"/>
+    <circle cx="198" cy="172" r="2"   class="gemc-dot-green"/>
+    <circle cx="215" cy="56"  r="2"   class="gemc-dot-green"/>
+
+    <circle cx="74"  cy="18"  r="3"   class="gemc-dot-amber"/>
+    <circle cx="24"  cy="106" r="3"   class="gemc-dot-amber"/>
+
+    <circle cx="110" cy="110" r="5.5" class="gemc-vertex"/>
+    <circle cx="110" cy="110" r="2.5" class="gemc-dot-green"/>
+
+    <text x="292" y="107" class="gemc-word">gemc</text>
+    <text x="295" y="140" class="gemc-tag">GEANT4 SIMULATION FRAMEWORK</text>
+  </svg>
+</svg>
