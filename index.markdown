@@ -121,7 +121,7 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 
 <br/><br/>
 
-## Interactive Gallery
+## Interactive 3D Gallery
 
 {% assign gallery_examples = site.data.examples | where: "gallery", true %}
 
