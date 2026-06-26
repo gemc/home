@@ -1,37 +1,37 @@
 images:
   - id: AlmaLinux
     osversion: 10
-    tag: docker.io/gemc/gemc:dev-almalinux-10
+    tag: ghcr.io/gemc/src:dev-almalinux-10
     amd64: yes
     arm64: yes
     gemcv: dev
   - id: ArchLinux
     osversion: latest
-    tag: docker.io/gemc/gemc:dev-archlinux-latest
+    tag: ghcr.io/gemc/src:dev-archlinux-latest
     amd64: yes
     arm64: no
     gemcv: dev
   - id: Debian
     osversion: 13
-    tag: docker.io/gemc/gemc:dev-debian-13
+    tag: ghcr.io/gemc/src:dev-debian-13
     amd64: yes
     arm64: yes
     gemcv: dev
   - id: Fedora
     osversion: 44
-    tag: docker.io/gemc/gemc:dev-fedora-44
+    tag: ghcr.io/gemc/src:dev-fedora-44
     amd64: yes
     arm64: yes
     gemcv: dev
   - id: Ubuntu
     osversion: 24.04
-    tag: docker.io/gemc/gemc:dev-ubuntu-24.04
+    tag: ghcr.io/gemc/src:dev-ubuntu-24.04
     amd64: yes
     arm64: yes
     gemcv: dev
   - id: Ubuntu
     osversion: 26.04
-    tag: docker.io/gemc/gemc:dev-ubuntu-26.04
+    tag: ghcr.io/gemc/src:dev-ubuntu-26.04
     amd64: yes
     arm64: yes
     gemcv: dev

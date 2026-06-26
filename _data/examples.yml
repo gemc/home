@@ -12,7 +12,7 @@
   pyvista-fast: false
   gallery: false
 
-- title: "b1"
+- title: "geant4 basic/b1"
   header: "Reproduces the Geant4 basic B1 example"
   category: "basic"
   link: "/home/examples/basic/b1"
@@ -23,13 +23,13 @@
   codespaces_badge: "https://img.shields.io/badge/-b1-black.svg?logo=github"
   vtz_zoom: 0.007
   pyvista-fast: false
-  gallery: true
+  gallery: false
   vtksz: "/home/assets/images/examples/b1/b1.vtksz"
   snevents: 20
   pevents: 20
   to_plot: dose
 
-- title: "b2"
+- title: "geant4 basic/b2"
   header: "Reproduces the Geant4 basic B2 example"
   category: "basic"
   link: "/home/examples/basic/b2"
@@ -82,8 +82,9 @@
   category: "basic"
   link: "/home/examples/basic/pyvista"
   display: false
-  vtz_zoom: 0.07
+  vtz_zoom: 0.12
   pyvista-fast: false
+  vtksz: "/home/assets/images/examples/pyvista/pyvista.vtksz"
 
 - title: "Simple Flux"
   header: "Record track information using the flux digitization"
@@ -96,7 +97,7 @@
   codespaces_badge: "https://img.shields.io/badge/-Simple%20Flux-black.svg?logo=github"
   vtz_zoom: 0.015
   pyvista-fast: false
-  gallery: true
+  gallery: false
   vtksz: "/home/assets/images/examples/simple_flux/simple_flux.vtksz"
   snevents: 10
   pevents: 10000
@@ -130,6 +131,7 @@
   category: "fields"
   link: "/home/examples/fields/torus"
   display: false
+  gallery: false
   skip_asset_generation: true
 
 

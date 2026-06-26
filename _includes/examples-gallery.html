@@ -1,0 +1,41 @@
+{% comment %}
+Renders the examples as a gallery of cards, grouped by category.
+Cards with a `vtksz` field embed the interactive VTK.js viewer (as on the home
+page); the others fall back to their static `gemc_view.png` thumbnail.
+The card heading is the link to the example documentation and uses `title`.
+{% endcomment %}
+{% assign items = include.data | group_by: "category" %}
+{% assign exclude_title = include.exclude_title %}
+
+<div class="examples-gallery">
+	{% for group in items %}
+		<section class="examples-gallery-section">
+			<h2 class="examples-category-title">{{ group.name | escape }}</h2>
+
+			<div class="gallery-grid">
+				{% for example in group.items %}
+					{% if exclude_title and example.title == exclude_title %}
+						{% continue %}
+					{% endif %}
+					{% assign slug = example.link | split: "/" | last %}
+					<article class="gallery-card">
+						<h3 class="gallery-card-title"><a href="{{ example.link }}">{{ example.title | escape }}</a></h3>
+						{% if example.vtksz %}
+							<iframe src="/home/assets/vtkjs-viewer.html?fileURL={{ example.vtksz }}"
+								title="Interactive VTK.js view of {{ example.title | escape }}"
+								loading="lazy"></iframe>
+						{% else %}
+							<a href="{{ example.link }}" class="gallery-card-thumb">
+								<img src="/home/assets/images/examples/{{ slug }}/gemc_view.png"
+									alt="{{ example.title | escape }} geometry view" loading="lazy">
+							</a>
+						{% endif %}
+						{% if example.header %}
+							<p class="gallery-card-desc meta">{{ example.header | escape }}</p>
+						{% endif %}
+					</article>
+				{% endfor %}
+			</div>
+		</section>
+	{% endfor %}
+</div>

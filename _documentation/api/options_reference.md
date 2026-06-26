@@ -41,6 +41,7 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`gfields`](/home/documentation/api/options/gfields) | `<sequence>` | define a generic plugin-backed e.m. field |
 | [`global_field`](/home/documentation/api/options/global_field) | `<value>` | associate a field with the ROOT world volume |
 | [`no_field`](/home/documentation/api/options/no_field) | `<value>` | reset the field of one or more volumes |
+| [`max_field_step`](/home/documentation/api/options/max_field_step) | `<value>` | maximum accepted field step |
 | [`fieldAt`](/home/documentation/api/options/fieldat) | `<value>` | query all configured fields at x y z |
 | [`fieldMapPoints`](/home/documentation/api/options/fieldmappoints) | `<value>` | ASCII file of x y z points for field queries |
 | [`ebuffer`](/home/documentation/api/options/ebuffer) | `<value>` | number of events kept in memory before flushing them to the filestream |

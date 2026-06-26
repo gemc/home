@@ -531,8 +531,49 @@ table.csv-preview td {
   background: var(--page-bg);
 }
 
-.gallery-card a {
-  align-self: center;
+.gallery-card-title a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.gallery-card-title a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+.gallery-card-thumb {
+  display: block;
+  align-self: stretch;
+}
+
+.gallery-card-thumb img {
+  width: 100%;
+  height: 20rem;
+  object-fit: contain;
+  border: 1px solid var(--table-zebra-border);
+  border-radius: 6px;
+  background: var(--page-bg);
+}
+
+.gallery-card-desc {
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.examples-gallery-section {
+  margin-bottom: 3.5em;
+}
+
+.examples-category-title {
+  margin: 0 0 0.4rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--table-zebra-border);
+  font-family: var(--font-mono);
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
 }
 
 table.publications-table {
@@ -613,7 +654,8 @@ table.publications-table td:nth-child(2) a {
     grid-template-columns: 1fr;
   }
 
-  .gallery-card iframe {
+  .gallery-card iframe,
+  .gallery-card-thumb img {
     height: 18rem;
   }
 
