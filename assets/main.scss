@@ -18,6 +18,7 @@
     "Segoe UI Emoji", "Noto Color Emoji";
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     monospace;
+  --font-heading: var(--font-mono);
   --line: 1.6;
 
   /* Page */
@@ -211,13 +212,15 @@ h4,
 h5,
 h6 {
   color: var(--text);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 h1 {
   margin: 0.67em 0;
   border-bottom: none;
   font-size: 2em;
-  font-weight: 505;
 }
 
 h2 {
@@ -225,14 +228,12 @@ h2 {
   padding-bottom: 0.3em;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   font-size: 1.5em;
-  font-weight: 505;
 }
 
 h3 {
   margin: 20px 0 12px;
   border-bottom: none;
   font-size: 1.25em;
-  font-weight: 505;
 }
 
 code,
@@ -574,7 +575,7 @@ table.csv-preview td {
   margin: 0 0 0.4rem;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid var(--table-zebra-border);
-  font-family: var(--font-mono);
+  font-family: var(--font-heading);
   font-size: 1.7rem;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -1303,8 +1304,10 @@ pre:not(.highlight) {
   margin: 24px 0 10px;
   padding-bottom: 6px;
   border-bottom: 1px solid #d0d7de;
+  font-family: var(--font-heading);
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   line-height: 1.25;
 }
 
@@ -1626,9 +1629,11 @@ li input[type="checkbox"] {
 .news-header h1 {
   margin: 0;
   color: var(--news-text);
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
   line-height: 1.05;
-  letter-spacing: -0.04em;
 }
 
 .news-header__intro {
@@ -1699,9 +1704,11 @@ li input[type="checkbox"] {
 
 .news-card__title {
   margin: 0 0 0.55rem;
+  font-family: var(--font-heading);
   font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   line-height: 1.2;
-  letter-spacing: -0.02em;
 }
 
 .news-card__title a,
