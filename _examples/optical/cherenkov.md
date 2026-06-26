@@ -204,7 +204,7 @@ See also the [Output Documentation]( /home/documentation/output ) for more infor
 
 ## Plotting with the GEMC Analyzer
 
-Run GEMC with 1 event first. The default YAML file writes `cherenkov_t0_digitized.csv`.
+Run GEMC with 1 events first. The default YAML file writes the analyzer CSV streams.
 
 ```shell
 gemc cherenkov.yaml -n=1
@@ -221,7 +221,7 @@ gemc-analyzer cherenkov_t0_digitized.csv totEdep --kind csv
 Plot the y vs x hit positions:
 
 ```shell
-gemc-analyzer cherenkov_t0_true_info.csv --kind csv --data true_info --plot yvsx --xlim -20 20 --ylim -20 20
+gemc-analyzer cherenkov_t0_true_info.csv --kind csv --data true_info --plot yvsx --bins 80
 ```
 
 ![Cherenkov y vs x hit positions](/home/assets/images/examples/cherenkov/analyzer_yvsx.png){:width="70%"}

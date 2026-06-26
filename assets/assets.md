@@ -7,11 +7,12 @@ Use `scripts/generate_example_assets.py` to regenerate all assets in one step:
 ~/venv/pygemc/bin/python scripts/generate_example_assets.py             # all examples
 ~/venv/pygemc/bin/python scripts/generate_example_assets.py --vtk       # VTK only
 ~/venv/pygemc/bin/python scripts/generate_example_assets.py --screenshots  # screenshots only
+~/venv/pygemc/bin/python scripts/generate_example_assets.py --plots     # analyzer plots only
 ~/venv/pygemc/bin/python scripts/generate_example_assets.py b1 cherenkov   # selected examples
 ```
 
 The script reads `source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, `pyvista-fast`, `snevents`,
-and `skip_asset_generation` from `_data/examples.yml` automatically.
+`pevents`, `to_plot`, and `skip_asset_generation` from `_data/examples.yml` automatically.
 The gemc binary is at `/opt/projects/gemc/src/build/bin/gemc` (no module load needed at runtime).
 
 Examples normally come from `/opt/projects/gemc/src/examples/<category>/<example>`. Entries with
@@ -59,6 +60,38 @@ that is well suited to large systems such as `ec`; `pyvista-fast: false` appends
 Set `skip_asset_generation: true` for examples that should be kept in the examples directory but
 excluded from screenshot, VTK, and plot regeneration.
 
+## Analyzer plots
+
+Analyzer plots are controlled per example in `_data/examples.yml`:
+
+- `pevents`: number of GEMC events to generate before plotting.
+- `to_plot`: comma-separated plot variables to produce, such as `totEdep, yvsx`.
+
+The generator runs GEMC once per example to create the CSV files, runs `gemc-analyzer` for each variable in
+`to_plot`, writes the PNG files under `assets/images/examples/<example>/`, and updates the example page's
+`Plotting with the GEMC Analyzer` section.
+
+Available `to_plot` values are:
+
+| Variable | CSV stream | Output image | Meaning |
+|----------|------------|--------------|---------|
+| `totEdep` | `digitized` or `true_info` | `analyzer_totEdep.png` | total energy deposited per hit |
+| `dose` | `digitized` | `analyzer_dose.png` | accumulated dose |
+| `etot` | `digitized` | `analyzer_etot.png` | deposited energy |
+| `E` | `true_info` | `analyzer_true_energy.png` | true particle track energy |
+| `tdc` | `digitized` | `analyzer_tdc.png` | digitized TDC time |
+| `yvsx` | `true_info` | `analyzer_yvsx.png` | y vs x hit positions, using 80 bins |
+
+For `totEdep`, the generator uses the `digitized` stream when that column is present. If an example writes
+detector-specific digitized banks without total deposited energy, the generator falls back to the
+`totalEDeposited` column in the `true_info` stream.
+
+For example, to regenerate only the CLAS12 analyzer plots and update their markdown sections:
+
+```shell
+~/venv/pygemc/bin/python scripts/generate_example_assets.py --plots DC EC PCAL FTOF
+```
+
 ### Per-example reference
 
 | Example | category | script | vtksz stem |
@@ -71,9 +104,11 @@ excluded from screenshot, VTK, and plot regeneration.
 | cherenkov | optical | cherenkov.py | cherenkov |
 | dc | clas12 | dc.py | dc |
 | ec | clas12 | ec.py | ec |
+| pcal | clas12 | pcal.py | pcal |
+| ftof | clas12 | ftof.py | ftof |
 
 `source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, `pyvista-fast`, `snevents`, and
-`skip_asset_generation` live in `_data/examples.yml` - do not duplicate them here.
+`pevents`, `to_plot`, and `skip_asset_generation` live in `_data/examples.yml` - do not duplicate them here.
 
 
 # Generate pyvista solids

@@ -67,7 +67,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-16T17:27:37Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -97,10 +97,10 @@
       "labels_url": "https://api.github.com/repos/gemc/clas12-systems/milestones/2/labels",
       "node_id": "MI_kwDOSwVPu84A-gEW",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 2,
       "state": "open",
       "title": "clas12-systems Version 0.2",
-      "updated_at": "2026-06-23T12:34:25Z",
+      "updated_at": "2026-06-26T14:40:43Z",
       "url": "https://api.github.com/repos/gemc/clas12-systems/milestones/2"
     },
     "node_id": "I_kwDOSwVPu88AAAABF0_wZg",
@@ -222,7 +222,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-16T17:27:37Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -252,10 +252,10 @@
       "labels_url": "https://api.github.com/repos/gemc/clas12-systems/milestones/2/labels",
       "node_id": "MI_kwDOSwVPu84A-gEW",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 2,
       "state": "open",
       "title": "clas12-systems Version 0.2",
-      "updated_at": "2026-06-23T12:34:25Z",
+      "updated_at": "2026-06-26T14:40:43Z",
       "url": "https://api.github.com/repos/gemc/clas12-systems/milestones/2"
     },
     "node_id": "I_kwDOSwVPu88AAAABF0_qkA",
@@ -357,8 +357,28 @@
     ],
     "author_association": "CONTRIBUTOR",
     "body": null,
-    "closed_at": null,
-    "closed_by": null,
+    "closed_at": "2026-06-26T14:40:43Z",
+    "closed_by": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
     "comments": 0,
     "comments_url": "https://api.github.com/repos/gemc/clas12-systems/issues/9/comments",
     "created_at": "2026-06-17T18:38:57Z",
@@ -377,7 +397,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-16T17:27:37Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -407,10 +427,10 @@
       "labels_url": "https://api.github.com/repos/gemc/clas12-systems/milestones/2/labels",
       "node_id": "MI_kwDOSwVPu84A-gEW",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 2,
       "state": "open",
       "title": "clas12-systems Version 0.2",
-      "updated_at": "2026-06-23T12:34:25Z",
+      "updated_at": "2026-06-26T14:40:43Z",
       "url": "https://api.github.com/repos/gemc/clas12-systems/milestones/2"
     },
     "node_id": "I_kwDOSwVPu88AAAABF0_kkQ",
@@ -430,8 +450,8 @@
       "url": "https://api.github.com/repos/gemc/clas12-systems/issues/9/reactions"
     },
     "repository_url": "https://api.github.com/repos/gemc/clas12-systems",
-    "state": "open",
-    "state_reason": null,
+    "state": "closed",
+    "state_reason": "completed",
     "sub_issues_summary": {
       "completed": 0,
       "percent_completed": 0,
@@ -440,7 +460,7 @@
     "timeline_url": "https://api.github.com/repos/gemc/clas12-systems/issues/9/timeline",
     "title": "Add FTOF geometry and plugin",
     "type": null,
-    "updated_at": "2026-06-17T18:38:57Z",
+    "updated_at": "2026-06-26T14:40:43Z",
     "url": "https://api.github.com/repos/gemc/clas12-systems/issues/9",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -552,7 +572,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-16T17:27:37Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -582,10 +602,10 @@
       "labels_url": "https://api.github.com/repos/gemc/clas12-systems/milestones/2/labels",
       "node_id": "MI_kwDOSwVPu84A-gEW",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 2,
       "state": "open",
       "title": "clas12-systems Version 0.2",
-      "updated_at": "2026-06-23T12:34:25Z",
+      "updated_at": "2026-06-26T14:40:43Z",
       "url": "https://api.github.com/repos/gemc/clas12-systems/milestones/2"
     },
     "node_id": "I_kwDOSwVPu88AAAABF0_c_w",
@@ -717,7 +737,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-16T17:27:37Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -747,10 +767,10 @@
       "labels_url": "https://api.github.com/repos/gemc/clas12-systems/milestones/2/labels",
       "node_id": "MI_kwDOSwVPu84A-gEW",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 2,
       "state": "open",
       "title": "clas12-systems Version 0.2",
-      "updated_at": "2026-06-23T12:34:25Z",
+      "updated_at": "2026-06-26T14:40:43Z",
       "url": "https://api.github.com/repos/gemc/clas12-systems/milestones/2"
     },
     "node_id": "I_kwDOSwVPu88AAAABF05HIQ",
@@ -900,7 +920,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 3,
+      "closed_issues": 4,
       "created_at": "2026-06-16T17:27:37Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -930,10 +950,10 @@
       "labels_url": "https://api.github.com/repos/gemc/clas12-systems/milestones/2/labels",
       "node_id": "MI_kwDOSwVPu84A-gEW",
       "number": 2,
-      "open_issues": 3,
+      "open_issues": 2,
       "state": "open",
       "title": "clas12-systems Version 0.2",
-      "updated_at": "2026-06-23T12:34:25Z",
+      "updated_at": "2026-06-26T14:40:43Z",
       "url": "https://api.github.com/repos/gemc/clas12-systems/milestones/2"
     },
     "node_id": "I_kwDOSwVPu88AAAABETJy4w",

@@ -174,13 +174,16 @@
   pyvista-fast: false
   gallery: true
   vtksz: "/home/assets/images/examples/dc/dc.vtksz"
-  snevents: 1
+  snevents: 3
+  pevents: 2000
+  to_plot: totEdep, yvsx, tdc
   source_dir: "../clas12-systems/geometry_src/dc"
   source_support:
     - "clas12_common.py"
     - "coatjava"
     - "coatjava_factories"
   gemc_args:
+    - "-no_field=all"
     - "-plugin_path=/opt/projects/gemc/clas12-systems/build"
 
 - title: "EC"
@@ -193,13 +196,16 @@
   pyvista-fast: true
   gallery: true
   vtksz: "/home/assets/images/examples/ec/ec.vtksz"
-  snevents: 1
+  snevents: 3
+  pevents: 2000
+  to_plot: totEdep, yvsx
   source_dir: "../clas12-systems/geometry_src/ec"
   source_support:
     - "clas12_common.py"
     - "coatjava"
     - "coatjava_factories"
   gemc_args:
+    - "-no_field=all"
     - "-plugin_path=/opt/projects/gemc/clas12-systems/build"
 
 - title: "PCAL"
@@ -212,7 +218,9 @@
   pyvista-fast: true
   gallery: true
   vtksz: "/home/assets/images/examples/pcal/pcal.vtksz"
-  snevents: 1
+  snevents: 3
+  pevents: 2000
+  to_plot: totEdep, yvsx
   source_dir: "../clas12-systems/geometry_src/pcal"
   source_support:
     - "coatjava"
@@ -231,11 +239,14 @@
   pyvista-fast: true
   gallery: true
   vtksz: "/home/assets/images/examples/ftof/ftof.vtksz"
-  snevents: 1
+  snevents: 3
+  pevents: 2000
+  to_plot: totEdep, yvsx
   source_dir: "../clas12-systems/geometry_src/ftof"
   source_support:
     - "clas12_common.py"
     - "coatjava"
     - "coatjava_factories"
   gemc_args:
+    - "-no_field=all"
     - "-plugin_path=/opt/projects/gemc/clas12-systems/build"

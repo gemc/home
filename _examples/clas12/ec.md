@@ -79,6 +79,7 @@ gparticle:
     theta: 25*deg
     delta_theta: 15*deg
     randomThetaModel: cosine
+    phi: 60*deg
     delta_phi: 180*deg
 ```
 
@@ -143,3 +144,28 @@ gstreamer:
 ```
 
 See also the [Output Documentation]( /home/documentation/output ) for more information.
+
+
+## Plotting with the GEMC Analyzer
+
+Run GEMC with 2,000 events first. The default YAML file writes the analyzer CSV streams.
+
+```shell
+gemc ec.yaml -n=2000 -no_field=all -plugin_path=/opt/projects/gemc/clas12-systems/build
+```
+
+Plot the total energy deposited per hit:
+
+```shell
+gemc-analyzer ec_t0_true_info.csv totalEDeposited --kind csv --data true_info
+```
+
+![EC total energy deposited per hit](/home/assets/images/examples/ec/analyzer_totEdep.png){:width="70%"}
+
+Plot the y vs x hit positions:
+
+```shell
+gemc-analyzer ec_t0_true_info.csv --kind csv --data true_info --plot yvsx --bins 80
+```
+
+![EC y vs x hit positions](/home/assets/images/examples/ec/analyzer_yvsx.png){:width="70%"}

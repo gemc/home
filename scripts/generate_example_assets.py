@@ -16,6 +16,7 @@ variation_plots, and skip_asset_generation) are read from _data/examples.yml.
 """
 
 import argparse
+import csv
 import os
 import re
 import shutil
@@ -52,10 +53,13 @@ PLOT_CONFIG = {
                 "analyzer_etot",        "deposited energy"),
     "E":       ("true_info", "E",       [],
                 "analyzer_true_energy", "true particle track energy"),
-    "yvsx":    ("true_info", None,
-                ["--plot", "yvsx", "--xlim", "-20", "20", "--ylim", "-20", "20"],
+    "tdc":     ("digitized", "TDC_TDC", [],
+                "analyzer_tdc",         "digitized TDC time"),
+    "yvsx":    ("true_info", None, ["--plot", "yvsx", "--bins", "80"],
                 "analyzer_yvsx",        "y vs x hit positions"),
 }
+
+PlotConfig = tuple[str, str | None, list[str], str, str]
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -163,6 +167,41 @@ def get_system_name(yaml_path: Path) -> str | None:
     return gsystem[0].get("name") if gsystem else None
 
 
+def csv_has_column(path: Path, column: str) -> bool:
+    """Return True when the CSV file exists and contains column."""
+    if not path.exists():
+        return False
+    with open(path, newline="") as f:
+        reader = csv.reader(f, skipinitialspace=True)
+        header = next(reader, [])
+    return column in header
+
+
+def resolve_plot_config(src_dir: Path, csv_base: str, var: str) -> PlotConfig | None:
+    """Resolve the data stream for a plot variable against the available CSV columns."""
+    if var not in PLOT_CONFIG:
+        return None
+    config = PLOT_CONFIG[var]
+    data_stream, col, extra, img_stem, desc = config
+    if col is None:
+        return config
+
+    csv_file = src_dir / f"{csv_base}_t0_{data_stream}.csv"
+    if csv_has_column(csv_file, col):
+        return config
+
+    if var == "totEdep":
+        true_csv = src_dir / f"{csv_base}_t0_true_info.csv"
+        if csv_has_column(true_csv, "totEdep"):
+            true_info: PlotConfig = ("true_info", "totEdep", extra, img_stem, desc)
+            return true_info
+        if csv_has_column(true_csv, "totalEDeposited"):
+            true_info = ("true_info", "totalEDeposited", extra, img_stem, desc)
+            return true_info
+
+    return config
+
+
 def link_to_md_path(link: str) -> Path:
     """Convert a Jekyll link like '/home/examples/basic/b1' to the .md source path."""
     parts = [p for p in link.split("/") if p and p != "home"]
@@ -261,12 +300,13 @@ def run_gemc_for_plots(src_dir: Path, yaml_file: Path, n: int,
 
 
 def run_single_plot(src_dir: Path, csv_base: str, var: str,
-                    asset_dir: Path) -> bool:
+                    asset_dir: Path) -> PlotConfig | None:
     """Run gemc-analyzer for one variable and save the figure to asset_dir."""
-    if var not in PLOT_CONFIG:
+    config = resolve_plot_config(src_dir, csv_base, var)
+    if config is None:
         print(f"  WARNING: unknown plot variable '{var}', skipping")
-        return False
-    data_stream, col, extra, img_stem, desc = PLOT_CONFIG[var]
+        return None
+    data_stream, col, extra, img_stem, desc = config
     csv_file = f"{csv_base}_t0_{data_stream}.csv"
     save_path = asset_dir / f"{img_stem}.png"
 
@@ -285,9 +325,9 @@ def run_single_plot(src_dir: Path, csv_base: str, var: str,
     if not save_path.exists():
         print(f"  ERROR: {save_path.name} not produced")
         print(result.stderr[-400:])
-        return False
+        return None
     print(f"  → {save_path}")
-    return True
+    return config
 
 
 def _fmt_n(n: int) -> str:
@@ -295,18 +335,19 @@ def _fmt_n(n: int) -> str:
 
 
 def build_analyzer_section(slug: str, yaml_name: str, csv_base: str,
-                            pevents: int, to_plot_list: list[str],
-                            title: str) -> str:
+                            pevents: int, plot_entries: list[tuple[str, PlotConfig]],
+                            title: str, gemc_args: list[str] | None = None) -> str:
     """Return the full '## Plotting with the GEMC Analyzer' markdown section."""
     lines = ["## Plotting with the GEMC Analyzer\n"]
     lines.append(f"\nRun GEMC with {_fmt_n(pevents)} events first. "
-                 f"The default YAML file writes `{csv_base}_t0_digitized.csv`.\n")
-    lines.append(f"\n```shell\ngemc {yaml_name} -n={pevents}\n```\n")
+                 f"The default YAML file writes the analyzer CSV streams.\n")
+    run_cmd = ["gemc", yaml_name, f"-n={pevents}"]
+    if gemc_args:
+        run_cmd += gemc_args
+    lines.append(f"\n```shell\n{' '.join(run_cmd)}\n```\n")
 
-    for var in to_plot_list:
-        if var not in PLOT_CONFIG:
-            continue
-        data_stream, col, extra, img_stem, desc = PLOT_CONFIG[var]
+    for _, config in plot_entries:
+        data_stream, col, extra, img_stem, desc = config
         csv_file = f"{csv_base}_t0_{data_stream}.csv"
 
         parts = ["gemc-analyzer", csv_file]
@@ -326,7 +367,7 @@ def build_analyzer_section(slug: str, yaml_name: str, csv_base: str,
 
 
 def update_analyzer_section(md_path: Path, new_section: str) -> bool:
-    """Replace '## Plotting with the GEMC Analyzer' to EOF with new_section."""
+    """Replace or append the '## Plotting with the GEMC Analyzer' section."""
     if not md_path.exists():
         print(f"  WARNING: markdown not found: {md_path}")
         return False
@@ -334,8 +375,10 @@ def update_analyzer_section(md_path: Path, new_section: str) -> bool:
     marker = "## Plotting with the GEMC Analyzer"
     idx = text.find(marker)
     if idx == -1:
-        print(f"  WARNING: analyzer section not found in {md_path.name}")
-        return False
+        separator = "" if text.endswith("\n\n") else "\n"
+        md_path.write_text(text + separator + "\n" + new_section)
+        print(f"  → appended analyzer section in {md_path.name}")
+        return True
     md_path.write_text(text[:idx] + new_section)
     print(f"  → updated analyzer section in {md_path.name}")
     return True
@@ -366,13 +409,18 @@ def run_plots(ex: dict, src_dir: Path, yaml_file: Path,
     if not run_gemc_for_plots(src_dir, yaml_file, pevents, extra_args=ex.get("gemc_args", [])):
         return
 
+    plot_entries: list[tuple[str, PlotConfig]] = []
     for var in to_plot_list:
-        run_single_plot(src_dir, csv_base, var, asset_dir)
+        config = run_single_plot(src_dir, csv_base, var, asset_dir)
+        if config:
+            plot_entries.append((var, config))
 
     md_path = link_to_md_path(link)
-    section = build_analyzer_section(slug, yaml_file.name, csv_base,
-                                     pevents, to_plot_list, title)
-    update_analyzer_section(md_path, section)
+    if plot_entries:
+        section = build_analyzer_section(slug, yaml_file.name, csv_base,
+                                         pevents, plot_entries, title,
+                                         ex.get("gemc_args", []))
+        update_analyzer_section(md_path, section)
 
 
 # ---------------------------------------------------------------------------

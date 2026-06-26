@@ -30,9 +30,9 @@
   "labels_url": "https://api.github.com/repos/gemc/src/milestones/3/labels",
   "node_id": "MI_kwDODkwbjc4A-NGH",
   "number": 3,
-  "open_issues": 10,
+  "open_issues": 9,
   "state": "open",
   "title": "GEMC Version 0.4",
-  "updated_at": "2026-06-25T20:43:09Z",
+  "updated_at": "2026-06-26T14:41:28Z",
   "url": "https://api.github.com/repos/gemc/src/milestones/3"
 }

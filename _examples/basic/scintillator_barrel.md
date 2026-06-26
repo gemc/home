@@ -167,7 +167,7 @@ The %%gstreamer%% option selects the output filenames and the format:
 ```yaml
 gstreamer:
   - format: csv
-    filename: scintillator_barrel
+    filename: barrel
 ```
 
 See also the [Output Documentation]( /home/documentation/output ) for more information.
@@ -176,25 +176,24 @@ See also the [Output Documentation]( /home/documentation/output ) for more infor
 
 ## Plotting with the GEMC Analyzer
 
-Run GEMC with 1,000 events first. With a CSV streamer, GEMC writes
-`scintillator_barrel_t0_digitized.csv` and `scintillator_barrel_t0_true_info.csv`.
+Run GEMC with 1,000 events first. The default YAML file writes the analyzer CSV streams.
 
 ```shell
 gemc scintillator_barrel.yaml -n=1000
 ```
 
-Plot the total energy deposited per hit across all paddles:
+Plot the total energy deposited per hit:
 
 ```shell
-gemc-analyzer scintillator_barrel_t0_digitized.csv totEdep --kind csv
+gemc-analyzer barrel_t0_digitized.csv totEdep --kind csv
 ```
 
-![scintillator barrel total energy deposited](/home/assets/images/examples/scintillator_barrel/analyzer_totEdep.png){:width="70%"}
+![Scintillator Barrel total energy deposited per hit](/home/assets/images/examples/scintillator_barrel/analyzer_totEdep.png){:width="70%"}
 
 Plot the true particle track energy:
 
 ```shell
-gemc-analyzer scintillator_barrel_t0_true_info.csv E --kind csv --data true_info
+gemc-analyzer barrel_t0_true_info.csv E --kind csv --data true_info
 ```
 
-![scintillator barrel true track energy](/home/assets/images/examples/scintillator_barrel/analyzer_true_energy.png){:width="70%"}
+![Scintillator Barrel true particle track energy](/home/assets/images/examples/scintillator_barrel/analyzer_true_energy.png){:width="70%"}

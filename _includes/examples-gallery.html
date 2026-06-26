@@ -8,6 +8,10 @@ The card heading is the link to the example documentation and uses `title`.
 {% assign exclude_title = include.exclude_title %}
 
 <div class="examples-gallery">
+	<p class="examples-gallery-intro meta">
+		The interactive thumbnails are live 3D views — drag to rotate and scroll to zoom right here on the page. <br/>
+        Click on the link at the top of each view for the example documentation.
+	</p>
 	{% for group in items %}
 		<section class="examples-gallery-section">
 			<h2 class="examples-category-title">{{ group.name | escape }}</h2>

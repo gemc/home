@@ -161,7 +161,7 @@ See also the [Output Documentation]( /home/documentation/output ) for more infor
 
 ## Plotting with the GEMC Analyzer
 
-Run GEMC with 10,000 events first. The default YAML file writes `simple_flux_t0_digitized.csv`.
+Run GEMC with 10,000 events first. The default YAML file writes the analyzer CSV streams.
 
 ```shell
 gemc simple_flux.yaml -n=10000
