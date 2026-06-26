@@ -2,7 +2,6 @@
 layout: default
 title: "Dipole Field"
 ---
-{% include directory.html data=site.data.examples columns=5 section_breaks=4 exclude_title="Quickstart" %}
 
 # Dipole Field Example
 <hr style="height:4px;border:0;background:#4a90e2;">

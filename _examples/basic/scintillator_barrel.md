@@ -2,8 +2,6 @@
 layout: default
 title: "Scintillator Barrel"
 ---
-{% include directory.html data=site.data.examples columns=5 section_breaks=4 exclude_title="Quickstart" %}
-
 
 # Scintillator Barrel
 <hr style="height:4px;border:0;background:#4a90e2;">

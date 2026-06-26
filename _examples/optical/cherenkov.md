@@ -2,7 +2,6 @@
 layout: default
 title: "Cherenkov"
 ---
-{% include directory.html data=site.data.examples columns=5 section_breaks=4 exclude_title="Quickstart" %}
 
 [low-img]: /home/assets/images/examples/cherenkov/low_index_radiator.png
 [medium-img]: /home/assets/images/examples/cherenkov/medium_index_radiator.png

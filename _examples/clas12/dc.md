@@ -2,7 +2,6 @@
 layout: default
 title: "CLAS12 DC"
 ---
-{% include directory.html data=site.data.examples columns=5 section_breaks=4 exclude_title="Quickstart" %}
 
 # CLAS12 Drift Chamber Example
 <hr style="height:4px;border:0;background:#4a90e2;">
