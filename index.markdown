@@ -296,37 +296,41 @@ architectures.
 
 Please make sure to cite the following paper if you use GEMC:
 
-{:.zebra}
-| *M. Ungaro*, Geant4 Monte-Carlo (GEMC) A database-driven simulation program, \*EPJ Web of Conferences* [**295**, 05005
-*(
-2024)*](https://www.epj-conferences.org/articles/epjconf/abs/2024/05/epjconf_chep2024_05005/epjconf_chep2024_05005.html) |
+> M. Ungaro et al., "The CLAS12 Geant4 simulation," *Nuclear Instruments and Methods in Physics
+> Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment* **959**,
+> 163422 (2020). <https://doi.org/10.1016/j.nima.2020.163422>
 
 BibTeX:
 
-```bibtex 
-@INPROCEEDINGS{2024EPJWC.29505005U,
-author = { {Ungaro}, Maurizio,
- title = "{Geant4 Monte-Carlo (GEMC) A database-driven simulation program}",
- booktitle = {European Physical Journal Web of Conferences},
- year = 2024,
- series = {European Physical Journal Web of Conferences},
- volume = {295},
- month = may,
- eid = {05005},
- pages = {05005},
- doi = {10.1051/epjconf/202429505005},
- adsurl = {https://ui.adsabs.harvard.edu/abs/2024EPJWC.29505005U},
- adsnote = {Provided by the SAO/NASA Astrophysics Data System} }
+```bibtex
+@article{UNGARO2020163422,
+  title = {The CLAS12 Geant4 simulation},
+  journal = {Nuclear Instruments and Methods in Physics Research Section A: Accelerators,
+             Spectrometers, Detectors and Associated Equipment},
+  volume = {959},
+  pages = {163422},
+  year = {2020},
+  issn = {0168-9002},
+  doi = {https://doi.org/10.1016/j.nima.2020.163422},
+  url = {https://www.sciencedirect.com/science/article/pii/S0168900220300279},
+  author = {M. Ungaro and G. Angelini and M. Battaglieri and V.D. Burkert and D.S. Carman and
+            P. Chatagnon and M. Contalbrigo and M. Defurne and R. {De Vita} and B. Duran and R. Fair and
+            M. Garçon and P. Ghoshal and R. Rajput-Ghoshal and Y. Gotra and S. Joosten and A. Kim and
+            D. Lersch and N. Markov and M.D. Mestayer and R. Miller and M. Mirazita and J. Newton and
+            S. Niccolai and W. Phelps and S. Procureur and Y. Prok and A. Puckett and D. Sokhan and
+            S. Stepanyan and A. Vlassov and R. Wang and C. Wiggins and V. Ziegler},
+  keywords = {Geant4, GEMC, Simulation, Software, Database, Monte Carlo, CAD, STL, GDML, MYSQL, C++}
 }
 ```
 
 Bibitem:
 
 ```latex
-\bibitem{2024EPJWC.29505005U}
-{Ungaro}, M.: Geant4 Monte-Carlo (GEMC) A database-driven simulation program.
-\newblock European Physical Journal Web of Conferences \textbf{295}, 05005 (2024).
-\newblock \doi{10.1051/epjconf/202429505005}
+\bibitem{UNGARO2020163422}
+M. Ungaro et al.,
+\newblock The CLAS12 Geant4 simulation.
+\newblock Nuclear Instruments and Methods in Physics Research Section A \textbf{959}, 163422 (2020).
+\newblock \doi{10.1016/j.nima.2020.163422}
 ```
 
 <br/><br/>
