@@ -42,9 +42,9 @@ acknowledgments in your redistribution.
 Citation is **requested but not required**. If you use GEMC in scientific work, please help our
 scientific visibility by citing:
 
-> M. Ungaro et al., "The CLAS12 Geant4 simulation," *Nuclear Instruments and Methods in Physics
-> Research Section A: Accelerators, Spectrometers, Detectors and Associated Equipment* **959**,
-> 163422 (2020). <https://doi.org/10.1016/j.nima.2020.163422>
+> M. Ungaro and the CLAS Collaboration, "The CLAS12 Geant4 simulation," *Nuclear Instruments and
+> Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated
+> Equipment* **959**, 163422 (2020). <https://doi.org/10.1016/j.nima.2020.163422>
 
 {% raw %}
 ```bibtex
@@ -58,12 +58,7 @@ scientific visibility by citing:
   issn = {0168-9002},
   doi = {https://doi.org/10.1016/j.nima.2020.163422},
   url = {https://www.sciencedirect.com/science/article/pii/S0168900220300279},
-  author = {M. Ungaro and G. Angelini and M. Battaglieri and V.D. Burkert and D.S. Carman and
-            P. Chatagnon and M. Contalbrigo and M. Defurne and R. {De Vita} and B. Duran and R. Fair and
-            M. Garçon and P. Ghoshal and R. Rajput-Ghoshal and Y. Gotra and S. Joosten and A. Kim and
-            D. Lersch and N. Markov and M.D. Mestayer and R. Miller and M. Mirazita and J. Newton and
-            S. Niccolai and W. Phelps and S. Procureur and Y. Prok and A. Puckett and D. Sokhan and
-            S. Stepanyan and A. Vlassov and R. Wang and C. Wiggins and V. Ziegler},
+  author = {M. Ungaro and {CLAS Collaboration}},
   keywords = {Geant4, GEMC, Simulation, Software, Database, Monte Carlo, CAD, STL, GDML, MYSQL, C++}
 }
 ```
