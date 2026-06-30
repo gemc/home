@@ -67,7 +67,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 4,
+      "closed_issues": 5,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -97,10 +97,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 5,
+      "open_issues": 4,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-23T19:36:57Z",
+      "updated_at": "2026-06-30T14:05:28Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABF1JXvA",
@@ -222,7 +222,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 4,
+      "closed_issues": 5,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -252,10 +252,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 5,
+      "open_issues": 4,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-23T19:36:57Z",
+      "updated_at": "2026-06-30T14:05:28Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABF1I-NA",
@@ -407,7 +407,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 4,
+      "closed_issues": 5,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -437,10 +437,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 5,
+      "open_issues": 4,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-23T19:36:57Z",
+      "updated_at": "2026-06-30T14:05:28Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnyg",
@@ -572,7 +572,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 4,
+      "closed_issues": 5,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -602,10 +602,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 5,
+      "open_issues": 4,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-23T19:36:57Z",
+      "updated_at": "2026-06-30T14:05:28Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnlg",
@@ -757,7 +757,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 4,
+      "closed_issues": 5,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -787,10 +787,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 5,
+      "open_issues": 4,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-23T19:36:57Z",
+      "updated_at": "2026-06-30T14:05:28Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnUw",
@@ -942,7 +942,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 4,
+      "closed_issues": 5,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -972,10 +972,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 5,
+      "open_issues": 4,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-23T19:36:57Z",
+      "updated_at": "2026-06-30T14:05:28Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXnHg",
@@ -1127,7 +1127,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 4,
+      "closed_issues": 5,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1157,10 +1157,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 5,
+      "open_issues": 4,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-23T19:36:57Z",
+      "updated_at": "2026-06-30T14:05:28Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXm4A",
@@ -1292,7 +1292,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 4,
+      "closed_issues": 5,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1322,10 +1322,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 5,
+      "open_issues": 4,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-23T19:36:57Z",
+      "updated_at": "2026-06-30T14:05:28Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXmsg",
@@ -1423,13 +1423,54 @@
         "type": "User",
         "url": "https://api.github.com/users/zhaozhiwen",
         "user_view_type": "public"
+      },
+      {
+        "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+        "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+        "followers_url": "https://api.github.com/users/maureeungaro/followers",
+        "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+        "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+        "gravatar_id": "",
+        "html_url": "https://github.com/maureeungaro",
+        "id": 7451841,
+        "login": "maureeungaro",
+        "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+        "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+        "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+        "repos_url": "https://api.github.com/users/maureeungaro/repos",
+        "site_admin": false,
+        "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+        "type": "User",
+        "url": "https://api.github.com/users/maureeungaro",
+        "user_view_type": "public"
       }
     ],
     "author_association": "COLLABORATOR",
     "body": "`GVolume.add_rotation()` builds a cumulative rotation string of the form `\"a,b,c + d,e,f\"`, but the C++ `getRotation` only applies a rotation when the comma-split yields exactly 3 tokens. Any cumulative rotation (more than 3 comma tokens) is silently ignored \u2014 the volume is placed unrotated.\n\n**Affected files**\n\n- `src/pygemc/api/gvolume.py:138-148` (`add_rotation`, `get_rotation_string`)\n- `gemc/g4system/g4objectsFactories/g4objectsFactory.cc:88-100` (`G4ObjectsFactory::getRotation`)\n\n**Details**\n\npygemc side:\n\n```python\ndef add_rotation(self, x, y, z, lunit='deg'):\n\tmyrotation = str(x) + '*' + lunit + ', '\n\tmyrotation += str(y) + '*' + lunit + ', '\n\tmyrotation += str(z) + '*' + lunit\n\tself.rotations.append(' + ' + myrotation)\n\ndef get_rotation_string(self):\n\trotation_string = ''\n\tfor r in self.rotations:\n\t\trotation_string = rotation_string + r\n\treturn rotation_string\n```\n\nAfter two `add_rotation` calls the published string looks like\n`\"0*deg, 0*deg, 40*deg + 10*deg, 0*deg, 0*deg\"`.\n\nC++ side:\n\n```cpp\nconst auto rotDef = gutilities::getStringVectorFromStringWithDelimiter(s->getRot(), \",\");\nif (rotDef.size() == 3) {\n\tconst auto pars = gutilities::getG4NumbersFromStringVector(rotDef);\n\trot->rotateX(pars[0]);\n\trot->rotateY(pars[1]);\n\trot->rotateZ(pars[2]);\n}\n// (ordered rotation parsing omitted for brevity \u2013 keep original logic)\n```\n\nSplitting on `,` yields 4 tokens (`\"0*deg\"`, `\"0*deg\"`, `\"40*deg + 10*deg\"`, `\"0*deg\"`), so `rotDef.size() != 3` and the entire rotation is dropped. The `+` form has no consumer.\n\n**Impact**\n\nAny volume positioned with cumulative `add_rotation()` (documented and exported in the class docstring, and used by `from_gmesh`-style flows) is silently placed with no rotation. This is a quiet geometry error, the worst kind: no error message, wrong physics.\n\n**Proposed fix (pygemc side, pragmatic)**\n\nThe C++ contract supports exactly one ordered X/Y/Z rotation. Composing arbitrary cumulative rotations into a single equivalent triple is not order-equivalent in general (rotations don't commute), so silently \"composing\" would be misleading. The cleanest pragmatic fix is to make `add_rotation` accumulate into a real list of triples and have `get_rotation_string` emit the single-triple form when there is one rotation, and raise a clear error when more than one is present (until/unless the C++ parser is extended). This converts a silent geometry bug into a loud, actionable error.\n\n```diff\n \tdef add_rotation(self, x, y, z, lunit='deg'):\n-\t\tmyrotation = str(x) + '*' + lunit + ', '\n-\t\tmyrotation += str(y) + '*' + lunit + ', '\n-\t\tmyrotation += str(z) + '*' + lunit\n-\t\tself.rotations.append(' + ' + myrotation)\n+\t\tmyrotation = f\"{x}*{lunit}, {y}*{lunit}, {z}*{lunit}\"\n+\t\tself.rotations.append(myrotation)\n\n \tdef get_rotation_string(self):\n-\t\trotation_string = ''\n-\t\tfor r in self.rotations:\n-\t\t\trotation_string = rotation_string + r\n-\t\treturn rotation_string\n+\t\t# The current gemc C++ parser (G4ObjectsFactory::getRotation) only\n+\t\t# applies a rotation when the comma-split yields exactly 3 tokens,\n+\t\t# i.e. a single ordered X/Y/Z rotation. Emitting a '+'-joined\n+\t\t# multi-rotation string is silently ignored downstream, so reject it\n+\t\t# explicitly instead of producing an unrotated volume.\n+\t\tif len(self.rotations) == 1:\n+\t\t\treturn self.rotations[0]\n+\t\tsys.exit(\n+\t\t\tf\" Error: GVolume '{self.name}' has {len(self.rotations)} cumulative \"\n+\t\t\tf\"rotations, but gemc only supports a single ordered X/Y/Z rotation. \"\n+\t\t\tf\"Use a single set_rotation()/add_rotation() call.\"\n+\t\t)\n```\n\nThis depends on `self.rotations` being a list (see the related `set_rotation` type-consistency bug). The alternative \u2014 extending the C++ `getRotation` to accept the `+`-delimited form and compose the matrices \u2014 is a larger cross-language change; the pygemc-side guard above is the minimal correct fix and can be relaxed later if the C++ side gains multi-rotation support.\n\n\n---\n_Split out from #102 (one issue per bug). Found via an AI-assisted code review with manual verification against commit `5f8ce875`._\n\n\n---\n_Migrated from gemc/src#117 (code lives in this repo, pulled into gemc/src as a Meson subproject)._",
-    "closed_at": null,
-    "closed_by": null,
-    "comments": 0,
+    "closed_at": "2026-06-30T14:05:27Z",
+    "closed_by": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
+    "comments": 1,
     "comments_url": "https://api.github.com/repos/gemc/pygemc/issues/2/comments",
     "created_at": "2026-06-13T02:21:21Z",
     "events_url": "https://api.github.com/repos/gemc/pygemc/issues/2/events",
@@ -1457,7 +1498,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 4,
+      "closed_issues": 5,
       "created_at": "2026-06-17T18:35:38Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1487,10 +1528,10 @@
       "labels_url": "https://api.github.com/repos/gemc/pygemc/milestones/2/labels",
       "node_id": "MI_kwDOSjCyF84A-kWc",
       "number": 2,
-      "open_issues": 5,
+      "open_issues": 4,
       "state": "open",
       "title": "pygemc v0.4.0",
-      "updated_at": "2026-06-23T19:36:57Z",
+      "updated_at": "2026-06-30T14:05:28Z",
       "url": "https://api.github.com/repos/gemc/pygemc/milestones/2"
     },
     "node_id": "I_kwDOSjCyF88AAAABFWXmdA",
@@ -1510,8 +1551,8 @@
       "url": "https://api.github.com/repos/gemc/pygemc/issues/2/reactions"
     },
     "repository_url": "https://api.github.com/repos/gemc/pygemc",
-    "state": "open",
-    "state_reason": null,
+    "state": "closed",
+    "state_reason": "completed",
     "sub_issues_summary": {
       "completed": 0,
       "percent_completed": 0,
@@ -1519,8 +1560,17 @@
     },
     "timeline_url": "https://api.github.com/repos/gemc/pygemc/issues/2/timeline",
     "title": "[High] add_rotation() emits a multi-token rotation string the C++ parser silently drops",
-    "type": null,
-    "updated_at": "2026-06-17T18:38:12Z",
+    "type": {
+      "color": "red",
+      "created_at": "2024-01-25T14:29:12Z",
+      "description": "An unexpected problem or behavior",
+      "id": 1718739,
+      "is_enabled": true,
+      "name": "Bug",
+      "node_id": "IT_kwDOAMwCa84AGjnT",
+      "updated_at": "2024-07-26T10:30:03Z"
+    },
+    "updated_at": "2026-06-30T14:05:28Z",
     "url": "https://api.github.com/repos/gemc/pygemc/issues/2",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/6391402?v=4",

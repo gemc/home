@@ -39,7 +39,7 @@ layout: default
 
 [Binary-Tarballs-badge]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml/badge.svg
 
-[PyPI]: https://pypi.org/project/pygemc/
+[PyPI Release]: https://pypi.org/project/pygemc/
 
 [PyPI-badge]: https://img.shields.io/pypi/v/pygemc.svg?cacheSeconds=300
 
@@ -122,6 +122,9 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 <br/><br/>
 
 ## Interactive 3D Gallery
+
+Rotate the camera with the mouse wheel or use the arrow keys within each thumbnail. Click on the title link for
+the documentation.
 
 {% assign gallery_examples = site.data.examples | where: "gallery", true %}
 
