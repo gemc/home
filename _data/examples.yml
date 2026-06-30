@@ -44,7 +44,7 @@
   vtksz: "/home/assets/images/examples/b2/b2.vtksz"
   snevents: 10
   pevents: 1000
-  to_plot: totEdep, E
+  to_plot: totEdep, E, delta_theta
 
 - title: "Materials"
   header: "Demonstrates Geant4 built-in materials, custom compositions, and optical properties"

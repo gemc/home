@@ -17,7 +17,8 @@
 			{% assign cat_desc = group.items | map: "description" | compact | first %}
 			<div class="section-title">{{ group.name | escape }}{% if cat_desc %} <span class="section-desc meta">{{ cat_desc | escape }}</span>{% endif %}</div>
 
-			<div class="directory-links" style="column-count: {{ columns }};">
+			<div class="directory-links directory-links--{{ columns }}"
+			     style="--directory-columns: {{ columns }};">
 				{% for item in group.items %}
 					{% if exclude_title and item.title == exclude_title %}
 						{% continue %}
@@ -27,7 +28,7 @@
 						<a href="{{ href | escape }}"
 						   target="{{ link_target | escape }}"
 						   {% if link_target == "_blank" %}rel="noopener noreferrer"{% endif %}>
-							[ {{ item.title | escape }} ]
+							[&nbsp;{{ item.title | escape }}&nbsp;]
 						</a>
 					</div>
 				{% endfor %}

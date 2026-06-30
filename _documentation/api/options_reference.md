@@ -16,6 +16,8 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`printSystemsMaterials`](/home/documentation/api/options/printsystemsmaterials)<br/> | print the materials used in this simulation |
 | [`print_summary`](/home/documentation/api/options/print_summary)<br/> | print a timing summary at the end of the simulation (total wall-clock time, total time since beamOn, and the average event rate). On by default; disable with -print_summary=false. |
 | [`recordZeroEdep`](/home/documentation/api/options/recordzeroedep)<br/> | Record particle even if they do not deposit energy in the sensitive volumes |
+| [`save_all_ancestors`](/home/documentation/api/options/save_all_ancestors)<br/> | save initial information for hit-producing tracks and all their ancestors |
+| [`save_original_track`](/home/documentation/api/options/save_original_track)<br/> | save the original Geant4 track ID in each true-information hit |
 | [`showPhysics`](/home/documentation/api/options/showphysics)<br/> | Log Geant4 Physics Available Modules that can be used with the "phys_list" option and exit |
 | [`showPredefinedMaterials`](/home/documentation/api/options/showpredefinedmaterials)<br/> | log GEMC Predefined Materials |
 | [`useDawn`](/home/documentation/api/options/usedawn)<br/> | Take a dawn screenshot |
@@ -37,6 +39,7 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`runno`](/home/documentation/api/options/runno) | `<value>` | geometry/conditions run number |
 | [`useBackupMaterial`](/home/documentation/api/options/usebackupmaterial) | `<value>` | Backup material |
 | [`check_overlaps`](/home/documentation/api/options/check_overlaps) | `<value>` | check overlaps |
+| [`applyThresholds`](/home/documentation/api/options/applythresholds) | `<value>` | systems that reject hits below threshold |
 | [`gmultipoles`](/home/documentation/api/options/gmultipoles) | `<sequence>` | define the e.m. gmultipoles |
 | [`gfields`](/home/documentation/api/options/gfields) | `<sequence>` | define a generic plugin-backed e.m. field |
 | [`global_field`](/home/documentation/api/options/global_field) | `<value>` | associate a field with the ROOT world volume |

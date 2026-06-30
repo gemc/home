@@ -79,6 +79,7 @@ Available `to_plot` values are:
 | `dose` | `digitized` | `analyzer_dose.png` | accumulated dose |
 | `etot` | `digitized` | `analyzer_etot.png` | deposited energy |
 | `E` | `true_info` | `analyzer_true_energy.png` | true particle track energy |
+| `delta_theta` | `true_info` | `analyzer_delta_theta.png` | proton polar-angle residual |
 | `tdc` | `digitized` | `analyzer_tdc.png` | digitized TDC time |
 | `yvsx` | `true_info` | `analyzer_yvsx.png` | y vs x hit positions, using 80 bins |
 

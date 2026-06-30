@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Flux
-order: 31
+order: 32
 description: Use the flux digitization for track-passage detectors
 permalink: /documentation/sensitivity/flux/
 ---

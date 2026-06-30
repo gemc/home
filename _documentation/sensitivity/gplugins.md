@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Custom Digitization Plugins
-order: 35
+order: 36
 description: Write a GDynamic digitization plugin to process hits with custom electronics models
 permalink: /documentation/sensitivity/gplugins/
 ---

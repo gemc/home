@@ -21,6 +21,9 @@ gvolume.set_identifier("layer", 2)
 The identifier fields define the detector element address written to output. Use enough identifiers
 to distinguish the sensitive elements you want to analyze, such as sector, layer, paddle, or channel.
 
+For the full lifecycle of a routine — what each method does and when it runs — see the
+[Digitization Workflow](/home/documentation/sensitivity/workflow).
+
 <br/>
 
 ## Built-in digitizations

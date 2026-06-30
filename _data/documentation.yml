@@ -79,6 +79,11 @@
   description: "Built-in detector responses and custom digitization plugins."
   link: "/home/documentation/sensitivity"
 
+- title: "Digitization Workflow"
+  category: "Sensitivity"
+  description: "How GEMC turns Geant4 steps into digitized hits and Monte-Carlo truth."
+  link: "/home/documentation/sensitivity/workflow"
+
 - title: "Flux"
   category: "Sensitivity"
   link: "/home/documentation/sensitivity/flux"

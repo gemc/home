@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Photon Detectors
-order: 34
+order: 35
 description: Use gPhotonDetector for optical-photon sensitivity
 permalink: /documentation/sensitivity/photon_detectors/
 ---

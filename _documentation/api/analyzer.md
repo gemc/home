@@ -73,6 +73,70 @@ When the matching digitized CSV is available, the analyzer also adds %%E%% to tr
 
 The %%vx%%, %%vy%%, and %%vz%% columns are the current track vertex coordinates. The %%mvx%%, %%mvy%%, and %%mvz%% columns are the mother-track vertex coordinates when the mother track was available to GEMC hit processing; otherwise they use the GEMC uninitialized numeric sentinel. The %%mtid%% column stores the mother track ID.
 
+### Original-Track Differences
+
+Upcoming in the next release: the analyzer derives momentum and direction changes for true-information hits when
+GEMC saves the original-track information.
+Enable [`save_original_track`](/home/documentation/api/options/save_original_track) in the YAML configuration:
+
+```yaml
+save_original_track: true
+```
+
+The true-information CSV then contains the original track ID and particle ID, together with the original
+momentum components:
+
+```text
+otid, opid, opx, opy, opz
+```
+
+The current momentum components are %%px%%, %%py%%, and %%pz%%. When all these columns are present, the analyzer
+adds three plottable quantities:
+
+| Quantity | Definition | Unit |
+| --- | --- | --- |
+| %%delta_p%% | current momentum magnitude minus original momentum magnitude | MeV |
+| %%delta_theta%% | current polar angle minus original polar angle | radians |
+| %%delta_phi%% | current azimuthal angle minus original azimuthal angle | radians |
+
+These values are calculated only when %%pid%% equals %%opid%%. A matching particle ID indicates that the hit was
+likely produced by the original particle; rows with different IDs are excluded from the delta histograms. The
+%%delta_phi%% difference is wrapped to the interval [-pi, pi] so tracks crossing the azimuthal boundary
+produce a small angular difference instead of a value close to 2 pi.
+
+List the derived quantities available in a true-information CSV:
+
+```sh
+gemc-analyzer b2_t0_true_info.csv --data true_info
+```
+
+Plot each difference:
+
+```sh
+gemc-analyzer b2_t0_true_info.csv delta_p --data true_info
+gemc-analyzer b2_t0_true_info.csv delta_theta --data true_info
+gemc-analyzer b2_t0_true_info.csv delta_phi --data true_info
+```
+
+Use `--pid` to select one particle species. The B2 configuration generates protons, so its valid original-track
+delta rows have PDG particle ID 2212:
+
+```sh
+gemc-analyzer b2_t0_true_info.csv delta_p --data true_info --pid 2212
+```
+
+A PID with no eligible delta rows displays a concise `No plot created` message and exits normally. For example,
+B2 electron hits have %%pid%% 11 but %%opid%% 2212, so their original-track deltas are intentionally undefined.
+
+The same filter is available through the Python API and for y-vs-x plots:
+
+```python
+from pygemc import plot_variable, read_output
+
+output = read_output("b2_t0_true_info.csv")
+plot_variable(output, "delta_p", data="true_info", pid=2212, show=True)
+```
+
 When the run uses generated particles, the CSV streamer also writes a per-thread `generated_tracked` file holding the generated particle kinematics:
 
 ```text

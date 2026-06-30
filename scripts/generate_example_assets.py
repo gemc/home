@@ -23,6 +23,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import textwrap
 from pathlib import Path
 
 import yaml
@@ -53,6 +54,9 @@ PLOT_CONFIG = {
                 "analyzer_etot",        "deposited energy"),
     "E":       ("true_info", "E",       [],
                 "analyzer_true_energy", "true particle track energy"),
+    "delta_theta": ("true_info", "delta_theta",
+                    ["--pid", "2212", "--bins", "100", "--xlim", "-0.02", "0.2", "--linear-y"],
+                    "analyzer_delta_theta", "proton polar-angle residual"),
     "tdc":     ("digitized", "TDC_TDC", [],
                 "analyzer_tdc",         "digitized TDC time"),
     "yvsx":    ("true_info", None, ["--plot", "yvsx", "--bins", "80"],
@@ -334,9 +338,24 @@ def _fmt_n(n: int) -> str:
     return f"{n:,}"
 
 
+def _format_shell_command(parts: list[str], width: int = 112) -> str:
+    """Format a shell command with continuations so generated documentation stays within width."""
+    lines: list[str] = []
+    line = parts[0]
+    for part in parts[1:]:
+        candidate = f"{line} {part}"
+        if len(candidate) > width - 2:
+            lines.append(f"{line} \\")
+            line = f"  {part}"
+        else:
+            line = candidate
+    lines.append(line)
+    return "\n".join(lines)
+
+
 def build_analyzer_section(slug: str, yaml_name: str, csv_base: str,
                             pevents: int, plot_entries: list[tuple[str, PlotConfig]],
-                            title: str, gemc_args: list[str] | None = None) -> str:
+                            gemc_args: list[str] | None = None) -> str:
     """Return the full '## Plotting with the GEMC Analyzer' markdown section."""
     lines = ["## Plotting with the GEMC Analyzer\n"]
     lines.append(f"\nRun GEMC with {_fmt_n(pevents)} events first. "
@@ -344,9 +363,9 @@ def build_analyzer_section(slug: str, yaml_name: str, csv_base: str,
     run_cmd = ["gemc", yaml_name, f"-n={pevents}"]
     if gemc_args:
         run_cmd += gemc_args
-    lines.append(f"\n```shell\n{' '.join(run_cmd)}\n```\n")
+    lines.append(f"\n```shell\n{_format_shell_command(run_cmd)}\n```\n")
 
-    for _, config in plot_entries:
+    for var, config in plot_entries:
         data_stream, col, extra, img_stem, desc = config
         csv_file = f"{csv_base}_t0_{data_stream}.csv"
 
@@ -360,8 +379,15 @@ def build_analyzer_section(slug: str, yaml_name: str, csv_base: str,
 
         img_path = f"/home/assets/images/examples/{slug}/{img_stem}.png"
         lines.append(f"\nPlot the {desc}:\n")
-        lines.append(f"\n```shell\n{' '.join(parts)}\n```\n")
-        lines.append(f"\n![{title} {desc}]({img_path})" + '{:width="70%"}\n')
+        if var == "delta_theta":
+            note = (
+                f"The `save_original_track: true` option in `{yaml_name}` saves %%otid%% and the original "
+                "momentum components %%opx%%, %%opy%%, and %%opz%% in the true-information output. The "
+                "analyzer uses the original and current momentum directions to calculate %%delta_theta%%."
+            )
+            lines.append(f"\n{textwrap.fill(note, width=112)}\n")
+        lines.append(f"\n```shell\n{_format_shell_command(parts)}\n```\n")
+        lines.append(f"\n![{slug} {desc}]({img_path})" + '{:width="70%"}\n')
 
     return "".join(lines)
 
@@ -390,7 +416,6 @@ def run_plots(ex: dict, src_dir: Path, yaml_file: Path,
     pevents     = ex.get("pevents")
     to_plot_str = ex.get("to_plot", "")
     link        = ex.get("link", "")
-    title       = ex.get("title", slug)
 
     if not pevents or not to_plot_str:
         return
@@ -418,8 +443,7 @@ def run_plots(ex: dict, src_dir: Path, yaml_file: Path,
     md_path = link_to_md_path(link)
     if plot_entries:
         section = build_analyzer_section(slug, yaml_file.name, csv_base,
-                                         pevents, plot_entries, title,
-                                         ex.get("gemc_args", []))
+                                         pevents, plot_entries, ex.get("gemc_args", []))
         update_analyzer_section(md_path, section)
 
 

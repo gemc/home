@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Dosimeter
-order: 32
+order: 33
 description: Use the dosimeter digitization for integrated dose
 permalink: /documentation/sensitivity/dosimeter/
 ---
