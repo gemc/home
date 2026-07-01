@@ -32,7 +32,7 @@ called for every step, and harvested at the end of each event."
 | Construction  | Once per worker thread, while the geometry is built | `defineReadoutSpecs()` |
 | Begin of run  | Each time the run number changes | `loadConstants()`, `loadTT()` |
 | Stepping      | Every Geant4 step inside a sensitive volume | `decisionToSkipHit()`, `processTouchable()` |
-| End of event  | Once per event, for every accumulated hit | `digitizeHit()` (+ threshold / efficiency), `collectTrueInformation()` |
+| End of event  | Once per event, for every accumulated hit | `digitizeHit()`, `apply_thresholds()` / `apply_efficiency()`, `collectTrueInformation()` |
 | Output        | Per event, or once at the end of the run | streamer publication, `normalize()` |
 
 <br/>
@@ -86,8 +86,8 @@ At `GEventAction::EndOfEventAction`, each accumulated `GHit` is finalized. The r
 records per hit:
 
 - **`digitizeHit()`** → a `GDigitizedData` bank: the detector response (for example `adc`, `time`) produced
-  by the routine's electronics model. This is the "measured" output. `digitizeHit()` may **reject** the hit
-  (see below), in which case no digitized bank is written.
+  by the routine's electronics model. This is the "measured" output. After it runs, GEMC applies the
+  optional threshold and efficiency rejection (see below), which may **drop** the digitized bank.
 - **`collectTrueInformation()`** → a `GTrueInfoData` bank: the Monte-Carlo truth for the hit, such as
   %%pid%%, %%tid%%, %%mtid%%, energy, and position (it also computes the hit averages, via
   `calculateInfos()`). With `-save_original_track`, it also carries the primary track's %%otid%%, %%opid%%,
@@ -97,17 +97,22 @@ Which banks are written is governed by the `HitBitSet` set in `defineReadoutSpec
 
 ### Threshold and efficiency rejection
 
-The per-channel **threshold** and detector **efficiency** are applied here, on the digitized path, not during
-stepping. A routine calls `decisionToSkipDigitizedHit(belowThreshold, efficiency)` from inside
-`digitizeHit()`: the hit is dropped when it is below threshold, or when a uniform random draw exceeds the
-channel efficiency. Both rejections are **off by default** and are enabled per system with the
+The per-channel **threshold** and detector **efficiency** are applied on the digitized path, **after**
+`digitizeHit()` has produced the bank, not during stepping. GEMC calls two routine hooks in turn:
+
+- **`apply_thresholds()`** drops the hit when it is below the channel threshold.
+- **`apply_efficiency()`** drops the hit when a uniform random draw exceeds the channel efficiency.
+
+Each is a thin wrapper that returns *keep the hit* unless its system is enrolled, and otherwise delegates to
+the plugin override — **`apply_thresholds_impl()`** / **`apply_efficiency_impl()`** — where the detector
+computes the actual comparison. Both are **off by default** and enabled per system with the
 `-applyThresholds` and `-applyInefficiencies` options (each a list of system names, or `all`), resolved once
 at construction. The earlier stepping-level `decisionToSkipHit()` is a separate, simpler filter that only
 discards zero-energy steps.
 
 ### Rejected hits and `also_reject_true_info`
 
-When `digitizeHit()` rejects a hit, no `GDigitizedData` is written. By default the hit's `GTrueInfoData` is
+When either hook rejects a hit, no `GDigitizedData` is written. By default the hit's `GTrueInfoData` is
 dropped as well, so a rejected hit leaves no trace in the output. The **`-also_reject_true_info`** option
 (default `true`) controls this: set `-also_reject_true_info=false` to keep the true information for **every**
 Geant4 hit, even those with no digitized counterpart — useful when you need the Monte-Carlo truth regardless

@@ -90,9 +90,51 @@ GDynamicDigitizationFactory(const std::shared_ptr<GOptions>& g) {
 | `defineReadoutSpecsImpl()` | Always — sets the electronics timing model |
 | `loadConstantsImpl(runno, variation)` | Load calibration constants from CCDB or files |
 | `loadTTImpl(runno, variation)` | Build the identity→electronics address translation table |
-| `digitizeHitImpl(ghit, hitn)` | Produce digitized output from a hit |
-| `processTouchableImpl(gtouchable, step)` | Re-bin hits by time cell (default implementation handles the standard case) |
-| `decisionToSkipHit(energy)` | Apply an energy threshold before digitization |
+| `processTouchableImpl(gtouchable, step)` | Re-bin hits by time cell / split charge (default handles the standard case) |
+| `digitizeHitImpl(ghit, hitn)` | Produce the digitized bank from an accumulated hit |
+| `collectTrueInformationImpl(ghit, hitn)` | Customize the Monte-Carlo truth bank (default writes the standard truth) |
+| `apply_thresholds_impl(ghit, data)` | Drop a digitized hit below the per-channel threshold |
+| `apply_efficiency_impl(ghit, data)` | Drop a digitized hit that fails the per-channel efficiency draw |
+| `decisionToSkipHit(energy)` | Skip a step before any hit is created (default: zero-energy steps) |
+
+The **`apply_thresholds_impl`** and **`apply_efficiency_impl`** hooks run after `digitizeHitImpl`, and
+only when the system is listed in the `-applyThresholds` / `-applyInefficiencies` options (each a system
+list, or `all`; both off by default). Return `true` to drop the hit; a dropped hit also drops its truth
+row when `-also_reject_true_info` is set. See the [Digitization
+Workflow](/home/documentation/sensitivity/workflow) for the full lifecycle.
+
+{% include figure.html
+src="assets/images/documentation/digitization_hooks.svg"
+alt="GEMC digitization plugin hooks grouped by lifecycle phase"
+caption="The override hooks by phase. Blue boxes are the routine methods you implement; the amber
+apply_thresholds_impl / apply_efficiency_impl hooks reject a digitized hit and are enabled per system
+with -applyThresholds / -applyInefficiencies."
+%}
+
+<br/>
+
+### apply_thresholds_impl and apply_efficiency_impl
+
+These two hooks apply per-channel **threshold** and **efficiency** rejection to a hit that
+`digitizeHitImpl` already produced. GEMC calls them only when this system is enrolled in
+`-applyThresholds` / `-applyInefficiencies`, so by default every digitized hit is kept:
+
+```cpp
+// return true to drop the hit
+bool MyPlugin::apply_thresholds_impl(GHit* ghit, const GDigitizedData* /*data*/) {
+    return energyDeposited(ghit) < channelThreshold(ghit);   // below threshold → drop
+}
+
+bool MyPlugin::apply_efficiency_impl(GHit* ghit, const GDigitizedData* /*data*/) {
+    return G4UniformRand() > channelEfficiency(ghit);        // failed the draw → drop
+}
+```
+
+Enable them from the command line with a system list (or `all`):
+
+```sh
+gemc mydetector.yaml -applyThresholds="myplugin" -applyInefficiencies="myplugin"
+```
 
 <br/>
 

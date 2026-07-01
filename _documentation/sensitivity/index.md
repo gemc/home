@@ -21,8 +21,26 @@ gvolume.set_identifier("layer", 2)
 The identifier fields define the detector element address written to output. Use enough identifiers
 to distinguish the sensitive elements you want to analyze, such as sector, layer, paddle, or channel.
 
-For the full lifecycle of a routine — what each method does and when it runs — see the
-[Digitization Workflow](/home/documentation/sensitivity/workflow).
+<br/>
+
+## Digitization hooks
+
+A digitization routine is a set of overridable **hooks** that GEMC calls across the hit lifecycle: it is
+configured once, primed when the run number changes, called for every Geant4 step, and harvested at the end
+of each event — where `digitizeHit` builds the measured bank, the optional `apply_thresholds` /
+`apply_efficiency` hooks reject hits, and `collectTrueInformation` writes the Monte-Carlo truth. Run-mode
+routines add a final `normalize`.
+
+{% include figure.html
+src="assets/images/documentation/digitization_hooks.svg"
+alt="GEMC digitization plugin hooks grouped by lifecycle phase"
+caption="The digitization hooks, grouped by lifecycle phase. The amber apply_thresholds / apply_efficiency
+hooks reject a digitized hit and are off by default."
+%}
+
+See the [Digitization Workflow](/home/documentation/sensitivity/workflow) for when each hook runs and how
+the data flows, and [Custom digitization plugins](/home/documentation/sensitivity/gplugins) for
+implementing them in a `.gplugin`.
 
 <br/>
 
