@@ -4,14 +4,18 @@ layout: none
 
 [
   {%- comment -%}
-  Only include:
-    - real pages (have a title)
-    - pages that are not explicitly search: false
-    - pages that are not explicitly published: false
+  Include pages, posts, and documents from each published collection that:
+    - have a title
+    - are not explicitly search: false
+    - are not explicitly published: false
     (Drafts aren’t output in a normal build anyway)
   {%- endcomment -%}
 
-  {%- assign pages = site.pages | where_exp: "page", "page.title" -%}
+  {%- assign pages = site.pages | concat: site.posts -%}
+  {%- assign pages = pages | concat: site.documentation -%}
+  {%- assign pages = pages | concat: site.examples -%}
+  {%- assign pages = pages | concat: site.installation -%}
+  {%- assign pages = pages | where_exp: "page", "page.title" -%}
   {%- assign pages = pages | where_exp: "page", "page.search != false" -%}
   {%- assign pages = pages | where_exp: "page", "page.published != false" -%}
 

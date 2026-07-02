@@ -95,6 +95,25 @@ records per hit:
 
 Which banks are written is governed by the `HitBitSet` set in `defineReadoutSpecs()`.
 
+### Suppressing detector output
+
+*Upcoming in the next release.*
+
+Use %%no_digitized%% and %%no_true_info%% to disable either output path for selected detectors. Each option
+accepts %%none%% (the default), %%all%%, or a comma- or whitespace-separated list of detector names:
+
+    gemc detector.yaml -no_digitized="ftof, ecal" -no_true_info=dc
+
+- **%%no_digitized%%** prevents %%digitizeHit()%% from running for the selected detectors, so they produce no
+  digitized output. Their true information is still collected unless they are also selected by
+  %%no_true_info%%.
+- **%%no_true_info%%** prevents %%collectTrueInformation()%% from running for the selected detectors. Their
+  digitization routines still run and can produce digitized output.
+
+Use %%all%% to suppress one product globally, or select the same detector with both options to suppress both
+products. Detector names are the names shown in the output's detector field, such as %%flux%%, %%ftof%%, or
+%%ecal%%.
+
 ### Threshold and efficiency rejection
 
 The per-channel **threshold** and detector **efficiency** are applied on the digitized path, **after**

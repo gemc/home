@@ -32,7 +32,7 @@
 		SimpleJekyllSearch({
 			searchInput: searchInput,
 			resultsContainer: resultsContainer,
-			json: '{{ "/search.json" | relative_url }}',
+			json: '{{ "/search.json" | relative_url }}?v={{ site.time | date: "%s" }}',
 			searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
 			noResultsText: '<li class="no-results">No results found</li>',
 			limit: 10,
