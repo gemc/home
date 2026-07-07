@@ -126,7 +126,13 @@ Each is a thin wrapper that returns *keep the hit* unless its system is enrolled
 the plugin override — **`apply_thresholds_impl()`** / **`apply_efficiency_impl()`** — where the detector
 computes the actual comparison. Both are **off by default** and enabled per system with the
 `-applyThresholds` and `-applyInefficiencies` options (each a list of system names, or `all`), resolved once
-at construction. The earlier stepping-level `decisionToSkipHit()` is a separate, simpler filter that only
+at construction. A plugin may mark a policy intrinsic when the reference detector response always applies
+it, in which case GEMC calls that hook without the global option.
+
+Policy hooks should live outside `digitize_hit.cc`, usually in `apply_thresholds.cc` and
+`apply_efficiency.cc`. If a hook needs an intermediate value from digitization, `digitizeHit()` should cache
+it as a transient `GDigitizedData` variable and the hook should read that cached value instead of rerunning
+digitization. The earlier stepping-level `decisionToSkipHit()` is a separate, simpler filter that only
 discards zero-energy steps.
 
 ### Rejected hits and `also_reject_true_info`

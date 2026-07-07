@@ -94,14 +94,14 @@ GDynamicDigitizationFactory(const std::shared_ptr<GOptions>& g) {
 | `digitizeHitImpl(ghit, hitn)` | Produce the digitized bank from an accumulated hit |
 | `collectTrueInformationImpl(ghit, hitn)` | Customize the Monte-Carlo truth bank (default writes the standard truth) |
 | `apply_thresholds_impl(ghit, data)` | Drop a digitized hit below the per-channel threshold |
-| `apply_efficiency_impl(ghit, data)` | Drop a digitized hit that fails the per-channel efficiency draw |
+| `apply_efficiency_impl(ghit, data)` | Drop or mutate a digitized hit that fails the efficiency policy |
 | `decisionToSkipHit(energy)` | Skip a step before any hit is created (default: zero-energy steps) |
 
 The **`apply_thresholds_impl`** and **`apply_efficiency_impl`** hooks run after `digitizeHitImpl`, and
 only when the system is listed in the `-applyThresholds` / `-applyInefficiencies` options (each a system
-list, or `all`; both off by default). Return `true` to drop the hit; a dropped hit also drops its truth
-row when `-also_reject_true_info` is set. See the [Digitization
-Workflow](/home/documentation/sensitivity/workflow) for the full lifecycle.
+list, or `all`; both off by default), unless the plugin marks that policy as intrinsic. Return `true` to
+drop the hit; a dropped hit also drops its truth row when `-also_reject_true_info` is set. See the
+[Digitization Workflow](/home/documentation/sensitivity/workflow) for the full lifecycle.
 
 {% include figure.html
 src="assets/images/documentation/digitization_hooks.svg"
@@ -115,20 +115,55 @@ with -applyThresholds / -applyInefficiencies."
 
 ### apply_thresholds_impl and apply_efficiency_impl
 
-These two hooks apply per-channel **threshold** and **efficiency** rejection to a hit that
-`digitizeHitImpl` already produced. GEMC calls them only when this system is enrolled in
-`-applyThresholds` / `-applyInefficiencies`, so by default every digitized hit is kept:
+These two hooks apply per-channel **threshold** and **efficiency** policy to a hit that
+`digitizeHitImpl` already produced. Keep them in dedicated source files such as
+`apply_thresholds.cc` and `apply_efficiency.cc`, even when the implementation is small. This keeps
+`digitize_hit.cc` responsible for detector response and makes post-digitization rejection auditable.
+
+GEMC calls the hooks only when this system is enrolled in `-applyThresholds` / `-applyInefficiencies`,
+so by default every digitized hit is kept:
 
 ```cpp
 // return true to drop the hit
-bool MyPlugin::apply_thresholds_impl(GHit* ghit, const GDigitizedData* /*data*/) {
+bool MyPlugin::apply_thresholds_impl(GHit* ghit, GDigitizedData* /*data*/) {
     return energyDeposited(ghit) < channelThreshold(ghit);   // below threshold → drop
 }
 
-bool MyPlugin::apply_efficiency_impl(GHit* ghit, const GDigitizedData* /*data*/) {
+bool MyPlugin::apply_efficiency_impl(GHit* ghit, GDigitizedData* /*data*/) {
     return G4UniformRand() > channelEfficiency(ghit);        // failed the draw → drop
 }
 ```
+
+If the threshold or efficiency calculation needs an intermediate value from digitization, cache it as a
+transient variable on `GDigitizedData` and read it back in the policy hook. Transient variables are copied
+with the digitized record but are not written by streamers:
+
+```cpp
+auto data = std::make_unique<GDigitizedData>(gopts, ghit);
+data->includeTransientVariable("myplugin_unrounded_adc", unrounded_adc);
+
+bool MyPlugin::apply_thresholds_impl(GHit*, GDigitizedData* data) {
+    const double adc = data->getTransientVariable("myplugin_unrounded_adc");
+    return adc < threshold;
+}
+```
+
+The hooks receive mutable digitized data because some detector policies suppress only one output quantity
+instead of rejecting the full hit. In that case, update the affected output variable and return `false`:
+
+```cpp
+bool MyPlugin::apply_efficiency_impl(GHit*, GDigitizedData* data) {
+    if (failedDiscriminatorEfficiency(data)) {
+        data->includeVariable("TDC_TDC", 0);
+    }
+    return false;   // keep the hit; only the TDC was suppressed
+}
+```
+
+For detector-response policies that must always run to match the reference implementation, override
+`thresholds_are_intrinsic_impl()` or `efficiencies_are_intrinsic_impl()` to return `true`. Cache only
+deterministic intermediates from `digitizeHitImpl()`. Random draws that decide an efficiency policy belong
+inside `apply_efficiency_impl()`, so digitization remains deterministic and policy-free.
 
 Enable them from the command line with a system list (or `all`):
 

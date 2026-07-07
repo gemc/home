@@ -3,7 +3,11 @@
 Use `scripts/generate_example_assets.py` to regenerate all assets in one step:
 
 ```shell
-# from the repository root — requires ~/venv/pygemc/bin/python
+# from the repository root — plain python3 re-runs itself with ~/venv/pygemc/bin/python if needed
+python3 scripts/generate_example_assets.py                           # all examples
+python3 scripts/generate_example_assets.py CAD                       # selected example
+
+# equivalent explicit commands
 ~/venv/pygemc/bin/python scripts/generate_example_assets.py             # all examples
 ~/venv/pygemc/bin/python scripts/generate_example_assets.py --vtk       # VTK only
 ~/venv/pygemc/bin/python scripts/generate_example_assets.py --screenshots  # screenshots only
@@ -99,6 +103,7 @@ For example, to regenerate only the CLAS12 analyzer plots and update their markd
 |---------|----------|--------|------------|
 | b1 | basic | b1.py | b1 |
 | b2 | basic | b2.py | b2 |
+| cad | basic | cad.py | cad |
 | materials | basic | materials.py | material |
 | scintillator_barrel | basic | scintillator_barrel.py | scintillator_barrel |
 | simple_flux | basic | simple_flux.py | simple_flux |

@@ -186,7 +186,7 @@ Plot the total energy deposited per hit:
 gemc-analyzer barrel_t0_digitized.csv totEdep --kind csv
 ```
 
-![Scintillator Barrel total energy deposited per hit](/home/assets/images/examples/scintillator_barrel/analyzer_totEdep.png){:width="70%"}
+![scintillator_barrel total energy deposited per hit](/home/assets/images/examples/scintillator_barrel/analyzer_totEdep.png){:width="70%"}
 
 Plot the true particle track energy:
 
@@ -194,4 +194,4 @@ Plot the true particle track energy:
 gemc-analyzer barrel_t0_true_info.csv E --kind csv --data true_info
 ```
 
-![Scintillator Barrel true particle track energy](/home/assets/images/examples/scintillator_barrel/analyzer_true_energy.png){:width="70%"}
+![scintillator_barrel true particle track energy](/home/assets/images/examples/scintillator_barrel/analyzer_true_energy.png){:width="70%"}

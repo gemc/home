@@ -9,7 +9,7 @@ Run from the repository root:
     ~/venv/pygemc/bin/python scripts/generate_example_assets.py --vtk       # VTK only
     ~/venv/pygemc/bin/python scripts/generate_example_assets.py --screenshots  # screenshots only
     ~/venv/pygemc/bin/python scripts/generate_example_assets.py --plots     # analyzer plots + md update only
-    ~/venv/pygemc/bin/python scripts/generate_example_assets.py b1 cherenkov   # selected examples
+    ~/venv/pygemc/bin/python scripts/generate_example_assets.py b1 basic/pyvista  # selected examples
 
 Values (source_dir, source_support, gemc_args, vtz_zoom, pyvista-fast, snevents, pevents, to_plot,
 variation_plots, and skip_asset_generation) are read from _data/examples.yml.
@@ -20,13 +20,23 @@ import csv
 import os
 import re
 import shutil
+import sqlite3
 import subprocess
 import sys
 import tempfile
 import textwrap
 from pathlib import Path
 
-import yaml
+PYGEMC_PYTHON = Path("~/venv/pygemc/bin/python").expanduser()
+
+try:
+    import yaml
+except ModuleNotFoundError:
+    if os.environ.get("GEMC_ASSET_REEXEC") != "1" and PYGEMC_PYTHON.exists():
+        env = os.environ.copy()
+        env["GEMC_ASSET_REEXEC"] = "1"
+        os.execvpe(str(PYGEMC_PYTHON), [str(PYGEMC_PYTHON), *sys.argv], env)
+    raise
 
 # ---------------------------------------------------------------------------
 # Paths
@@ -37,10 +47,10 @@ SRC_EXAMPLES  = Path("/opt/projects/gemc/src/examples")
 ASSETS_ROOT   = REPO_ROOT / "assets" / "images" / "examples"
 GEMC          = Path("/opt/projects/gemc/src/build/bin/gemc")
 PYGEMC_SRC    = Path("/opt/projects/gemc/pygemc/src")
-PYGEMC_PYTHON = Path("~/venv/pygemc/bin/python").expanduser()
 GEMC_ANALYZER = Path("~/venv/pygemc/bin/gemc-analyzer").expanduser()
 
 G4VIEW = "[{driver: TOOLSSG_OFFSCREEN, segsPerCircle: 200}]"
+SCREENSHOT_GEMC_ARGS = ["-no_digitized=all"]
 
 # ---------------------------------------------------------------------------
 # Analyzer variable config: var → (data_stream, column, extra_cli, img_stem, description)
@@ -132,6 +142,8 @@ def _pygemc_env() -> dict:
     env = os.environ.copy()
     env["PYTHONPATH"] = str(PYGEMC_SRC)
     env["MPLCONFIGDIR"] = "/private/tmp/matplotlib-cache"
+    env["PYVISTA_OFF_SCREEN"] = "true"
+    env["VTK_DEFAULT_RENDER_WINDOW_OFFSCREEN"] = "1"
     return env
 
 
@@ -194,6 +206,10 @@ def resolve_plot_config(src_dir: Path, csv_base: str, var: str) -> PlotConfig | 
     if csv_has_column(csv_file, col):
         return config
 
+    merged_csv = src_dir / f"{csv_base}_{data_stream}.csv"
+    if csv_has_column(merged_csv, col):
+        return (f"{data_stream}_merged", col, extra, img_stem, desc)
+
     if var == "totEdep":
         true_csv = src_dir / f"{csv_base}_t0_true_info.csv"
         if csv_has_column(true_csv, "totEdep"):
@@ -229,15 +245,54 @@ def _quote_cmd(cmd: list[str]) -> str:
     return " ".join(_q(c) for c in cmd)
 
 
+def _disable_sqlite_digitization(src_dir: Path) -> Path | None:
+    """Clear volume digitization in the temporary gemc.db and return a backup path."""
+    db = src_dir / "gemc.db"
+    if not db.exists():
+        return None
+    backup = src_dir / "gemc.db.with_digitization"
+    shutil.copy2(db, backup)
+    try:
+        with sqlite3.connect(db) as conn:
+            tables = {
+                row[0]
+                for row in conn.execute("SELECT name FROM sqlite_master WHERE type = 'table'")
+            }
+            if "geometry" not in tables:
+                return backup
+            columns = {
+                row[1]
+                for row in conn.execute("PRAGMA table_info(geometry)")
+            }
+            if "digitization" in columns:
+                conn.execute("UPDATE geometry SET digitization = ''")
+                conn.commit()
+    except sqlite3.Error as exc:
+        print(f"  WARNING: could not disable sqlite digitization for screenshot: {exc}")
+    return backup
+
+
+def _restore_sqlite_digitization_backup(src_dir: Path, backup: Path | None) -> None:
+    """Restore the temporary gemc.db after a screenshot run."""
+    if not backup:
+        return
+    shutil.copy2(backup, src_dir / "gemc.db")
+    backup.unlink()
+
+
 def run_screenshot(src_dir: Path, yaml_file: Path, asset_dir: Path, n: int,
                    extra_args: list[str] | None = None) -> bool:
     """Run gemc with TOOLSSG_OFFSCREEN and save gemc_run_1.png as gemc_view.png."""
-    cmd = [str(GEMC), yaml_file.name, f"-g4view={G4VIEW}", f"-n={n}"]
+    cmd = [str(GEMC), yaml_file.name, f"-g4view={G4VIEW}", f"-n={n}", *SCREENSHOT_GEMC_ARGS]
     if extra_args:
         cmd += extra_args
     print(f"  screenshot gemc_view.png  (n={n})", flush=True)
     print(f"  {_quote_cmd(cmd)}", flush=True)
-    result = subprocess.run(cmd, cwd=src_dir, capture_output=True, text=True)
+    backup = _disable_sqlite_digitization(src_dir)
+    try:
+        result = subprocess.run(cmd, cwd=src_dir, capture_output=True, text=True)
+    finally:
+        _restore_sqlite_digitization_backup(src_dir, backup)
     if result.returncode != 0:
         print(f"  ERROR: gemc exited {result.returncode}")
         print(result.stderr[-400:])
@@ -273,9 +328,11 @@ def run_vtk(src_dir: Path, py_script: Path, yaml_file: Path,
     elif pyvista_fast is False:
         cmd.append("--no-pyvista-fast")
     print(f"  VTK  {stem}.vtksz  (pvz={pvz}, fast={pyvista_fast})", flush=True)
+    vtksz = Path(str(out_base) + ".vtksz")
+    if vtksz.exists():
+        vtksz.unlink()
     result = subprocess.run(cmd, cwd=src_dir, env=_pygemc_env(),
                             capture_output=True, text=True)
-    vtksz = Path(str(out_base) + ".vtksz")
     if not vtksz.exists():
         print(f"  ERROR: {vtksz} not produced")
         print(result.stderr[-400:])
@@ -311,13 +368,15 @@ def run_single_plot(src_dir: Path, csv_base: str, var: str,
         print(f"  WARNING: unknown plot variable '{var}', skipping")
         return None
     data_stream, col, extra, img_stem, desc = config
-    csv_file = f"{csv_base}_t0_{data_stream}.csv"
+    merged_stream = data_stream.endswith("_merged")
+    base_stream = data_stream.removesuffix("_merged")
+    csv_file = f"{csv_base}_{base_stream}.csv" if merged_stream else f"{csv_base}_t0_{data_stream}.csv"
     save_path = asset_dir / f"{img_stem}.png"
 
     cmd = [str(GEMC_ANALYZER), csv_file, "--kind", "csv"]
     if col:
         cmd.insert(2, col)
-    if data_stream == "true_info":
+    if base_stream == "true_info":
         cmd += ["--data", "true_info"]
     cmd += extra
     cmd += ["--save", str(save_path)]
@@ -367,13 +426,15 @@ def build_analyzer_section(slug: str, yaml_name: str, csv_base: str,
 
     for var, config in plot_entries:
         data_stream, col, extra, img_stem, desc = config
-        csv_file = f"{csv_base}_t0_{data_stream}.csv"
+        merged_stream = data_stream.endswith("_merged")
+        base_stream = data_stream.removesuffix("_merged")
+        csv_file = f"{csv_base}_{base_stream}.csv" if merged_stream else f"{csv_base}_t0_{data_stream}.csv"
 
         parts = ["gemc-analyzer", csv_file]
         if col:
             parts.append(col)
         parts += ["--kind", "csv"]
-        if data_stream == "true_info":
+        if base_stream == "true_info":
             parts += ["--data", "true_info"]
         parts += extra
 
@@ -515,10 +576,17 @@ def run_variation_screenshot(src_dir: Path, yaml_file: Path, asset_dir: Path,
                              label: str, n: int, gemc_args: list[str]) -> bool:
     """Run gemc for one variation and save gemc_run_1.png as <label>.png."""
     gsys = _gsystem_arg(system_name, variation)
-    cmd  = [str(GEMC), yaml_file.name, f"-g4view={G4VIEW}", f"-n={n}", gsys] + gemc_args
+    cmd = [
+        str(GEMC), yaml_file.name, f"-g4view={G4VIEW}", f"-n={n}", gsys,
+        *SCREENSHOT_GEMC_ARGS, *gemc_args,
+    ]
     print(f"  variation screenshot {label}.png  ({variation}, n={n})", flush=True)
     print(f"  {_quote_cmd(cmd)}", flush=True)
-    result = subprocess.run(cmd, cwd=src_dir, capture_output=True, text=True)
+    backup = _disable_sqlite_digitization(src_dir)
+    try:
+        result = subprocess.run(cmd, cwd=src_dir, capture_output=True, text=True)
+    finally:
+        _restore_sqlite_digitization_backup(src_dir, backup)
     if result.returncode != 0:
         print(f"  ERROR: gemc exited {result.returncode}")
         print(result.stderr[-400:])
@@ -721,7 +789,7 @@ def main():
     parser.add_argument("--screenshots", action="store_true", help="Screenshots only")
     parser.add_argument("--plots",       action="store_true", help="Analyzer plots only")
     parser.add_argument("examples", nargs="*",
-                        help="Titles to process (default: all; case-insensitive)")
+                        help="Titles or paths such as basic/b1 to process (default: all)")
     args = parser.parse_args()
 
     any_flag       = args.vtk or args.screenshots or args.plots
@@ -730,13 +798,37 @@ def main():
     do_plots       = args.plots       or not any_flag
 
     def normalise(s: str) -> str:
-        return s.lower().replace(" ", "_").replace("-", "_")
+        s = s.strip().lower().replace("\\", "/").replace(" ", "_").replace("-", "_")
+        return s.strip("/")
+
+    def example_keys(ex: dict) -> set[str]:
+        keys = {normalise(ex.get("title", ""))}
+        category = normalise(ex.get("category", ""))
+        vtksz = ex.get("vtksz", "")
+        if vtksz:
+            slug, stem = parse_vtksz_path(vtksz)
+            keys.update({normalise(slug), normalise(stem)})
+            if category:
+                keys.update({f"{category}/{normalise(slug)}", f"{category}/{normalise(stem)}"})
+
+        source_dir = normalise(ex.get("source_dir", ""))
+        if source_dir:
+            keys.add(source_dir)
+            if source_dir.startswith("examples/"):
+                keys.add(source_dir.removeprefix("examples/"))
+
+        link = normalise(ex.get("link", ""))
+        if link:
+            keys.add(link)
+            if link.startswith("home/examples/"):
+                keys.add(link.removeprefix("home/examples/"))
+        return {key for key in keys if key}
 
     filter_set   = {normalise(t) for t in args.examples}
     all_examples = load_examples()
     matching_examples = [
         ex for ex in all_examples
-        if not filter_set or normalise(ex.get("title", "")) in filter_set
+        if not filter_set or example_keys(ex) & filter_set
     ]
     skipped_targets = [
         ex for ex in matching_examples

@@ -15,6 +15,10 @@
   category: "API"
   link: "/home/documentation/api/analyzer"
 
+- title: "Cure Mesh"
+  category: "API"
+  link: "/home/documentation/api/cure_mesh"
+
 - title: "Options"
   category: "API"
   link: "/home/documentation/api/options"

@@ -18,6 +18,12 @@ New features, improvements, and issue resolutions planned for the next release.
 Included are the milestones for [pygemc](https://github.com/gemc/pygemc) 
 and [clas12-systems](https://github.com/gemc/clas12-systems).
 
+Highlights include the post-digitization threshold and efficiency policy API in GEMC core: plugins can
+cache deterministic transient `GDigitizedData` values, apply detector-intrinsic policies after
+digitization, and keep efficiency random draws inside `apply_efficiency_impl`. The CLAS12 DC, ECAL/PCAL,
+and FTOF plugins use this split so `digitize_hit.cc` builds detector observables while dedicated
+`apply_thresholds.cc` / `apply_efficiency.cc` files own the policy decisions.
+
 See also the [Project Roadmap](https://github.com/orgs/gemc/projects/1/views/4).
 
 

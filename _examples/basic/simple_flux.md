@@ -170,7 +170,7 @@ Plot the total energy deposited per hit:
 gemc-analyzer simple_flux_t0_digitized.csv totEdep --kind csv
 ```
 
-![Simple Flux total energy deposited per hit](/home/assets/images/examples/simple_flux/analyzer_totEdep.png){:width="70%"}
+![simple_flux total energy deposited per hit](/home/assets/images/examples/simple_flux/analyzer_totEdep.png){:width="70%"}
 
 Plot the true particle track energy:
 
@@ -178,4 +178,4 @@ Plot the true particle track energy:
 gemc-analyzer simple_flux_t0_true_info.csv E --kind csv --data true_info
 ```
 
-![Simple Flux true particle track energy](/home/assets/images/examples/simple_flux/analyzer_true_energy.png){:width="70%"}
+![simple_flux true particle track energy](/home/assets/images/examples/simple_flux/analyzer_true_energy.png){:width="70%"}

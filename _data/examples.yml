@@ -46,6 +46,19 @@
   pevents: 1000
   to_plot: totEdep, E, delta_theta
 
+- title: "CAD"
+  header: "Imports STL organ meshes with the CAD factory and records dose per organ"
+  category: "basic"
+  link: "/home/examples/basic/cad"
+  display: true
+  vtz_zoom: 0.008
+  pyvista-fast: false
+  gallery: true
+  vtksz: "/home/assets/images/examples/cad/cad.vtksz"
+  snevents: 10
+  pevents: 20
+  to_plot: dose
+
 - title: "Materials"
   header: "Demonstrates Geant4 built-in materials, custom compositions, and optical properties"
   category: "basic"
@@ -82,7 +95,7 @@
   category: "basic"
   link: "/home/examples/basic/pyvista"
   display: false
-  vtz_zoom: 0.12
+  vtz_zoom: 0.3
   pyvista-fast: false
   vtksz: "/home/assets/images/examples/pyvista/pyvista.vtksz"
 
