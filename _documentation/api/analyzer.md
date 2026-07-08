@@ -27,7 +27,8 @@ ROOT prerequisites:
 - The run must use %%gstreamer%% format %%root%%.
 - Reading ROOT files from Python does not require importing C++ ROOT; the analyzer uses `uproot`.
 
-The dependency-free SVG helper in `pygemc.analyzer.svg_plot` only uses the Python standard library. It is useful on minimal systems where `pandas`, `numpy`, and `matplotlib` are not installed.
+The dependency-free SVG helper in `pygemc.analyzer.svg_plot` only uses the Python standard library. It is
+useful on minimal systems where `pandas`, `numpy`, and `matplotlib` are not installed.
 
 ## GEMC Output Model
 
@@ -69,9 +70,14 @@ The true-info output includes tracking columns like:
 processName, avgTime, avgx, avgy, avgz, hitn, pid, tid, mtid, vx, vy, vz, mvx, mvy, mvz, totalEDeposited
 ```
 
-When the matching digitized CSV is available, the analyzer also adds %%E%% to true-info tables by matching rows on event, detector, hit, PID, and track ID. In that case %%E%% is the track total energy, while %%totalEDeposited%% remains the deposited energy.
+When the matching digitized CSV is available, the analyzer also adds %%E%% to true-info tables by matching rows
+on event, detector, hit, PID, and track ID. In that case %%E%% is the track total energy, while
+%%totalEDeposited%% remains the deposited energy.
 
-The %%vx%%, %%vy%%, and %%vz%% columns are the current track vertex coordinates. The %%mvx%%, %%mvy%%, and %%mvz%% columns are the mother-track vertex coordinates when the mother track was available to GEMC hit processing; otherwise they use the GEMC uninitialized numeric sentinel. The %%mtid%% column stores the mother track ID.
+The %%vx%%, %%vy%%, and %%vz%% columns are the current track vertex coordinates. The %%mvx%%, %%mvy%%, and
+%%mvz%% columns are the mother-track vertex coordinates when the mother track was available to GEMC hit
+processing; otherwise they use the GEMC uninitialized numeric sentinel. The %%mtid%% column stores the mother
+track ID.
 
 ### Original-Track Differences
 
@@ -107,22 +113,22 @@ produce a small angular difference instead of a value close to 2 pi.
 List the derived quantities available in a true-information CSV:
 
 ```sh
-gemc-analyzer b2_t0_true_info.csv --data true_info
+gemc-analyzer b2_t0_true_info.csv
 ```
 
 Plot each difference:
 
 ```sh
-gemc-analyzer b2_t0_true_info.csv delta_p --data true_info
-gemc-analyzer b2_t0_true_info.csv delta_theta --data true_info
-gemc-analyzer b2_t0_true_info.csv delta_phi --data true_info
+gemc-analyzer b2_t0_true_info.csv delta_p
+gemc-analyzer b2_t0_true_info.csv delta_theta
+gemc-analyzer b2_t0_true_info.csv delta_phi
 ```
 
 Use `--pid` to select one particle species. The B2 configuration generates protons, so its valid original-track
 delta rows have PDG particle ID 2212:
 
 ```sh
-gemc-analyzer b2_t0_true_info.csv delta_p --data true_info --pid 2212
+gemc-analyzer b2_t0_true_info.csv delta_p --pid 2212
 ```
 
 A PID with no eligible delta rows displays a concise `No plot created` message and exits normally. For example,
@@ -137,7 +143,8 @@ output = read_output("b2_t0_true_info.csv")
 plot_variable(output, "delta_p", data="true_info", pid=2212, show=True)
 ```
 
-When the run uses generated particles, the CSV streamer also writes a per-thread `generated_tracked` file holding the generated particle kinematics:
+When the run uses generated particles, the CSV streamer also writes a per-thread `generated_tracked` file
+holding the generated particle kinematics:
 
 ```text
 b2_t0_generated_tracked.csv
@@ -149,9 +156,12 @@ It includes columns like:
 evn, timestamp, thread_id, bank, name, pid, type, multiplicity, p, theta, phi, vx, vy, vz
 ```
 
-The analyzer reads it into the `generated_tracked` stream, exposing `p` (momentum), `theta`, and `phi` for plotting. When the selected stream is empty or lacks one of these, `plot_variable()` falls back to `generated_tracked` automatically.
+The analyzer reads it into the `generated_tracked` stream, exposing %%p%% (momentum), %%theta%%, and %%phi%%
+for plotting. When the selected stream is empty or lacks a requested plottable quantity, the command-line
+analyzer and `plot_variable()` look through the other loaded streams automatically.
 
-The ROOT streamer writes one ROOT file per worker thread. For one thread and %%filename: b2%%, the file is typically:
+The ROOT streamer writes one ROOT file per worker thread. For one thread and %%filename: b2%%, the file is
+typically:
 
 ```text
 b2_t0.root
@@ -237,25 +247,33 @@ Print a summary:
 gemc-analyzer digitized.csv
 ```
 
+Upcoming in the next release: `gemc-analyzer` infers CSV and ROOT input from file extensions. The `--kind`
+option is still accepted as a compatibility override, but normal command lines do not need it.
+
 ### Discovering Plottable Quantities
 
 The quantities available to plot are the numeric columns of the file you load, so they are only known after
 the data is read. They are not part of `--help`, which is the static argument list printed before any file is
 opened.
 
-To see them, run the analyzer without a variable. The summary is followed by a `plottable <stream>: ...` line
-for each stream that is present:
+To see them, run the analyzer without a variable, or use `--list` explicitly. The summary includes row counts
+and, when an %%evn%% column is present, event counts. It is followed by a `plottable <stream>: ...` line for
+each stream that is present:
 
 ```sh
 gemc-analyzer digitized.csv
+gemc-analyzer digitized.csv --list
 ```
 
 ```text
+source: digitized.csv
+digitized: digitized(1200 rows, 1000 events)
 plottable digitized: E, evn, hitn, pid, tid, time, totEdep
 plottable generated_tracked: evn, multiplicity, p, phi, pid, theta
 ```
 
-Then plot a name from that list, for example the generated momentum:
+Then plot a name from that list, for example the generated momentum. If a name is not present in the default
+stream, the analyzer searches the other loaded streams before reporting an error:
 
 ```sh
 gemc-analyzer b2_t0_generated_tracked.csv p
@@ -264,30 +282,37 @@ gemc-analyzer b2_t0_generated_tracked.csv p
 Plot a digitized variable with matplotlib:
 
 ```sh
-gemc-analyzer digitized.csv totEdep --kind csv --xlim 0.0 0.1
+gemc-analyzer digitized.csv totEdep --xlim 0.0 0.1
 ```
 
 Save a plot instead of showing it:
 
 ```sh
-gemc-analyzer digitized.csv totEdep --kind csv --save b2_totEdep.png
+gemc-analyzer digitized.csv totEdep --save b2_totEdep.png
 ```
 
 Plot ROOT output with matplotlib:
 
 ```sh
-gemc-analyzer b2_t0.root totEdep --kind root --detector flux --save b2_totEdep.png
+gemc-analyzer b2_t0.root totEdep --detector flux --save b2_totEdep.png
 ```
 
 Plot a true-info track vertex coordinate:
 
 ```sh
-gemc-analyzer true_info.csv vx --kind csv --data true_info --save b2_vertex_x.png
+gemc-analyzer true_info.csv vx --save b2_vertex_x.png
 ```
 
-Plot the generated particle quantities. A `.csv` file is auto-detected, and the generated `p`, `theta`, and
-`phi` resolve from the `generated_tracked` stream automatically, so neither `--kind csv` nor `--data
-generated_tracked` is needed:
+Plot true hit positions in the y-vs-x plane. Upcoming in the next release: the command searches loaded streams
+for the requested %%avgx%% and %%avgy%% columns, so `--data true_info` is not needed for the usual
+true-information CSV file:
+
+```sh
+gemc-analyzer true_info.csv --plot yvsx --xlim -20 20 --ylim -20 20 --save b2_yvsx.png
+```
+
+Plot the generated particle quantities. A `.csv` file is auto-detected, and the generated %%p%%, %%theta%%, and
+%%phi%% resolve from the `generated_tracked` stream automatically:
 
 ```sh
 gemc-analyzer b2_t0_generated_tracked.csv p --save b2_gen_p.png
@@ -304,7 +329,7 @@ YAML file.
 Plot the total energy deposited in the B2 digitized output:
 
 ```sh
-gemc-analyzer digitized.csv totEdep --kind csv --bins 50
+gemc-analyzer digitized.csv totEdep --bins 50
 ```
 
 ![B2 digitized total energy deposited histogram](/home/assets/images/documentation/analyzer/analyzer_b2_totEdep.png){:width="70%"}
@@ -312,7 +337,7 @@ gemc-analyzer digitized.csv totEdep --kind csv --bins 50
 Plot the true-info track energy in the B2 output:
 
 ```sh
-gemc-analyzer true_info.csv E --kind csv --data true_info --bins 50
+gemc-analyzer true_info.csv E --bins 50
 ```
 
 ![B2 true-info track energy histogram](/home/assets/images/documentation/analyzer/analyzer_b2_true_energy.png){:width="70%"}
@@ -320,7 +345,7 @@ gemc-analyzer true_info.csv E --kind csv --data true_info --bins 50
 Plot the total energy deposited in the simple_flux digitized output:
 
 ```sh
-gemc-analyzer digitized.csv totEdep --kind csv --bins 50
+gemc-analyzer digitized.csv totEdep --bins 50
 ```
 
 ![simple_flux digitized total energy deposited histogram](/home/assets/images/documentation/analyzer/analyzer_simple_flux_totEdep.png){:width="70%"}
@@ -328,7 +353,7 @@ gemc-analyzer digitized.csv totEdep --kind csv --bins 50
 Plot the hit time in the simple_flux digitized output:
 
 ```sh
-gemc-analyzer digitized.csv time --kind csv --bins 50
+gemc-analyzer digitized.csv time --bins 50
 ```
 
 ![simple_flux digitized hit time histogram](/home/assets/images/documentation/analyzer/analyzer_simple_flux_time.png){:width="70%"}
@@ -336,7 +361,7 @@ gemc-analyzer digitized.csv time --kind csv --bins 50
 Plot the particle energy in the cherenkov digitized output:
 
 ```sh
-gemc-analyzer digitized.csv E --kind csv --bins 50
+gemc-analyzer digitized.csv E --bins 50
 ```
 
 ![cherenkov digitized particle energy histogram](/home/assets/images/documentation/analyzer/analyzer_cherenkov_energy.png){:width="70%"}
@@ -344,7 +369,7 @@ gemc-analyzer digitized.csv E --kind csv --bins 50
 Plot the hit time in the cherenkov digitized output:
 
 ```sh
-gemc-analyzer digitized.csv time --kind csv --bins 50
+gemc-analyzer digitized.csv time --bins 50
 ```
 
 ![cherenkov digitized hit time histogram](/home/assets/images/documentation/analyzer/analyzer_cherenkov_time.png){:width="70%"}
@@ -422,7 +447,7 @@ evn, timestamp, thread_id, detector, hitn, pid, tid, E, time, totEdep
 Create the %%totEdep%% plot with the main analyzer API:
 
 ```sh
-gemc-analyzer digitized.csv totEdep --kind csv --save b2_totEdep.png
+gemc-analyzer digitized.csv totEdep --save b2_totEdep.png
 ```
 
 Or create the same style of histogram without third-party Python packages:
@@ -473,13 +498,13 @@ plot_variable(
 The Python inspection step is not required for plotting. To plot directly from the command line, use:
 
 ```sh
-gemc-analyzer b2_t0.root totEdep --kind root --detector flux --save b2_root_totEdep.png
+gemc-analyzer b2_t0.root totEdep --detector flux --save b2_root_totEdep.png
 ```
 
 If matplotlib reports that its default cache directory is not writable, set a writable `MPLCONFIGDIR`:
 
 ```sh
-MPLCONFIGDIR=. gemc-analyzer b2_t0.root totEdep --kind root --detector flux --save b2_root_totEdep.png
+MPLCONFIGDIR=. gemc-analyzer b2_t0.root totEdep --detector flux --save b2_root_totEdep.png
 ```
 
 ## Extending Readers
