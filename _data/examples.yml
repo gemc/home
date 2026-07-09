@@ -64,7 +64,7 @@
   category: "basic"
   link: "/home/examples/basic/boolean_solids"
   display: true
-  vtz_zoom: 0.002
+  vtz_zoom: 0.005
   pyvista-fast: false
   gallery: true
   vtksz: "/home/assets/images/examples/boolean_solids/boolean_solids.vtksz"
