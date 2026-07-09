@@ -16,7 +16,7 @@ python3 scripts/generate_example_assets.py CAD                       # selected 
 ```
 
 The script reads `source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, `pyvista-fast`, `snevents`,
-`pevents`, `to_plot`, and `skip_asset_generation` from `_data/examples.yml` automatically.
+`pevents`, `to_plot`, `panel_yvsx`, and `skip_asset_generation` from `_data/examples.yml` automatically.
 The gemc binary is at `/opt/projects/gemc/src/build/bin/gemc` (no module load needed at runtime).
 
 Examples normally come from `/opt/projects/gemc/src/examples/<category>/<example>`. Entries with
@@ -108,13 +108,15 @@ For example, to regenerate only the CLAS12 analyzer plots and update their markd
 | scintillator_barrel | basic | scintillator_barrel.py | scintillator_barrel |
 | simple_flux | basic | simple_flux.py | simple_flux |
 | cherenkov | optical | cherenkov.py | cherenkov |
+| mirrors | optical | mirrors.py | mirrors |
+| parabolic_mirror | optical | parabolic_mirror.py | parabolic_mirror |
 | dc | clas12 | dc.py | dc |
 | ec | clas12 | ec.py | ec |
 | pcal | clas12 | pcal.py | pcal |
 | ftof | clas12 | ftof.py | ftof |
 
-`source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, `pyvista-fast`, `snevents`, and
-`pevents`, `to_plot`, and `skip_asset_generation` live in `_data/examples.yml` - do not duplicate them here.
+`source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, `pyvista-fast`, `snevents`, `pevents`,
+`to_plot`, `panel_yvsx`, and `skip_asset_generation` live in `_data/examples.yml` - do not duplicate them here.
 
 
 # Generate pyvista solids

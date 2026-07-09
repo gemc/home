@@ -12,7 +12,7 @@ Run from the repository root:
     ~/venv/pygemc/bin/python scripts/generate_example_assets.py b1 basic/pyvista  # selected examples
 
 Values (source_dir, source_support, gemc_args, vtz_zoom, pyvista-fast, snevents, pevents, to_plot,
-variation_plots, and skip_asset_generation) are read from _data/examples.yml.
+panel_yvsx, variation_plots, and skip_asset_generation) are read from _data/examples.yml.
 """
 
 import argparse
@@ -311,6 +311,115 @@ def run_screenshot(src_dir: Path, yaml_file: Path, asset_dir: Path, n: int,
 # VTK
 # ---------------------------------------------------------------------------
 
+CAD_VTK_EXPORTER = r"""
+import argparse
+import sys
+
+from pygemc.api.gcad import _build_gvolume, load_cad_document
+from pygemc.api.gconfiguration import GConfiguration, get_arguments
+from pygemc.api.gvolume import GVolume
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cad-file", required=True)
+    parser.add_argument("--yaml-file", required=True)
+    parser.add_argument("--out-base", required=True)
+    parser.add_argument("--zoom", type=float, required=True)
+    parser.add_argument("--pyvista-fast", choices=("true", "false", "auto"), default="auto")
+    ns = parser.parse_args()
+
+    doc = load_cad_document(ns.cad_file)
+    if not isinstance(doc, dict):
+        sys.exit(f"CAD file {ns.cad_file} did not parse into a mapping")
+
+    system = doc.get("system")
+    if not system:
+        sys.exit(f"CAD file {ns.cad_file} is missing the required 'system' key")
+
+    args = get_arguments([])
+    args.read_yaml = ns.yaml_file
+    args.dbhost = "gemc.db"
+    args.factory = "sqlite"
+    args.variation = doc.get("variation") or "default"
+    args.run = doc.get("run", 1)
+    args.pyvista = False
+    args.pyvista_background = False
+    args.pyvista_vtksz = ns.out_base
+    args.pyvista_vtksz_zoom = ns.zoom
+    if ns.pyvista_fast == "true":
+        args.pyvista_fast = True
+    elif ns.pyvista_fast == "false":
+        args.pyvista_fast = False
+
+    cfg = GConfiguration(
+        doc.get("experiment") or system,
+        system,
+        args=args,
+        enable_pyvista=True,
+        use_background_plotter=False,
+        pyvista_vtksz=ns.out_base,
+    )
+
+    defaults = doc.get("defaults") or {}
+    cad_dir = doc.get("cad_dir", "cad")
+    extension = str(doc.get("extension", "stl")).lstrip(".")
+    for entry in doc.get("volumes") or []:
+        volume = _build_gvolume(GVolume, entry, defaults, cad_dir, extension, ".")
+        volume.publish(cfg)
+
+    cfg.export_vtksz(ns.out_base, zoom=ns.zoom)
+    cfg.close()
+
+
+if __name__ == "__main__":
+    main()
+"""
+
+
+def _print_command_excerpt(result: subprocess.CompletedProcess[str]) -> None:
+    """Print concise subprocess output when an asset command fails."""
+    for stream_name, content in (("stderr", result.stderr), ("stdout", result.stdout)):
+        excerpt = (content or "").strip()
+        if excerpt:
+            print(f"  {stream_name}:")
+            print(textwrap.indent(excerpt[-1200:], "    "))
+
+
+def find_cad_definition(src_dir: Path) -> Path | None:
+    """Return the CAD definition YAML for CAD-only examples, if present."""
+    stls_dir = src_dir / "stls"
+    if not stls_dir.is_dir():
+        return None
+    candidates = sorted(stls_dir.glob("*__*.yaml")) or sorted(stls_dir.glob("*.yaml"))
+    return candidates[0] if candidates else None
+
+
+def run_cad_vtk(src_dir: Path, cad_file: Path, yaml_file: Path,
+                asset_dir: Path, stem: str, pvz: float,
+                pyvista_fast: bool | None = None) -> bool:
+    """Export a CAD-only example through pygemc's CAD loader."""
+    out_base = asset_dir / stem
+    vtksz = Path(str(out_base) + ".vtksz")
+    fast = "auto" if pyvista_fast is None else str(pyvista_fast).lower()
+    cmd = [
+        str(PYGEMC_PYTHON), "-c", CAD_VTK_EXPORTER,
+        "--cad-file", str(cad_file.relative_to(src_dir)),
+        "--yaml-file", yaml_file.name,
+        "--out-base", str(out_base),
+        "--zoom", str(pvz),
+        "--pyvista-fast", fast,
+    ]
+    print(f"  CAD VTK fallback: {cad_file.relative_to(src_dir)}", flush=True)
+    result = subprocess.run(cmd, cwd=src_dir, env=_pygemc_env(),
+                            capture_output=True, text=True)
+    if not vtksz.exists():
+        print(f"  ERROR: CAD fallback did not produce {vtksz}")
+        _print_command_excerpt(result)
+        return False
+    print(f"  → {vtksz}")
+    return True
+
 def run_vtk(src_dir: Path, py_script: Path, yaml_file: Path,
             asset_dir: Path, stem: str, pvz: float,
             pyvista_fast: bool | None = None) -> bool:
@@ -334,8 +443,11 @@ def run_vtk(src_dir: Path, py_script: Path, yaml_file: Path,
     result = subprocess.run(cmd, cwd=src_dir, env=_pygemc_env(),
                             capture_output=True, text=True)
     if not vtksz.exists():
+        cad_file = find_cad_definition(src_dir)
+        if cad_file is not None:
+            return run_cad_vtk(src_dir, cad_file, yaml_file, asset_dir, stem, pvz, pyvista_fast)
         print(f"  ERROR: {vtksz} not produced")
-        print(result.stderr[-400:])
+        _print_command_excerpt(result)
         return False
     print(f"  → {vtksz}")
     return True
@@ -393,6 +505,109 @@ def run_single_plot(src_dir: Path, csv_base: str, var: str,
     return config
 
 
+def _slugify_label(label: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", label.lower()).strip("_")
+
+
+def _read_panel_yvsx(csv_path: Path, panel: int) -> list[tuple[float, float]]:
+    """Read avgx/avgy points in cm for one gPhotonDetector panel."""
+    points: list[tuple[float, float]] = []
+    with open(csv_path, newline="") as f:
+        reader = csv.DictReader(f, skipinitialspace=True)
+        for row in reader:
+            try:
+                if int(row.get("panel", "-1")) != panel:
+                    continue
+                points.append((float(row["avgx"]) / 10.0, float(row["avgy"]) / 10.0))
+            except (KeyError, TypeError, ValueError):
+                continue
+    return points
+
+
+def _expanded_limits(values: list[float]) -> tuple[float, float]:
+    if not values:
+        return -1.0, 1.0
+    low = min(values)
+    high = max(values)
+    span = high - low
+    pad = max(span * 0.08, 0.5)
+    return low - pad, high + pad
+
+
+def run_panel_yvsx_plots(ex: dict, src_dir: Path, csv_base: str,
+                         asset_dir: Path, slug: str, md_path: Path | None) -> None:
+    """Create one y-vs-x PNG per configured detector panel, annotated with hit counts."""
+    panels = ex.get("panel_yvsx", [])
+    if not panels:
+        return
+
+    csv_path = src_dir / f"{csv_base}_t0_true_info.csv"
+    if not csv_path.exists():
+        print(f"  WARNING: {csv_path.name} not found, skipping panel y-vs-x plots")
+        return
+
+    panel_points: list[dict] = []
+    for panel_cfg in panels:
+        panel = panel_cfg.get("panel")
+        if panel is None:
+            continue
+        try:
+            panel_id = int(panel)
+        except (TypeError, ValueError):
+            continue
+        label = _slugify_label(panel_cfg.get("label", f"panel_{panel_id}"))
+        name = panel_cfg.get("name", f"panel {panel_id}")
+        points = _read_panel_yvsx(csv_path, panel_id)
+        panel_points.append({
+            "panel": panel_id,
+            "label": label,
+            "name": name,
+            "points": points,
+        })
+
+    all_x = [x for entry in panel_points for x, _ in entry["points"]]
+    all_y = [y for entry in panel_points for _, y in entry["points"]]
+    xlim = _expanded_limits(all_x)
+    ylim = _expanded_limits(all_y)
+
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    asset_dir.mkdir(parents=True, exist_ok=True)
+    for entry in panel_points:
+        xvals = [x for x, _ in entry["points"]]
+        yvals = [y for _, y in entry["points"]]
+        count = len(entry["points"])
+        save_path = asset_dir / f"{entry['label']}_panel_y_vs_x.png"
+
+        fig, ax = plt.subplots(figsize=(5.6, 4.8), dpi=150)
+        ax.scatter(xvals, yvals, s=7, alpha=0.55, edgecolors="none", color="#1f77b4")
+        ax.set_title(f"{entry['name']} (panel {entry['panel']})")
+        ax.set_xlabel("x [cm]")
+        ax.set_ylabel("y [cm]")
+        ax.set_xlim(*xlim)
+        ax.set_ylim(*ylim)
+        ax.set_aspect("equal", adjustable="box")
+        ax.grid(True, alpha=0.25)
+        ax.text(
+            0.03, 0.97, f"counts = {count:,}",
+            transform=ax.transAxes,
+            ha="left",
+            va="top",
+            fontsize=10,
+            bbox={"boxstyle": "round,pad=0.25", "facecolor": "white", "alpha": 0.85,
+                  "edgecolor": "#c7c7c7"},
+        )
+        fig.tight_layout()
+        fig.savefig(save_path)
+        plt.close(fig)
+        print(f"  → {save_path}")
+
+    if md_path and md_path.exists() and panel_points:
+        update_panel_yvsx_section(md_path, slug, panel_points)
+
+
 def _fmt_n(n: int) -> str:
     return f"{n:,}"
 
@@ -438,6 +653,7 @@ def build_analyzer_section(slug: str, yaml_name: str, csv_base: str,
             parts += ["--data", "true_info"]
         parts += extra
 
+        img_ref = f"{slug}-{img_stem}"
         img_path = f"/home/assets/images/examples/{slug}/{img_stem}.png"
         lines.append(f"\nPlot the {desc}:\n")
         if var == "delta_theta":
@@ -448,9 +664,65 @@ def build_analyzer_section(slug: str, yaml_name: str, csv_base: str,
             )
             lines.append(f"\n{textwrap.fill(note, width=112)}\n")
         lines.append(f"\n```shell\n{_format_shell_command(parts)}\n```\n")
-        lines.append(f"\n![{slug} {desc}]({img_path})" + '{:width="70%"}\n')
+        lines.append(f"\n![{slug} {desc}][{img_ref}]" + '{:width="70%"}\n')
+        lines.append(f"\n[{img_ref}]: {img_path}\n")
 
     return "".join(lines)
+
+
+def build_panel_yvsx_section(slug: str, panel_points: list[dict]) -> str:
+    """Return the markdown block showing panel-filtered y-vs-x plots."""
+    img_base = f"/home/assets/images/examples/{slug}"
+    image_refs = []
+    caption_refs = []
+    for entry in panel_points:
+        alt = f"{entry['label']} panel y vs x"
+        ref = f"{slug}-{entry['label']}-panel-yvsx"
+        image_refs.append(f"![{alt}][{ref}]")
+        caption_refs.append(
+            f"{entry['name']}<br>counts = {len(entry['points']):,}"
+        )
+    refs = [
+        f"[{slug}-{entry['label']}-panel-yvsx]: "
+        f"{img_base}/{entry['label']}_panel_y_vs_x.png"
+        for entry in panel_points
+    ]
+
+    rows = []
+    for idx in range(0, len(image_refs), 2):
+        left_img = image_refs[idx]
+        right_img = image_refs[idx + 1] if idx + 1 < len(image_refs) else ""
+        left_caption = caption_refs[idx]
+        right_caption = caption_refs[idx + 1] if idx + 1 < len(caption_refs) else ""
+        rows.append(f"| {left_img} | {right_img} |")
+        rows.append(f"| {left_caption} | {right_caption} |")
+
+    return (
+        "\n### Per-panel y vs x\n\n"
+        "The plots below split the optical-photon hit positions by %%panel%%. The back transmitted panel\n"
+        "is shown as its own plot, not merged into the semi-transparent reflected-panel plot. The count\n"
+        "shown on each image is the number of rows selected from the true-information stream.\n\n"
+        "| | |\n"
+        "|:---:|:---:|\n"
+        + "\n".join(rows)
+        + "\n\n"
+        + "\n".join(refs)
+        + "\n"
+    )
+
+
+def update_panel_yvsx_section(md_path: Path, slug: str, panel_points: list[dict]) -> bool:
+    """Replace or append the panel-filtered y-vs-x subsection."""
+    text = md_path.read_text()
+    marker = "### Per-panel y vs x"
+    new_section = build_panel_yvsx_section(slug, panel_points)
+    idx = text.find(marker)
+    if idx == -1:
+        md_path.write_text(text.rstrip() + "\n" + new_section)
+    else:
+        md_path.write_text(text[:idx].rstrip() + "\n" + new_section)
+    print(f"  → updated per-panel y-vs-x section in {md_path.name}")
+    return True
 
 
 def update_analyzer_section(md_path: Path, new_section: str) -> bool:
@@ -478,11 +750,11 @@ def run_plots(ex: dict, src_dir: Path, yaml_file: Path,
     to_plot_str = ex.get("to_plot", "")
     link        = ex.get("link", "")
 
-    if not pevents or not to_plot_str:
+    if not pevents:
         return
 
     to_plot_list = [v.strip() for v in to_plot_str.split(",") if v.strip()]
-    if not to_plot_list:
+    if not to_plot_list and not ex.get("panel_yvsx"):
         return
 
     csv_base = get_csv_base(yaml_file)
@@ -490,7 +762,8 @@ def run_plots(ex: dict, src_dir: Path, yaml_file: Path,
         print(f"  WARNING: no CSV gstreamer in {yaml_file.name}, skipping plots")
         return
 
-    print(f"  plots  (n={pevents}, vars={to_plot_str})", flush=True)
+    plot_desc = to_plot_str if to_plot_str else "panel_yvsx"
+    print(f"  plots  (n={pevents}, vars={plot_desc})", flush=True)
 
     if not run_gemc_for_plots(src_dir, yaml_file, pevents, extra_args=ex.get("gemc_args", [])):
         return
@@ -506,6 +779,12 @@ def run_plots(ex: dict, src_dir: Path, yaml_file: Path,
         section = build_analyzer_section(slug, yaml_file.name, csv_base,
                                          pevents, plot_entries, ex.get("gemc_args", []))
         update_analyzer_section(md_path, section)
+    elif md_path and md_path.exists() and ex.get("panel_yvsx"):
+        section = build_analyzer_section(slug, yaml_file.name, csv_base,
+                                         pevents, [], ex.get("gemc_args", []))
+        update_analyzer_section(md_path, section)
+
+    run_panel_yvsx_plots(ex, src_dir, csv_base, asset_dir, slug, md_path)
 
 
 # ---------------------------------------------------------------------------

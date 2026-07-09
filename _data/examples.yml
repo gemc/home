@@ -51,7 +51,7 @@
   category: "basic"
   link: "/home/examples/basic/cad"
   display: true
-  vtz_zoom: 0.008
+  vtz_zoom: 0.006
   pyvista-fast: false
   gallery: true
   vtksz: "/home/assets/images/examples/cad/cad.vtksz"
@@ -175,6 +175,43 @@
     - variation: highIndexRadiator
       label: high_index_radiator
       name: highIndexRadiator
+
+- title: "Mirrors"
+  header: "Showcases polished, rough, and semi-transparent optical mirrors under identical conditions"
+  category: "optical"
+  link: "/home/examples/optical/mirrors"
+  display: false
+  vtz_zoom: 0.0018
+  pyvista-fast: false
+  gallery: true
+  vtksz: "/home/assets/images/examples/mirrors/mirrors.vtksz"
+  snevents: 1
+  pevents: 10
+  panel_yvsx:
+    - panel: 1
+      label: flat
+      name: flat reflected panel
+    - panel: 2
+      label: rough
+      name: rough reflected panel
+    - panel: 3
+      label: semi
+      name: semi-transparent reflected panel
+    - panel: 4
+      label: back
+      name: back transmitted panel
+
+- title: "Parabolic Mirror"
+  header: "Focus optical photons with a thin G4Paraboloid mirror shell"
+  category: "optical"
+  link: "/home/examples/optical/parabolic_mirror"
+  display: false
+  vtz_zoom: 0.004
+  pyvista-fast: false
+  gallery: true
+  vtksz: "/home/assets/images/examples/parabolic_mirror/parabolic_mirror.vtksz"
+  snevents: 1
+  pevents: 1
 
 
 - title: "DC"

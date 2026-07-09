@@ -21,7 +21,7 @@ gemc help g4view
    • driver: Geant4 visualization driver. Use TOOLSSG_OFFSCREEN in batch mode. Default value: TOOLSSG_QT_GLES
    • dimension: Geant4 viewer dimensionDefault value: 800x800
    • position: Geant4 viewer positionDefault value: -400+100
-   • segsPerCircle: Number of segments per circleDefault value: 50
+   • segsPerCircle: Number of segments per circleDefault value: 100
    • background: Geant4 viewer background color as '<red> <green> <blue>'Default value: 0 0.07059 0.16863
    • cloudPoints: Number of points used for cloud volume renderingDefault value: 1000
 

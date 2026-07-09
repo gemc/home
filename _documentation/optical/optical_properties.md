@@ -15,7 +15,7 @@ Several energy-dependent quantities can be defined:
 
 <br/>
 
-## photonEnergy — [required]
+## photonEnergy - [required]
 
 `photonEnergy` is the energy axis for all other optical properties. It must be set whenever
 any optical field is used:
@@ -25,16 +25,16 @@ mat.photonEnergy = "2.0*eV 3.0*eV 4.0*eV 5.0*eV"
 ```
 
 Values are space-separated strings with Geant4 units (`*eV`, `*keV`, `*MeV`).
-Values must be in **strictly increasing order** — Geant4 interpolates between them and
+Values must be in **strictly increasing order** - Geant4 interpolates between them and
 will produce undefined behaviour if the energy axis is unsorted.
 
 To convert from photon wavelength to energy:
 
 ```
-E (eV) = 1240 / λ (nm)
+E (eV) = 1240 / lambda (nm)
 ```
 
-For example, 400 nm (blue) ≈ 3.1 eV; 700 nm (red) ≈ 1.77 eV.
+For example, 400 nm (blue) is about 3.1 eV; 700 nm (red) is about 1.77 eV.
 
 <br/>
 
@@ -105,17 +105,19 @@ Values are relative (not absolute); Geant4 normalises them internally.
 
 ### Scalar fields
 
-| Field                | Geant4 key                     | Unit        | Description                                                                                                                     |
-|----------------------|--------------------------------|-------------|---------------------------------------------------------------------------------------------------------------------------------|
-| `scintillationyield` | %%SCINTILLATIONYIELD%%         | photons/MeV | Mean light yield per deposited MeV                                                                                              |
-| `resolutionscale`    | %%RESOLUTIONSCALE%%            | —           | Width of the photon-count distribution: values < 1 give sub-Poisson (Fano factor); values > 1 model impurity-broadened crystals |
-| `fasttimeconstant`   | %%SCINTILLATIONTIMECONSTANT1%% | ns          | Decay time constant of the fast component                                                                                       |
-| `slowtimeconstant`   | %%SCINTILLATIONTIMECONSTANT2%% | ns          | Decay time constant of the slow component                                                                                       |
-| `yieldratio`         | %%SCINTILLATIONYIELD1%%        | —           | Fraction of total yield emitted by the fast component (0–1)                                                                     |
-| `birksConstant`      | —                              | mm/MeV      | Birks quenching parameter (see note below)                                                                                      |
+* `scintillationyield` (%%SCINTILLATIONYIELD%%, photons/MeV): mean light yield per deposited MeV.
+* `resolutionscale` (%%RESOLUTIONSCALE%%): width of the photon-count distribution. Values below 1
+  give sub-Poisson statistics (Fano factor); values above 1 model impurity-broadened crystals.
+* `fasttimeconstant` (%%SCINTILLATIONTIMECONSTANT1%%, ns): decay time constant of the fast
+  component.
+* `slowtimeconstant` (%%SCINTILLATIONTIMECONSTANT2%%, ns): decay time constant of the slow
+  component.
+* `yieldratio` (%%SCINTILLATIONYIELD1%%): fraction of total yield emitted by the fast component
+  (0-1).
+* `birksConstant` (mm/MeV): Birks quenching parameter (see note below).
 
 > [!NOTE]
-> Scalar properties set to **0** are silently skipped — Geant4's `AddConstProperty` is not called.
+> Scalar properties set to **0** are silently skipped - Geant4's `AddConstProperty` is not called.
 > Use a small non-zero value if you intentionally want to set a property to zero.
 
 > [!NOTE]
@@ -148,14 +150,13 @@ scint.publish(cfg)
 
 ## Reflectivity and efficiency
 
-These properties model the behaviour of optical photons at a **dielectric–metal boundary**
+These properties model the behaviour of optical photons at a **dielectric-metal boundary**
 (e.g. a mirror or a PMT photocathode). At such a boundary there is no refraction; the photon is
 either reflected or absorbed with `efficiency`.
 
-| Field          | Geant4 key     | Description                                                                                           |
-|----------------|----------------|-------------------------------------------------------------------------------------------------------|
-| `reflectivity` | %%REFLECTIVITY%% | Fraction of photons reflected                                                                         |
-| `efficiency`   | %%EFFICIENCY%%   | Absorption probability for photons that are not reflected; models quantum efficiency for photosensors |
+* `reflectivity` (%%REFLECTIVITY%%): fraction of photons reflected.
+* `efficiency` (%%EFFICIENCY%%): absorption probability for photons that are not reflected; models
+  quantum efficiency for photosensors.
 
 ```python
 mat.reflectivity = "0.85 0.87 0.90 0.88 0.85"
@@ -198,14 +199,15 @@ phys_list: FTFP_BERT + G4OpticalPhysics
 ## Simulation
 
 {% include figure.html
-src="assets/images/examples/materials/geometry.png"
+src="assets/images/examples/materials/gemc_view.png"
 alt="Gemc simulation showing scintillation and Cherenkov radiation"
-caption="Gemc simulation of the five-tube materials example with G4OpticalPhysics enabled. Proton tracks (straight lines) traverse all five tubes along the z-axis. The fourth tube (NaI-like scintillator) emits an isotropic fan of optical photons through scintillation when the proton deposits energy. The fifth tube (SiO₂ glass with index of refraction ≈ 1.46–1.49) produces the characteristic narrow Cherenkov cone, whose opening angle depends on the particle velocity relative to the phase velocity of light in the medium."
+caption="Optical physics example: scintillation in the fourth tube and Cherenkov light in the fifth."
 %}
 
 <br/>
 
 ## Working examples
 
-- [Materials example](/home/examples/basic/materials) — scintillation and index-of-refraction definitions side by side
-- [Cherenkov example](/home/examples/optical/cherenkov) — full optical simulation with three gas radiators
+- [Materials example](/home/examples/basic/materials) - scintillation and index-of-refraction definitions
+  side by side
+- [Cherenkov example](/home/examples/optical/cherenkov) - full optical simulation with three gas radiators

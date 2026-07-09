@@ -187,4 +187,6 @@ Plot the accumulated dose:
 gemc-analyzer organs_digitized.csv dose --kind csv
 ```
 
-![cad accumulated dose](/home/assets/images/examples/cad/analyzer_dose.png){:width="70%"}
+![cad accumulated dose][cad-analyzer_dose]{:width="70%"}
+
+[cad-analyzer_dose]: /home/assets/images/examples/cad/analyzer_dose.png

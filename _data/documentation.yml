@@ -43,37 +43,45 @@
 
 
 - title: "Quickstart"
-  category: "Geometry"
-  description: "Detector volumes, materials, CAD imports, mirrors, and reusable structures."
+  category: "Geometry and Materials"
+  description: "Detector volumes, materials, CAD imports, and reusable structures."
   link: "/home/documentation/geometry/geoQuickstart"
 
 - title: "GVolume Properties"
-  category: "Geometry"
+  category: "Geometry and Materials"
   link: "/home/documentation/geometry/geometry_building"
 
 - title: "Solid Types"
-  category: "Geometry"
+  category: "Geometry and Materials"
   link: "/home/documentation/geometry/solidTypes"
 
 - title: "Structure Helpers"
-  category: "Geometry"
+  category: "Geometry and Materials"
   link: "/home/documentation/geometry/structure"
 
 - title: "CAD Imports"
-  category: "Geometry"
+  category: "Geometry and Materials"
   link: "/home/documentation/geometry/cad_imports"
 
-- title: "Mirrors"
-  category: "Geometry"
-  link: "/home/documentation/geometry/mirrors"
-
 - title: "Materials"
-  category: "Geometry"
+  category: "Geometry and Materials"
   link: "/home/documentation/materials/materials"
 
+
+
+
 - title: "Optical Properties"
-  category: "Geometry"
-  link: "/home/documentation/materials/optical_properties"
+  category: "Optical"
+  description: "Optical materials, Cherenkov radiation, mirrors, and photon surfaces."
+  link: "/home/documentation/optical/optical_properties"
+
+- title: "Cherenkov"
+  category: "Optical"
+  link: "/home/documentation/optical/cherenkov"
+
+- title: "Mirrors"
+  category: "Optical"
+  link: "/home/documentation/optical/mirrors"
 
 
 
@@ -179,7 +187,8 @@
 
 - title: "Geant4 Material Database"
   category: "Support"
-  link: "https://geant4.web.cern.ch/documentation/dev/bfad_html/ForApplicationDevelopers/Appendix/materialNames.html"
+  link: >-
+    https://geant4.web.cern.ch/documentation/dev/bfad_html/ForApplicationDevelopers/Appendix/materialNames.html
 
 - title: "PyVista"
   category: "Support"
