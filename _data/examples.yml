@@ -59,6 +59,17 @@
   pevents: 20
   to_plot: dose
 
+- title: "Boolean Solids"
+  header: "Builds subtraction, union, and intersection solids from reusable component volumes"
+  category: "basic"
+  link: "/home/examples/basic/boolean_solids"
+  display: true
+  vtz_zoom: 0.002
+  pyvista-fast: false
+  gallery: true
+  vtksz: "/home/assets/images/examples/boolean_solids/boolean_solids.vtksz"
+  snevents: 10
+
 - title: "Materials"
   header: "Demonstrates Geant4 built-in materials, custom compositions, and optical properties"
   category: "basic"

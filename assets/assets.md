@@ -104,6 +104,7 @@ For example, to regenerate only the CLAS12 analyzer plots and update their markd
 | b1 | basic | b1.py | b1 |
 | b2 | basic | b2.py | b2 |
 | cad | basic | cad.py | cad |
+| boolean_solids | basic | boolean_solids.py | boolean_solids |
 | materials | basic | materials.py | material |
 | scintillator_barrel | basic | scintillator_barrel.py | scintillator_barrel |
 | simple_flux | basic | simple_flux.py | simple_flux |
