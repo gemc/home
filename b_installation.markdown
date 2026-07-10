@@ -4,18 +4,18 @@ title: Installation
 permalink: /installation/
 
 development_tag: dev
-latest_tag: 0.2
-latest_pytag: v0.2.0
+latest_tag: 0.3
+latest_pytag: v0.3.0
 dev_tag: dev
 development_release_date: <small><time> → released nightly, shows commits</time></small>
-latest_release_date: <small><time>→ released on 05/21/2026</time></small>
-latest_prelease_date: <small><time>→ released on 05/28/2026</time></small>
+latest_release_date: <small><time>→ released on 06/17/2026</time></small>
+latest_prelease_date: <small><time>→ released on 06/17/2026</time></small>
 repo_link: https://github.com/gemc/src
 prepo_link: https://github.com/gemc/src
 release_notes: https://github.com/gemc/src/releases
 prelease_notes: https://github.com/gemc/pygemc/releases
 binary_tag: dev
-binary_geant4_tag: 11.4.1
+binary_geant4_tag: 11.4.2
 path_prefix: /path/to/gemc
 docker_local_mount: ~/mywork
 docker_remote_mount: /mywork
