@@ -57,9 +57,9 @@
   pyvista-fast: false
   gallery: true
   vtksz: "/home/assets/images/examples/cad/cad.vtksz"
-  snevents: 10
-  pevents: 20
-  to_plot: dose
+  snevents: 1
+  pevents: 200
+  to_plot: totEdep
 
 - title: "Boolean Solids"
   header: "Builds subtraction, union, and intersection solids from reusable component volumes"

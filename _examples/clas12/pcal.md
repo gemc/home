@@ -162,7 +162,9 @@ Plot the total energy deposited per hit:
 gemc-analyzer pcal_t0_true_info.csv totalEDeposited --kind csv --data true_info
 ```
 
-![PCAL total energy deposited per hit](/home/assets/images/examples/pcal/analyzer_totEdep.png){:width="70%"}
+![pcal total energy deposited per hit][pcal-analyzer_totEdep]{:width="70%"}
+
+[pcal-analyzer_totEdep]: /home/assets/images/examples/pcal/analyzer_totEdep.png
 
 Plot the y vs x hit positions:
 
@@ -170,4 +172,6 @@ Plot the y vs x hit positions:
 gemc-analyzer pcal_t0_true_info.csv --kind csv --data true_info --plot yvsx --bins 80
 ```
 
-![PCAL y vs x hit positions](/home/assets/images/examples/pcal/analyzer_yvsx.png){:width="70%"}
+![pcal y vs x hit positions][pcal-analyzer_yvsx]{:width="70%"}
+
+[pcal-analyzer_yvsx]: /home/assets/images/examples/pcal/analyzer_yvsx.png

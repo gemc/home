@@ -159,7 +159,9 @@ Plot the total energy deposited per hit:
 gemc-analyzer ec_t0_true_info.csv totalEDeposited --kind csv --data true_info
 ```
 
-![EC total energy deposited per hit](/home/assets/images/examples/ec/analyzer_totEdep.png){:width="70%"}
+![ec total energy deposited per hit][ec-analyzer_totEdep]{:width="70%"}
+
+[ec-analyzer_totEdep]: /home/assets/images/examples/ec/analyzer_totEdep.png
 
 Plot the y vs x hit positions:
 
@@ -167,4 +169,6 @@ Plot the y vs x hit positions:
 gemc-analyzer ec_t0_true_info.csv --kind csv --data true_info --plot yvsx --bins 80
 ```
 
-![EC y vs x hit positions](/home/assets/images/examples/ec/analyzer_yvsx.png){:width="70%"}
+![ec y vs x hit positions][ec-analyzer_yvsx]{:width="70%"}
+
+[ec-analyzer_yvsx]: /home/assets/images/examples/ec/analyzer_yvsx.png

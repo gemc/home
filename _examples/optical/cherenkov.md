@@ -215,7 +215,9 @@ Plot the total energy deposited per hit:
 gemc-analyzer cherenkov_t0_digitized.csv totEdep --kind csv
 ```
 
-![cherenkov total energy deposited per hit](/home/assets/images/examples/cherenkov/analyzer_totEdep.png){:width="70%"}
+![cherenkov total energy deposited per hit][cherenkov-analyzer_totEdep]{:width="70%"}
+
+[cherenkov-analyzer_totEdep]: /home/assets/images/examples/cherenkov/analyzer_totEdep.png
 
 Plot the y vs x hit positions:
 
@@ -223,4 +225,6 @@ Plot the y vs x hit positions:
 gemc-analyzer cherenkov_t0_true_info.csv --kind csv --data true_info --plot yvsx --bins 80
 ```
 
-![cherenkov y vs x hit positions](/home/assets/images/examples/cherenkov/analyzer_yvsx.png){:width="70%"}
+![cherenkov y vs x hit positions][cherenkov-analyzer_yvsx]{:width="70%"}
+
+[cherenkov-analyzer_yvsx]: /home/assets/images/examples/cherenkov/analyzer_yvsx.png

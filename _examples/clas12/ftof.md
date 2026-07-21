@@ -74,7 +74,7 @@ gparticle:
     p: 5000*MeV
     delta_p: 1*GeV
     theta: 25*deg
-    delta_theta: 12*deg
+    delta_theta: 15*deg
     randomThetaModel: cosine
     delta_phi: 180*deg
 ```
@@ -158,7 +158,9 @@ Plot the total energy deposited per hit:
 gemc-analyzer ftof_t0_true_info.csv totalEDeposited --kind csv --data true_info
 ```
 
-![FTOF total energy deposited per hit](/home/assets/images/examples/ftof/analyzer_totEdep.png){:width="70%"}
+![ftof total energy deposited per hit][ftof-analyzer_totEdep]{:width="70%"}
+
+[ftof-analyzer_totEdep]: /home/assets/images/examples/ftof/analyzer_totEdep.png
 
 Plot the y vs x hit positions:
 
@@ -166,4 +168,6 @@ Plot the y vs x hit positions:
 gemc-analyzer ftof_t0_true_info.csv --kind csv --data true_info --plot yvsx --bins 80
 ```
 
-![FTOF y vs x hit positions](/home/assets/images/examples/ftof/analyzer_yvsx.png){:width="70%"}
+![ftof y vs x hit positions][ftof-analyzer_yvsx]{:width="70%"}
+
+[ftof-analyzer_yvsx]: /home/assets/images/examples/ftof/analyzer_yvsx.png

@@ -153,7 +153,9 @@ Plot the total energy deposited per hit:
 gemc-analyzer dc_t0_true_info.csv totalEDeposited --kind csv --data true_info
 ```
 
-![DC total energy deposited per hit](/home/assets/images/examples/dc/analyzer_totEdep.png){:width="70%"}
+![dc total energy deposited per hit][dc-analyzer_totEdep]{:width="70%"}
+
+[dc-analyzer_totEdep]: /home/assets/images/examples/dc/analyzer_totEdep.png
 
 Plot the y vs x hit positions:
 
@@ -161,7 +163,9 @@ Plot the y vs x hit positions:
 gemc-analyzer dc_t0_true_info.csv --kind csv --data true_info --plot yvsx --bins 80
 ```
 
-![DC y vs x hit positions](/home/assets/images/examples/dc/analyzer_yvsx.png){:width="70%"}
+![dc y vs x hit positions][dc-analyzer_yvsx]{:width="70%"}
+
+[dc-analyzer_yvsx]: /home/assets/images/examples/dc/analyzer_yvsx.png
 
 Plot the digitized TDC time:
 
@@ -169,4 +173,6 @@ Plot the digitized TDC time:
 gemc-analyzer dc_t0_digitized.csv TDC_TDC --kind csv
 ```
 
-![DC digitized TDC time](/home/assets/images/examples/dc/analyzer_tdc.png){:width="70%"}
+![dc digitized TDC time][dc-analyzer_tdc]{:width="70%"}
+
+[dc-analyzer_tdc]: /home/assets/images/examples/dc/analyzer_tdc.png
