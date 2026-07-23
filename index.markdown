@@ -39,7 +39,7 @@ layout: default
 
 [Binary-Tarballs-badge]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml/badge.svg
 
-[PyPI Release]: https://pypi.org/project/pygemc/
+[PyPI]: https://pypi.org/project/pygemc/
 
 [PyPI-badge]: https://img.shields.io/pypi/v/pygemc.svg?cacheSeconds=300
 
@@ -290,7 +290,7 @@ architectures.
 
 | Nightly Dev Release | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
 | Publish to PyPI | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
-| Tests | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]              |
+| Tests | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]               |
 | PyPI | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
 
 <br/><br/>

@@ -49,6 +49,7 @@ gemc help debug
    • grunaction: grunaction verbosity level or debug switchDefault value: 0
    • generator: generator verbosity level or debug switchDefault value: 0
    • grun: grun verbosity level or debug switchDefault value: 0
+   • ganalysis: ganalysis verbosity level or debug switchDefault value: 0
    • gparticle: gparticle verbosity level or debug switchDefault value: 0
    • eventdispenser: eventdispenser verbosity level or debug switchDefault value: 0
    • g4display: g4display verbosity level or debug switchDefault value: 0

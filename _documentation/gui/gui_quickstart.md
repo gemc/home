@@ -16,7 +16,7 @@ gemc counter.yaml -gui
 The window is divided into three zones:
 
 - **Top bar** — run controls and event counters.
-- **Left button bar** — five icon buttons that select the active page.
+- **Left button bar** — six icon buttons that select the active page.
 - **Right content area** — the page selected by the left bar.
 
 <br/>
@@ -61,7 +61,8 @@ The **View** tab exposes:
 <br/>
 
 > [!WARNING]
-> The **Slices** may not work correctly with some drivers, for example OGLIQt works but TOOLSSG_QT_GLES does not.
+> The **Slices** may not work correctly with some drivers, for example OGLIQt works but TOOLSSG_QT_GLES
+> does not.
 
 <br/>
 
@@ -180,3 +181,13 @@ caption="Generator page: edit particles, multiplicity, momentum spread, angular 
 - The **Momentum** section sets the central momentum, spread, and sampling model.
 - The **Angles** section sets theta/phi values, spreads, sampling models, and visual angular coverage.
 - The **Vertex** section sets the vertex position, spread, and sampling model.
+
+<br/>
+
+### Analyzer
+
+> [!NOTE]
+> The Analyzer page is upcoming in the next release.
+
+The Analyzer discovers numeric true-information and digitized variables during a GUI run, then draws
+interactive 1D or 2D histograms. See the [GUI Analyzer guide](/home/documentation/gui/analyzer).

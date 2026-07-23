@@ -1,0 +1,333 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 820" role="img"
+     aria-label="GEMC GUI Analyzer page">
+  <title>GEMC GUI — Analyzer page</title>
+  <defs>
+    <marker id="arr" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#c8200e"/>
+    </marker>
+    <pattern id="heat" width="18" height="18" patternUnits="userSpaceOnUse">
+      <rect width="18" height="18" fill="#355f8d"/>
+      <rect x="1" y="1" width="7" height="7" fill="#22a884"/>
+      <rect x="9" y="1" width="8" height="7" fill="#7ad151"/>
+      <rect x="1" y="9" width="7" height="8" fill="#fde725"/>
+      <rect x="9" y="9" width="8" height="8" fill="#2a788e"/>
+    </pattern>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f2f2f7;
+        --chrome: #e5e5ea;
+        --panel: #ffffff;
+        --section: #e8e8ed;
+        --border: #c7c7cc;
+        --ink: #1c1c1e;
+        --muted: #6e6e73;
+        --active: #007aff;
+        --input: #ffffff;
+        --chart: #fbfbfd;
+        --grid: #d7d7dc;
+        --ann-fill: rgba(255,255,255,0.96);
+        --ann-stroke: #1a50c0;
+        --ann-ink: #0a0a0a;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #1c1c1e;
+          --chrome: #2c2c2e;
+          --panel: #2c2c2e;
+          --section: #3a3a3c;
+          --border: #545458;
+          --ink: #f2f2f7;
+          --muted: #aeaeb2;
+          --input: #3a3a3c;
+          --chart: #232326;
+          --grid: #4b4b50;
+          --ann-fill: rgba(28,28,30,0.96);
+          --ann-stroke: #5b8cff;
+          --ann-ink: #f0f0f0;
+        }
+      }
+      text { font-family: Avenir, "Segoe UI", Arial, sans-serif; }
+      .ui-label { fill: var(--ink); font-size: 11px; }
+      .ui-small { fill: var(--muted); font-size: 9.5px; }
+      .chart-title { fill: var(--ink); font-size: 12px; font-weight: 700; }
+      .topbar-btn, .page-btn, .button {
+        fill: var(--chrome); stroke: var(--border); stroke-width: 1;
+      }
+      .page-active { fill: var(--active); }
+      .input-box { fill: var(--input); stroke: var(--border); stroke-width: 1; }
+      .tab { fill: var(--chrome); stroke: var(--border); stroke-width: 1; }
+      .tab-active { fill: var(--panel); stroke: var(--active); stroke-width: 1.5; }
+      .chart-box { fill: var(--chart); stroke: var(--border); stroke-width: 1; }
+      .axis { fill: none; stroke: var(--ink); stroke-width: 1; }
+      .grid { stroke: var(--grid); stroke-width: 0.6; }
+      .bar { fill: #4e8dd6; stroke: #2664a8; stroke-width: 0.6; }
+      .radio { fill: var(--input); stroke: var(--muted); stroke-width: 1; }
+      .radio-on { fill: var(--active); }
+      .check { fill: var(--active); stroke: var(--active); stroke-width: 1; }
+      .ann-box { fill: var(--ann-fill); stroke: var(--ann-stroke); stroke-width: 1.8; }
+      .ann-text {
+        fill: var(--ann-ink); font-size: 11.5px; font-weight: 700; text-anchor: middle;
+      }
+      .ann-line { stroke: #c8200e; stroke-width: 2.2; fill: none; marker-end: url(#arr); }
+    </style>
+  </defs>
+
+  <rect width="1100" height="820" fill="var(--bg)"/>
+  <rect x="0" y="0" width="1100" height="50" fill="var(--chrome)"/>
+  <text x="14" y="30" class="ui-label">N. Events:</text>
+  <rect x="84" y="14" width="45" height="22" rx="4" class="input-box"/>
+  <text x="106" y="30" class="ui-label" text-anchor="middle">1000</text>
+  <rect x="140" y="11" width="54" height="26" rx="6" class="topbar-btn"/>
+  <text x="167" y="29" class="ui-label" text-anchor="middle">Run</text>
+  <rect x="202" y="11" width="62" height="26" rx="6" class="topbar-btn"/>
+  <text x="233" y="29" class="ui-label" text-anchor="middle">Cycle</text>
+  <rect x="272" y="11" width="56" height="26" rx="6" class="topbar-btn"/>
+  <text x="300" y="29" class="ui-label" text-anchor="middle">Stop</text>
+  <text x="342" y="30" class="ui-label">Event Number: 10000</text>
+  <rect x="1024" y="11" width="62" height="26" rx="6" class="topbar-btn"/>
+  <text x="1055" y="29" class="ui-label" text-anchor="middle">Exit</text>
+
+  <rect x="0" y="50" width="112" height="770" fill="var(--chrome)" stroke="var(--border)"/>
+
+  <!-- Display — src/gemc/gui/images/buttons/display_1.svg -->
+  <rect x="11" y="55" width="90" height="90" rx="10" class="page-btn"/>
+  <g transform="translate(11,55) scale(1.875)" style="color:var(--muted)">
+    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor"/>
+    <rect x="14" y="12" width="20" height="12" rx="2" fill="none" stroke="currentColor"/>
+    <line x1="24" y1="24" x2="24" y2="29" stroke="currentColor" stroke-linecap="round"/>
+    <text x="24" y="38" text-anchor="middle" fill="currentColor" font-size="8">Display</text>
+  </g>
+
+  <!-- Setup — src/gemc/gui/images/buttons/setup_1.svg -->
+  <rect x="11" y="155" width="90" height="90" rx="10" class="page-btn"/>
+  <g transform="translate(11,155) scale(1.875)" style="color:var(--muted)">
+    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor"/>
+    <g fill="currentColor">
+      <rect x="10.5" y="8" width="6" height="6"/><rect x="17.5" y="8" width="6" height="6"/>
+      <rect x="31.5" y="8" width="6" height="6"/><rect x="10.5" y="15" width="6" height="6"/>
+      <rect x="24.5" y="15" width="6" height="6"/><rect x="31.5" y="15" width="6" height="6"/>
+      <rect x="10.5" y="22" width="6" height="6"/><rect x="17.5" y="22" width="6" height="6"/>
+      <rect x="24.5" y="22" width="6" height="6"/>
+    </g>
+    <text x="24" y="38" text-anchor="middle" fill="currentColor" font-size="8">Setup</text>
+  </g>
+
+  <!-- Volumes — src/gemc/gui/images/buttons/tree_1.svg -->
+  <rect x="11" y="255" width="90" height="90" rx="10" class="page-btn"/>
+  <g transform="translate(11,255) scale(1.875)" style="color:var(--muted)">
+    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor"/>
+    <ellipse cx="16" cy="16" rx="6" ry="3" fill="none" stroke="currentColor"/>
+    <rect x="10" y="16" width="12" height="8" fill="none" stroke="currentColor"/>
+    <ellipse cx="16" cy="24" rx="6" ry="3" fill="none" stroke="currentColor"/>
+    <path d="M28 14V26M28 18H34M28 22H34" fill="none" stroke="currentColor"/>
+    <circle cx="36" cy="18" r="1.5" fill="none" stroke="currentColor"/>
+    <circle cx="36" cy="22" r="1.5" fill="none" stroke="currentColor"/>
+    <text x="24" y="38" text-anchor="middle" fill="currentColor" font-size="8">Volumes</text>
+  </g>
+
+  <!-- G4Dialog — src/gemc/gui/images/buttons/dialog_1.svg -->
+  <rect x="11" y="355" width="90" height="90" rx="10" class="page-btn"/>
+  <g transform="translate(11,355) scale(1.875)" style="color:var(--muted)">
+    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor"/>
+    <line x1="6" y1="12" x2="42" y2="12" stroke="currentColor"/>
+    <text x="24" y="25" text-anchor="middle" fill="currentColor" font-size="10">&gt;_</text>
+    <text x="24" y="38" text-anchor="middle" fill="currentColor" font-size="8">G4Dialog</text>
+  </g>
+
+  <!-- Generator — src/gemc/gui/images/buttons/generator_1.svg -->
+  <rect x="11" y="455" width="90" height="90" rx="10" class="page-btn"/>
+  <g transform="translate(11,455) scale(1.875)" style="color:var(--muted)">
+    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor"/>
+    <circle cx="17" cy="19" r="4" fill="none" stroke="currentColor" opacity="0.3"/>
+    <circle cx="17" cy="19" r="8" fill="none" stroke="currentColor" opacity="0.25"/>
+    <circle cx="17" cy="19" r="12" fill="none" stroke="currentColor" opacity="0.2"/>
+    <path d="M17 19Q27 13 37 11M17 19H38M17 19Q27 24 37 27" fill="none"
+          stroke="currentColor"/>
+    <circle cx="17" cy="19" r="3" fill="currentColor"/>
+    <text x="24" y="38" text-anchor="middle" fill="currentColor" font-size="7">Generator</text>
+  </g>
+
+  <!-- Analyzer — src/gemc/gui/images/buttons/analyzer_1.svg -->
+  <rect x="11" y="555" width="90" height="90" rx="10" class="page-active"/>
+  <g transform="translate(11,555) scale(1.875)" style="color:white">
+    <rect x="6" y="6" width="36" height="36" rx="3" fill="none" stroke="currentColor"/>
+    <path d="M13 25.5H35M13.5 11V26" stroke="currentColor" stroke-linecap="round"/>
+    <path d="M15 25V21H19V16H23V23H27V13H31V19H35V25Z" fill="none"
+          stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+    <text x="24" y="38" text-anchor="middle" fill="currentColor" font-size="7">Analyzer</text>
+  </g>
+
+  <rect x="120" y="56" width="968" height="752" rx="8" fill="var(--panel)" stroke="var(--border)"/>
+
+  <!-- Analyzer toolbar -->
+  <rect x="136" y="67" width="106" height="26" rx="5" class="button"/>
+  <rect x="145" y="74" width="12" height="12" rx="2" class="check"/>
+  <path d="M148 80L151 83L156 76" fill="none" stroke="white" stroke-width="1.5"/>
+  <text x="166" y="84" class="ui-label">Accumulate</text>
+  <rect x="1010" y="67" width="62" height="26" rx="5" class="button"/>
+  <text x="1041" y="84" class="ui-label" text-anchor="middle">1 plot</text>
+
+  <!-- Configuration tabs -->
+  <rect x="136" y="106" width="126" height="28" rx="5" class="tab-active"/>
+  <text x="199" y="124" class="ui-label" text-anchor="middle">Top Left</text>
+  <rect x="264" y="106" width="126" height="28" rx="5" class="tab"/>
+  <text x="327" y="124" class="ui-label" text-anchor="middle">Top Right</text>
+  <rect x="392" y="106" width="126" height="28" rx="5" class="tab"/>
+  <text x="455" y="124" class="ui-label" text-anchor="middle">Bottom Left</text>
+  <rect x="520" y="106" width="132" height="28" rx="5" class="tab"/>
+  <text x="586" y="124" class="ui-label" text-anchor="middle">Bottom Right</text>
+
+  <!-- Active tab controls -->
+  <rect x="136" y="136" width="936" height="202" rx="6" fill="var(--section)" stroke="var(--border)"/>
+  <text x="150" y="158" class="ui-label">Run:</text>
+  <rect x="184" y="143" width="72" height="22" rx="4" class="input-box"/>
+  <text x="196" y="158" class="ui-label">1</text>
+  <text x="242" y="158" class="ui-small">v</text>
+  <text x="275" y="158" class="ui-label">Plugin / detector:</text>
+  <rect x="380" y="143" width="188" height="22" rx="4" class="input-box"/>
+  <text x="392" y="158" class="ui-label">flux</text>
+  <text x="554" y="158" class="ui-small">v</text>
+
+  <text x="150" y="190" class="ui-label">Plot:</text>
+  <circle cx="192" cy="186" r="6" class="radio"/>
+  <text x="204" y="190" class="ui-label">1D</text>
+  <circle cx="246" cy="186" r="6" class="radio"/>
+  <circle cx="246" cy="186" r="3.5" class="radio-on"/>
+  <text x="258" y="190" class="ui-label">2D</text>
+  <text x="310" y="190" class="ui-label">Variables:</text>
+  <circle cx="373" cy="186" r="6" class="radio"/>
+  <circle cx="373" cy="186" r="3.5" class="radio-on"/>
+  <text x="385" y="190" class="ui-label">True information</text>
+  <circle cx="492" cy="186" r="6" class="radio"/>
+  <text x="504" y="190" class="ui-label">Digitized</text>
+
+  <text x="150" y="220" class="ui-label">X variable:</text>
+  <rect x="214" y="204" width="126" height="22" rx="4" class="input-box"/>
+  <text x="226" y="219" class="ui-label">avgx</text>
+  <text x="326" y="219" class="ui-small">v</text>
+  <text x="360" y="220" class="ui-label">Y variable:</text>
+  <rect x="425" y="204" width="126" height="22" rx="4" class="input-box"/>
+  <text x="437" y="219" class="ui-label">avgy</text>
+  <text x="537" y="219" class="ui-small">v</text>
+  <text x="575" y="220" class="ui-label">2D style:</text>
+  <rect x="632" y="204" width="102" height="22" rx="4" class="input-box"/>
+  <text x="644" y="219" class="ui-label">Heatmap</text>
+  <text x="720" y="219" class="ui-small">v</text>
+
+  <text x="150" y="252" class="ui-label">Bins:</text>
+  <rect x="184" y="236" width="72" height="22" rx="4" class="input-box"/>
+  <text x="220" y="251" class="ui-label" text-anchor="middle">80</text>
+  <text x="275" y="252" class="ui-label">Title:</text>
+  <rect x="310" y="236" width="310" height="22" rx="4" class="input-box"/>
+  <text x="320" y="251" class="ui-label">Average Y Position vs Average X Position</text>
+  <text x="640" y="252" class="ui-label">Z scale:</text>
+  <rect x="692" y="236" width="98" height="22" rx="4" class="input-box"/>
+  <text x="704" y="251" class="ui-label">Linear</text>
+  <text x="776" y="251" class="ui-small">v</text>
+
+  <text x="150" y="283" class="ui-label">X min:</text>
+  <rect x="190" y="267" width="76" height="22" rx="4" class="input-box"/>
+  <text x="228" y="282" class="ui-label" text-anchor="middle">-0.25</text>
+  <rect x="276" y="272" width="11" height="11" rx="2" class="input-box"/>
+  <text x="292" y="282" class="ui-small">Auto</text>
+  <text x="336" y="283" class="ui-label">X max:</text>
+  <rect x="378" y="267" width="76" height="22" rx="4" class="input-box"/>
+  <text x="416" y="282" class="ui-label" text-anchor="middle">0.25</text>
+  <rect x="464" y="272" width="11" height="11" rx="2" class="input-box"/>
+  <text x="480" y="282" class="ui-small">Auto</text>
+  <text x="525" y="283" class="ui-label">Y min:</text>
+  <rect x="566" y="267" width="76" height="22" rx="4" class="input-box"/>
+  <text x="604" y="282" class="ui-label" text-anchor="middle">-0.25</text>
+  <rect x="652" y="272" width="11" height="11" rx="2" class="input-box"/>
+  <text x="668" y="282" class="ui-small">Auto</text>
+  <text x="712" y="283" class="ui-label">Y max:</text>
+  <rect x="754" y="267" width="76" height="22" rx="4" class="input-box"/>
+  <text x="792" y="282" class="ui-label" text-anchor="middle">0.25</text>
+  <rect x="840" y="272" width="11" height="11" rx="2" class="input-box"/>
+  <text x="856" y="282" class="ui-small">Auto</text>
+
+  <text x="150" y="320" class="ui-small">100,000 paired entries in range; 17 outside selected axes</text>
+  <rect x="948" y="301" width="108" height="25" rx="5" class="button"/>
+  <text x="1002" y="318" class="ui-label" text-anchor="middle">Export PDF…</text>
+
+  <!-- Equal-size chart grid: every outer cell is 466 × 210 -->
+  <g>
+    <rect x="128" y="354" width="466" height="210" rx="5" class="chart-box"/>
+    <text x="361" y="375" class="chart-title" text-anchor="middle">avgy vs avgx — run 1</text>
+    <line x1="166" y1="532" x2="563" y2="532" class="axis"/>
+    <line x1="166" y1="392" x2="166" y2="532" class="axis"/>
+    <rect x="252" y="411" width="222" height="102" fill="url(#heat)" opacity="0.92"/>
+    <text x="364" y="552" class="ui-small" text-anchor="middle">avgx</text>
+    <text x="142" y="464" class="ui-small" text-anchor="middle"
+          transform="rotate(-90 142 464)">avgy</text>
+
+    <rect x="610" y="354" width="466" height="210" rx="5" class="chart-box"/>
+    <text x="843" y="375" class="chart-title" text-anchor="middle">trackE — run 1</text>
+    <line x1="648" y1="532" x2="1045" y2="532" class="axis"/>
+    <line x1="648" y1="392" x2="648" y2="532" class="axis"/>
+    <g class="bar">
+      <rect x="676" y="500" width="24" height="32"/><rect x="700" y="469" width="24" height="63"/>
+      <rect x="724" y="430" width="24" height="102"/><rect x="748" y="403" width="24" height="129"/>
+      <rect x="772" y="420" width="24" height="112"/><rect x="796" y="449" width="24" height="83"/>
+      <rect x="820" y="475" width="24" height="57"/><rect x="844" y="492" width="24" height="40"/>
+    </g>
+    <text x="846" y="552" class="ui-small" text-anchor="middle">trackE</text>
+
+    <rect x="128" y="576" width="466" height="210" rx="5" class="chart-box"/>
+    <text x="361" y="597" class="chart-title" text-anchor="middle">totalEDeposited — run 1</text>
+    <line x1="166" y1="754" x2="563" y2="754" class="axis"/>
+    <line x1="166" y1="614" x2="166" y2="754" class="axis"/>
+    <g class="bar">
+      <rect x="186" y="634" width="24" height="120"/><rect x="210" y="653" width="24" height="101"/>
+      <rect x="234" y="679" width="24" height="75"/><rect x="258" y="698" width="24" height="56"/>
+      <rect x="282" y="714" width="24" height="40"/><rect x="306" y="726" width="24" height="28"/>
+      <rect x="330" y="735" width="24" height="19"/><rect x="354" y="742" width="24" height="12"/>
+    </g>
+    <text x="364" y="774" class="ui-small" text-anchor="middle">totalEDeposited</text>
+
+    <rect x="610" y="576" width="466" height="210" rx="5" class="chart-box"/>
+    <text x="843" y="597" class="chart-title" text-anchor="middle">avgTime vs avgz — run 1</text>
+    <line x1="648" y1="754" x2="1045" y2="754" class="axis"/>
+    <line x1="648" y1="614" x2="648" y2="754" class="axis"/>
+    <g fill="#4e8dd6" stroke="#2664a8">
+      <rect x="689" y="710" width="22" height="22"/><rect x="735" y="686" width="22" height="22"/>
+      <rect x="781" y="665" width="22" height="22"/><rect x="827" y="642" width="22" height="22"/>
+      <rect x="873" y="628" width="22" height="22"/><rect x="919" y="620" width="22" height="22"/>
+    </g>
+    <text x="846" y="774" class="ui-small" text-anchor="middle">avgz</text>
+  </g>
+
+  <!-- Source-first annotations -->
+  <rect x="252" y="58" width="212" height="27" rx="5" class="ann-box"/>
+  <text x="358" y="76" class="ann-text">Accumulate between beamOn runs</text>
+  <path d="M252 72H222" class="ann-line"/>
+
+  <rect x="804" y="58" width="196" height="27" rx="5" class="ann-box"/>
+  <text x="902" y="76" class="ann-text">Switch one / four plots</text>
+  <path d="M1000 72H1017" class="ann-line"/>
+
+  <rect x="670" y="98" width="206" height="27" rx="5" class="ann-box"/>
+  <text x="773" y="116" class="ann-text">One tab per grid position</text>
+  <path d="M670 115H644" class="ann-line"/>
+
+  <rect x="786" y="142" width="198" height="27" rx="5" class="ann-box"/>
+  <text x="885" y="160" class="ann-text">Runtime-discovered data</text>
+  <path d="M786 156H566" class="ann-line"/>
+
+  <rect x="786" y="176" width="198" height="27" rx="5" class="ann-box"/>
+  <text x="885" y="194" class="ann-text">One source for both axes</text>
+  <path d="M786 190H518" class="ann-line"/>
+
+  <rect x="882" y="264" width="184" height="27" rx="5" class="ann-box"/>
+  <text x="974" y="282" class="ann-text">Independent Auto limits</text>
+  <path d="M882 278H849" class="ann-line"/>
+
+  <rect x="746" y="303" width="190" height="27" rx="5" class="ann-box"/>
+  <text x="841" y="321" class="ann-text">Export active plot to PDF</text>
+  <path d="M936 316H958" class="ann-line"/>
+
+  <rect x="452" y="342" width="218" height="27" rx="5" class="ann-box"/>
+  <text x="561" y="360" class="ann-text">Equal-size 2 × 2 chart grid</text>
+  <path d="M561 369L602 574" class="ann-line"/>
+</svg>

@@ -35,6 +35,11 @@
   description: "Geant4 display setup and annotations."
   link: "/home/documentation/gui/gui_quickstart"
 
+- title: "Analyzer"
+  category: "Gui"
+  description: "Discover runtime variables and draw interactive 1D or 2D histograms."
+  link: "/home/documentation/gui/analyzer"
+
 - title: "Annotations"
   category: "Gui"
   link: "/home/documentation/gui/annotations"

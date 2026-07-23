@@ -87,6 +87,22 @@ Available `to_plot` values are:
 | `tdc` | `digitized` | `analyzer_tdc.png` | digitized TDC time |
 | `yvsx` | `true_info` | `analyzer_yvsx.png` | y vs x hit positions, using 80 bins |
 
+The GUI Analyzer guide uses a zoomed Simple Flux %%avgy%%-versus-%%avgx%% plot. Reproduce it in a scratch
+copy so generated CSV and SQLite files do not modify the source example:
+
+```shell
+workdir=$(mktemp -d /tmp/gemc-analyzer-doc.XXXXXX)
+cp -R /opt/projects/gemc/src/examples/basic/simple_flux/. "$workdir/"
+cd "$workdir"
+/opt/projects/gemc/src/build/subprojects/pygemc/python_env/bin/python simple_flux.py
+/opt/projects/gemc/src/build/bin/gemc simple_flux.yaml -n=10000
+MPLCONFIGDIR=/tmp/gemc-analyzer-mpl \
+  /opt/projects/gemc/src/build/subprojects/pygemc/python_env/bin/gemc-analyzer \
+  simple_flux_t0_true_info.csv --data true_info --plot yvsx --bins 80 \
+  --xlim -0.25 0.25 --ylim -0.25 0.25 \
+  --save /opt/projects/gemc/home/assets/images/documentation/analyzer/simple_flux_avgy_vs_avgx.png
+```
+
 For `totEdep`, the generator uses the `digitized` stream when that column is present. If an example writes
 detector-specific digitized banks without total deposited energy, the generator falls back to the
 `totalEDeposited` column in the `true_info` stream.
@@ -122,7 +138,54 @@ For example, to regenerate only the CLAS12 analyzer plots and update their markd
 
 # Generate pyvista solids
 
-Use scripts/generate_solid_vtksz.py 
+The site embeds per-solid interactive VTK.js viewers in `_documentation/geometry/solidTypes.md`. The `.vtksz`
+files live at `assets/images/documentation/solidTypes/`.
+
+Solids generated: `G4Box`, `G4Tubs`, `G4Cons`, `G4Trd`, `G4Trap`, `G4Sphere`, `G4Polycone`.
+
+**Python environment** — needs both `pyvista` (0.48+) and `pygemc`:
+
+```
+/opt/jlab_software/macosx26-clang21-arm64/gemc/dev/python_env/bin/python3
+```
+
+**Required packages** (install once into that env if missing):
+
+```shell
+PYENV=/opt/jlab_software/macosx26-clang21-arm64/gemc/dev/python_env
+$PYENV/bin/pip install trame trame-vtk trame-vuetify
+```
+
+**Generation** — the script is `scripts/generate_solid_vtksz.py`:
+
+```shell
+$PYENV/bin/python3 /opt/projects/gemc/home/scripts/generate_solid_vtksz.py
+```
+
+The trame server binds to localhost, so run the script outside the Claude Code sandbox — the sandbox blocks
+`bind('127.0.0.1', 0)`.
+
+The script uses `asyncio.run()` to launch the trame server (required by pyvista 0.48+ `export_vtksz`), calls
+`GConfiguration(..., enable_pyvista=True)` for each solid, publishes one `GVolume`, grabs `cfg.plotter`, and
+writes the vtksz through `PyVistaLocalView.export()`. Key pattern:
+
+```python
+import asyncio, pyvista as pv
+from pyvista.trame.jupyter import launch_server
+from pyvista.trame import PyVistaLocalView
+from pyvista.trame.views import get_server
+
+async def export_plotter_async(plotter, out_path):
+    server_name = pv.global_theme.trame.jupyter_server_name
+    await launch_server(server_name).ready
+    server = get_server(server_name)
+    view = PyVistaLocalView(plotter, trame_server=server)
+    content = view.export(format='zip')
+    view.release_resources()
+    plotter._on_render_callbacks.remove(view._plotter_render_callback)
+    with open(out_path, 'wb') as f:
+        f.write(content)
+```
 
 
 # Qt GUI SVG icon system
@@ -196,14 +259,18 @@ source of truth; `scripts/annotate_gui.py` is obsolete.
 - Generator: `src/gemc/pmaker/pmakerView.cc` and `src/gemc/pmaker/pmakerTab.cc` — `QTabWidget` with one
   particle tab per `Gparticle`, final `+` add tab, Particle/Momentum/Angles/Vertex group boxes, and two
   `AngleCoverageWidget` instances: one for theta and `dtheta`, one for phi and `dphi`
+- Analyzer: `src/gemc/ganalysis/gAnalysisView.cc` — GUI-only Accumulate and plot-count buttons,
+  `QTabWidget` configuration panels, runtime run/plugin/source/variable selectors, independent axis limits,
+  1D/2D styles, equal chart grid, and vector PDF export
 
 **Icon sources (embed inline as `<g>` elements — do NOT use `<image>` or external refs):**
-- Left-panel page buttons (90×90): `src/gui/images/buttons/display_1.svg`, `setup_1.svg`, `tree_1.svg`,
-  `dialog_1.svg`, `generator_1.svg`
+- Left-panel page buttons (90×90): `src/gemc/gui/images/buttons/display_1.svg`, `setup_1.svg`,
+  `tree_1.svg`, `dialog_1.svg`, `generator_1.svg`, `analyzer_1.svg`
   - Embed with `transform="translate(11,Y) scale(1.875)"` — scales 48×48 icon to fill the 90×90 button
   - Active button: `style="color:white"` on the `<g>` (icons use `currentColor` throughout)
   - Inactive button: `style="color:var(--muted)"` on the `<g>`
-  - Current page order from `src/gemc/gui/leftButtons.cc`: Display, Setup, Volumes, G4Dialog, Generator
+  - Current page order from `src/gemc/gui/leftButtons.cc`: Display, Setup, Volumes, G4Dialog, Generator,
+    Analyzer
 - Volumes style buttons (48×48): `src/gemc/gtree/images/wireframe_1.svg`, `surface_1.svg`,
   `cloud_1.svg`, `centre_1.svg`
   - Embed with `transform="translate(x,y)"` (scale 1:1) — icon is already 48×48
@@ -322,3 +389,22 @@ Do not draw only one angular coverage widget.
 | Momentum spread           | momentum delta field              | right of group, arrow left         |
 | Angular coverage          | theta/phi coverage preview circle | below/right of Angles, arrow up    |
 | Vertex model              | vertex model dropdown             | below/right of Vertex, arrow up    |
+
+## display_analyzer.svg — Analyzer page (viewBox 0 0 1100 820)
+
+The Analyzer page comes from `src/gemc/ganalysis/gAnalysisView.cc`. Show four-plot mode so the configuration
+tabs and equal-size 2×2 chart grid are both explicit. The active **Top Left** tab contains the full set of
+selectors and controls; the grid contains charts only.
+
+Annotations:
+
+- `Accumulate between beamOn runs`: target the checkable Accumulate button.
+- `Switch one / four plots`: target the plot-count button.
+- `One tab per grid position`: target the Top Left, Top Right, Bottom Left, and Bottom Right tabs.
+- `Runtime-discovered data`: target the run, plugin/detector, and variable selectors.
+- `One source for both axes`: target the True information / Digitized radio buttons.
+- `Independent automatic limits`: target the four separate Auto checkboxes.
+- `Export active plot to PDF`: target the PDF button in the active configuration tab.
+
+The four chart rectangles must have exactly the same width and height and use only the chart-grid area. Embed
+the sixth Analyzer page icon directly from `src/gemc/gui/images/buttons/analyzer_1.svg`.

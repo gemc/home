@@ -55,6 +55,8 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`log_every`](/home/documentation/api/options/log_every) | `<value>` | log module: print event progress and average rate every N events per thread |
 | [`no_digitized`](/home/documentation/api/options/no_digitized) | `<value>` | detectors for which digitization is disabled |
 | [`no_true_info`](/home/documentation/api/options/no_true_info) | `<value>` | detectors for which true-information output is disabled |
+| [`ganalysis_plots`](/home/documentation/api/options/ganalysis_plots) | `<value>` | initial Analyzer layout: 1 or 4 plots |
+| [`ganalysis`](/home/documentation/api/options/ganalysis) | `<sequence>` | prepare GUI Analyzer plots |
 | [`gparticle`](/home/documentation/api/options/gparticle) | `<sequence>` | define the generator particle(s) |
 | [`gparticlefile`](/home/documentation/api/options/gparticlefile) | `<sequence>` | define generator particles from file(s) |
 | [`n`](/home/documentation/api/options/n) | `<value>` | number of events to process |
