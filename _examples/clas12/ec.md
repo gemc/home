@@ -8,8 +8,7 @@ title: "CLAS12 EC"
 
 <br/>
 
-This example shows the CLAS12 electromagnetic calorimeter (EC) geometry from `clas12-systems`. It is upcoming
-in the next release.
+This example shows the CLAS12 electromagnetic calorimeter (EC) geometry from `clas12-systems`.
 
 {% assign example = site.data.examples | where: "title", "EC" | first %}
 

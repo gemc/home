@@ -14,8 +14,6 @@ and emits photons isotropically. Each organ is a %%flux%% sensitive detector, so
 is recorded per organ; `plot_dose.py` converts it to absorbed dose and to the equivalent Ir-192
 irradiation time.
 
-> **Upcoming in the next release.**
-
 <br/>
 
 ## Quickstart

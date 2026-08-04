@@ -6,10 +6,6 @@ title: "Torus ASCII Field Map"
 # Torus ASCII Field Map Example
 <hr style="height:4px;border:0;background:#4a90e2;">
 
-<br/>
-
-*Upcoming in the next release.*
-
 This field example displays a phi-segmented ASCII field map loaded through the `asciimap` field
 plugin. It uses a transparent torus-shaped volume to make the field region easy to recognize.
 

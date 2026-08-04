@@ -8,8 +8,7 @@ title: "CLAS12 DC"
 
 <br/>
 
-This example shows the CLAS12 drift chamber geometry from `clas12-systems`. It is upcoming in the next
-release.
+This example shows the CLAS12 drift chamber geometry from `clas12-systems`.
 
 {% assign example = site.data.examples | where: "title", "DC" | first %}
 

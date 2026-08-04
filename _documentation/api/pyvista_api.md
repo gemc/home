@@ -183,10 +183,10 @@ These flags are accepted by any Python geometry script that uses `autogeometry`:
 | `-pvbgt` | `<color>` | Set the optional top color for a PyVista background gradient; use `none` for a flat background |
 | `-pvvtk` | `<name>` | Export geometry to `<name>.vtksz` for web viewing |
 | `-pvz` | `<zoom>` | Camera zoom factor for the exported VTK scene (e.g. `0.07`) |
-| `--pyvista-variation` | `<name>` | Upcoming in the next release: render only this variation |
-| `--pyvista-fast` | — | Upcoming in the next release: batch large scenes into fewer actors |
-| `--no-pyvista-fast` | — | Upcoming in the next release: force detailed actor-per-volume rendering |
-| `--pyvista-fast-threshold` | `<n>` | Upcoming in the next release: auto-batch above this volume count |
+| `--pyvista-variation` | `<name>` | Render only this variation |
+| `--pyvista-fast` | — | Batch large scenes into fewer actors |
+| `--no-pyvista-fast` | — | Force detailed actor-per-volume rendering |
+| `--pyvista-fast-threshold` | `<n>` | Auto-batch above this volume count |
 
 ```shell
 ./detector.py -pv                        # interactive window
@@ -196,7 +196,7 @@ These flags are accepted by any Python geometry script that uses `autogeometry`:
 ./detector.py -pv --pyvista-fast
 ```
 
-### Upcoming in the next release: variation selection
+### Variation selection
 
 For geometry scripts that publish more than one variation, PyVista renders only one variation. If no
 variation is specified, the first variation that publishes a PyVista-rendered volume is used. To choose a
@@ -227,7 +227,7 @@ that variation was published:
     ddvcs                    10000001
 ```
 
-### Upcoming in the next release: fast PyVista rendering
+### Fast PyVista rendering
 
 Large detector systems can contain thousands of volumes. Rendering one VTK actor per volume is useful for
 detailed debugging, but it is slow for systems such as EC. PyVista now defers actor creation until display or

@@ -6,8 +6,6 @@ category: api
 
 # Cure Mesh
 
-<span style="color:orange">Upcoming in the next release.</span>
-
 `cure_mesh` is a pygemc utility that **simplifies and repairs CAD meshes** (STL, PLY, OBJ, ...) so that
 Geant4's `G4TessellatedSolid` loads them quickly and without complaints.
 

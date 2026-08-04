@@ -6,9 +6,6 @@ permalink: /documentation/gui/analyzer/
 
 # GUI Analyzer
 
-> [!NOTE]
-> The GUI Analyzer is upcoming in the next release.
-
 The Analyzer plots numeric values produced by sensitive-detector plugins while GEMC is running. It discovers
 the plugin names and variables from the data itself, including dynamically loaded plugins; plugins do not
 need to declare a separate analysis schema.

@@ -8,8 +8,6 @@ permalink: /documentation/fields/asciimap/
 
 # ASCII Field Maps
 
-*Upcoming in the next release.*
-
 The `asciimap` field [plugin](/home/documentation/fields/plugins) loads a **measured field map** from
 a plain-text file. It is the GEMC3 successor of the clas12 `asciiField`, with the two responsibilities
 split apart:

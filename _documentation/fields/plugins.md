@@ -8,8 +8,6 @@ permalink: /documentation/fields/plugins/
 
 # Field Plugins
 
-*Upcoming in the next release.*
-
 When a field cannot be expressed as an ideal [multipole](/home/documentation/fields/multipoles) —
 for example a measured field map, or any custom model — a **field plugin** supplies it. The generic
 `gfields` YAML key names the field, selects a plugin by `type`, and forwards every other key to that

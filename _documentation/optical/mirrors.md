@@ -7,8 +7,6 @@ description: Create mirrors and assign optical properties
 
 # Mirrors
 
-> Mirrors are upcoming in the next release.
-
 In GEMC any optical boundary is described as a **mirror**, regardless of its use or reflective
 quality: metal reflectors, painted walls, wrappings, or the interface between two transparent
 media. A mirror defines a Geant4 optical surface; each volume can reference one mirror by name

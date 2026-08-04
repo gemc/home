@@ -6,10 +6,6 @@ title: "Dipole Field"
 # Dipole Field Example
 <hr style="height:4px;border:0;background:#4a90e2;">
 
-<br/>
-
-*Upcoming in the next release.*
-
 This field example displays an ideal transverse dipole field from `gmultipoles`. It is useful for
 checking the field association on a single volume and the visual field-line startup options.
 

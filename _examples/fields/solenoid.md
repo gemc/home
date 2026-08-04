@@ -6,10 +6,6 @@ title: "Solenoid ASCII Field Map"
 # Solenoid ASCII Field Map Example
 <hr style="height:4px;border:0;background:#4a90e2;">
 
-<br/>
-
-*Upcoming in the next release.*
-
 This field example displays a cylindrical ASCII field map loaded through the `asciimap` field plugin.
 The map file is intentionally small, so the example is easy to inspect and modify.
 

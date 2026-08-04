@@ -81,8 +81,8 @@ track ID.
 
 ### Original-Track Differences
 
-Upcoming in the next release: the analyzer derives momentum and direction changes for true-information hits when
-GEMC saves the original-track information.
+The analyzer derives momentum and direction changes for true-information hits when GEMC saves the
+original-track information.
 Enable [`save_original_track`](/home/documentation/api/options/save_original_track) in the YAML configuration:
 
 ```yaml
@@ -247,8 +247,8 @@ Print a summary:
 gemc-analyzer digitized.csv
 ```
 
-Upcoming in the next release: `gemc-analyzer` infers CSV and ROOT input from file extensions. The `--kind`
-option is still accepted as a compatibility override, but normal command lines do not need it.
+`gemc-analyzer` infers CSV and ROOT input from file extensions. The `--kind` option is still accepted as a
+compatibility override, but normal command lines do not need it.
 
 ### Discovering Plottable Quantities
 
@@ -303,9 +303,8 @@ Plot a true-info track vertex coordinate:
 gemc-analyzer true_info.csv vx --save b2_vertex_x.png
 ```
 
-Plot true hit positions in the y-vs-x plane. Upcoming in the next release: the command searches loaded streams
-for the requested %%avgx%% and %%avgy%% columns, so `--data true_info` is not needed for the usual
-true-information CSV file:
+Plot true hit positions in the y-vs-x plane. The command searches loaded streams for the requested %%avgx%% and
+%%avgy%% columns, so `--data true_info` is not needed for the usual true-information CSV file:
 
 ```sh
 gemc-analyzer true_info.csv --plot yvsx --xlim -20 20 --ylim -20 20 --save b2_yvsx.png

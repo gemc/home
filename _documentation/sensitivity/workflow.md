@@ -97,8 +97,6 @@ Which banks are written is governed by the `HitBitSet` set in `defineReadoutSpec
 
 ### Suppressing detector output
 
-*Upcoming in the next release.*
-
 Use %%no_digitized%% and %%no_true_info%% to disable either output path for selected detectors. Each option
 accepts %%none%% (the default), %%all%%, or a comma- or whitespace-separated list of detector names:
 

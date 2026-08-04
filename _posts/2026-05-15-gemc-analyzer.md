@@ -19,7 +19,7 @@ The first implementation focuses on CSV and ROOT output from %%gstreamer%%. It c
 - Supports detector selection for ROOT detector trees
 - Provides a dependency-free SVG histogram helper for minimal systems
 
-Upcoming in the next release:
+The analyzer also:
 
 - Reads GEMC generated-particle output such as `b2_t0_generated_tracked.csv`
 - Plots the generated particle kinematics `p`, `theta`, and `phi`, resolving them automatically even under

@@ -6,10 +6,6 @@ title: "Constant Field"
 # Constant Field Example
 <hr style="height:4px;border:0;background:#4a90e2;">
 
-<br/>
-
-*Upcoming in the next release.*
-
 This field example displays a uniform longitudinal magnetic field using `gmultipoles`. It is a
 minimal scene for checking field-line visualization without running events.
 

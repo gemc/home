@@ -9,7 +9,7 @@ milestones:
     number: 1
 ---
 
-New features, improvements, and issue resolutions planned for the next release.
+This roadmap tracks the new features, improvements, and issue resolutions for GEMC 0.2.
 
 See also the [Project Roadmap](https://github.com/orgs/gemc/projects/1/views/4).
 

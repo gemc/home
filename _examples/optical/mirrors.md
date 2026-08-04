@@ -6,10 +6,6 @@ title: "Mirrors"
 # Mirrors Example
 <hr style="height:4px;border:0;background:#4a90e2;">
 
-<br/>
-
-*Upcoming in the next release.*
-
 This example showcases the GEMC optical surfaces ("mirrors"). Three identical 1 GeV electrons
 cross a low-index gas radiator, each aimed at the center of one reflector plate. The Cherenkov
 photons stay in a narrow forward cone around each electron and land on that electron's plate.

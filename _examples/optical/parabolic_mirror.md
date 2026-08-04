@@ -6,10 +6,6 @@ title: "Parabolic Mirror"
 # Parabolic Mirror Example
 <hr style="height:4px;border:0;background:#4a90e2;">
 
-<br/>
-
-*Upcoming in the next release.*
-
 This example builds a telescope-like optical mirror from two Geant4 `G4Paraboloid`
 solids. A parallel bundle of optical photons enters an optical vacuum volume,
 reflects from the inner surface of the mirror shell, and is collected by a small

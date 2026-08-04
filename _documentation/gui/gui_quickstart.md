@@ -164,9 +164,6 @@ caption="G4Dialog page: filter commands, browse the tree, read help, and execute
 
 ### Generator
 
-> [!NOTE]
-> The Generator page is upcoming in the next release.
-
 The Generator page edits the particle definitions used by the internal event generator.
 
 {% include figure.html
@@ -185,9 +182,6 @@ caption="Generator page: edit particles, multiplicity, momentum spread, angular 
 <br/>
 
 ### Analyzer
-
-> [!NOTE]
-> The Analyzer page is upcoming in the next release.
 
 The Analyzer discovers numeric true-information and digitized variables during a GUI run, then draws
 interactive 1D or 2D histograms. See the [GUI Analyzer guide](/home/documentation/gui/analyzer).

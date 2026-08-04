@@ -8,8 +8,7 @@ title: "CLAS12 FTOF"
 
 <br/>
 
-This example shows the CLAS12 Forward Time-of-Flight (FTOF) geometry from `clas12-systems`. It is upcoming
-in the next release.
+This example shows the CLAS12 Forward Time-of-Flight (FTOF) geometry from `clas12-systems`.
 
 {% assign example = site.data.examples | where: "title", "FTOF" | first %}
 
