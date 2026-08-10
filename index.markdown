@@ -39,6 +39,14 @@ layout: default
 
 [Binary-Tarballs-badge]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml/badge.svg
 
+[macOS-Tarball]: https://github.com/gemc/src/actions/workflows/macos_tarball.yml
+
+[macOS-Tarball-badge]: https://github.com/gemc/src/actions/workflows/macos_tarball.yml/badge.svg
+
+[Release-Tarballs]: https://github.com/gemc/src/actions/workflows/release_tarballs.yml
+
+[Release-Tarballs-badge]: https://github.com/gemc/src/actions/workflows/release_tarballs.yml/badge.svg?event=release
+
 [PyPI]: https://pypi.org/project/pygemc/
 
 [PyPI-badge]: https://img.shields.io/pypi/v/pygemc.svg?cacheSeconds=300
@@ -274,22 +282,24 @@ architectures.
 
 {:.zebra}
 
-| Tests | [![test][test-badge]][test]                                  |
-| Sanitizer | [![Sanitize][Sanitize-badge]][Sanitize]                      |
-| Image Deploy | [![deploy][deploy-badge]][deploy]                            |
-| Docker Hub | [![Docker Pulls][DockerHub-badge]][DockerHub]                |
-| Binary Tarballs | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] |
+| Tests      | [![test][test-badge]][test]                                  |
+| Sanitizer  | [![Sanitize][Sanitize-badge]][Sanitize]                      |
 | CodeQL | [![CodeQL][CodeQL-badge]][CodeQL]                            |
-| Doxygen | [![Docs][Docs-badge]][Docs]                                  |
+| Image Deploy | [![deploy][deploy-badge]][deploy]                            |
+| Binary Tarballs | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] |
+| macOS Tarball | [![macOS Tarball][macOS-Tarball-badge]][macOS-Tarball]       |
 | Nightly Release | [![Nightly][Nightly-badge]][Nightly]                         |
 | Homepage | [![Site][Site-badge]][Site]                                  |
+| Docker Pulls | [![Docker Pulls][DockerHub-badge]][DockerHub]                |
+| Doxygen | [![Docs][Docs-badge]][Docs]                                  |
+| Release Tarballs | [![Release Tarballs][Release-Tarballs-badge]][Release-Tarballs] |
 
 **pygemc**
 
 {:.zebra}
 
 | Nightly Dev Release | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
-| Publish to PyPI | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
+| Publish to PyPI     | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
 | Tests | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]               |
 | PyPI | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
 
@@ -335,8 +345,10 @@ M. Ungaro and the CLAS Collaboration,
 
 ## Source Code and License
 
-The [GEMC source code](https://github.com/gemc/src) is distributed under
-the [Apache License, Version 2.0](/home/license/).
+The [GEMC source code](https://github.com/gemc/src) is licensed under the
+[Apache License, Version 2.0](/home/license/); see [NOTICE](/home/license/#notice) for attribution and
+third-party acknowledgments. The software also depends on separately licensed third-party components,
+including Geant4, CLHEP, Qt, ROOT, SQLite, and Assimp.
 
 <br/><br/>
 

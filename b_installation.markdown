@@ -4,8 +4,8 @@ title: Installation
 permalink: /installation/
 
 development_tag: dev
-latest_tag: 0.3
-latest_pytag: v0.3.0
+latest_tag: 0.4
+latest_pytag: v0.4.0
 dev_tag: dev
 development_release_date: <small><time> → released nightly, shows commits</time></small>
 latest_release_date: <small><time>→ released on 06/17/2026</time></small>

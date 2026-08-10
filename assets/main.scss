@@ -1234,8 +1234,9 @@ pre:not(.highlight) {
 }
 
 .small-icons img {
-  width: 32px;
-  height: auto;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
 }
 
 .small-icons a {
@@ -1256,7 +1257,8 @@ pre:not(.highlight) {
   }
 
   .small-icons img {
-    width: 28px;
+    width: 34px;
+    height: 34px;
   }
 }
 
