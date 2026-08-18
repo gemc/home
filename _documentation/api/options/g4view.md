@@ -18,7 +18,7 @@ gemc help g4view
 ```text
 -g4view=<sequence> .........: Defines the geant4 viewer properties
 
-   • driver: Geant4 visualization driver. See the detailed help for driver tradeoffs. Default value: OGLSQt
+   • driver: Geant4 visualization driver. See the detailed help for driver tradeoffs. Default value: TOOLSSG_QT_GLES
    • dimension: Geant4 viewer dimensionDefault value: 800x800
    • position: Geant4 viewer positionDefault value: -400+100
    • segsPerCircle: Number of segments per circleDefault value: 100
