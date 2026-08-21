@@ -15,14 +15,17 @@ python3 scripts/generate_example_assets.py CAD                       # selected 
 ~/venv/pygemc/bin/python scripts/generate_example_assets.py b1 cherenkov   # selected examples
 ```
 
-The script reads `source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, `pyvista-fast`, `snevents`,
-`pevents`, `to_plot`, `panel_yvsx`, and `skip_asset_generation` from `_data/examples.yml` automatically.
+The script reads `source_dir`, `source_support`, `gemc_args`, `plot_gemc_args`, `vtz_zoom`, `pyvista-fast`,
+`snevents`, `pevents`, `to_plot`, `panel_yvsx`, and `skip_asset_generation` from `_data/examples.yml`
+automatically.
 The gemc binary is at `/opt/projects/gemc/src/build/bin/gemc` (no module load needed at runtime).
 
 Examples normally come from `/opt/projects/gemc/src/examples/<category>/<example>`. Entries with
 `source_dir` can point elsewhere, such as `../clas12-systems/geometry_src/dc`. Use `source_support` for sibling
 files or directories that the copied working tree needs at generation time.
 Use `gemc_args` for extra GEMC command-line arguments, such as a plugin path.
+Use `plot_gemc_args` for arguments needed only while generating analyzer CSV files, such as selecting one
+detector from a system whose hit processes have different schemas.
 
 The sections below document the manual steps the script automates.
 
@@ -110,7 +113,7 @@ detector-specific digitized banks without total deposited energy, the generator 
 For example, to regenerate only the CLAS12 analyzer plots and update their markdown sections:
 
 ```shell
-~/venv/pygemc/bin/python scripts/generate_example_assets.py --plots DC EC PCAL FTOF
+~/venv/pygemc/bin/python scripts/generate_example_assets.py --plots DC EC PCAL FTOF LTCC FT
 ```
 
 ### Per-example reference
@@ -131,9 +134,12 @@ For example, to regenerate only the CLAS12 analyzer plots and update their markd
 | ec | clas12 | ec.py | ec |
 | pcal | clas12 | pcal.py | pcal |
 | ftof | clas12 | ftof.py | ftof |
+| ltcc | clas12 | ltcc.py | ltcc |
+| ft | clas12 | ft.py | ft |
 
-`source_dir`, `source_support`, `gemc_args`, `vtz_zoom`, `pyvista-fast`, `snevents`, `pevents`,
-`to_plot`, `panel_yvsx`, and `skip_asset_generation` live in `_data/examples.yml` - do not duplicate them here.
+`source_dir`, `source_support`, `gemc_args`, `plot_gemc_args`, `vtz_zoom`, `pyvista-fast`, `snevents`,
+`pevents`, `to_plot`, `panel_yvsx`, and `skip_asset_generation` live in `_data/examples.yml` - do not duplicate
+them here.
 
 
 # Generate pyvista solids

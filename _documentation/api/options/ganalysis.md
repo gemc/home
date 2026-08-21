@@ -18,23 +18,23 @@ gemc help ganalysis
 ```text
 -ganalysis=<sequence> ......: prepare GUI Analyzer plots
 
-   • position: plot position: top_left, top_right, bottom_left, or bottom_rightDefault value: NODFLT
+   • position: plot position: top_left, top_right, bottom_left, or bottom_rightDefault value: required
    • run: run number; -1 selects the first available runDefault value: -1
-   • plugin: runtime sensitive-detector/plugin nameDefault value: 
+   • plugin: runtime sensitive-detector/plugin nameDefault value: ""
    • source: variable source: true or digitizedDefault value: true
    • dimension: histogram dimension: 1d or 2dDefault value: 1d
-   • x: X variable name to validate after beamOnDefault value: 
-   • y: Y variable name for a 2D histogramDefault value: 
+   • x: X variable name to validate after beamOnDefault value: ""
+   • y: Y variable name for a 2D histogramDefault value: ""
    • bins: number of bins per axisDefault value: 100
    • x_min_auto: derive the X minimum from samplesDefault value: true
    • x_max_auto: derive the X maximum from samplesDefault value: true
    • y_min_auto: derive the Y minimum from samplesDefault value: true
    • y_max_auto: derive the Y maximum from samplesDefault value: true
-   • x_min: fixed X minimum when x_min_auto is falseDefault value: 0.000000
-   • x_max: fixed X maximum when x_max_auto is falseDefault value: 1.000000
-   • y_min: fixed Y minimum when y_min_auto is falseDefault value: 0.000000
-   • y_max: fixed Y maximum when y_max_auto is falseDefault value: 1.000000
-   • title: plot title; empty uses an automatic titleDefault value: 
+   • x_min: fixed X minimum when x_min_auto is falseDefault value: 0
+   • x_max: fixed X maximum when x_max_auto is falseDefault value: 1
+   • y_min: fixed Y minimum when y_min_auto is falseDefault value: 0
+   • y_max: fixed Y maximum when y_max_auto is falseDefault value: 1
+   • title: plot title; empty uses an automatic titleDefault value: ""
    • style: 2D rendering style: heatmap or boxesDefault value: heatmap
    • scale: 1D Y scale or 2D Z scale: linear or logarithmicDefault value: linear
 

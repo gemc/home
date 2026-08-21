@@ -18,11 +18,11 @@ gemc help gsystem
 ```text
 -gsystem=<sequence> ........: defines the group of volumes in a system
 
-   • name: system name (mandatory). For ascii factories, it may include the path to the fileDefault value: NODFLT
+   • name: system name (mandatory). For ascii factories, it may include the path to the fileDefault value: required
    • factory: factory name.Default value: sqlite
    • variation: geometry variationDefault value: default
-   • annotations: optional system annotations. Examples: "mats_only" Default value: null
-   • digitization: optional digitization plugin name when it differs from the system name (shared plugin, e.g. "ecal" for the EC and PCAL systems)Default value: null
+   • annotations: optional system annotations. Examples: "mats_only" Default value: not set
+   • digitization: optional digitization plugin name when it differs from the system name (shared plugin, e.g. "ecal" for the EC and PCAL systems)Default value: not set
 
 
    A system definition includes the geometry location, factory and variation

@@ -18,9 +18,9 @@ gemc help gmodifier
 ```text
 -gmodifier=<sequence> ......: modify volume existence or placement
 
-   • name: volume name (mandatory)Default value: NODFLT
-   • shift: volume shift added to existing positionDefault value: noModifier
-   • tilt: volume tilt added to existing rotationDefault value: noModifier
+   • name: volume name (mandatory)Default value: required
+   • shift: volume shift added to existing positionDefault value: not set
+   • tilt: volume tilt added to existing rotationDefault value: not set
    • isPresent: If set to false, remove the volume from the worldDefault value: true
 
 

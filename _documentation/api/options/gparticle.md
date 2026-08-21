@@ -18,9 +18,9 @@ gemc help gparticle
 ```text
 -gparticle=<sequence> ......: define the generator particle(s)
 
-   • name: Particle name (mandatory), e.g. "proton" or "e-"Default value: NODFLT
+   • name: Particle name (mandatory), e.g. "proton" or "e-"Default value: required
    • multiplicity: How many copies of this particle will be generated in each eventDefault value: 1
-   • p: Particle momentum with unit, e.g. "4*GeV" or "4000*MeV". Plain number falls back to MeV.Default value: NODFLT
+   • p: Particle momentum with unit, e.g. "4*GeV" or "4000*MeV". Plain number falls back to MeV.Default value: required
    • delta_p: Particle momentum spread, centered on p (same unit convention as p).Default value: 0*MeV
    • randomMomentumModel: Momentum randomization. 'gaussian' uses deltas as sigmas.Default value: uniform
    • theta: Particle polar angle, e.g. "23*deg" or "0.4*rad". Plain number falls back to deg.Default value: 0*deg

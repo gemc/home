@@ -18,8 +18,8 @@ gemc help gstreamer
 ```text
 -gstreamer=<sequence> ......: define a gstreamer output
 
-   • filename: name of output file. Default value: NODFLT
-   • format: format of output file. Default value: NODFLT
+   • filename: name of output file. Default value: required
+   • format: format of output file. Default value: required
    • type: type of output fileDefault value: event
 
 

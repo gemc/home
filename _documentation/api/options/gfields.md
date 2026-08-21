@@ -18,8 +18,8 @@ gemc help gfields
 ```text
 -gfields=<sequence> ........: define a generic plugin-backed e.m. field
 
-   • name: Field name (unique key used by GMagneto maps)Default value: NODFLT
-   • type: Field type; selects the plugin shared library gfield<type>FactoryDefault value: NODFLT
+   • name: Field name (unique key used by GMagneto maps)Default value: required
+   • type: Field type; selects the plugin shared library gfield<type>FactoryDefault value: required
    • integration_stepper: Geant4 integration stepper name (string)Default value: G4DormandPrince745
    • minimum_step: Minimum step for the G4ChordFinder (Geant4 length units)Default value: 1.0*mm
 

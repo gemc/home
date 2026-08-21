@@ -18,8 +18,8 @@ gemc help gparticlefile
 ```text
 -gparticlefile=<sequence> ..: define generator particles from file(s)
 
-   • format: Particle file format, for example "lund"Default value: NODFLT
-   • filename: Input filename containing particle definitionsDefault value: NODFLT
+   • format: Particle file format, for example "lund"Default value: required
+   • filename: Input filename containing particle definitionsDefault value: required
 
 
    Adds particles to the event generator from particle-definition files.

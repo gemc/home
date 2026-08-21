@@ -19,7 +19,7 @@ gemc help g4decoration
 -g4decoration=<sequence> ...: Adds optional Geant4 scene decorations
 
    • scale: add a simple scale lineDefault value: false
-   • scaleLength: scale lengthDefault value: 10.000000
+   • scaleLength: scale lengthDefault value: 10
    • scaleUnit: scale length unitDefault value: mm
    • scaleDirection: scale direction: x, y, or zDefault value: z
    • scaleColor: scale color as 'r g b' or a named colorDefault value: 0.9 0.9 0.9
@@ -32,7 +32,7 @@ gemc help g4decoration
    • logo: add the 3D Geant4 logoDefault value: false
    • frame: add a frame around the viewDefault value: false
    • frameColor: frame colorDefault value: red
-   • frameLineWidth: frame line widthDefault value: 2.000000
+   • frameLineWidth: frame line widthDefault value: 2
 
 
    Adds optional Geant4 scene decorations.

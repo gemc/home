@@ -18,17 +18,17 @@ gemc help g4text
 ```text
 -g4text=<sequence> .........: Insert texts in the current scene
 
-   • text: string with the text to be displayedDefault value: NODFLT
+   • text: string with the text to be displayedDefault value: required
    • color: color of the textDefault value: black
    • kind: text kind: 2D or 3DDefault value: 2D
-   • layout: optional text layout, for example rightDefault value: null
+   • layout: optional text layout, for example rightDefault value: ""
    • x: x position of the textDefault value: 0
    • y: y position of the textDefault value: 0
-   • z: z position of the textDefault value: -1234.500000
+   • z: z position of 3D text (required when kind is 3D)Default value: not set
    • unit: unit for 3D text positionsDefault value: cm
-   • size: size of the textDefault value: 24.000000
-   • dx: 3D text x offsetDefault value: 4.000000
-   • dy: 3D text y offsetDefault value: 4.000000
+   • size: size of the textDefault value: 24
+   • dx: 3D text x offsetDefault value: 4
+   • dy: 3D text y offsetDefault value: 4
 
 
    Adds 2D or 3D text to the current scene.

@@ -143,9 +143,9 @@ shown on each image is the number of rows selected from the true-information str
 | | |
 |:---:|:---:|
 | ![flat panel y vs x][mirrors-flat-panel-yvsx] | ![rough panel y vs x][mirrors-rough-panel-yvsx] |
-| flat reflected panel<br>counts = 2,339 | rough reflected panel<br>counts = 2,347 |
+| flat reflected panel<br>counts = 2,445 | rough reflected panel<br>counts = 2,269 |
 | ![semi panel y vs x][mirrors-semi-panel-yvsx] | ![back panel y vs x][mirrors-back-panel-yvsx] |
-| semi-transparent reflected panel<br>counts = 1,650 | back transmitted panel<br>counts = 877 |
+| semi-transparent reflected panel<br>counts = 1,681 | back transmitted panel<br>counts = 918 |
 
 [mirrors-flat-panel-yvsx]: /home/assets/images/examples/mirrors/flat_panel_y_vs_x.png
 [mirrors-rough-panel-yvsx]: /home/assets/images/examples/mirrors/rough_panel_y_vs_x.png

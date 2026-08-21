@@ -261,22 +261,18 @@ count represents (see [Irradiation time](#irradiation-time) above).
 
 ## Plotting with the GEMC Analyzer
 
-`plot_dose.py` above gives the per-organ dose. For a quick look at the raw flux output you can also
-use the generic `gemc-analyzer`. Run GEMC first so the CSV streams are written:
+Run GEMC with 200 events first. The default YAML file writes the analyzer CSV streams.
 
 ```shell
 gemc cad.yaml -n=200
 ```
 
-Histogram the per-hit deposited energy %%totEdep%% (the flux stream records `totEdep`, not `dose`):
+Plot the total energy deposited per hit:
 
 ```shell
 gemc-analyzer organs_t0_digitized.csv totEdep --kind csv
 ```
 
-![cad total energy deposit][cad-analyzer_totEdep]{:width="70%"}
-
-The analyzer colours the histogram by particle id: most of the energy is deposited by secondary
-electrons (`pid 11`) set in motion by the Ir-192 photons (`pid 22`).
+![cad total energy deposited per hit][cad-analyzer_totEdep]{:width="70%"}
 
 [cad-analyzer_totEdep]: /home/assets/images/examples/cad/analyzer_totEdep.png

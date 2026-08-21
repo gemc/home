@@ -319,3 +319,42 @@
   gemc_args:
     - "-no_field=all"
     - "-plugin_path=/opt/projects/gemc/clas12-systems/build"
+
+- title: "LTCC"
+  gallery_title: "CLAS12/LTCC"
+  header: "CLAS12 low-threshold Cherenkov counter combining native mirror optics with CAD Winston cones"
+  category: "clas12"
+  link: "/home/examples/clas12/ltcc"
+  display: false
+  vtz_zoom: 0.0003
+  pyvista-fast: true
+  gallery: true
+  vtksz: "/home/assets/images/examples/ltcc/ltcc.vtksz"
+  snevents: 3
+  pevents: 2000
+  to_plot: totEdep, yvsx
+  source_dir: "../clas12-systems/geometry_src/ltcc"
+  gemc_args:
+    - "-no_field=all"
+    - "-plugin_path=/opt/projects/gemc/clas12-systems/build"
+
+- title: "FT"
+  gallery_title: "CLAS12/FT"
+  header: "CLAS12 forward tagger: PbWO4 calorimeter, scintillator hodoscope, and Micromegas tracker"
+  category: "clas12"
+  link: "/home/examples/clas12/ft"
+  display: false
+  vtz_zoom: 0.0003
+  pyvista-fast: true
+  gallery: true
+  vtksz: "/home/assets/images/examples/ft/ft.vtksz"
+  snevents: 1
+  pevents: 2000
+  to_plot: totEdep, yvsx
+  plot_gemc_args:
+    - "-no_true_info=flux ft_hodo ft_trk"
+    - "-no_digitized=flux ft_hodo ft_trk"
+  source_dir: "../clas12-systems/geometry_src/ft"
+  gemc_args:
+    - "-no_field=all"
+    - "-plugin_path=/opt/projects/gemc/clas12-systems/build"

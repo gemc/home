@@ -220,10 +220,30 @@ Variables added with `includeVariable` appear in the output bank alongside the i
 
 ## Plugin options
 
-Plugins can declare their own GEMC options. When `myplugin` is listed under `gsystem` in a YAML file,
-GEMC probes `myplugin.gplugin` for a `definePluginOptions` symbol **before** command-line and YAML
-parsing begins. Options declared there appear in `gemc -h`, are saved to the configuration snapshot,
-and can be set from the command line or YAML like any other option.
+Plugins can declare their own GEMC options. GEMC probes the relevant `.gplugin` libraries for a
+`definePluginOptions` symbol **before** command-line and YAML parsing begins. Options declared there appear
+in `gemc -h`, are saved to the configuration snapshot, and can be set from the command line or YAML like any
+other option.
+
+### Runtime digitization and startup option discovery
+
+The two digitization settings have separate roles:
+
+- A geometry volume's %%digitization%% value selects the runtime hit-process plugin. GEMC loads that plugin
+  after building the geometry and routes the volume's hits to it.
+- The YAML %%gsystem.digitization%% value is a startup override for option discovery. Use it when the options
+  plugin name differs from the system name; for example, the `ec` and `pcal` systems both name `ecal` so GEMC
+  can register the shared plugin's options before parsing the rest of the configuration. It does not select
+  the runtime plugin for any volume.
+
+For each YAML %%gsystem%% entry, GEMC first probes `<name>.gplugin`. When %%gsystem.digitization%% is present,
+it also probes `<digitization>.gplugin`. Each probe only looks for `definePluginOptions`, so the discovered
+library may be an **options-only registrar** with no `GDynamicDigitizationFactory` entry point.
+
+An options-only registrar is useful when one geometry system contains volumes handled by several runtime
+plugins. As a CLAS12-specific example, the Forward Tracker uses `ft.gplugin` to register the option and
+verbosity domains for `ft_cal`, `ft_hodo`, and `ft_trk` during startup. Its geometry-volume %%digitization%%
+values later cause GEMC to load the corresponding runtime plugins for hit processing.
 
 ### Declaring options
 
@@ -252,9 +272,12 @@ The `GOptions("myplugin")` constructor registers `myplugin` as a **verbosity key
 Options are available through `gopts` (inherited from `GDynamicDigitization`) in any method called
 after construction:
 
+> `getRequiredScalarDouble()` is upcoming in GEMC 0.5. It replaces `getScalarDouble()` and reports a
+> configuration error if the option has no value.
+
 ```cpp
 bool MyPlugin::defineReadoutSpecsImpl() {
-    double threshold = gopts->getScalarDouble("myplugin_threshold");
+    double threshold = gopts->getRequiredScalarDouble("myplugin_threshold");
     // ...
 }
 ```

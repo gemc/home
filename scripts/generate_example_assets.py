@@ -11,8 +11,8 @@ Run from the repository root:
     ~/venv/pygemc/bin/python scripts/generate_example_assets.py --plots     # analyzer plots + md update only
     ~/venv/pygemc/bin/python scripts/generate_example_assets.py b1 basic/pyvista  # selected examples
 
-Values (source_dir, source_support, gemc_args, vtz_zoom, pyvista-fast, snevents, pevents, to_plot,
-panel_yvsx, variation_plots, and skip_asset_generation) are read from _data/examples.yml.
+Values (source_dir, source_support, gemc_args, plot_gemc_args, vtz_zoom, pyvista-fast, snevents, pevents,
+to_plot, panel_yvsx, variation_plots, and skip_asset_generation) are read from _data/examples.yml.
 """
 
 import argparse
@@ -108,13 +108,16 @@ def find_primary_yaml(src_dir: Path) -> Path:
     return candidates[0]
 
 
-def find_geometry_script(src_dir: Path) -> Path:
-    """Return the geometry Python script (the one calling autogeometry)."""
-    candidates = [p for p in src_dir.glob("*.py") if not p.name.startswith("_")]
+def find_geometry_script(src_dir: Path, yaml_file: Path) -> Path:
+    """Return the Python script that builds the example geometry."""
+    candidates = sorted(p for p in src_dir.glob("*.py") if not p.name.startswith("_"))
     if not candidates:
         raise FileNotFoundError(f"No Python script found in {src_dir}")
     if len(candidates) == 1:
         return candidates[0]
+    matching_script = yaml_file.with_suffix(".py")
+    if matching_script in candidates:
+        return matching_script
     for c in candidates:
         if "autogeometry" in c.read_text(errors="ignore"):
             return c
@@ -614,6 +617,7 @@ def _fmt_n(n: int) -> str:
 
 def _format_shell_command(parts: list[str], width: int = 112) -> str:
     """Format a shell command with continuations so generated documentation stays within width."""
+    parts = [_quote_cmd([part]) for part in parts]
     lines: list[str] = []
     line = parts[0]
     for part in parts[1:]:
@@ -765,7 +769,8 @@ def run_plots(ex: dict, src_dir: Path, yaml_file: Path,
     plot_desc = to_plot_str if to_plot_str else "panel_yvsx"
     print(f"  plots  (n={pevents}, vars={plot_desc})", flush=True)
 
-    if not run_gemc_for_plots(src_dir, yaml_file, pevents, extra_args=ex.get("gemc_args", [])):
+    plot_gemc_args = [*ex.get("gemc_args", []), *ex.get("plot_gemc_args", [])]
+    if not run_gemc_for_plots(src_dir, yaml_file, pevents, extra_args=plot_gemc_args):
         return
 
     plot_entries: list[tuple[str, PlotConfig]] = []
@@ -777,11 +782,11 @@ def run_plots(ex: dict, src_dir: Path, yaml_file: Path,
     md_path = link_to_md_path(link)
     if plot_entries:
         section = build_analyzer_section(slug, yaml_file.name, csv_base,
-                                         pevents, plot_entries, ex.get("gemc_args", []))
+                                         pevents, plot_entries, plot_gemc_args)
         update_analyzer_section(md_path, section)
     elif md_path and md_path.exists() and ex.get("panel_yvsx"):
         section = build_analyzer_section(slug, yaml_file.name, csv_base,
-                                         pevents, [], ex.get("gemc_args", []))
+                                         pevents, [], plot_gemc_args)
         update_analyzer_section(md_path, section)
 
     run_panel_yvsx_plots(ex, src_dir, csv_base, asset_dir, slug, md_path)
@@ -1027,7 +1032,7 @@ def process(ex: dict, do_screenshots: bool, do_vtk: bool, do_plots: bool):
 
         try:
             yaml_file = find_primary_yaml(work_dir)
-            py_script = find_geometry_script(work_dir)
+            py_script = find_geometry_script(work_dir, yaml_file)
         except FileNotFoundError as e:
             print(f"  ERROR: {e}")
             return

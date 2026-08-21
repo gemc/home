@@ -20,7 +20,7 @@ gemc help seed
 
 
    Random Seed: set the random seed to an integer value. Default:
-   If the random seed is set to -12345, the seed will be set using a combination of:
+   If the random seed is not provided, it will be set using a combination of:
    - local time
    - process id
    - clock function
