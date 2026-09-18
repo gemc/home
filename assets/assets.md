@@ -414,3 +414,44 @@ Annotations:
 
 The four chart rectangles must have exactly the same width and height and use only the chart-grid area. Embed
 the sixth Analyzer page icon directly from `src/gemc/gui/images/buttons/analyzer_1.svg`.
+
+
+## Streaming readout flowcharts
+
+The SRO diagrams follow the worker event action, service/progress tracker, and crate callbacks in GEMC:
+
+- `assets/images/documentation/sro_flow.mmd` shows workers dispatching to crate threads.
+- `assets/images/documentation/sro_lifecycle.mmd` shows the example's callback sequence and shutdown.
+
+Update the Mermaid sources when the threading or lifecycle contract changes; do not edit generated SVGs
+by hand. Check lifecycle order against `src/gemc/gstreamer/sro/gSROCrate.cc` and the example callbacks in
+`src/examples/basic/sro/sro_plugin.cc`, in the owning GEMC source repository.
+
+Using an already installed Mermaid CLI (rendered with version 11.16.0), run from the website repository:
+
+```sh
+for name in sro_flow sro_lifecycle; do
+  mmdc -i "assets/images/documentation/$name.mmd" \
+    -o "assets/images/documentation/$name.svg" -b white -w 1600
+done
+```
+
+The source disables HTML labels so the result uses portable SVG text. Preserve spaces between Mermaid's
+text spans for renderers such as librsvg, and split tags onto separate lines for review:
+
+```sh
+python3 - <<'PYSVG'
+from pathlib import Path
+for name in ('sro_flow', 'sro_lifecycle'):
+    path = Path(f'assets/images/documentation/{name}.svg')
+    svg = path.read_text().replace('<svg ', '<svg xml:space="preserve" ', 1)
+    path.write_text(svg.replace('><', '>\n<') + '\n')
+PYSVG
+for name in sro_flow sro_lifecycle; do
+  xmllint --noout "assets/images/documentation/$name.svg"
+  rsvg-convert -b white -w 1250 "assets/images/documentation/$name.svg" -o "/tmp/$name.png"
+done
+```
+
+Inspect each PNG for labels and arrow crossings, then build Jekyll. The guide embeds the local SVG through
+`figure.html` and links to the full-size figure; no browser Mermaid dependency is needed.

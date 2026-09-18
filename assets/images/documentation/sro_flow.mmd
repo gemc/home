@@ -1,0 +1,60 @@
+%%{init: {
+  "htmlLabels": false,
+  "theme": "base",
+  "themeVariables": {
+    "fontFamily": "Avenir, Segoe UI, Arial",
+    "fontSize": "16px",
+    "clusterBkg": "#f4f6f8",
+    "clusterBorder": "#c6d0dc"
+  },
+  "flowchart": {
+    "htmlLabels": false,
+    "curve": "linear",
+    "nodeSpacing": 30,
+    "rankSpacing": 40,
+    "wrappingWidth": 340
+  }
+}}%%
+flowchart TB
+    run["Run owner: begin_run<br/>configure_run loads timing and limits"]
+    subgraph workers["Geant4 event worker threads — run concurrently"]
+        worker1["Worker 1: EndOfEventAction<br/>stream_hit → TT lookup → owned payload"]
+        worker2["Worker 2 … N: EndOfEventAction<br/>stream_hit → TT lookup → owned payload"]
+    end
+    dispatch["emit → dispatch_payload_to_crate<br/>create_crate_thread_if_needed<br/>
+Route directly to destination queue"]
+    run --> workers
+    worker1 --> dispatch
+    worker2 --> dispatch
+    subgraph crate1["Crate 1 thread"]
+        queue1["Bounded queue → ordering buffer"]
+        plugin1["consume_payload in time order<br/>advance_time → complete frames"]
+        file1[("Sink: crate 1 file")]
+        queue1 --> plugin1 --> file1
+    end
+    subgraph crate2["Crate 2 … M threads"]
+        queue2["Bounded queue → ordering buffer"]
+        plugin2["consume_payload in time order<br/>advance_time → complete frames"]
+        file2[("Sink: one file per crate")]
+        queue2 --> plugin2 --> file2
+    end
+    dispatch --> queue1
+    dispatch --> queue2
+    progress["GEMC progress thread<br/>Closed events + delivery acknowledgments<br/>
+GSROTiming → proven safe time"]
+    worker1 -. "complete_event after all emits" .-> progress
+    worker2 -. "complete_event after all emits" .-> progress
+    queue1 -. "retained payload acknowledgment" .-> progress
+    queue2 -. "retained payload acknowledgment" .-> progress
+    progress -. "safe-time boundary" .-> queue1
+    progress -. "safe-time boundary" .-> queue2
+    stop["Run owner: after event workers return<br/>
+Drain crates → finish_run → finish_output → join<br/>Plugin decides unfinished-frame policy"]
+    file1 --> stop
+    file2 --> stop
+    classDef worker fill:#e8f1ff,stroke:#346bb5,color:#102843;
+    classDef crate fill:#edf8ef,stroke:#448257,color:#163820;
+    classDef control fill:#fff4dc,stroke:#a47b22,color:#463713;
+    class worker1,worker2 worker;
+    class queue1,plugin1,file1,queue2,plugin2,file2 crate;
+    class run,progress,stop,dispatch control;

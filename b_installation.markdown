@@ -35,6 +35,10 @@ See the [license conditions](/home/license/).
 
 <br/>
 
+**Upcoming in the next release:** [streaming readout](/home/documentation/sro/plugins/) requires GEMC's new
+SRO interfaces and experiment plugins rebuilt against the same GEMC installation. FT-Cal's JLAB encoder
+belongs to `clas12-systems`; installing `pygemc` alone does not supply the native SRO implementation.
+
 ## Table of Contents
 
 - [Install the Python API](#install-the-python-api)

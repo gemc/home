@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Custom Digitization Plugins
+title: Digitization Plugins
 order: 36
 description: Write a GDynamic digitization plugin to process hits with custom electronics models
 permalink: /documentation/sensitivity/gplugins/
 ---
 
-# Custom Digitization Plugins
+# Digitization Plugins
 
 When the built-in digitizations (`flux`, `dosimeter`, `particle_counter`, `gPhotonDetector`) are not
 enough, you can write a **GDynamic digitization plugin**: a shared library (`.gplugin`) that GEMC loads
@@ -17,6 +17,10 @@ calibration corrections, translation tables — while still benefiting from GEMC
 threading, and output infrastructure.
 
 <br/>
+
+**Upcoming in the next release:** a detector can also produce streaming payloads through %%stream_hit%%.
+See [Streaming Readout Plugins](/home/documentation/sro/plugins/) in the separate **Streaming Readout**
+section for activation, worker-to-crate delivery, timing, framing, and implementation requirements.
 
 ## Quickstart
 
@@ -90,6 +94,7 @@ GDynamicDigitizationFactory(const std::shared_ptr<GOptions>& g) {
 | `defineReadoutSpecsImpl()` | Always — sets the electronics timing model |
 | `loadConstantsImpl(runno, variation)` | Load calibration constants from CCDB or files |
 | `loadTTImpl(runno, variation)` | Build the identity→electronics address translation table |
+| %%stream_hit(hit, index, event, emit)%% | Emit owned SRO payloads; upcoming, default emits nothing |
 | `processTouchableImpl(gtouchable, step)` | Re-bin hits by time cell / split charge (default handles the standard case) |
 | `digitizeHitImpl(ghit, hitn)` | Produce the digitized bank from an accumulated hit |
 | `collectTrueInformationImpl(ghit, hitn)` | Customize the Monte-Carlo truth bank (default writes the standard truth) |

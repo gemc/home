@@ -1,0 +1,54 @@
+%%{init: {
+  "htmlLabels": false,
+  "theme": "base",
+  "themeVariables": {
+    "fontFamily": "Avenir, Segoe UI, Arial",
+    "fontSize": "17px",
+    "clusterBkg": "#f4f6f8",
+    "clusterBorder": "#c6d0dc"
+  },
+  "flowchart": {
+    "htmlLabels": false,
+    "curve": "linear",
+    "nodeSpacing": 35,
+    "rankSpacing": 38,
+    "wrappingWidth": 360
+  }
+}}%%
+flowchart TB
+    configure["Run owner: configure_run<br/>Validate clock; supply Timing and limits"]
+    worker["Event worker: stream_hit → emit<br/>First payload starts this crate thread"]
+    configure --> worker
+    subgraph crate[" "]
+        create["create_crate<br/>Construct CsvSink and Crate"]
+        active["During run<br/>Retain payloads in ordering buffer"]
+        consume["consume_payload<br/>Consume all records before safe_time<br/>in time, event, sequence order"]
+        advance["advance_time<br/>Check occupied frame end ≤ safe_time"]
+        ready{"Complete frame?"}
+        write["write_frame<br/>Transfer AdcFrame to CSV sink"]
+        drain["Orderly shutdown, including interruption<br/>
+Drain queue; apply newer final safe time<br/>using consume_payload → advance_time"]
+        tail["consume_payload<br/>Drain remaining records in order<br/>Their frames may still be incomplete"]
+        finish["finish_run<br/>Example discards unfinished frames"]
+        close["finish_output<br/>Checked flush and close"]
+        destroy["Destroy Crate, then CsvSink"]
+        create --> active
+        active --> consume --> advance --> ready
+        ready -->|"yes"| write
+        write -->|"next frame"| ready
+        ready -->|"no; await more input"| active
+        active -->|"workers returned; input closed"| drain
+        drain --> tail --> finish --> close --> destroy
+    end
+    worker --> create
+    progress["Progress thread: earliest_remaining_time<br/>
+Closed event prefix + retained payloads<br/>prove a safe input boundary"]
+    progress -. "safe_time updates" .-> active
+    join["Run owner joins crate thread"]
+    destroy --> join
+    classDef owner fill:#fff4dc,stroke:#a47b22,color:#463713;
+    classDef worker fill:#e8f1ff,stroke:#346bb5,color:#102843;
+    classDef callback fill:#edf8ef,stroke:#448257,color:#163820;
+    class configure,progress,join owner;
+    class worker worker;
+    class create,consume,advance,write,finish,close callback;

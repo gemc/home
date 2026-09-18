@@ -20,7 +20,8 @@ gemc help gstreamer
 
    • filename: name of output file. Default value: required
    • format: format of output file. Default value: required
-   • type: type of output fileDefault value: event
+   • type: type of output file (sro: stream, otherwise: event)Default value: not set
+   • implementation: SRO implementation plugin library basenameDefault value: ""
 
 
    Define output formats and filenames. It can be used to select event or stream outputs.
@@ -28,7 +29,7 @@ gemc help gstreamer
    
    Supported formats:
    
-   - jlabsro
+   - sro
    - root
    - ascii
    - csv
@@ -47,4 +48,10 @@ gemc help gstreamer
    
    - event-based digitization (like flux) will have one file for every thread, with "_t<thread>" appended to the filename
    - run-based digitization (like dosimeter) will have one file only
+   - sro: one crate thread and output sink per crate, shared by all workers
+   SRO requires an implementation plugin for payload framing, timing, and file encoding.
+   Example: -gstreamer="[{format: sro, filename: out, implementation: experiment_sro}]"
+   The implementation resolves as experiment_sro.gplugin through -plugin_path / GEMC_PLUGIN_PATH.
+   SRO defaults to type: stream. Its implementation controls crate/run filenames
+   and incomplete frames.
 ```

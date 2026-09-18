@@ -57,6 +57,7 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`no_true_info`](/home/documentation/api/options/no_true_info) | `<value>` | detectors for which true-information output is disabled |
 | [`ganalysis_plots`](/home/documentation/api/options/ganalysis_plots) | `<value>` | initial Analyzer layout: 1 or 4 plots |
 | [`ganalysis`](/home/documentation/api/options/ganalysis) | `<sequence>` | prepare GUI Analyzer plots |
+| [`eventTimeWidth`](/home/documentation/api/options/eventtimewidth) | `<value>` | Time assigned to each consecutive generated event |
 | [`gparticle`](/home/documentation/api/options/gparticle) | `<sequence>` | define the generator particle(s) |
 | [`gparticlefile`](/home/documentation/api/options/gparticlefile) | `<sequence>` | define generator particles from file(s) |
 | [`n`](/home/documentation/api/options/n) | `<value>` | number of events to process |

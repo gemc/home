@@ -117,9 +117,19 @@
   category: "Sensitivity"
   link: "/home/documentation/sensitivity/photon_detectors"
 
-- title: "GPlugins"
+- title: "Digitization Plugins"
   category: "Sensitivity"
   link: "/home/documentation/sensitivity/gplugins"
+
+
+- title: "Streaming Readout Plugins"
+  category: "Streaming Readout"
+  description: "Worker payloads, crate threads, timing, frame policies, and streaming output."
+  link: "/home/documentation/sro/plugins"
+
+- title: "FT-Cal / JLAB Output"
+  category: "Streaming Readout"
+  link: "/home/documentation/output/jlabsro"
 
 
 
@@ -189,6 +199,14 @@
   description: "Doxygen and related documentation."
   category: "Support"
   link: "https://gemc.github.io/src/"
+
+- title: "Thread Scaling"
+  category: "Support"
+  link: "/home/documentation/support/thread_scaling"
+
+- title: "Profiling"
+  category: "Support"
+  link: "/home/documentation/support/valgrind_profile"
 
 - title: "Geant4 Material Database"
   category: "Support"
