@@ -1,0 +1,249 @@
+- name: uniform_z
+  title: Uniform z
+  group: Vertices
+  expected: Uniform half-width in z; the other two coordinates stay fixed.
+  events: 5000
+  view_events: 100
+  event_image: assets/images/examples/generator_manipulations/gemc_uniform_z.png
+  particle: |
+    gparticle:
+    - name: geantino
+      p: 1*GeV
+      theta: 90*deg
+      phi: 90*deg
+      vx: 2*mm
+      vy: -3*mm
+      vz: 0*mm
+      delta_vx: 0*mm
+      delta_vy: 0*mm
+      delta_vz: 20*mm
+      randomVertexModel: uniform
+  image: assets/images/examples/generator_manipulations/analyzer_uniform_z.png
+- name: uniform_xy
+  title: Uniform X and Y
+  group: Vertices
+  expected: Independent uniform x in [0, 4] mm and y in [-6, 0] mm; z = 0 mm.
+  events: 5000
+  view_events: 100
+  event_image: assets/images/examples/generator_manipulations/gemc_uniform_xy.png
+  particle: |
+    gparticle:
+    - name: geantino
+      p: 1*GeV
+      theta: 45*deg
+      phi: 90*deg
+      vx: 2*mm
+      vy: -3*mm
+      vz: 0*mm
+      delta_vx: 2*mm
+      delta_vy: 3*mm
+      delta_vz: 0*mm
+      randomVertexModel: uniform
+  image: assets/images/examples/generator_manipulations/analyzer_uniform_xy.png
+- name: gaussian_z
+  title: Gaussian z
+  group: Vertices
+  expected: Gaussian sigma in z; the other two coordinates stay fixed.
+  events: 5000
+  view_events: 100
+  event_image: assets/images/examples/generator_manipulations/gemc_gaussian_z.png
+  particle: |
+    gparticle:
+    - name: geantino
+      p: 1*GeV
+      theta: 90*deg
+      phi: 90*deg
+      vx: 2*mm
+      vy: -3*mm
+      vz: 0*mm
+      delta_vx: 0*mm
+      delta_vy: 0*mm
+      delta_vz: 3*mm
+      randomVertexModel: gaussian
+  image: assets/images/examples/generator_manipulations/analyzer_gaussian_z.png
+- name: gaussian_xy
+  title: Gaussian X and Y
+  group: Vertices
+  expected: 'Independent Gaussian x/y: means (2, -3) mm, sigmas (4, 5) mm; z = 0 mm.'
+  events: 5000
+  view_events: 100
+  event_image: assets/images/examples/generator_manipulations/gemc_gaussian_xy.png
+  particle: |
+    gparticle:
+    - name: geantino
+      p: 1*GeV
+      theta: 45*deg
+      phi: 90*deg
+      vx: 2*mm
+      vy: -3*mm
+      vz: 0*mm
+      delta_vx: 4*mm
+      delta_vy: 5*mm
+      delta_vz: 0*mm
+      randomVertexModel: gaussian
+  image: assets/images/examples/generator_manipulations/analyzer_gaussian_xy.png
+- name: sphere
+  title: Sphere
+  group: Vertices
+  expected: Uniform sphere centered at (2, -3, 0) mm; radius = sqrt(1^2 + 2^2 + 2^2) = 3 mm.
+  events: 5000
+  view_events: 100
+  event_image: assets/images/examples/generator_manipulations/gemc_sphere.png
+  particle: |
+    gparticle:
+    - name: geantino
+      p: 1*GeV
+      theta: 45*deg
+      phi: 90*deg
+      vx: 2*mm
+      vy: -3*mm
+      vz: 0*mm
+      delta_vx: 1*mm
+      delta_vy: 2*mm
+      delta_vz: 2*mm
+      randomVertexModel: sphere
+  image: assets/images/examples/generator_manipulations/analyzer_sphere.png
+- name: fixed_theta_and_phi
+  title: Fixed theta and phi
+  group: Angles
+  expected: Fixed theta = 3 deg and phi = 45 deg.
+  events: 5000
+  view_events: 100
+  event_image: assets/images/examples/generator_manipulations/gemc_fixed_theta_and_phi.png
+  particle: |
+    gparticle:
+    - name: geantino
+      p: 1*GeV
+      theta: 3*deg
+      delta_theta: 0*deg
+      randomThetaModel: uniform
+      phi: 45*deg
+      delta_phi: 0*deg
+      vx: 0*mm
+      vy: 0*mm
+      vz: 0*mm
+      delta_vx: 0*mm
+      delta_vy: 0*mm
+      delta_vz: 0*mm
+      randomVertexModel: uniform
+  image: assets/images/examples/generator_manipulations/analyzer_fixed_theta_and_phi.png
+- name: uniform_theta
+  title: Uniform theta
+  group: Angles
+  expected: Theta uniform on [-18, 22] deg; phi = 0 deg.
+  events: 5000
+  view_events: 100
+  event_image: assets/images/examples/generator_manipulations/gemc_uniform_theta.png
+  particle: |
+    gparticle:
+    - name: geantino
+      p: 1*GeV
+      theta: 2*deg
+      delta_theta: 20*deg
+      randomThetaModel: uniform
+      phi: 0*deg
+      delta_phi: 0*deg
+      vx: 0*mm
+      vy: 0*mm
+      vz: 0*mm
+      delta_vx: 0*mm
+      delta_vy: 0*mm
+      delta_vz: 0*mm
+      randomVertexModel: uniform
+  image: assets/images/examples/generator_manipulations/analyzer_uniform_theta.png
+- name: gaussian_theta
+  title: Gaussian theta
+  group: Angles
+  expected: Theta Gaussian with mean 2 deg and sigma 20 deg; phi = 0 deg.
+  events: 5000
+  view_events: 100
+  event_image: assets/images/examples/generator_manipulations/gemc_gaussian_theta.png
+  particle: |
+    gparticle:
+    - name: geantino
+      p: 1*GeV
+      theta: 2*deg
+      delta_theta: 20*deg
+      randomThetaModel: gaussian
+      phi: 0*deg
+      delta_phi: 0*deg
+      vx: 0*mm
+      vy: 0*mm
+      vz: 0*mm
+      delta_vx: 0*mm
+      delta_vy: 0*mm
+      delta_vz: 0*mm
+      randomVertexModel: uniform
+  image: assets/images/examples/generator_manipulations/analyzer_gaussian_theta.png
+- name: cosine_theta
+  title: Cosine theta
+  group: Angles
+  expected: cos(theta) uniform between cos(22 deg) and cos(0 deg); phi = 0 deg.
+  events: 5000
+  view_events: 100
+  event_image: assets/images/examples/generator_manipulations/gemc_cosine_theta.png
+  particle: |
+    gparticle:
+    - name: geantino
+      p: 1*GeV
+      theta: 2*deg
+      delta_theta: 20*deg
+      randomThetaModel: cosine
+      phi: 0*deg
+      delta_phi: 0*deg
+      vx: 0*mm
+      vy: 0*mm
+      vz: 0*mm
+      delta_vx: 0*mm
+      delta_vy: 0*mm
+      delta_vz: 0*mm
+      randomVertexModel: uniform
+  image: assets/images/examples/generator_manipulations/analyzer_cosine_theta.png
+- name: uniform_phi
+  title: Uniform phi
+  group: Angles
+  expected: Phi uniform on [45, 135] deg at theta = 45 deg.
+  events: 5000
+  view_events: 100
+  event_image: assets/images/examples/generator_manipulations/gemc_uniform_phi.png
+  particle: |
+    gparticle:
+    - name: geantino
+      p: 1*GeV
+      theta: 45*deg
+      delta_theta: 0*deg
+      randomThetaModel: uniform
+      phi: 90*deg
+      delta_phi: 45*deg
+      vx: 0*mm
+      vy: 0*mm
+      vz: 0*mm
+      delta_vx: 0*mm
+      delta_vy: 0*mm
+      delta_vz: 0*mm
+      randomVertexModel: uniform
+  image: assets/images/examples/generator_manipulations/analyzer_uniform_phi.png
+- name: phi_wraparound
+  title: Phi wraparound
+  group: Angles
+  expected: Phi uniform on [330, 370] deg, crossing 360 deg, at theta = 45 deg.
+  events: 5000
+  view_events: 100
+  event_image: assets/images/examples/generator_manipulations/gemc_phi_wraparound.png
+  particle: |
+    gparticle:
+    - name: geantino
+      p: 1*GeV
+      theta: 45*deg
+      delta_theta: 0*deg
+      randomThetaModel: uniform
+      phi: 350*deg
+      delta_phi: 20*deg
+      vx: 0*mm
+      vy: 0*mm
+      vz: 0*mm
+      delta_vx: 0*mm
+      delta_vy: 0*mm
+      delta_vz: 0*mm
+      randomVertexModel: uniform
+  image: assets/images/examples/generator_manipulations/analyzer_phi_wraparound.png

@@ -61,6 +61,36 @@
   pevents: 200
   to_plot: totEdep
 
+- title: "Generator Manipulations"
+  header: "11 verified vertex and angular cases with Analyzer plots; upcoming in the next release"
+  category: "basic"
+  link: "/home/examples/basic/generator_manipulations"
+  display: true
+  gallery: true
+  source_dir: "../src/examples/basic/generator_manipulations"
+  vtksz: "/home/assets/images/examples/generator_manipulations/generator_manipulations.vtksz"
+  vtz_zoom: 0.04
+  snevents: 100
+  screenshot_commands:
+    - /vis/geometry/set/visibility root 0 false
+    - /vis/viewer/set/viewpointThetaPhi 75 15 deg
+    - /vis/viewer/set/targetPoint 0 0 0 mm
+    - /vis/viewer/zoom 1.6
+    - /vis/modeling/trajectories/drawByParticleID-0/set geantino cyan
+  pevents: 5000
+  steering_cards:
+    - uniform_z.yaml
+    - uniform_xy.yaml
+    - gaussian_z.yaml
+    - gaussian_xy.yaml
+    - sphere.yaml
+    - fixed_theta_and_phi.yaml
+    - uniform_theta.yaml
+    - gaussian_theta.yaml
+    - cosine_theta.yaml
+    - uniform_phi.yaml
+    - phi_wraparound.yaml
+
 - title: "Boolean Solids"
   header: "Builds subtraction, union, and intersection solids from reusable component volumes"
   category: "basic"

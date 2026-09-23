@@ -284,13 +284,15 @@ def _restore_sqlite_digitization_backup(src_dir: Path, backup: Path | None) -> N
 
 
 def run_screenshot(src_dir: Path, yaml_file: Path, asset_dir: Path, n: int,
-                   extra_args: list[str] | None = None) -> bool:
-    """Run gemc with TOOLSSG_OFFSCREEN and save gemc_run_1.png as gemc_view.png."""
+                   extra_args: list[str] | None = None, output_name: str = "gemc_view.png") -> bool:
+    """Run gemc with TOOLSSG_OFFSCREEN and save its image under the requested asset name."""
     cmd = [str(GEMC), yaml_file.name, f"-g4view={G4VIEW}", f"-n={n}", *SCREENSHOT_GEMC_ARGS]
     if extra_args:
         cmd += extra_args
-    print(f"  screenshot gemc_view.png  (n={n})", flush=True)
+    print(f"  screenshot {output_name}  (n={n})", flush=True)
     print(f"  {_quote_cmd(cmd)}", flush=True)
+    png = src_dir / "gemc_run_1.png"
+    png.unlink(missing_ok=True)
     backup = _disable_sqlite_digitization(src_dir)
     try:
         result = subprocess.run(cmd, cwd=src_dir, capture_output=True, text=True)
@@ -305,8 +307,8 @@ def run_screenshot(src_dir: Path, yaml_file: Path, asset_dir: Path, n: int,
         print(f"  ERROR: gemc_run_1.png not produced")
         return False
     asset_dir.mkdir(parents=True, exist_ok=True)
-    shutil.copy(png, asset_dir / "gemc_view.png")
-    print(f"  → {asset_dir / 'gemc_view.png'}")
+    shutil.copy(png, asset_dir / output_name)
+    print(f"  → {asset_dir / output_name}")
     return True
 
 
@@ -1031,20 +1033,53 @@ def process(ex: dict, do_screenshots: bool, do_vtk: bool, do_plots: bool):
         print(f"  working copy: {work_dir}", flush=True)
 
         try:
-            yaml_file = find_primary_yaml(work_dir)
+            cards = ex.get("steering_cards", [])
+            yaml_file = work_dir / cards[0] if cards else find_primary_yaml(work_dir)
             py_script = find_geometry_script(work_dir, yaml_file)
         except FileNotFoundError as e:
             print(f"  ERROR: {e}")
             return
 
+        if cards:
+            subprocess.run([str(PYGEMC_PYTHON), py_script.name, "-f", "ascii"],
+                           cwd=work_dir, env=_pygemc_env(), check=True, capture_output=True, text=True)
+
         if do_screenshots:
-            ensure_db(work_dir, py_script)
-            run_screenshot(work_dir, yaml_file, asset_dir, snevents, extra_args=ex.get("gemc_args", []))
+            if not cards:
+                ensure_db(work_dir, py_script)
+            screenshot_args = list(ex.get("gemc_args", []))
+            if ex.get("screenshot_commands"):
+                macro = work_dir / "asset_screenshot.mac"
+                commands = [*ex["screenshot_commands"], f"/run/beamOn {snevents}",
+                            "/vis/tsg/offscreen/set/size 3000 2000",
+                            "/vis/tsg/offscreen/set/file gemc_run_1.png", "/vis/viewer/rebuild"]
+                macro.write_text("\n".join(commands) + "\n")
+                screenshot_args.append(f"-geant4_macro={macro.name}")
+            if cards:
+                for card_name in cards:
+                    card_file = work_dir / card_name
+                    image_name = f"gemc_{card_file.stem}.png"
+                    if not run_screenshot(work_dir, card_file, asset_dir, snevents,
+                                          extra_args=screenshot_args, output_name=image_name):
+                        raise RuntimeError(f"Screenshot failed for {card_name}")
+                    base = get_csv_base(card_file)
+                    generated = next(work_dir.glob(base + "*_generated.csv"))
+                    with generated.open(newline="") as stream:
+                        count = sum(1 for _ in csv.DictReader(stream, skipinitialspace=True))
+                    if count != snevents:
+                        raise RuntimeError(f"{card_name}: expected {snevents} screenshot events, got {count}")
+                shutil.copy(asset_dir / f"gemc_{yaml_file.stem}.png", asset_dir / "gemc_view.png")
+            else:
+                run_screenshot(work_dir, yaml_file, asset_dir, snevents, extra_args=screenshot_args)
 
         if do_vtk and pvz is not None:
             run_vtk(work_dir, py_script, yaml_file, asset_dir, stem, pvz, pvfast)
 
-        if do_plots:
+        if do_plots and cards:
+            from generate_generator_assets import run_steering_plots
+            run_steering_plots(ex, work_dir, asset_dir, GEMC, _pygemc_env(),
+                               REPO_ROOT / "_data" / "generator_cases.yml")
+        elif do_plots:
             ensure_db(work_dir, py_script)
             link    = ex.get("link", "")
             md_path = link_to_md_path(link) if link else None

@@ -39,6 +39,10 @@ See the [license conditions](/home/license/).
 SRO interfaces and experiment plugins rebuilt against the same GEMC installation. FT-Cal's JLAB encoder
 belongs to `clas12-systems`; installing `pygemc` alone does not supply the native SRO implementation.
 
+**Upcoming in the next release:** the [vertex and angular examples](/home/examples/basic/generator_manipulations)
+include 11 steering cards and prepared Analyzer plots. Use a current development build; the GUI plots require
+Qt Charts. Their batch simulations and CSV checks also work without Qt Charts.
+
 ## Table of Contents
 
 - [Install the Python API](#install-the-python-api)

@@ -26,6 +26,7 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 
 | Name | Shape | Description |
 | --- | --- | --- |
+| [`geant4_macro`](/home/documentation/api/options/geant4_macro) | `<value>` | execute a Geant4 macro text file at startup |
 | [`nthreads`](/home/documentation/api/options/nthreads) | `<value>` | sets number of threads. |
 | [`randomEngine`](/home/documentation/api/options/randomengine) | `<value>` | randomEngine |
 | [`seed`](/home/documentation/api/options/seed) | `<value>` | seed |

@@ -91,6 +91,11 @@ logs a warning:
 
 ### Examples
 
+The [generator manipulation examples]({{ site.baseurl }}/examples/basic/generator_manipulations)
+(**upcoming in the next release**) provide separate YAML cards for vertex and angular sampling, with
+100-event GEMC views and verified Analyzer plots. Particles originate inside a transparent tube target;
+Z smearing uses theta = 90 degrees and XY smearing uses theta = 45 degrees.
+
 **One 2.3 GeV electron at 23°**
 
 ```yaml
