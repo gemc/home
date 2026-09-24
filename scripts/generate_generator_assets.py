@@ -34,6 +34,15 @@ def render_card(config, hits, output):
     if config.get("ganalysis_plots", 1) == 1:
         fig, ax = plt.subplots(figsize=(8, 6), dpi=150)
         axes = [ax]
+    elif len(config["ganalysis"]) == 3:
+        if [plot["x"] for plot in config["ganalysis"]] == ["vx", "vy", "vz"]:
+            fig = plt.figure(figsize=(12, 8), dpi=150)
+            grid = fig.add_gridspec(2, 2)
+            axes = [fig.add_subplot(grid[0, 0]), fig.add_subplot(grid[0, 1]),
+                    fig.add_subplot(grid[1, :])]
+        else:
+            fig, grid = plt.subplots(1, 3, figsize=(15, 4.5), dpi=150)
+            axes = list(grid)
     else:
         fig, grid = plt.subplots(2, 2, figsize=(12, 8), dpi=150)
         axes = list(grid.flat)
@@ -52,8 +61,8 @@ def render_card(config, hits, output):
             plot_y_vs_x(hits, x=x, y=y, bins=plot["bins"], position_unit="mm", ax=ax,
                         xlim=limits, ylim=y_limits)
             ax.set_ylabel(f"{y} ({unit})")
-            if x.startswith("v") and y.startswith("v"):
-                ax.set_aspect("equal", adjustable="box")
+            # Independent axis scales keep fixed-coordinate projections from collapsing into a strip.
+            ax.set_aspect("auto")
         else:
             plot_variable(hits, x, bins=plot["bins"], xlim=limits, group_by=None,
                           logy=False, ax=ax, color="#2878a5")

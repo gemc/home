@@ -121,7 +121,10 @@ For example, to regenerate only the CLAS12 analyzer plots and update their markd
 The generator manipulation example supplies multiple independent YAML cards through %%steering_cards%% in
 %%_data/examples.yml%%. The first card supplies the gallery image and VTK view. Each listed card produces a
 %%gemc_<card>.png%% view using %%snevents%% events, and an %%analyzer_<card>.png%% using %%pevents%% events.
-The XY cards use a single 2D Y-versus-X plot; other cards use four panels. Screenshot runs verify their generated
+The XY cards use a single 2D Y-versus-X plot. Three-coordinate vertex layouts put X and Y above a Z histogram
+spanning both columns; three-momentum layouts use one row. Other cards use four panels. The 2D axes scale
+independently to fill their panels, including projections with a fixed coordinate. Screenshot runs verify their
+generated
 particle count before the image is accepted. Optional %%screenshot_commands%%
 set the camera and volume visibility before the generator appends the screenshot's beam-on command.
 Regenerate them with:
@@ -134,8 +137,10 @@ python3 scripts/generate_example_assets.py --plots generator_manipulations
 The generator builds fresh ASCII geometry in its scratch directory, uses the source example's distribution
 checks, verifies that every sampled vertex lies inside the target, and compares the target's vertex and
 momentum records against the generated particles before plotting.
-The helper %%scripts/generate_generator_assets.py%% renders the variables, bins, titles, and fixed limits from each
-%%ganalysis%% layout with the `pygemc` Analyzer. It also refreshes %%_data/generator_cases.yml%% with the particle
+The helper %%scripts/generate_generator_assets.py%% renders the variables, bins, titles, and fixed limits from
+each
+%%ganalysis%% layout with the `pygemc` Analyzer. It also refreshes %%_data/generator_cases.yml%% with the
+particle
 settings and expectations displayed on the example page. These are offline plots, not GUI screenshots.
 
 ### Per-example reference

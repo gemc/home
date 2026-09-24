@@ -33,8 +33,8 @@ gemc uniform_z.yaml -gui
 ```
 
 Generate events with the GUI beam-on control, then open the Analyzer. The XY smearing cards prepare one 2D
-Y-versus-X plot; the remaining cards prepare four plots. All cards enable accumulation across beam-on calls. Qt
-Charts is required for the GUI Analyzer.
+Y-versus-X plot. Z smearing and fixed angles prepare three histograms; other cards prepare four plots.
+All cards enable accumulation across beam-on calls. Qt Charts is required for the GUI Analyzer.
 Run any card without %%-gui%% to produce a seeded 5,000-event CSV sample instead:
 
 ```shell
@@ -72,7 +72,9 @@ track vertices. The fields %%avgx%%, %%avgy%%, and %%avgz%% instead describe the
 Angular plots use the preserved momentum components %%px%%, %%py%%, and %%pz%%, in MeV/c.
 
 The website figures use the `pygemc` Analyzer plotting functions with the variables and layout defined in each
-card's %%ganalysis%% block. They are offline plots of the same data fields shown in the GUI.
+card's %%ganalysis%% block. They are offline plots of the same data fields shown in the GUI. The website's
+Z-smearing figures place X and Y above a Z histogram spanning both columns; the fixed-angle figure uses
+one row of three histograms. The GUI uses its single-panel or four-slot layout.
 
 ## Vertex cases
 
@@ -131,8 +133,9 @@ py = p sin(theta) sin(phi)
 pz = p cos(theta)
 ```
 
-The fixed theta and phi card sets both angles to 3 and 45 degrees, respectively. Gaussian and cosine theta
-show %%px%% vertically against %%pz%% horizontally in their 2D plots. The cosine-theta case also gives a flat
+The fixed theta and phi card sets both angles to 3 and 45 degrees, respectively, and shows only the three
+momentum histograms. Uniform, Gaussian, and cosine theta show %%px%% vertically against %%pz%% horizontally in
+their 2D plots. The cosine-theta case also gives a flat
 %%pz%% distribution. Fixed theta with a phi spread traces an arc
 in the %%px%%/%%py%% projection. The wraparound case crosses 360 degrees without a discontinuity in momentum.
 Generated-bank angles are stored in radians; the steering cards use explicit degrees.
