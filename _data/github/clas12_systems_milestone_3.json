@@ -23,7 +23,7 @@
     "url": "https://api.github.com/users/maureeungaro",
     "user_view_type": "public"
   },
-  "description": "Continue CLAS12 Import:\n\n- Beamline\n- HTCC\n- RICH\n- FT",
+  "description": "Continue CLAS12 Import:\n\n- HTCC\n- FT",
   "due_on": "2026-09-25T00:00:00Z",
   "html_url": "https://github.com/gemc/clas12-systems/milestone/3",
   "id": 16401794,
@@ -33,6 +33,6 @@
   "open_issues": 1,
   "state": "open",
   "title": "clas12-systems Version 0.3",
-  "updated_at": "2026-09-24T14:02:26Z",
+  "updated_at": "2026-09-24T18:35:39Z",
   "url": "https://api.github.com/repos/gemc/clas12-systems/milestones/3"
 }
