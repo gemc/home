@@ -316,26 +316,14 @@ in the appendix for the complete list of requirements.
 
 ### 1. Obtain the source
 
-Set the versioned installation prefix once, so you can copy and paste the commands below. Change `gprefix`
-to the GEMC version and location you want to install.
-
-```shell
-gprefix={{ page.path_prefix }}/{{ page.latest_tag }}
-```
-
-The source code will be cloned into `$gprefix/source`, and GEMC will be installed into `$gprefix`.
-For the development release, set `gprefix={{ page.path_prefix }}/{{ page.dev_tag }}` and use the development tab.
-
-
 Download the code:
 
 {% capture tab1 %}
 Download the latest release:
 
 ```shell
-mkdir -p "$gprefix"
-cd "$gprefix"
-git clone -c advice.detachedHead=false --branch {{ page.latest_tag }} {{ page.repo_link }} source
+git clone -c advice.detachedHead=false --branch {{ page.latest_tag }} {{ page.repo_link }}
+cd src
 ```
 
 {% endcapture %}
@@ -344,9 +332,8 @@ git clone -c advice.detachedHead=false --branch {{ page.latest_tag }} {{ page.re
 Clone the repository to build the nightly development version:
 
 ```shell
-mkdir -p "$gprefix"
-cd "$gprefix"
-git clone --depth=1 {{ page.repo_link }} source
+git clone --depth=1 {{ page.repo_link }}
+cd src
 ```
 
 {% endcapture %}
@@ -369,27 +356,24 @@ tab2_content=tab2
 
 <br/>
 
-### 2. Compile and install GEMC
+### 2. Configure the build and install GEMC
 
 The [Meson](https://mesonbuild.com) build system is used to compile and install GEMC.
 
 The **setup** phase will check for the required dependencies and fetch external libraries.
-Here we use a `build` directory inside `source`:
+Here we use a `build` directory. 
 
 ```shell
-cd "$gprefix/source"
-meson setup build --native-file=core.ini --prefix="$gprefix"
+meson setup build --prefix=/path/to/install/gemc
 ```
 
-The **compile** phase will build the code and external libraries. The **install** phase will
-copy the binaries, libraries, and python modules to the installation directory.
+The **install** phase will build and install GEMC. Here we use `-q` for a quiet build.
 
 ```shell
-meson compile -C build
-meson install -C build
+meson install -C build -q
 ```
 
-Optionally, after installation, run `meson test -C build -v` to test the configured GEMC build.
+Optionally, after installation, run `meson test -C build` to test the configured GEMC build.
 
 <br/>
 
@@ -397,7 +381,7 @@ Optionally, after installation, run `meson test -C build -v` to test the configu
 
 - The setup option `-Droot=enabled` will add ROOT support (needs ROOT installed on your system).
 - The setup option `-Di_test=true` will enable the GUI interfaces in the tests.
-- Use `-v` at build time for verbose output.
+- Use `-v` at build/test time for verbose output.
 - To wipe out the build directory and start over, use `rm -rf build` and then re-run setup.
 - Use `-jN` to set the number of threads during compilation.
 
@@ -408,14 +392,12 @@ Optionally, after installation, run `meson test -C build -v` to test the configu
 Add these lines to your shell configuration file (e.g. `~/.bashrc` or `~/.zshrc`):
 
 ```shell
-export gprefix={{ page.path_prefix }}/{{ page.latest_tag }}
-export PATH=$gprefix/bin:$gprefix/python_env/bin:$PATH
+export PATH=/path/to/install/gemc/bin:/path/to/install/gemc/python_env/bin:$PATH
 ```
 
-The second PATH entry adds the bundled Python
-virtual environment so that `python3` resolves to the venv interpreter — making `import pygemc`
-available in your scripts without any activation step or separate `pip install`. It also exposes the
-`gemc-analyzer` and `gemc-system-template` command-line tools.
+The second PATH entry adds the bundled Python virtual environment so that `python3` 
+resolves to the venv interpreter — making `import pygemc`
+available in your scripts.
 
 Check the installed simulator and Python tools with:
 
