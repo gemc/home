@@ -62,7 +62,7 @@
   to_plot: totEdep
 
 - title: "Generator Manipulations"
-  header: "11 verified vertex and angular cases with Analyzer plots; upcoming in the next release"
+  header: "11 verified vertex and angular cases with Analyzer plots"
   category: "basic"
   link: "/home/examples/basic/generator_manipulations"
   display: true
@@ -368,13 +368,31 @@
     - "-no_field=all"
     - "-plugin_path=/opt/projects/gemc/clas12-systems/build"
 
+- title: "HTCC"
+  gallery_title: "CLAS12/HTCC"
+  header: "CLAS12 high-threshold Cherenkov counter combining native mirror optics with CAD beamline cones"
+  category: "clas12"
+  link: "/home/examples/clas12/htcc"
+  display: false
+  vtz_zoom: 0.0005
+  pyvista-fast: true
+  gallery: true
+  vtksz: "/home/assets/images/examples/htcc/htcc.vtksz"
+  snevents: 3
+  pevents: 2000
+  to_plot: totEdep, yvsx
+  source_dir: "../clas12-systems/geometry_src/htcc"
+  gemc_args:
+    - "-no_field=all"
+    - "-plugin_path=/opt/projects/gemc/clas12-systems/build"
+
 - title: "FT"
   gallery_title: "CLAS12/FT"
   header: "CLAS12 forward tagger: PbWO4 calorimeter, scintillator hodoscope, and Micromegas tracker"
   category: "clas12"
   link: "/home/examples/clas12/ft"
   display: false
-  vtz_zoom: 0.0003
+  vtz_zoom: 0.002
   pyvista-fast: true
   gallery: true
   vtksz: "/home/assets/images/examples/ft/ft.vtksz"

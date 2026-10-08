@@ -141,6 +141,13 @@ dropped as well, so a rejected hit leaves no trace in the output. The **`-also_r
 Geant4 hit, even those with no digitized counterpart — useful when you need the Monte-Carlo truth regardless
 of the electronics response.
 
+A hit rejected by a plugin's *intrinsic* threshold or efficiency policy
+drops its true-information row as well — regardless of `-also_reject_true_info` — matching GEMC2, where a hit
+below an intrinsic FADC threshold produced no output at all. `-also_reject_true_info=false` still keeps the
+truth for hits rejected through the global `-applyThresholds` / `-applyInefficiencies` options on a
+non-intrinsic plugin. This removes the excess of low-energy true hits that calorimeters such as the CLAS12
+ECAL recorded below their intrinsic threshold.
+
 <br/>
 
 ## Output — per event or end of run

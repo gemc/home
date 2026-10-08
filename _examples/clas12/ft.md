@@ -12,8 +12,7 @@ This example shows the CLAS12 Forward Tagger (FT) geometry from `clas12-systems`
 polar angles and is built from three subsystems: an electromagnetic calorimeter, a scintillator hodoscope,
 and a Micromegas tracker.
 
-**Upcoming in the next release:** the FT geometry and digitization are currently available from the
-`clas12-systems` development branch.
+The FT geometry and digitization are available in `clas12-systems` 0.3 with GEMC 0.5 and `pygemc` 0.5.0.
 
 {% assign example = site.data.examples | where: "title", "FT" | first %}
 

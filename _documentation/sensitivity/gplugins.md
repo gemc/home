@@ -18,7 +18,7 @@ threading, and output infrastructure.
 
 <br/>
 
-**Upcoming in the next release:** a detector can also produce streaming payloads through %%stream_hit%%.
+A detector can also produce streaming payloads through %%stream_hit%%.
 See [Streaming Readout Plugins](/home/documentation/sro/plugins/) in the separate **Streaming Readout**
 section for activation, worker-to-crate delivery, timing, framing, and implementation requirements.
 
@@ -94,7 +94,7 @@ GDynamicDigitizationFactory(const std::shared_ptr<GOptions>& g) {
 | `defineReadoutSpecsImpl()` | Always — sets the electronics timing model |
 | `loadConstantsImpl(runno, variation)` | Load calibration constants from CCDB or files |
 | `loadTTImpl(runno, variation)` | Build the identity→electronics address translation table |
-| %%stream_hit(hit, index, event, emit)%% | Emit owned SRO payloads; upcoming, default emits nothing |
+| %%stream_hit(hit, index, event, emit)%% | Emit owned SRO payloads; default emits nothing |
 | `processTouchableImpl(gtouchable, step)` | Re-bin hits by time cell / split charge (default handles the standard case) |
 | `digitizeHitImpl(ghit, hitn)` | Produce the digitized bank from an accumulated hit |
 | `collectTrueInformationImpl(ghit, hitn)` | Customize the Monte-Carlo truth bank (default writes the standard truth) |
@@ -105,7 +105,8 @@ GDynamicDigitizationFactory(const std::shared_ptr<GOptions>& g) {
 The **`apply_thresholds_impl`** and **`apply_efficiency_impl`** hooks run after `digitizeHitImpl`, and
 only when the system is listed in the `-applyThresholds` / `-applyInefficiencies` options (each a system
 list, or `all`; both off by default), unless the plugin marks that policy as intrinsic. Return `true` to
-drop the hit; a dropped hit also drops its truth row when `-also_reject_true_info` is set. See the
+drop the hit; a dropped hit also drops its truth row when `-also_reject_true_info` is set or whenever the
+rejecting policy is intrinsic (matching GEMC2). See the
 [Digitization Workflow](/home/documentation/sensitivity/workflow) for the full lifecycle.
 
 {% include figure.html
@@ -277,7 +278,7 @@ The `GOptions("myplugin")` constructor registers `myplugin` as a **verbosity key
 Options are available through `gopts` (inherited from `GDynamicDigitization`) in any method called
 after construction:
 
-> `getRequiredScalarDouble()` is upcoming in GEMC 0.5. It replaces `getScalarDouble()` and reports a
+> In GEMC 0.5, `getRequiredScalarDouble()` replaces `getScalarDouble()` and reports a
 > configuration error if the option has no value.
 
 ```cpp

@@ -17,7 +17,7 @@ threading, and plugin search infrastructure.
 
 <br/>
 
-**Upcoming in the next release:** crate-based SRO uses the separate
+Crate-based SRO uses the separate
 [Streaming Readout Plugins](/home/documentation/sro/plugins/) contract. The %%sro%% factory loads a
 %%GSROImplementationFactory%% implementation; its crate frames do not pass through the `GStreamer`
 serialization hooks described here.

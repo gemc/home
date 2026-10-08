@@ -4,18 +4,21 @@ title: Installation
 permalink: /installation/
 
 development_tag: dev
-latest_tag: 0.4
-latest_pytag: v0.4.0
+latest_tag: 0.5
+latest_pytag: v0.5.0
+latest_ctag: 0.3
 dev_tag: dev
 development_release_date: <small><time> → released nightly, shows commits</time></small>
-latest_release_date: <small><time>→ released on 06/17/2026</time></small>
-latest_prelease_date: <small><time>→ released on 06/17/2026</time></small>
+latest_release_date: <small><time>→ released on 10/08/2026</time></small>
+latest_prelease_date: <small><time>→ released on 10/08/2026</time></small>
+latest_crelease_date: <small><time>→ released on 10/08/2026</time></small>
 repo_link: https://github.com/gemc/src
 prepo_link: https://github.com/gemc/src
 release_notes: https://github.com/gemc/src/releases
 prelease_notes: https://github.com/gemc/pygemc/releases
+crelease_notes: https://github.com/gemc/clas12-systems/releases
 binary_tag: dev
-binary_geant4_tag: 11.4.2
+binary_geant4_tag: 11.4.3
 path_prefix: /path/to/gemc
 docker_local_mount: ~/mywork
 docker_remote_mount: /mywork
@@ -29,18 +32,23 @@ See the [license conditions](/home/license/).
 
 ### Release Notes
 
-- `gemc` [`{{ page.latest_tag }}`]({{ page.release_notes }}/tag/{{ page.latest_tag }}) {{ page.latest_release_date }}{: .meta }
-- `pygemc` [`{{ page.latest_pytag }}`]({{ page.prelease_notes }}/tag/{{ page.latest_pytag }}) {{ page.latest_prelease_date }}{: .meta }
+- `gemc` [{{ page.latest_tag }}][gemc-release] {{ page.latest_release_date }}{: .meta }
+- `pygemc` [{{ page.latest_pytag }}][pygemc-release] {{ page.latest_prelease_date }}{: .meta }
+- `clas12-systems` [{{ page.latest_ctag }}][clas12-release] {{ page.latest_crelease_date }}{: .meta }
 - [`dev`]({{ page.release_notes }}/tag/{{ page.development_tag }}) {{ page.development_release_date }}{: .meta }
+
+[gemc-release]: {{ page.release_notes }}/tag/{{ page.latest_tag }}
+[pygemc-release]: {{ page.prelease_notes }}/tag/{{ page.latest_pytag }}
+[clas12-release]: {{ page.crelease_notes }}/tag/{{ page.latest_ctag }}
 
 <br/>
 
-**Upcoming in the next release:** [streaming readout](/home/documentation/sro/plugins/) requires GEMC's new
-SRO interfaces and experiment plugins rebuilt against the same GEMC installation. FT-Cal's JLAB encoder
+[Streaming readout](/home/documentation/sro/plugins/) requires GEMC 0.5's SRO interfaces and experiment
+plugins rebuilt against the same GEMC installation. FT-Cal's JLAB encoder
 belongs to `clas12-systems`; installing `pygemc` alone does not supply the native SRO implementation.
 
-**Upcoming in the next release:** the [vertex and angular examples](/home/examples/basic/generator_manipulations)
-include 11 steering cards and prepared Analyzer plots. Use a current development build; the GUI plots require
+The [vertex and angular examples](/home/examples/basic/generator_manipulations)
+include 11 steering cards and prepared Analyzer plots. Use GEMC 0.5 or later; the GUI plots require
 Qt Charts. Their batch simulations and CSV checks also work without Qt Charts.
 
 ## Table of Contents
@@ -408,6 +416,28 @@ gemc-analyzer --help
 ```
 
 
+<br/>
+
+### CLAS12 detector systems from source
+
+The CLAS12 detector systems
+([`clas12-systems`](https://github.com/gemc/clas12-systems)) 0.3 build with the same Meson flow and no longer
+require a pre-installed GEMC. On a bare Geant4 environment — for example a
+[`g4install`](https://github.com/gemc/g4install) Docker image — the build compiles GEMC automatically from the
+`gemc` subproject and installs it into the same prefix, so the detector geometry and plugins can be installed
+entirely from scratch. Only Geant4 must already be present (it is never built); GEMC resolution prefers, in
+order, an explicit `-Duse-gemc-location=<dir>`, an already-installed GEMC on `PATH`/pkg-config, and finally the
+from-source subproject.
+
+```shell
+git clone --depth=1 --branch {{ page.latest_ctag }} https://github.com/gemc/clas12-systems
+cd clas12-systems
+meson setup build --prefix="$PWD/install"   # builds GEMC too if none is installed
+meson compile -C build
+meson install -C build
+```
+
+
 <br/><br/>
 
 ## Run in a Docker container
@@ -643,7 +673,8 @@ tab7_content=btab7
 
 - Builders and compilers:
 
-    - C++ Compiler and Standard Library supporting the C++17 Standard
+    - C++ compiler and standard library supporting C++20 for GEMC 0.5 or later — GCC 11+, Clang 13+, or
+      Apple Clang 14+; every supported platform already ships a sufficient compiler
     - [CMake](https://cmake.org) 3.16 or later
     - [Meson](https://mesonbuild.com) 1.10.1 or later
 
@@ -653,7 +684,8 @@ tab7_content=btab7
 
     - expat: 2.0.1 or higher
     - zlib: 1.2.3 or higher
-    - [Qt6](https://www.qt.io): 6.4.2 or higher, including SVG and Charts (required for GUI)
+    - [Qt6](https://www.qt.io): 6.4.2 or higher (required for GUI); SVG supplies toolbar icons and Charts
+      enables the GUI Analyzer, but both modules are optional
     - [ROOT](https://root.cern): 6.36.04 or higher (optional, required for ROOT output)
 
 <br/>
@@ -801,7 +833,7 @@ tab7_content=tab7
 
 <br/>
 
-- External libraries, compiled from source against the same C++ Standard as GEMC (C++17 by default):
+- External libraries, compiled from source against the same C++ standard as GEMC (C++20 for GEMC 0.5 or later):
 
     - [CLHEP](https://proj-clhep.web.cern.ch/proj-clhep/): 2.4.6.0 or higher
     - [Xerces-C](https://xerces.apache.org/xerces-c/): 3.2 or higher

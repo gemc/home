@@ -6,7 +6,7 @@ title: "Generator manipulations"
 # Generator manipulations
 <hr style="height:4px;border:0;background:#4a90e2;">
 
-**Upcoming in the next release.** Use a current development build of `gemc` for these examples.
+Use GEMC 0.5 or later for these examples.
 See the [installation guide]({{ site.baseurl }}/installation/) for the executable and Python environment.
 
 Eleven independent steering cards isolate vertex smearing, fixed angles, and angular sampling.
@@ -23,7 +23,7 @@ its own GEMC view of 100 events.
 
 ## Quickstart
 
-Copy the example from a development installation and generate its ASCII geometry:
+Copy the example from your GEMC installation and generate its ASCII geometry:
 
 ```shell
 cp -r "$GEMC_HOME/examples/basic/generator_manipulations" .

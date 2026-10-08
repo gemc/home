@@ -12,8 +12,7 @@ This example shows the CLAS12 Low-Threshold Cherenkov Counter (LTCC) geometry fr
 combines native GEMC mirror optics with CAD meshes loaded through the `gcad` feature. Both systems are stored
 in one SQLite database.
 
-**Upcoming in the next release:** the LTCC geometry and digitization are currently available from the
-`clas12-systems` development branch.
+The LTCC geometry and digitization are available in `clas12-systems` 0.3 with GEMC 0.5 and `pygemc` 0.5.0.
 
 {% assign example = site.data.examples | where: "title", "LTCC" | first %}
 

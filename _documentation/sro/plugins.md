@@ -8,7 +8,7 @@ permalink: /documentation/sro/plugins/
 
 # Streaming Readout Plugins
 
-**Upcoming in the next release.** GEMC's `sro` factory routes contributions from all event workers to a
+GEMC's `sro` factory routes contributions from all event workers to a
 separate collector thread for each crate. A crate combines its channels into time frames and writes through
 its own output sink. The experiment plugin defines the payload, electronics response, frame format, and
 unfinished-frame policy. GEMC supplies the threads, bounded queues, ordering, and run lifecycle.

@@ -8,7 +8,7 @@ permalink: /documentation/output/jlabsro/
 
 # FT-Cal / JLAB Output
 
-**Upcoming in the next release.** JLAB SRO encoding lives in the `clas12-systems` implementation selected
+JLAB SRO encoding lives in the `clas12-systems` implementation selected
 with %%format: sro%% and %%implementation: ft_cal%%. GEMC's former %%format: jlabsro%% selection is rejected
 by the new framework. This page retains its URL for existing links.
 
