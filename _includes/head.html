@@ -1,0 +1,19 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- seo -%}
+  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  {%- feed_meta -%}
+  {%- comment -%}
+    hreflang alternates for jekyll-polyglot — Upcoming with the next release. The i18n_headers tag does
+    not apply baseurl and does not render Liquid in its argument, so the full site URL + baseurl is passed
+    literally. Its output is self-protecting against polyglot's URL rewriting.
+  {%- endcomment -%}
+  {%- if site.languages and site.languages.size > 1 -%}
+    {% i18n_headers https://gemc.github.io/home %}
+  {%- endif -%}
+  {%- if jekyll.environment == 'production' and site.google_analytics -%}
+    {%- include google-analytics.html -%}
+  {%- endif -%}
+</head>
