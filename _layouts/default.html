@@ -34,7 +34,7 @@
 			resultsContainer: resultsContainer,
 			json: '{{ "/search.json" | relative_url }}?v={{ site.time | date: "%s" }}',
 			searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
-			noResultsText: '<li class="no-results">No results found</li>',
+			noResultsText: '<li class="no-results">{{ site.data.ui_strings.search_no_results }}</li>',
 			limit: 10,
 
 			// 🔴 make it strict: match only when the string appears

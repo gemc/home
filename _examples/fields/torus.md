@@ -60,7 +60,7 @@ columns are %%Bx%%, %%By%%, and %%Bz%% in kilogauss.
 ## Field Display
 
 {% include figure.html
-src="assets/images/examples/torus/gemc_view.png"
+src="/assets/images/examples/torus/gemc_view.png"
 caption="Torus ASCII-map display: a transparent torus with field lines from a phi-segmented map."
 %}
 

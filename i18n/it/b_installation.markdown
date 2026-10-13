@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Installation
+title: "Installazione"
 permalink: /installation/
 
 development_tag: dev
@@ -28,7 +28,7 @@ human_reviewed: false
 
 ### Licenza
 
-Consulta le [condizioni di licenza](/home/license/).
+Consulta le [condizioni della licenza](/home/license/).
 
 <br/>
 
@@ -45,13 +45,13 @@ Consulta le [condizioni di licenza](/home/license/).
 
 <br/>
 
-La [lettura in streaming](/home/documentation/sro/plugins/) richiede le interfacce SRO di GEMC 0.5 e i plugin degli
-esperimenti ricompilati con la stessa installazione di GEMC. L'encoder JLAB di FT-Cal
+La [lettura in streaming](/home/documentation/sro/plugins/) richiede le interfacce SRO di GEMC 0.5 e i plugin
+degli esperimenti ricompilati usando la stessa installazione di GEMC. L'encoder JLAB di FT-Cal
 appartiene a `clas12-systems`; la sola installazione di `pygemc` non fornisce l'implementazione SRO nativa.
 
 Gli [esempi su vertice e angoli](/home/examples/basic/generator_manipulations)
-includono 11 schede di configurazione e grafici Analyzer già preparati. Usa GEMC 0.5 o versioni successive;
-i grafici della GUI richiedono Qt Charts. Le simulazioni batch e i controlli CSV funzionano anche senza Qt Charts.
+includono 11 schede di configurazione e grafici dell'Analyzer già pronti. Usa GEMC 0.5 o successivo; i grafici della GUI richiedono
+Qt Charts. Le relative simulazioni batch e i controlli CSV funzionano anche senza Qt Charts.
 
 ## Indice
 
@@ -94,8 +94,8 @@ Le dipendenze opzionali per l'analisi dei file ROOT possono essere installate co
 python -m pip install "pygemc[root]"
 ```
 
-[PyPI](https://pypi.org/project/pygemc/) non installa l'eseguibile `gemc`, ma consente di
-creare e visualizzare geometrie o analizzare i risultati.
+L'installazione da [PyPI](https://pypi.org/project/pygemc/) non include l'eseguibile `gemc`, ma consente di
+creare e visualizzare la geometria o analizzare i risultati.
 
 <br/>
 
@@ -104,7 +104,7 @@ creare e visualizzare geometrie o analizzare i risultati.
 I tarball binari contengono l'eseguibile `gemc` e gli esempi (ma non `pygemc`). Le build Linux sono disponibili
 per `amd64` e `arm64`; la build macOS è nativa per Apple Silicon (`arm64`).
 
-Controlla i [Prerequisiti software per l'installazione binaria](#software-prerequisites-for-binary-installation)
+Assicurati di controllare i [Prerequisiti software per l'installazione binaria](#software-prerequisites-for-binary-installation)
 prima di estrarre il tarball.
 
 Scegli prima una directory di installazione:
@@ -115,7 +115,7 @@ mkdir -p "$gemc_home"
 cd "$gemc_home"
 ```
 
-Poi usa i comandi della scheda corrispondente alla tua distribuzione Linux e all'architettura della CPU.
+Poi usa i comandi della scheda corrispondente alla tua distribuzione Linux e all'architettura della tua CPU.
 Questo installerà GEMC e i file Geant4 data.
 
 {% capture tab1 %}
@@ -241,8 +241,8 @@ tar -xzf "$archive" -C "$gemc_home" --strip-components=1
 
 {% capture tab12 %}
 
-L'archivio macOS è etichettato con le versioni di macOS e Clang dell'host di build, quindi il nome varia nel tempo.
-Individua il nome nella release `{{ page.binary_tag }}`, poi scarica ed estrai l'archivio:
+L'asset macOS è etichettato con le versioni di macOS e Clang dell'host di build, quindi il suo nome esatto varia nel tempo.
+Individualo nella release `{{ page.binary_tag }}`, poi scaricalo ed estrailo:
 
 ```shell
 archive=$(curl -sL https://api.github.com/repos/gemc/src/releases/tags/{{ page.binary_tag }} \
@@ -297,8 +297,8 @@ tab12_content=tab12
 %}
 
 <br/>
-Dopo l'installazione, carica il file di ambiente di GEMC con source. Aggiungi questa riga a `.bashrc` o `.zshrc`
-se vuoi che l'ambiente sia disponibile in ogni shell:
+Dopo l'installazione, carica il file di ambiente di GEMC. Aggiungi questa riga a `.bashrc` o `.zshrc` se vuoi
+che l'ambiente sia disponibile in ogni shell:
 
 ```shell
 source /path/to/gemc/gemc.env
@@ -317,7 +317,7 @@ test_gdata_event_verbose
 
 ## Compilare dai sorgenti
 
-Per compilare GEMC avrai bisogno di Geant4. Consulta i
+Per compilare GEMC è necessario Geant4. Consulta i
 [Prerequisiti software e installazione di Geant4 per la compilazione di
 GEMC](#software-prerequisites-and-geant4-installation-for-the-gemc-build)
 nell'appendice per l'elenco completo dei requisiti.
@@ -368,7 +368,7 @@ tab2_content=tab2
 
 ### 2. Configurare la build e installare GEMC
 
-Per compilare e installare GEMC viene usato il sistema di build [Meson](https://mesonbuild.com).
+Per compilare e installare GEMC viene utilizzato il sistema di build [Meson](https://mesonbuild.com).
 
 La fase di **configurazione** verificherà le dipendenze richieste e scaricherà le librerie esterne.
 Qui usiamo una directory `build`.
@@ -377,7 +377,7 @@ Qui usiamo una directory `build`.
 meson setup build --prefix=/path/to/install/gemc
 ```
 
-La fase di **installazione** compilerà e installerà GEMC. Qui usiamo `-q` per una build silenziosa.
+La fase di **installazione** compilerà e installerà GEMC. Qui usiamo `-q` per una compilazione silenziosa.
 
 ```shell
 meson install -C build -q
@@ -391,8 +391,8 @@ Facoltativamente, dopo l'installazione, esegui `meson test -C build` per testare
 
 - L'opzione di configurazione `-Droot=enabled` aggiungerà il supporto a ROOT (richiede ROOT installato sul sistema).
 - L'opzione di configurazione `-Di_test=true` abiliterà le interfacce GUI nei test.
-- Usa `-v` durante la build o i test per un output dettagliato.
-- Per eliminare la directory di build e ricominciare da capo, usa `rm -rf build` e poi riesegui la configurazione.
+- Usa `-v` in fase di compilazione o test per un output dettagliato.
+- Per eliminare la directory di build e ricominciare da capo, usa `rm -rf build` e poi ripeti la configurazione.
 - Usa `-jN` per impostare il numero di thread durante la compilazione.
 
 <br/>
@@ -405,9 +405,9 @@ Aggiungi queste righe al file di configurazione della tua shell (ad esempio `~/.
 export PATH=/path/to/install/gemc/bin:/path/to/install/gemc/python_env/bin:$PATH
 ```
 
-La seconda voce di PATH aggiunge l'ambiente virtuale Python incluso, così che `python3`
-punti all'interprete dell'ambiente virtuale, rendendo disponibile `import pygemc`
-nei tuoi script.
+La seconda voce di PATH aggiunge l'ambiente virtuale Python incluso, in modo che `python3`
+punti all'interprete del venv, rendendo disponibile `import pygemc`
+negli script.
 
 Verifica il simulatore e gli strumenti Python installati con:
 
@@ -424,12 +424,12 @@ gemc-analyzer --help
 
 I sistemi di rivelatori CLAS12
 ([`clas12-systems`](https://github.com/gemc/clas12-systems)) 0.3 si compilano con la stessa procedura Meson e non
-richiedono più un'installazione preesistente di GEMC. In un ambiente con il solo Geant4, per esempio
-un'immagine Docker di [`g4install`](https://github.com/gemc/g4install), la build compila automaticamente GEMC dal
+richiedono più un'installazione preesistente di GEMC. In un ambiente con il solo Geant4 — ad esempio
+un'immagine Docker [`g4install`](https://github.com/gemc/g4install) — la build compila automaticamente GEMC dal
 sottoprogetto `gemc` e lo installa nello stesso prefisso, così la geometria dei rivelatori e i plugin possono
-essere installati interamente da zero. Solo Geant4 deve essere già presente (non viene mai compilato); GEMC viene
-cercato, nell'ordine, nel percorso esplicito `-Duse-gemc-location=<dir>`, tra le installazioni presenti tramite
-`PATH`/pkg-config e, infine, nel sottoprogetto compilato dai sorgenti.
+essere installati interamente da zero. Solo Geant4 deve essere già presente (non viene mai compilato); GEMC viene cercato,
+nell'ordine, nel percorso esplicito `-Duse-gemc-location=<dir>`, tra le installazioni presenti su `PATH`/pkg-config e infine
+nel sottoprogetto da compilare dai sorgenti.
 
 ```shell
 git clone --depth=1 --branch {{ page.latest_ctag }} https://github.com/gemc/clas12-systems
@@ -445,7 +445,7 @@ meson install -C build
 ## Eseguire in un container Docker
 
 Puoi usare Docker per eseguire GEMC. Le immagini disponibili sono elencate di seguito.
-Sono supportate sia `arm64` sia `amd64` (eccetto nelle immagini Arch Linux, disponibili solo per `amd64` [^1]).
+Sono supportate sia `arm64` sia `amd64` (tranne per le immagini Arch Linux, che sono solo `amd64` [^1]).
 
 {:.zebra}
 
@@ -455,18 +455,18 @@ Sono supportate sia `arm64` sia `amd64` (eccetto nelle immagini Arch Linux, disp
 | {{ img.id }} {{ img.osversion }} | {{ img.gemcv }} | ```{{ img.tag }}``` | {{ img.arm64 }} | {{ img.amd64 }} |
 {% endfor %}
 
-Gli indirizzi qui sopra rimandano alle immagini su [Docker Hub](https://hub.docker.com/r/gemc/gemc), pubblicate nel
+Gli indirizzi qui sopra rimandano alle immagini di [Docker Hub](https://hub.docker.com/r/gemc/gemc), pubblicate tramite il
 programma [Docker-Sponsored Open Source](https://www.docker.com/community/open-source/application/), che consente
-pull anonimi illimitati. Sono copie della build di riferimento su
-[GitHub Container Registry](https://github.com/gemc/src/pkgs/container/src): i due registry hanno contenuti
-e tag identici. Per effettuare il pull da GHCR, sostituisci il prefisso `docker.io/gemc/gemc:` con
+pull anonimi illimitati. Sono repliche della build canonica su
+[GitHub Container Registry](https://github.com/gemc/src/pkgs/container/src): i due registry contengono
+contenuti e tag identici. Per effettuare il pull da GHCR, sostituisci il prefisso `docker.io/gemc/gemc:` con
 `ghcr.io/gemc/src:` mantenendo lo stesso tag, ad esempio `ghcr.io/gemc/src:dev-ubuntu-24.04`.
 
-Si consiglia di montare una directory locale tramite bind mount per salvare e conservare il tuo lavoro.
-A titolo di esempio, i comandi seguenti associano il percorso del container `{{ page.docker_remote_mount }}` a
-`{{ page.docker_local_mount }}` e usano l'immagine `{{ site.data.docker.images[0].tag }}`.
+Si consiglia di montare una directory locale per salvare e archiviare il tuo lavoro.
+A titolo di esempio, i comandi qui sotto montano `{{ page.docker_local_mount }}` nel percorso del container
+`{{ page.docker_remote_mount }}` e usano l'immagine `{{ site.data.docker.images[0].tag }}`.
 
-[^1]: Sui Mac con Apple Silicon aggiungi l'opzione `--platform linux/amd64` al comando `docker run` per usare le
+[^1]: Per i Mac con Apple Silicon aggiungi l'opzione `--platform linux/amd64` al comando `docker run` se vuoi usare le
 immagini `archlinux amd64`.
 
 <br/>
@@ -494,7 +494,7 @@ GEO_FLAGS=(-e GEOMETRY=1920x1200)
 docker run -it --rm -v {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} $VPORTS $VNC_BIND $VNC_PASS $GEO_FLAGS {{ site.data.docker.images[0].tag }}
 ```
 
-Poi apri nel browser [`http://localhost:6080/vnc.html`](http://localhost:6080/vnc.html) per accedere
+Poi apri [`http://localhost:6080/vnc.html`](http://localhost:6080/vnc.html) nel browser per accedere
 all'interfaccia grafica.
 
 <br/>
@@ -503,9 +503,9 @@ all'interfaccia grafica.
 
 ## Eseguire con Apptainer
 
-Gli host Linux possono usare `apptainer` (precedentemente `singularity`) per eseguire i container Docker.
-Puoi usarlo con le immagini Docker qui sopra. Funziona in modo simile a Docker, ma l'entrypoint deve essere
-caricato esplicitamente con source.
+Gli host Linux possono usare `apptainer` (precedentemente `singularity`) per eseguire container Docker.
+Puoi usarlo con le immagini Docker qui sopra. Funziona in modo simile a Docker, ma lo script di entrypoint deve essere
+caricato esplicitamente nella shell.
 
 ```
 apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} docker://{{ site.data.docker.images[0].tag }} bash
@@ -521,8 +521,8 @@ gemc -v
 <br/>
 
 > [!WARNING]
-> L'interfaccia grafica, in particolare le finestre OpenGL, potrebbe non funzionare correttamente in Apptainer
-> quando ti connetti tramite un host remoto.
+> L'interfaccia grafica, in particolare le finestre OpenGL, potrebbe non funzionare correttamente in Apptainer quando
+> ti connetti tramite un host remoto.
 
 
 <br/>
@@ -530,9 +530,9 @@ gemc -v
 <blockquote class="doc-important" markdown="1">
 **Nota**
 
-Apptainer usa una directory di cache predefinita per memorizzare le immagini. Se si riempie, imposta la directory
-di cache e quella temporanea in una posizione con spazio su disco sufficiente.
-Per esempio, imposta `sim_cache` su un percorso con spazio sufficiente:
+Apptainer usa una directory di cache predefinita per memorizzare le immagini. Se si riempie, imposta le directory di cache e
+quelle temporanee in una posizione con spazio su disco sufficiente.
+Ad esempio, imposta `sim_cache` in una posizione con spazio sufficiente:
 
 ```shell
 	export sif_cache=/path/to/$USER/cache
@@ -560,8 +560,8 @@ ed esegui di nuovo apptainer.
 
 <br/>
 
-Le installazioni da tarball binario richiedono solo i pacchetti di runtime necessari all'eseguibile `gemc` e gli
-strumenti usati per scaricare ed estrarre l'archivio. ROOT è volutamente escluso da questo elenco.
+Le installazioni da tarball binario richiedono solo i pacchetti di runtime necessari all'eseguibile `gemc` e gli strumenti
+usati per scaricare ed estrarre l'archivio. ROOT è volutamente escluso da questo elenco.
 
 <br/>
 
@@ -632,8 +632,8 @@ libx11 libxext libxmu libxt mesa qt6-base qt6-svg qt6-charts tbb
 
 {% capture btab7 %}
 
-Il binario è collegato alle librerie Qt, SQLite, expat, zlib e TBB di Homebrew; XQuartz fornisce il runtime
-X11/OpenGL usato per la visualizzazione.
+Il binario è collegato alle librerie Qt, SQLite, expat, zlib e TBB di Homebrew; XQuartz fornisce il runtime X11/OpenGL
+usato dalla visualizzazione.
 
 ```shell
 brew install qt sqlite expat zlib tbb
@@ -675,10 +675,10 @@ tab7_content=btab7
 
 - Strumenti di build e compilatori:
 
-    - Compilatore C++ e libreria standard con supporto C++20 per GEMC 0.5 o versioni successive: GCC 11+, Clang 13+
-      o Apple Clang 14+; ogni piattaforma supportata include già un compilatore adeguato
-    - [CMake](https://cmake.org) 3.16 o versione successiva
-    - [Meson](https://mesonbuild.com) 1.10.1 o versione successiva
+    - Compilatore C++ e libreria standard che supportino C++20 per GEMC 0.5 o successivo — GCC 11+, Clang 13+ o
+      Apple Clang 14+; ogni piattaforma supportata include già un compilatore adeguato
+    - [CMake](https://cmake.org) 3.16 o successivo
+    - [Meson](https://mesonbuild.com) 1.10.1 o successivo
 
 <br/>
 
@@ -686,13 +686,13 @@ tab7_content=btab7
 
     - expat: 2.0.1 o superiore
     - zlib: 1.2.3 o superiore
-    - [Qt6](https://www.qt.io): 6.4.2 o superiore (richiesto per la GUI); SVG fornisce le icone della barra
-      degli strumenti e Charts abilita l'Analyzer della GUI, ma entrambi i moduli sono opzionali
-    - [ROOT](https://root.cern): 6.36.04 o superiore (opzionale, richiesto per l'output ROOT)
+    - [Qt6](https://www.qt.io): 6.4.2 o superiore (richiesto per la GUI); SVG fornisce le icone della barra degli strumenti e Charts
+      abilita l'Analyzer della GUI, ma entrambi i moduli sono facoltativi
+    - [ROOT](https://root.cern): 6.36.04 o superiore (facoltativo, richiesto per l'output ROOT)
 
 <br/>
 
-Comandi su una riga per installare pacchetti di base e dipendenze su MacOS e alcune distribuzioni Linux diffuse:
+Comandi di installazione in una riga per i pacchetti di base e le dipendenze su macOS e su alcune diffuse distribuzioni Linux:
 
 <br/>
 
@@ -777,7 +777,7 @@ libxt-dev libxmu-dev libxrender-dev xvfb x11-xserver-utils \
 bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
 ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
 xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
-qt6-base-dev libqt6opengl6 libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
+qt6-base-dev libqt6opengl6-dev libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
 qt6-charts-dev \
 liblz4-dev liblzma-dev libzstd-dev \
 liblsan0 libasan8 libubsan1 libtsan2 libtbb12
@@ -835,7 +835,7 @@ tab7_content=tab7
 
 <br/>
 
-- Librerie esterne, compilate dai sorgenti con lo standard C++ di GEMC (C++20 per GEMC 0.5 o versioni successive):
+- Librerie esterne, compilate dai sorgenti con lo stesso standard C++ di GEMC (C++20 per GEMC 0.5 o successivo):
 
     - [CLHEP](https://proj-clhep.web.cern.ch/proj-clhep/): 2.4.6.0 o superiore
     - [Xerces-C](https://xerces.apache.org/xerces-c/): 3.2 o superiore

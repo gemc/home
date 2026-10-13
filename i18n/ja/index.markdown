@@ -1,5 +1,6 @@
 ---
 layout: default
+permalink: /
 lang: ja
 human_reviewed: false
 ---
@@ -68,32 +69,32 @@ human_reviewed: false
 {% include gemc-logo.svg %}
 
 <small>本サイトは **GEMC** バージョン 3 以降を対象としたドキュメントです。
-**CLAS12 シミュレーション** には [GEMC2 clas12Tags リポジトリ](https://github.com/gemc/clas12Tags) をご利用ください。</small>
+**CLAS12 シミュレーション**には [GEMC2 clas12Tags リポジトリ](https://github.com/gemc/clas12Tags) を使用してください。</small>
 
 <br/>
 
-## Python API によるデータベース駆動の Geant4 シミュレーション
+## Python API によるデータベース駆動型 Geant4 シミュレーション
 
-**GEMC** は Python から使いやすい [Geant4](https://geant4.web.cern.ch) のラッパーで、C++/Geant4 の習得を不要にします。
-ユーザーは Python で検出器システム全体のジオメトリ、材料、デジタイゼーションを構築します。
-API は、GEMC がシミュレーションパイプライン全体を実行するために使用するデータベースに、データを自動的に登録します。
+**GEMC** は [Geant4](https://geant4.web.cern.ch) を Python から使いやすくするラッパーで、C++/Geant4 の学習を不要にします。
+ユーザーは、ジオメトリ、材料、デジタイゼーションを含む検出器システム全体を Python で構築できます。
+API は、GEMC がシミュレーションパイプライン全体の実行に使用するデータベースに、データを自動的に格納します。
 
 主な特長:
 
-- ジオメトリと材料を作成するための Python API
+- ジオメトリと材料を作成する Python API
 - ASCII、SQLite、GDML、CAD メッシュファイルからのジオメトリインポート
-- 組み込みの感応検出器: %%flux%%、%%dosimeter%%、%%particle_counter%%、%%gPhotonDetector%%
-- 出力フォーマット: ASCII、CSV、JSON、[ROOT](https://root.cern)
+- 組み込みの有感検出器: %%flux%%、%%dosimeter%%、%%particle_counter%%、%%gPhotonDetector%%
+- 出力形式: ASCII、CSV、JSON、[ROOT](https://root.cern)
 - シミュレーション出力の読み込みとプロットを行う組み込み Python `analyzer` モジュール
-- [`pyvista`](https://pyvista.org) によるジオメトリの可視化
-- ジオメトリのバリエーションおよびラン番号に依存する構成
-- CI でテストされたビルドと Docker によるデプロイ
+- [`pyvista`](https://pyvista.org) によるジオメトリ可視化
+- ジオメトリのバリエーションとラン番号依存の設定
+- CI でテストされたビルドと Docker デプロイ
 
 <br/><br/>
 
 ## GEMC を試す
 
-インストールは不要です。バッジをクリックすると、ブラウザ内で **JupyterLab** セッションが起動し、その場で操作できます:
+インストールは不要です。バッジをクリックすると、ブラウザ上で **JupyterLab** の対話型セッションが起動します:
 
 {% assign visible_examples = site.data.examples | where: "display", true %}
 
@@ -117,7 +118,7 @@ API は、GEMC がシミュレーションパイプライン全体を実行す�
 
 ### コンテナイメージ
 
-ローカルまたは HPC 上での JupyterLab セッションには、ビルド済みのマルチアーキテクチャイメージをご利用ください:
+ローカルまたは HPC 上での JupyterLab セッションには、事前ビルド済みのマルチアーキテクチャイメージを使用します:
 
 ```shell
 # Docker
@@ -132,8 +133,8 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 
 ## インタラクティブ 3D ギャラリー
 
-各サムネイル内でマウスホイールまたは矢印キーを使ってカメラを回転できます。ドキュメントを見るにはタイトルの
-リンクをクリックしてください。
+各サムネイル内でマウスホイールまたは矢印キーを使ってカメラを回転できます。タイトルのリンクをクリックすると
+ドキュメントが表示されます。
 
 {% assign gallery_examples = site.data.examples | where: "gallery", true %}
 
@@ -155,12 +156,12 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 
 ## `pygemc`: Python API
 
-GEMC の Python API である `pygemc` は、ジオメトリと材料のデータベース構築機能、`pyvista` によるジオメトリ可視化、
-`gemc-system-template`、`gemc-analyzer` を提供します。解析ツールは GEMC の CSV および ROOT 出力を読み込み、
+GEMC の Python API である `pygemc` は、ジオメトリと材料のデータベースビルダー、`pyvista` によるジオメトリ可視化、
+`gemc-system-template`、`gemc-analyzer` を提供します。アナライザーは GEMC の CSV および ROOT 出力を読み込み、
 選択した変数のヒストグラムをプロットできます。
 
 {% include figure.html
-src="assets/images/gemc_showcase.gif"
+src="/assets/images/gemc_showcase.gif"
 alt="Python API example"
 caption="  
 The code fills the database with the world volume, a liquid hydrogen target, and a flux plane. <br/>
@@ -170,8 +171,8 @@ on the liquid hydrogen target.<br/>
 The total deposited energy is plotted with the `analyzer` module."
 %}
 
-以下の抜粋は、ターゲット下流にある、粒子フラックスを測定する感応面を定義しています。GEMC は、生成された飛跡が
-このボリュームを横切るたびに %%flux%% ヒットを記録します。
+以下の抜粋は、ターゲット下流にある有感なフラックス測定面を定義しています。GEMC は、生成されたトラックが
+このボリュームを通過するたびに %%flux%% ヒットを記録します。
 
 ```python
 # Place a thin scoring plane downstream of the target.
@@ -198,10 +199,10 @@ gvolume.publish(cfg)
 
 ## データベース
 
-検出器の定義はデータベースに保存されます。一般的なワークフローでは、ユーザーが記述するステップは 1 つだけです:
+検出器の定義はデータベースに保存されます。典型的なワークフローでは、ユーザーが記述する手順は 1 つです:
 
 {% include figure.html
-src="assets/images/gemcArchitecture.svg"
+src="/assets/images/gemcArchitecture.svg"
 alt="Database-driven architecture"
 caption="
 Users define detector databases through the Python API (Step 1).
@@ -214,23 +215,23 @@ and streams the output data (Steps 2–5).
 
 
 > [!NOTE]
-> シミュレーションの実行には、C++ や Geant4 の事前知識は不要です。
+> シミュレーションの実行に、C++ や Geant4 の事前知識は必要ありません。
 > 基本的な Python の知識があると、複雑なセットアップを整理するのに役立ちます。
-> ユーザーは **独自のハードウェアエミュレーションルーチンを定義する** こともできます。その場合、複雑な
-> デジタイゼーションには基本的な C++ の知識があると役立ちます。
+> ユーザーは**独自のハードウェアエミュレーションルーチンを定義**することもできます。この場合、
+> 複雑なデジタイゼーションを実装するには、基本的な C++ の知識があると役立ちます。
 
 <br/><br/>
 
 ## ジオメトリのバリエーション
 
-検出器は、構成要素の位置の移動、材料の変更、
-ボリュームの追加・削除といった構成変更を加えて、複数の実験で再利用できます。
-GEMC は、%%variation%% 文字列および／または %%run%% 番号を使ってこうしたジオメトリの各バージョンに対応し、
+1 つの検出器を、コンポーネントの位置変更、材料の変更、
+ボリュームの追加・削除といった設定変更を加えながら、複数の実験で再利用できます。
+GEMC は、%%variation%% 文字列および／または %%run%% 番号を用いてこうしたジオメトリのバージョンをサポートし、
 さまざまなシミュレーションの
-設定に適応します。
+セットアップに対応します。
 
 {% include figure.html
-src="assets/images/clas12v.gif"
+src="/assets/images/clas12v.gif"
 alt="Python API example"
 caption="The animation shows two variations of the CLAS12 Central Detector.
 The geometries are identical except for the target position. Users select them
@@ -276,8 +277,8 @@ with a variation string or run number in the configuration file or command-line 
 
 ## 継続的インテグレーション
 
-GEMC は、GitHub CI によって複数のプラットフォーム上、かつ ARM64 と AMD64 の両アーキテクチャで、Docker
-イメージとしてビルド、テスト、デプロイされます。
+GEMC は、GitHub CI によって複数のプラットフォームと ARM64、AMD64 の両アーキテクチャでビルドおよびテストされ、
+Docker イメージとしてデプロイされます。
 
 **gemc**
 
@@ -286,7 +287,7 @@ GEMC は、GitHub CI によって複数のプラットフォーム上、かつ A
 | テスト      | [![test][test-badge]][test]                                  |
 | サニタイザー  | [![Sanitize][Sanitize-badge]][Sanitize]                      |
 | CodeQL | [![CodeQL][CodeQL-badge]][CodeQL]                            |
-| イメージのデプロイ | [![deploy][deploy-badge]][deploy]                            |
+| イメージデプロイ | [![deploy][deploy-badge]][deploy]                            |
 | バイナリ tar アーカイブ | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] |
 | macOS tar アーカイブ | [![macOS Tarball][macOS-Tarball-badge]][macOS-Tarball]       |
 | ナイトリーリリース | [![Nightly][Nightly-badge]][Nightly]                         |
@@ -299,7 +300,7 @@ GEMC は、GitHub CI によって複数のプラットフォーム上、かつ A
 
 {:.zebra}
 
-| ナイトリー開発版リリース | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
+| ナイトリー開発リリース | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
 | PyPI への公開     | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
 | テスト | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]               |
 | PyPI | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
@@ -347,9 +348,9 @@ M. Ungaro and the CLAS Collaboration,
 ## ソースコードとライセンス
 
 [GEMC ソースコード](https://github.com/gemc/src) は
-[Apache License, Version 2.0](/home/license/) の下でライセンスされています。帰属表示およびサードパーティへの
-謝辞については [NOTICE](/home/license/#notice) をご覧ください。本ソフトウェアは、Geant4、CLHEP、Qt、ROOT、
-SQLite、Assimp など、個別のライセンスが適用されるサードパーティコンポーネントにも依存しています。
+[Apache ライセンス、バージョン 2.0](/home/license/) の下でライセンスされています。帰属表示とサードパーティへの
+謝辞については [NOTICE](/home/license/#notice) を参照してください。本ソフトウェアは、Geant4、CLHEP、Qt、ROOT、
+SQLite、Assimp を含む、個別にライセンスされたサードパーティコンポーネントにも依存しています。
 
 <br/><br/>
 

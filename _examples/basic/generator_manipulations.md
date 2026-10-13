@@ -54,7 +54,7 @@ Geantinos do not scatter or create secondary particles; %%recordZeroEdep: true%%
 This gives one hit per thrown particle for these configurations.
 
 {% include figure.html
-src="assets/images/examples/generator_manipulations/gemc_view.png"
+src="/assets/images/examples/generator_manipulations/gemc_view.png"
 alt="Geantinos originating at smeared vertices inside the transparent cylindrical target"
 caption="The shared tube target with 100 events from the uniform-Z card, rendered by GEMC."
 %}

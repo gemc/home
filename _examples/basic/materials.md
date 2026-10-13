@@ -219,7 +219,7 @@ Add `-gui` to run interactively.
 ## Running Events
 
 {% include figure.html
-src="assets/images/examples/materials/gemc_view.png"
+src="/assets/images/examples/materials/gemc_view.png"
 caption="Materials simulation: particles traversing the material samples."
 %}
 

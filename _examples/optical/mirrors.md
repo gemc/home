@@ -77,7 +77,7 @@ Interactive viewer:
 </iframe>
 
 {% include figure.html
-src="assets/images/examples/mirrors/gemc_view.png"
+src="/assets/images/examples/mirrors/gemc_view.png"
 caption="Mirrors simulation with 1 generated event."
 %}
 

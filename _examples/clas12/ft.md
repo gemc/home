@@ -123,7 +123,7 @@ output.
 ## Running Events
 
 {% include figure.html
-src="assets/images/examples/ft/gemc_view.png"
+src="/assets/images/examples/ft/gemc_view.png"
 caption="CLAS12 FT simulation: generated electrons crossing the forward tagger geometry."
 %}
 

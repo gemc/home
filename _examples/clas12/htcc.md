@@ -131,7 +131,7 @@ output.
 ## Running Events
 
 {% include figure.html
-src="assets/images/examples/htcc/gemc_view.png"
+src="/assets/images/examples/htcc/gemc_view.png"
 caption="CLAS12 HTCC simulation: generated electrons crossing the high-threshold Cherenkov counter geometry."
 %}
 

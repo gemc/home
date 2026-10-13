@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation
+title: "文档"
 permalink: /documentation/
 lang: zh
 human_reviewed: false

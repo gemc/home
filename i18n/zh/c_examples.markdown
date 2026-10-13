@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Examples
+title: "示例"
 permalink: /examples/
 lang: zh
 human_reviewed: false

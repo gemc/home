@@ -27,6 +27,10 @@
   category: "API"
   link: "/home/documentation/api/options_reference"
 
+- title: "C++ Logging"
+  category: "API"
+  link: "/home/documentation/api/logging/"
+
 
 
 

@@ -66,7 +66,7 @@ Interactive viewer:
 </iframe>
 
 {% include figure.html
-src="assets/images/examples/parabolic_mirror/gemc_view.png"
+src="/assets/images/examples/parabolic_mirror/gemc_view.png"
 caption="Parabolic mirror simulation with 1 generated optical-photon event."
 %}
 

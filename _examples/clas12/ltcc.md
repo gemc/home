@@ -131,7 +131,7 @@ output.
 ## Running Events
 
 {% include figure.html
-src="assets/images/examples/ltcc/gemc_view.png"
+src="/assets/images/examples/ltcc/gemc_view.png"
 caption="CLAS12 LTCC simulation: generated electrons crossing the low-threshold Cherenkov counter geometry."
 %}
 

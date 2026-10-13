@@ -1,6 +1,6 @@
 ---
 layout: news
-title: News
+title: "Actualités"
 permalink: /news/
 lang: fr
 human_reviewed: false

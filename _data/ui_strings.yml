@@ -1,0 +1,7 @@
+# UI strings rendered by templates (not page content). The shared translation tool localizes these into
+# _data/<lang>/ui_strings.yml (translating the listed fields); jekyll-polyglot merges the active language's
+# copy over site.data, so templates can use {{ site.data.ui_strings.<key> }} and get the right language.
+examples_intro: "The interactive thumbnails are live 3D views — drag to rotate and scroll to zoom right here on the page. <br/> Click on the link at the top of each view for the example documentation."
+search_placeholder: "Search…"
+search_aria_label: "Search this site"
+search_no_results: "No results found"

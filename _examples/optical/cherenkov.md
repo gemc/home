@@ -70,7 +70,7 @@ Interactive viewer:
 </iframe>
 
 {% include figure.html
-src="assets/images/examples/cherenkov/high_index_radiator.png"
+src="/assets/images/examples/cherenkov/high_index_radiator.png"
 caption="Cherenkov geometry with 1 generated electron. The highIndexRadiator volume (green, style = 2 renders it as a cloud) is the medium generating Cherenkov radiation."
 %}
 
@@ -177,7 +177,7 @@ Use the variation name in the %%gstreamer%% filename when you want separate outp
 ## Running Events
 
 {% include figure.html
-src="assets/images/examples/cherenkov/gemc_view.png"
+src="/assets/images/examples/cherenkov/gemc_view.png"
 caption="Cherenkov simulation: electron beam entering the radiator volume."
 %}
 

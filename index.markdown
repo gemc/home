@@ -1,6 +1,6 @@
 ---
 layout: default
-
+permalink: /
 ---
 
 [test]: https://github.com/gemc/src/actions/workflows/test.yml
@@ -159,7 +159,7 @@ The GEMC Python API, `pygemc`, provides geometry and material database builders,
 histograms from selected variables.
 
 {% include figure.html
-src="assets/images/gemc_showcase.gif"
+src="/assets/images/gemc_showcase.gif"
 alt="Python API example"
 caption="  
 The code fills the database with the world volume, a liquid hydrogen target, and a flux plane. <br/>
@@ -200,7 +200,7 @@ gvolume.publish(cfg)
 Detector definitions are stored in databases. A typical workflow has one user-authored step:
 
 {% include figure.html
-src="assets/images/gemcArchitecture.svg"
+src="/assets/images/gemcArchitecture.svg"
 alt="Database-driven architecture"
 caption="
 Users define detector databases through the Python API (Step 1).
@@ -229,7 +229,7 @@ simulation
 setups.
 
 {% include figure.html
-src="assets/images/clas12v.gif"
+src="/assets/images/clas12v.gif"
 alt="Python API example"
 caption="The animation shows two variations of the CLAS12 Central Detector.
 The geometries are identical except for the target position. Users select them

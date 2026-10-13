@@ -208,7 +208,7 @@ change the output.
 ## Running Events
 
 {% include figure.html
-src="assets/images/examples/cad/gemc_view.png"
+src="/assets/images/examples/cad/gemc_view.png"
 caption="CAD simulation: an Iridium-192 brachytherapy source inside the liver emits photons
 isotropically, depositing dose in the imported liver, heart, and lung meshes."
 %}

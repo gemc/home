@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation
+title: "Documentazione"
 permalink: /documentation/
 lang: it
 human_reviewed: false

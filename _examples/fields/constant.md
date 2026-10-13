@@ -58,7 +58,7 @@ show_auxiliary_edges: true
 ## Field Display
 
 {% include figure.html
-src="assets/images/examples/constant/gemc_view.png"
+src="/assets/images/examples/constant/gemc_view.png"
 caption="Constant field display: a transparent box with uniform field lines."
 %}
 

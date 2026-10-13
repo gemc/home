@@ -131,7 +131,7 @@ Modify `simple_flux.yaml` as needed, in particular to add particles, control the
 ## Running Events
 
 {% include figure.html
-src="assets/images/examples/simple_flux/gemc_view.png"
+src="/assets/images/examples/simple_flux/gemc_view.png"
 caption="Simple flux simulation: proton tracks traversing the flux detector volumes."
 %}
 

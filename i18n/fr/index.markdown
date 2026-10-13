@@ -1,5 +1,6 @@
 ---
 layout: default
+permalink: /
 lang: fr
 human_reviewed: false
 ---
@@ -26,7 +27,7 @@ human_reviewed: false
 
 [Site]: https://github.com/gemc/home/actions/workflows/jekyll.yml
 
-[Site-badge]: https://github.com/gemc/src/actions/workflows/jekyll.yml/badge.svg
+[Site-badge]: https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg
 
 [Sanitize]: https://github.com/gemc/src/actions/workflows/sanitize.yml
 
@@ -72,29 +73,29 @@ Pour les **simulations CLAS12**, utilisez le [dépôt GEMC2 clas12Tags](https://
 
 <br/>
 
-## Simulations Geant4 pilotées par des bases de données avec une API Python
+## Simulations Geant4 pilotées par des bases de données, avec une API Python
 
-**GEMC** est une surcouche de [Geant4](https://geant4.web.cern.ch) adaptée à Python qui évite d'avoir à apprendre
-le C++ et Geant4. Les utilisateurs construisent des systèmes de détecteurs complets en Python : géométrie,
-matériaux et numérisation. L'API remplit automatiquement les bases de données que GEMC utilise pour exécuter
-l'ensemble de la chaîne de simulation.
+**GEMC** est une surcouche de [Geant4](https://geant4.web.cern.ch) facile à utiliser depuis Python, qui évite
+d'avoir à apprendre le C++ et Geant4. Les utilisateurs construisent des systèmes de détecteurs complets en
+Python : géométrie, matériaux et numérisation. L'API alimente automatiquement les bases de données que GEMC
+utilise pour exécuter l'ensemble de la chaîne de simulation.
 
 Points forts :
 
 - API Python pour créer la géométrie et les matériaux
-- Importation de géométries depuis des fichiers ASCII, SQLite, GDML et de maillage CAO
+- Importation de géométries depuis des fichiers ASCII, SQLite, GDML et des fichiers de maillage CAO
 - Détecteurs sensibles intégrés : %%flux%%, %%dosimeter%%, %%particle_counter%% et %%gPhotonDetector%%
 - Formats de sortie : ASCII, CSV, JSON et [ROOT](https://root.cern)
-- Module Python `analyzer` intégré pour lire et représenter graphiquement les résultats de simulation
+- Module Python `analyzer` intégré pour lire les sorties de simulation et les représenter graphiquement
 - Visualisation de la géométrie avec [`pyvista`](https://pyvista.org)
 - Variations de géométrie et configurations dépendant du numéro de run
-- Compilations testées en intégration continue et déploiement Docker
+- Compilations testées en intégration continue et déploiement avec Docker
 
 <br/><br/>
 
 ## Essayer GEMC
 
-Aucune installation nécessaire. Cliquez sur un badge pour lancer une session **JupyterLab** interactive dans votre
+Aucune installation requise. Cliquez sur un badge pour lancer une session **JupyterLab** interactive dans votre
 navigateur :
 
 {% assign visible_examples = site.data.examples | where: "display", true %}
@@ -119,7 +120,8 @@ navigateur :
 
 ### Image de conteneur
 
-Pour une session JupyterLab locale ou sur un système HPC, utilisez l'image multi-architecture préconstruite :
+Pour une session JupyterLab locale ou sur une infrastructure HPC, utilisez l'image multi-architecture prête à
+l'emploi :
 
 ```shell
 # Docker
@@ -162,7 +164,7 @@ la visualisation de la géométrie avec `pyvista`, `gemc-system-template` et `ge
 les sorties CSV et ROOT de GEMC et tracer des histogrammes à partir de variables sélectionnées.
 
 {% include figure.html
-src="assets/images/gemc_showcase.gif"
+src="/assets/images/gemc_showcase.gif"
 alt="Python API example"
 caption="  
 The code fills the database with the world volume, a liquid hydrogen target, and a flux plane. <br/>
@@ -200,11 +202,11 @@ gvolume.publish(cfg)
 
 ## Bases de données
 
-Les définitions des détecteurs sont stockées dans des bases de données. Un processus de travail typique comporte
-une étape réalisée par l'utilisateur :
+Les définitions de détecteurs sont stockées dans des bases de données. Un processus de travail typique comporte
+une seule étape réalisée par l'utilisateur :
 
 {% include figure.html
-src="assets/images/gemcArchitecture.svg"
+src="/assets/images/gemcArchitecture.svg"
 alt="Database-driven architecture"
 caption="
 Users define detector databases through the Python API (Step 1).
@@ -217,23 +219,23 @@ and streams the output data (Steps 2–5).
 
 
 > [!NOTE]
-> L'exécution des simulations ne nécessite aucune connaissance préalable du C++ ni de Geant4.
-> Des connaissances de base en Python aident à organiser les configurations complexes.
-> Les utilisateurs peuvent aussi **définir leurs propres routines d'émulation matérielle**. Dans ce cas,
-> des connaissances de base en C++ facilitent la mise en œuvre de numérisations complexes.
+> L'exécution de simulations ne nécessite aucune connaissance préalable du C++ ou de Geant4.
+> Des notions de base en Python aident à organiser les configurations complexes.
+> Les utilisateurs peuvent aussi **définir leurs propres routines d'émulation matérielle**. Dans ce cas, des
+> notions de base en C++ sont utiles pour les numérisations complexes.
 
 <br/><br/>
 
 ## Variations de géométrie
 
-Un détecteur peut être réutilisé dans plusieurs expériences, avec des changements de configuration tels que
-des déplacements de composants, des changements de matériaux ou des ajouts et suppressions de volumes.
-GEMC prend en charge ces versions de géométrie à l'aide de chaînes %%variation%% et/ou de numéros de %%run%%
-pour s'adapter à différentes configurations de
+Un détecteur peut être réutilisé d'une expérience à l'autre, avec des changements de configuration tels que des
+déplacements de composants, des changements de matériaux ou l'ajout et la suppression de volumes.
+GEMC prend en charge ces versions de géométrie à l'aide de chaînes %%variation%% et/ou de numéros %%run%% pour
+s'adapter aux différentes configurations de
 simulation.
 
 {% include figure.html
-src="assets/images/clas12v.gif"
+src="/assets/images/clas12v.gif"
 alt="Python API example"
 caption="The animation shows two variations of the CLAS12 Central Detector.
 The geometries are identical except for the target position. Users select them
@@ -302,7 +304,7 @@ plateformes et sur les architectures ARM64 et AMD64.
 
 {:.zebra}
 
-| Version nocturne de développement | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
+| Version de développement nocturne | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly] |
 | Publication sur PyPI     | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
 | Tests | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]               |
 | PyPI | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
@@ -350,9 +352,9 @@ M. Ungaro and the CLAS Collaboration,
 ## Code source et licence
 
 Le [code source de GEMC](https://github.com/gemc/src) est distribué sous la
-[licence Apache, version 2.0](/home/license/) ; voir [NOTICE](/home/license/#notice) pour les mentions d'attribution
-et les remerciements aux tiers. Le logiciel dépend également de composants tiers sous licences distinctes,
-notamment Geant4, CLHEP, Qt, ROOT, SQLite et Assimp.
+[licence Apache, version 2.0](/home/license/) ; voir [NOTICE](/home/license/#notice) pour les mentions
+d'attribution et les remerciements aux tiers. Le logiciel dépend également de composants tiers sous des
+licences distinctes, notamment Geant4, CLHEP, Qt, ROOT, SQLite et Assimp.
 
 <br/><br/>
 

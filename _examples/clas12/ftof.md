@@ -122,7 +122,7 @@ output.
 ## Running Events
 
 {% include figure.html
-src="assets/images/examples/ftof/gemc_view.png"
+src="/assets/images/examples/ftof/gemc_view.png"
 caption="CLAS12 FTOF simulation: generated electrons crossing the forward time-of-flight geometry."
 %}
 

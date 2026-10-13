@@ -126,7 +126,7 @@ output.
 ## Running Events
 
 {% include figure.html
-src="assets/images/examples/pcal/gemc_view.png"
+src="/assets/images/examples/pcal/gemc_view.png"
 caption="CLAS12 PCAL simulation: generated electrons crossing the preshower calorimeter geometry."
 %}
 

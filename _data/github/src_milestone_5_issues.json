@@ -222,7 +222,7 @@
       }
     ],
     "author_association": "CONTRIBUTOR",
-    "body": "- on the website\n- on the code / glogging output\n- on pygemc\n",
+    "body": "- [x] on the website\n- [ ] on the code / glogging output\n- [x] on src README\n- [x] on pygemc README\n- [x] on clas12-system README\n",
     "closed_at": null,
     "closed_by": null,
     "comments": 0,
@@ -338,7 +338,7 @@
       "node_id": "IT_kwDOAMwCa84AGjnX",
       "updated_at": "2024-10-08T09:35:31Z"
     },
-    "updated_at": "2026-10-09T07:35:54Z",
+    "updated_at": "2026-10-12T14:47:00Z",
     "url": "https://api.github.com/repos/gemc/src/issues/181",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",

@@ -121,6 +121,6 @@ gemc boolean_solids.yaml -gui
 ## Running Events
 
 {% include figure.html
-src="assets/images/examples/boolean_solids/gemc_view.png"
+src="/assets/images/examples/boolean_solids/gemc_view.png"
 caption="Boolean solids simulation: electrons crossing the subtraction, union, and intersection volumes."
 %}

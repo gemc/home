@@ -1,5 +1,6 @@
 ---
 layout: default
+permalink: /
 lang: it
 human_reviewed: false
 ---
@@ -68,33 +69,32 @@ human_reviewed: false
 {% include gemc-logo.svg %}
 
 <small>Questo sito documenta **GEMC** dalla versione 3 in poi.
-Per le **simulazioni CLAS12**, usa il [repository GEMC2 clas12Tags](https://github.com/gemc/clas12Tags).</small>
+Per le **simulazioni CLAS12**, utilizza il [repository GEMC2 clas12Tags](https://github.com/gemc/clas12Tags).</small>
 
 <br/>
 
 ## Simulazioni Geant4 basate su database con un'API Python
 
-**GEMC** è un wrapper per [Geant4](https://geant4.web.cern.ch) pensato per l'uso con Python, che elimina la
-necessità di apprendere C++/Geant4. Gli utenti costruiscono sistemi completi di rivelatori in Python: geometria,
-materiali e digitizzazione. L'API popola automaticamente i database che GEMC usa per eseguire l'intera
-pipeline di simulazione.
+**GEMC** è un wrapper di [Geant4](https://geant4.web.cern.ch) facilmente utilizzabile da Python che elimina la
+necessità di apprendere C++ e Geant4. Gli utenti costruiscono sistemi di rivelatori completi in Python: geometria,
+materiali e digitizzazione. L'API popola automaticamente i database che GEMC usa per eseguire l'intera simulazione.
 
 Caratteristiche principali:
 
 - API Python per creare geometria e materiali
-- Importazione della geometria da file ASCII, SQLite, GDML e mesh CAD
+- Importazione della geometria da ASCII, SQLite, GDML e file di mesh CAD
 - Rivelatori sensibili integrati: %%flux%%, %%dosimeter%%, %%particle_counter%% e %%gPhotonDetector%%
 - Formati di output: ASCII, CSV, JSON e [ROOT](https://root.cern)
 - Modulo Python `analyzer` integrato per leggere l'output della simulazione e rappresentarlo graficamente
 - Visualizzazione della geometria con [`pyvista`](https://pyvista.org)
-- Varianti della geometria e configurazioni dipendenti dal numero di run
-- Build testate tramite CI e distribuzione tramite Docker
+- Variazioni della geometria e configurazioni dipendenti dal numero di run
+- Build verificate tramite CI e distribuzione con Docker
 
 <br/><br/>
 
 ## Prova GEMC
 
-Non serve alcuna installazione. Fai clic su un badge per avviare una sessione **JupyterLab** nel browser:
+Non è necessaria alcuna installazione. Fai clic su un badge per avviare una sessione **JupyterLab** nel browser:
 
 {% assign visible_examples = site.data.examples | where: "display", true %}
 
@@ -118,7 +118,7 @@ Non serve alcuna installazione. Fai clic su un badge per avviare una sessione **
 
 ### Immagine del container
 
-Per una sessione JupyterLab locale o su un sistema HPC, usa l'immagine precompilata per più architetture:
+Per una sessione JupyterLab locale o in un ambiente HPC, usa l'immagine precompilata per più architetture:
 
 ```shell
 # Docker
@@ -133,8 +133,8 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 
 ## Galleria 3D interattiva
 
-Ruota la telecamera con la rotellina del mouse o usa i tasti freccia all'interno di ciascuna anteprima.
-Fai clic sul link del titolo per accedere alla documentazione.
+Ruota la camera con la rotellina del mouse o usa i tasti freccia all'interno di ciascuna miniatura. Fai clic sul
+link del titolo per consultare la documentazione.
 
 {% assign gallery_examples = site.data.examples | where: "gallery", true %}
 
@@ -157,11 +157,11 @@ Fai clic sul link del titolo per accedere alla documentazione.
 ## `pygemc`: l'API Python
 
 L'API Python di GEMC, `pygemc`, offre strumenti per creare database di geometria e materiali, la visualizzazione
-della geometria con `pyvista`, `gemc-system-template` e `gemc-analyzer`. L'analizzatore può leggere l'output CSV e
-ROOT di GEMC e tracciare istogrammi a partire da variabili selezionate.
+della geometria con `pyvista`, `gemc-system-template` e `gemc-analyzer`. L'analizzatore legge l'output CSV e ROOT
+di GEMC e traccia istogrammi delle variabili selezionate.
 
 {% include figure.html
-src="assets/images/gemc_showcase.gif"
+src="/assets/images/gemc_showcase.gif"
 alt="Python API example"
 caption="  
 The code fills the database with the world volume, a liquid hydrogen target, and a flux plane. <br/>
@@ -171,7 +171,7 @@ on the liquid hydrogen target.<br/>
 The total deposited energy is plotted with the `analyzer` module."
 %}
 
-L'estratto seguente definisce il piano sensibile al flusso a valle del bersaglio. GEMC registra un hit %%flux%%
+L'estratto seguente definisce il piano di flusso sensibile a valle del bersaglio. GEMC registra un hit %%flux%%
 ogni volta che una traccia generata attraversa questo volume.
 
 ```python
@@ -199,11 +199,10 @@ gvolume.publish(cfg)
 
 ## Database
 
-Le definizioni dei rivelatori sono memorizzate in database. Un tipico flusso di lavoro prevede una fase
-a cura dell'utente:
+Le definizioni dei rivelatori sono memorizzate in database. Il flusso di lavoro tipico ha un solo passo a cura dell'utente:
 
 {% include figure.html
-src="assets/images/gemcArchitecture.svg"
+src="/assets/images/gemcArchitecture.svg"
 alt="Database-driven architecture"
 caption="
 Users define detector databases through the Python API (Step 1).
@@ -218,21 +217,21 @@ and streams the output data (Steps 2–5).
 > [!NOTE]
 > L'esecuzione delle simulazioni non richiede conoscenze pregresse di C++ o Geant4.
 > Una conoscenza di base di Python aiuta a organizzare configurazioni complesse.
-> Gli utenti possono anche **definire le proprie routine di emulazione dell'hardware**. In questo caso,
-> una conoscenza di base di C++ è utile per le digitizzazioni complesse.
+> Gli utenti possono anche **definire le proprie routine di emulazione dell'hardware**. In questo caso, conoscere
+> le basi del C++ aiuta a realizzare digitizzazioni complesse.
 
 <br/><br/>
 
-## Varianti della geometria
+## Variazioni della geometria
 
-Un rivelatore può essere riutilizzato in più esperimenti, con modifiche alla configurazione come spostamenti
-di componenti, cambi di materiale o aggiunte e rimozioni di volumi.
-GEMC supporta queste versioni della geometria tramite stringhe %%variation%% e/o numeri di %%run%% per adattarsi
-a diverse configurazioni
-di simulazione.
+Un rivelatore può essere riutilizzato in diversi esperimenti, con modifiche alla configurazione quali
+spostamenti dei componenti, cambi di materiale o aggiunte e rimozioni di volumi.
+GEMC supporta queste versioni della geometria usando stringhe %%variation%% e/o numeri di %%run%% per adattarsi
+a diverse configurazioni di
+simulazione.
 
 {% include figure.html
-src="assets/images/clas12v.gif"
+src="/assets/images/clas12v.gif"
 alt="Python API example"
 caption="The animation shows two variations of the CLAS12 Central Detector.
 The geometries are identical except for the target position. Users select them
@@ -241,7 +240,7 @@ with a variation string or run number in the configuration file or command-line 
 
 <br/><br/>
 
-## Ultime novità
+## Ultime notizie
 
 <div class="news-feed news-feed--compact news-feed--homepage">
   {% assign shown_posts = 0 %}
@@ -269,7 +268,7 @@ with a variation string or run number in the configuration file or command-line 
 </div>
 
 <p class="news-links">
-  <a href="{{ "/news/" | relative_url }}">Tutte le novità</a>
+  <a href="{{ "/news/" | relative_url }}">Tutte le notizie</a>
   ·
   <a href="{{ "/feed.xml" | relative_url }}">Feed RSS</a>
 </p>
@@ -278,41 +277,41 @@ with a variation string or run number in the configuration file or command-line 
 
 ## Integrazione continua
 
-GEMC viene compilato, testato e distribuito sotto forma di immagini Docker dalla CI di GitHub su diverse
+GEMC viene compilato, testato e distribuito sotto forma di immagini Docker tramite la CI di GitHub su diverse
 piattaforme e su entrambe le architetture ARM64 e AMD64.
 
 **gemc**
 
 {:.zebra}
 
-| Test      | [![test][test-badge]][test]                                  |
-| Sanitizer  | [![Sanitize][Sanitize-badge]][Sanitize]                      |
-| CodeQL | [![CodeQL][CodeQL-badge]][CodeQL]                            |
-| Distribuzione delle immagini | [![deploy][deploy-badge]][deploy]                            |
-| Tarball binari | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] |
-| Tarball macOS | [![macOS Tarball][macOS-Tarball-badge]][macOS-Tarball]       |
-| Release notturna | [![Nightly][Nightly-badge]][Nightly]                         |
-| Pagina iniziale | [![Site][Site-badge]][Site]                                  |
-| Download Docker | [![Docker Pulls][DockerHub-badge]][DockerHub]                |
-| Doxygen | [![Docs][Docs-badge]][Docs]                                  |
-| Tarball di release | [![Release Tarballs][Release-Tarballs-badge]][Release-Tarballs] |
+| Test | [![test][test-badge]][test] |
+| Sanitizer | [![Sanitize][Sanitize-badge]][Sanitize] |
+| CodeQL | [![CodeQL][CodeQL-badge]][CodeQL] |
+| Distribuzione delle immagini | [![distribuzione][deploy-badge]][deploy] |
+| Archivi tar dei binari | [![Archivi tar dei binari][Binary-Tarballs-badge]][Binary-Tarballs] |
+| Archivio tar per macOS | [![Archivio tar per macOS][macOS-Tarball-badge]][macOS-Tarball] |
+| Rilascio notturno | [![Rilascio notturno][Nightly-badge]][Nightly] |
+| Pagina iniziale | [![Sito][Site-badge]][Site] |
+| Download da Docker | [![Download da Docker][DockerHub-badge]][DockerHub] |
+| Doxygen | [![Documentazione][Docs-badge]][Docs] |
+| Archivi tar dei rilasci | [![Archivi tar dei rilasci][Release-Tarballs-badge]][Release-Tarballs] |
 
 **pygemc**
 
 {:.zebra}
 
-| Release di sviluppo notturna | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
-| Pubblicazione su PyPI     | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
-| Test | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]               |
-| PyPI | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
+| Rilascio notturno di sviluppo | [![Rilascio notturno di sviluppo][PyGemc-Nightly-badge]][PyGemc-Nightly] |
+| Pubblicazione su PyPI | [![Pubblicazione su PyPI][PyGemc-Publish-badge]][PyGemc-Publish] |
+| Test | [![test di pygemc][PyGemc-Tests-badge]][PyGemc-Tests] |
+| PyPI | [![pygemc su PyPI][PyPI-badge]][PyPI] |
 
 <br/><br/>
 
 ## Riferimento bibliografico
 
-Se usi GEMC, assicurati di citare il seguente articolo:
+Assicurati di citare il seguente articolo se utilizzi GEMC:
 
-> M. Ungaro and the CLAS Collaboration, "The CLAS12 Geant4 simulation," *Nuclear Instruments and
+> M. Ungaro e la collaborazione CLAS, "The CLAS12 Geant4 simulation," *Nuclear Instruments and
 > Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated
 > Equipment* **959**, 163422 (2020). <https://doi.org/10.1016/j.nima.2020.163422>
 
@@ -350,7 +349,7 @@ M. Ungaro and the CLAS Collaboration,
 
 Il [codice sorgente di GEMC](https://github.com/gemc/src) è distribuito secondo i termini della
 [Licenza Apache, versione 2.0](/home/license/); consulta [NOTICE](/home/license/#notice) per le attribuzioni e i
-riconoscimenti a terze parti. Il software dipende inoltre da componenti di terze parti con licenze separate,
+riconoscimenti relativi a terze parti. Il software dipende anche da componenti di terze parti con licenze separate,
 tra cui Geant4, CLHEP, Qt, ROOT, SQLite e Assimp.
 
 <br/><br/>

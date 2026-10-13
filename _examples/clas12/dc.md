@@ -117,7 +117,7 @@ Modify `dc.yaml` as needed, in particular to add particles, control the number o
 ## Running Events
 
 {% include figure.html
-src="assets/images/examples/dc/gemc_view.png"
+src="/assets/images/examples/dc/gemc_view.png"
 caption="CLAS12 DC simulation: generated electrons crossing the drift chamber geometry."
 %}
 

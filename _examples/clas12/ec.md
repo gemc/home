@@ -123,7 +123,7 @@ Modify `ec.yaml` as needed, in particular to add particles, control the number o
 ## Running Events
 
 {% include figure.html
-src="assets/images/examples/ec/gemc_view.png"
+src="/assets/images/examples/ec/gemc_view.png"
 caption="CLAS12 EC simulation: generated electrons showering in the electromagnetic calorimeter geometry."
 %}
 

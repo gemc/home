@@ -57,7 +57,7 @@ transverse and longitudinal field components in tesla.
 ## Field Display
 
 {% include figure.html
-src="assets/images/examples/solenoid/gemc_view.png"
+src="/assets/images/examples/solenoid/gemc_view.png"
 caption="Solenoid ASCII-map display: a transparent tube with field lines from a cylindrical map."
 %}
 

@@ -58,7 +58,7 @@ show_auxiliary_edges: true
 ## Field Display
 
 {% include figure.html
-src="assets/images/examples/dipole/gemc_view.png"
+src="/assets/images/examples/dipole/gemc_view.png"
 caption="Dipole field display: a transparent field box with ideal transverse field lines."
 %}
 

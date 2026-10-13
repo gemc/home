@@ -151,7 +151,7 @@ The view below shows the barrel end-on after one event, with 3 protons fired rad
 outward at θ = 90°. Each proton traverses one scintillator paddle.
 
 {% include figure.html
-src="assets/images/examples/scintillator_barrel/gemc_view.png"
+src="/assets/images/examples/scintillator_barrel/gemc_view.png"
 caption="Scintillator barrel viewed end-on along the beam axis. Three protons at θ = 90°
 travel radially outward, each depositing energy in one paddle."
 %}
