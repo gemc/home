@@ -51,6 +51,10 @@ The [vertex and angular examples](/home/examples/basic/generator_manipulations)
 include 11 steering cards and prepared Analyzer plots. Use GEMC 0.5 or later; the GUI plots require
 Qt Charts. Their batch simulations and CSV checks also work without Qt Charts.
 
+Upcoming with the next release: Qt Linguist tools compile GUI language catalogs during the build; Qt
+translation data localizes standard dialogs. The package commands below include both. Homebrew Qt supplies
+these tools and catalogs. GUI language is detected automatically, with an optional `-language=<code>` override.
+
 ## Table of Contents
 
 - [Install the Python API](#install-the-python-api)
@@ -567,7 +571,7 @@ to download and unpack the archive. ROOT is intentionally not included in this l
 
 ```shell
 dnf install -y --allowerasing ca-certificates curl gzip tar expat sqlite-libs zlib \
-libX11 libXext libXmu libXt mesa-libEGL mesa-libGL qt6-qtbase qt6-qtsvg qt6-qtcharts tbb
+libX11 libXext libXmu libXt mesa-libEGL mesa-libGL qt6-qtbase qt6-qtsvg qt6-qtcharts qt6-qttranslations tbb
 ```
 
 {% endcapture %}
@@ -576,7 +580,7 @@ libX11 libXext libXmu libXt mesa-libEGL mesa-libGL qt6-qtbase qt6-qtsvg qt6-qtch
 
 ```shell
 dnf install -y --allowerasing ca-certificates curl gzip tar expat sqlite-libs zlib \
-libX11 libXext libXmu libXt mesa-libEGL mesa-libGL qt6-qtbase qt6-qtsvg qt6-qtcharts tbb
+libX11 libXext libXmu libXt mesa-libEGL mesa-libGL qt6-qtbase qt6-qtsvg qt6-qtcharts qt6-qttranslations tbb
 ```
 
 {% endcapture %}
@@ -588,7 +592,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
 ca-certificates curl gzip tar libexpat1 libsqlite3-0 zlib1g \
 libegl1 libgl1 libx11-6 libxext6 libxmu6 libxt6 \
 libqt6core6t64 libqt6gui6 libqt6widgets6 libqt6opengl6 libqt6openglwidgets6 \
-libqt6svg6 libqt6charts6 libtbb12
+libqt6svg6 libqt6charts6 qt6-translations-l10n libtbb12
 ```
 
 {% endcapture %}
@@ -600,7 +604,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
 ca-certificates curl gzip tar libexpat1 libsqlite3-0 zlib1g \
 libegl1 libgl1 libx11-6 libxext6 libxmu6 libxt6 \
 libqt6core6t64 libqt6gui6 libqt6widgets6 libqt6opengl6 libqt6openglwidgets6 \
-libqt6svg6 libqt6charts6 libtbb12
+libqt6svg6 libqt6charts6 qt6-translations-l10n libtbb12
 ```
 
 {% endcapture %}
@@ -612,7 +616,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
 ca-certificates curl gzip tar libexpat1 libsqlite3-0 zlib1g \
 libegl1 libgl1 libx11-6 libxext6 libxmu6 libxt6 \
 libqt6core6t64 libqt6gui6 libqt6widgets6 libqt6opengl6 libqt6openglwidgets6 \
-libqt6svg6 libqt6charts6 libtbb12
+libqt6svg6 libqt6charts6 qt6-translations-l10n libtbb12
 ```
 
 {% endcapture %}
@@ -623,7 +627,7 @@ libqt6svg6 libqt6charts6 libtbb12
 pacman-key --init && pacman-key --populate
 pacman -Sy --noconfirm archlinux-keyring
 pacman -Syu --noconfirm --needed ca-certificates curl gzip tar expat sqlite zlib \
-libx11 libxext libxmu libxt mesa qt6-base qt6-svg qt6-charts tbb
+libx11 libxext libxmu libxt mesa qt6-base qt6-svg qt6-charts qt6-translations tbb
 ```
 
 {% endcapture %}
@@ -705,6 +709,7 @@ bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
 psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
 xterm x11vnc openbox lxqt-panel dejavu-sans-mono-fonts \
 qt6-qtbase-devel qt6-qtsvg qt6-qtsvg-devel qt6-qtcharts-devel \
+qt6-qttools-devel qt6-qttranslations \
 root liblsan libasan libubsan libtsan tbb
 ```
 
@@ -721,6 +726,7 @@ bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
 psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
 xterm dejavu-sans-mono-fonts \
 qt6-qtbase-devel qt6-qtsvg qt6-qtsvg-devel qt6-qtcharts-devel \
+qt6-qttools-devel qt6-qttranslations \
 root liblsan libasan libubsan libtsan tbb
 ```
 
@@ -738,7 +744,7 @@ bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
 ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
 xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
 qt6-base-dev libqt6opengl6 libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
-qt6-charts-dev \
+qt6-charts-dev qt6-l10n-tools qt6-translations-l10n \
 liblz4-dev liblzma-dev libzstd-dev \
 liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 ```
@@ -757,7 +763,7 @@ bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
 ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
 xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
 qt6-base-dev libqt6opengl6 libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
-qt6-charts-dev \
+qt6-charts-dev qt6-l10n-tools qt6-translations-l10n \
 liblz4-dev liblzma-dev libzstd-dev \
 liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 ```
@@ -776,7 +782,7 @@ bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
 ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
 xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
 qt6-base-dev libqt6opengl6-dev libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
-qt6-charts-dev \
+qt6-charts-dev qt6-l10n-tools qt6-translations-l10n \
 liblz4-dev liblzma-dev libzstd-dev \
 liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 ```
@@ -793,7 +799,7 @@ mariadb mariadb-libs sqlite python python-pip ninja mesa glu \
 libx11 libxpm libxft libxt libxmu libxrender xorg-server-xvfb xorg-xrandr \
 bzip2 wget curl nano bash zsh inetutils gedit pv which fakeroot \
 psmisc procps mailcap net-tools rsync patch bash-completion ncurses python-numpy \
-xterm tigervnc openbox ttf-dejavu qt6-base qt6-svg qt6-charts root gcc-libs tbb
+xterm tigervnc openbox ttf-dejavu qt6-base qt6-svg qt6-charts qt6-tools qt6-translations root gcc-libs tbb
 ```
 
 {% endcapture %}

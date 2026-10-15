@@ -71,6 +71,7 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`g4decoration`](/home/documentation/api/options/g4decoration) | `<sequence>` | Adds optional Geant4 scene decorations |
 | [`show_field_lines`](/home/documentation/api/options/show_field_lines) | `<value>` | number of field-line points to display |
 | [`g4text`](/home/documentation/api/options/g4text) | `<sequence>` | Insert texts in the current scene |
+| [`language`](/home/documentation/api/options/language) | `<value>` | language for GEMC logging messages, startup banner, and GUI text |
 | [`conf_yaml`](/home/documentation/api/options/conf_yaml) | `<value>` | infix for the YAML file that records the resolved options |
 | [`tt`](/home/documentation/api/options/tt) | `<value>` | GUI test timeout (ms) |
 | [`verbosity`](/home/documentation/api/options/verbosity) | `<sequence>` | Sets the log verbosity for various classes |

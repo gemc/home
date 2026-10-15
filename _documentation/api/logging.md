@@ -165,6 +165,11 @@ Windows uses its user locale, and other systems fall back to English. `C`, `C.UT
 English. Locale tags such as `it_IT.UTF-8` normalize to `it-it`, with `it.yaml` used for messages absent
 from the regional `it-it.yaml` catalog. Missing languages or messages fall back to English.
 
+The startup/version banner uses the same language catalogs. Version, calling/installation paths, release
+date, reference, homepage, author, and plugin-path labels are translated; their values remain parameter data.
+`gemc -v -language=it` honors the override before or after `-v`. Version remains an early action without
+reading YAML files; normal startup uses the fully parsed command-line/YAML settings.
+
 `GLogger` looks up the translated template before inserting parameters. Numeric formatting, dynamic values,
 verbosity filtering, headers, colors, counters, and fatal exit codes retain their behavior. The language is
 resolved when the logger is constructed; `get_language()` reports the normalized requested tag.
@@ -186,6 +191,37 @@ Plugins must rebuild against matching headers and the new `glogging` library.
 
 ### Translation Status
 
-Runtime lookup, automatic language detection, and English fallback are available. Production catalogs
-currently contain English; scheduled agent translations will provide Italian, Japanese, French, and Chinese.
-Command-line help, Qt labels, and Geant4's own output have separate translation paths.
+Runtime lookup, automatic language detection, and English fallback are available. The shared
+Claude/Codex workflow generates Italian, Japanese, French, and Chinese catalogs through the existing
+weekday cron job. `/opt/projects/cronjobs/to_translate.yaml` enables `gemc/src-messages` and
+`gemc/clas12-messages` with `layout: catalog`, alongside website and README entries.
+
+Validated batches are saved atomically with content hashes and full source git commits. Interrupted runs
+resume saved work, new English messages are translated, and removed keys are pruned. Source-reference
+comments do not trigger translations. Partial catalogs keep English fallback while generation continues.
+See the [catalog guide](https://github.com/gemc/src/blob/main/translations/README.md) for manual runs and
+state details.
+
+Upcoming with the next release: CI checks generated catalogs without calling agents. It validates source
+freshness, required language files, keys, placeholders, percent escapes, and whitespace, and reports missing
+messages as English fallback. Agent review checks language accuracy; runtime tests check selection and
+substitution.
+
+### GUI Language
+
+**Upcoming with the next release.**
+
+The Qt GUI shares the logging language setting and automatic detection. Controls, tooltips, geometry
+descriptions, analyzer text, and SVG button captions use Italian, Japanese, French, or Chinese catalogs.
+No language option is required; `-language=en` forces English, and missing translations use English.
+Restart GEMC to change the language.
+
+Qt Linguist tools compile context-aware TS catalogs into QMs during the build. Project QMs are embedded
+for executable relocation and installed under `<prefix>/share/gemc/translations/gui`. External QMs can
+provide partial regional overrides through %%GEMC_TRANSLATION_PATH%%. Qt's installed language data
+translates standard dialogs when available. Numeric data and Geant4 commands retain their original meaning.
+
+The shared translation manifest includes `gemc/src-gui` with `layout: qt-catalog`; reviewed batches track
+source commits and content hashes and resume after interruption. CI checks catalogs without calling agents.
+See the [GUI translation guide](https://github.com/gemc/src/blob/main/translations/gui/README.md).
+Geant4's own guidance and output remain supplied by Geant4; command-line help uses a separate path.
