@@ -441,6 +441,10 @@ meson compile -C build
 meson install -C build
 ```
 
+Upcoming with the next release: when building against an installed GEMC, the CLAS12 build also installs or
+updates `pygemc` and its command-line tools under `python_env`, matching the standalone GEMC installation
+layout.
+
 
 <br/><br/>
 

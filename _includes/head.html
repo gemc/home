@@ -6,12 +6,19 @@
   <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   {%- feed_meta -%}
   {%- comment -%}
-    hreflang alternates for jekyll-polyglot — Upcoming with the next release. The i18n_headers tag does
-    not apply baseurl and does not render Liquid in its argument, so the full site URL + baseurl is passed
-    literally. Its output is self-protecting against polyglot's URL rewriting.
+    Language alternates use the configured URL and baseurl. static_href prevents polyglot from
+    rewriting links to the active language. Upcoming with the next release.
   {%- endcomment -%}
   {%- if site.languages and site.languages.size > 1 -%}
-    {% i18n_headers https://gemc.github.io/home %}
+    <meta http-equiv="Content-Language" content="{{ site.active_lang | default: site.default_lang }}">
+    {%- for lang in site.languages -%}
+      {%- assign target = page.url -%}
+      {%- if lang != site.default_lang -%}
+        {%- assign target = page.url | prepend: lang | prepend: '/' -%}
+      {%- endif -%}
+      <link rel="alternate" hreflang="{{ lang }}"
+        {% static_href %}href="{{ target | absolute_url }}"{% endstatic_href %}>
+    {%- endfor -%}
   {%- endif -%}
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
     {%- include google-analytics.html -%}

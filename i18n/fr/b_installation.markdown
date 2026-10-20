@@ -45,25 +45,26 @@ Consultez les [conditions de licence](/home/license/).
 
 <br/>
 
-La [lecture en continu](/home/documentation/sro/plugins/) nécessite les interfaces SRO de GEMC 0.5 et les plugins
-des expériences recompilés avec la même installation de GEMC. L'encodeur JLAB de FT-Cal
-fait partie de `clas12-systems` ; installer uniquement `pygemc` ne fournit pas l'implémentation SRO native.
+La [lecture en continu (streaming readout)](/home/documentation/sro/plugins/) nécessite les interfaces SRO de
+GEMC 0.5 ainsi que les plugins propres à l'expérience recompilés avec la même installation de GEMC. L'encodeur
+JLAB de FT-Cal fait partie de `clas12-systems` ; installer `pygemc` seul ne fournit pas l'implémentation SRO native.
 
 Les [exemples de vertex et d'angles](/home/examples/basic/generator_manipulations)
 comprennent 11 cartes de pilotage et des graphiques Analyzer préparés. Utilisez GEMC 0.5 ou une version ultérieure ;
 les graphiques de l'interface graphique nécessitent Qt Charts. Les simulations par lots et les vérifications CSV
-de ces exemples fonctionnent aussi sans Qt Charts.
+de ces exemples fonctionnent également sans Qt Charts.
 
 À venir dans la prochaine version : les outils Qt Linguist compilent les catalogues de traduction de l'interface
-graphique pendant la compilation ; les données de traduction Qt traduisent les boîtes de dialogue standard. Les
-commandes d'installation de paquets ci-dessous incluent les deux. Qt fourni par Homebrew fournit ces outils et
-catalogues. La langue de l'interface est détectée automatiquement ; l'option `-language=<code>` permet de la forcer.
+graphique pendant la compilation ; les données de traduction Qt traduisent les boîtes de dialogue standard.
+Les commandes d'installation de paquets ci-dessous incluent ces deux éléments. Qt fourni par Homebrew comprend
+ces outils et ces catalogues. La langue de l'interface graphique est détectée automatiquement ; l'option
+facultative `-language=<code>` permet de la choisir explicitement.
 
 ## Table des matières
 
 - [Installer l'API Python](#install-the-python-api)
 - [Télécharger une distribution binaire précompilée](#download-a-precompiled-binary-distribution)
-- [Compiler depuis les sources](#build-from-source)
+- [Compiler à partir des sources](#build-from-source)
 - [Exécuter dans un conteneur Docker](#run-in-a-docker-container)
 - [Exécuter avec Apptainer](#run-using-apptainer)
 
@@ -100,17 +101,17 @@ Les dépendances facultatives pour l'analyse de fichiers ROOT peuvent être inst
 python -m pip install "pygemc[root]"
 ```
 
-[PyPI](https://pypi.org/project/pygemc/) n'installe pas l'exécutable `gemc`, mais permet d'installer les outils pour
-créer et visualiser des géométries ou analyser des résultats.
+L'installation depuis [PyPI](https://pypi.org/project/pygemc/) ne fournit pas l'exécutable `gemc`, mais permet de
+créer et de visualiser des géométries ou d'analyser des résultats.
 
 <br/>
 
 ## Télécharger une distribution binaire précompilée
 
-Les archives binaires contiennent l'exécutable `gemc` et les exemples (mais pas `pygemc`). Les versions Linux sont
-disponibles pour `amd64` et `arm64` ; la version macOS est native pour Apple Silicon (`arm64`).
+Les archives binaires tar contiennent l'exécutable `gemc` et les exemples (mais pas `pygemc`). Les versions Linux
+sont disponibles pour `amd64` et `arm64` ; la version macOS est native pour Apple Silicon (`arm64`).
 
-Consultez les [prérequis logiciels pour l'installation binaire](#software-prerequisites-for-binary-installation)
+Veillez à consulter les [prérequis logiciels pour l'installation binaire](#software-prerequisites-for-binary-installation)
 avant de décompresser l'archive.
 
 Choisissez d'abord un répertoire d'installation :
@@ -121,8 +122,8 @@ mkdir -p "$gemc_home"
 cd "$gemc_home"
 ```
 
-Ensuite, utilisez les commandes de l'onglet correspondant à votre distribution Linux et à l'architecture de votre
-processeur. Cela installera GEMC ainsi que les fichiers Geant4 data.
+Ensuite, utilisez les commandes de l'onglet correspondant à votre distribution Linux et à l'architecture de
+votre processeur. Cela installera GEMC et les fichiers Geant4 data.
 
 {% capture tab1 %}
 
@@ -247,8 +248,8 @@ tar -xzf "$archive" -C "$gemc_home" --strip-components=1
 
 {% capture tab12 %}
 
-Le nom de l'archive macOS inclut les versions de macOS et de Clang de la machine de compilation et varie donc.
-Identifiez-le dans la version `{{ page.binary_tag }}`, puis téléchargez et décompressez l'archive :
+Le nom de l'archive macOS contient les versions de macOS et de Clang de la machine de compilation ; il varie donc
+au fil du temps. Déterminez-le à partir de la version `{{ page.binary_tag }}`, puis téléchargez et décompressez l'archive :
 
 ```shell
 archive=$(curl -sL https://api.github.com/repos/gemc/src/releases/tags/{{ page.binary_tag }} \
@@ -303,14 +304,14 @@ tab12_content=tab12
 %}
 
 <br/>
-Après l'installation, chargez le fichier d'environnement de GEMC avec la commande suivante. Ajoutez-la à
-`.bashrc` ou `.zshrc` pour rendre cet environnement disponible dans chaque shell :
+Après l'installation, chargez le fichier d'environnement de GEMC dans le shell courant. Ajoutez cette ligne à
+`.bashrc` ou `.zshrc` pour que l'environnement soit disponible dans chaque shell :
 
 ```shell
 source /path/to/gemc/gemc.env
 ```
 
-Effectuez quelques vérifications pour confirmer l'installation :
+Exécutez quelques vérifications pour confirmer l'installation :
 
 ```shell
 gemc -v
@@ -321,12 +322,12 @@ test_gdata_event_verbose
 
 <br/>
 
-## Compiler depuis les sources
+## Compiler à partir des sources
 
 Vous aurez besoin de Geant4 pour compiler GEMC. Consultez les
 [prérequis logiciels et l'installation de Geant4 pour la compilation de
 GEMC](#software-prerequisites-and-geant4-installation-for-the-gemc-build)
-dans l'annexe pour connaître la liste complète des exigences.
+dans l'annexe pour connaître la liste complète des prérequis.
 
 <br/>
 
@@ -335,7 +336,7 @@ dans l'annexe pour connaître la liste complète des exigences.
 Téléchargez le code :
 
 {% capture tab1 %}
-Téléchargez la dernière version publiée :
+Téléchargez la dernière version :
 
 ```shell
 git clone -c advice.detachedHead=false --branch {{ page.latest_tag }} {{ page.repo_link }}
@@ -376,8 +377,8 @@ tab2_content=tab2
 
 Le système de compilation [Meson](https://mesonbuild.com) est utilisé pour compiler et installer GEMC.
 
-La phase de **configuration** vérifiera la présence des dépendances requises et récupérera les bibliothèques externes.
-Nous utilisons ici un répertoire `build`.
+La phase de **configuration** vérifiera les dépendances requises et récupérera les bibliothèques externes.
+Ici, nous utilisons un répertoire `build`.
 
 ```shell
 meson setup build --prefix=/path/to/install/gemc
@@ -389,16 +390,16 @@ La phase d'**installation** compilera et installera GEMC. Ici, nous utilisons `-
 meson install -C build -q
 ```
 
-Après l'installation, vous pouvez exécuter `meson test -C build` pour tester la compilation de GEMC ainsi configurée.
+Après l'installation, vous pouvez exécuter `meson test -C build` pour tester GEMC avec la configuration choisie.
 
 <br/>
 
 ### Options de compilation
 
-- L'option de configuration `-Droot=enabled` ajoutera la prise en charge de ROOT (nécessite ROOT sur votre système).
+- L'option de configuration `-Droot=enabled` ajoutera la prise en charge de ROOT (ROOT doit être installé sur votre système).
 - L'option de configuration `-Di_test=true` activera les interfaces graphiques dans les tests.
 - Utilisez `-v` lors de la compilation ou des tests pour obtenir une sortie détaillée.
-- Pour supprimer le répertoire de compilation et recommencer, utilisez `rm -rf build` puis relancez la configuration.
+- Pour supprimer le répertoire de compilation et recommencer, utilisez `rm -rf build`, puis relancez la configuration.
 - Utilisez `-jN` pour définir le nombre de threads lors de la compilation.
 
 <br/>
@@ -411,7 +412,7 @@ Ajoutez ces lignes au fichier de configuration de votre shell (par exemple `~/.b
 export PATH=/path/to/install/gemc/bin:/path/to/install/gemc/python_env/bin:$PATH
 ```
 
-La deuxième entrée de PATH ajoute l'environnement virtuel Python fourni afin que `python3`
+La seconde entrée de PATH ajoute l'environnement virtuel Python fourni afin que `python3`
 désigne l'interpréteur de cet environnement, ce qui rend `import pygemc`
 disponible dans vos scripts.
 
@@ -426,16 +427,16 @@ gemc-analyzer --help
 
 <br/>
 
-### Systèmes de détecteurs CLAS12 depuis les sources
+### Systèmes de détecteurs CLAS12 à partir des sources
 
 Les systèmes de détecteurs CLAS12
 ([`clas12-systems`](https://github.com/gemc/clas12-systems)) 0.3 se compilent selon la même procédure Meson et ne
 nécessitent plus de GEMC préinstallé. Dans un environnement ne disposant que de Geant4 — par exemple une image
-Docker [`g4install`](https://github.com/gemc/g4install) — GEMC est automatiquement compilé à partir du sous-projet
-`gemc` et installé dans le même préfixe, ce qui permet d'installer la géométrie des détecteurs et les plugins
-entièrement à partir de zéro. Seul Geant4 doit déjà être présent (il n'est jamais compilé) ; GEMC est recherché,
-dans l'ordre, à l'emplacement explicitement indiqué par `-Duse-gemc-location=<dir>`, dans les installations
-accessibles via `PATH`/pkg-config, puis dans le sous-projet à compiler depuis les sources.
+Docker [`g4install`](https://github.com/gemc/g4install) — la compilation inclut automatiquement GEMC à partir du
+sous-projet `gemc` et l'installe dans le même préfixe, ce qui permet d'installer la géométrie des détecteurs et les
+plugins entièrement à partir de zéro. Seul Geant4 doit déjà être présent (il n'est jamais compilé) ; GEMC est
+recherché, dans l'ordre, à l'emplacement explicitement indiqué par `-Duse-gemc-location=<dir>`, parmi les
+installations déjà disponibles via `PATH`/pkg-config, puis dans le sous-projet compilé à partir des sources.
 
 ```shell
 git clone --depth=1 --branch {{ page.latest_ctag }} https://github.com/gemc/clas12-systems
@@ -445,13 +446,18 @@ meson compile -C build
 meson install -C build
 ```
 
+À venir dans la prochaine version : lors de la compilation avec un GEMC déjà installé, la procédure de compilation
+de CLAS12 installe ou met également à jour `pygemc` et ses outils en ligne de commande sous `python_env`, selon la
+même organisation que l'installation autonome de GEMC.
+
 
 <br/><br/>
 
 ## Exécuter dans un conteneur Docker
 
-Vous pouvez utiliser Docker pour exécuter GEMC. Les images disponibles sont listées ci-dessous.
-Les architectures `arm64` et `amd64` sont prises en charge (sauf pour les images Arch Linux, uniquement `amd64` [^1]).
+Vous pouvez utiliser Docker pour exécuter GEMC. Les images disponibles sont répertoriées ci-dessous.
+Les architectures `arm64` et `amd64` sont prises en charge (sauf pour les images Arch Linux, disponibles
+uniquement pour `amd64` [^1]).
 
 {:.zebra}
 
@@ -461,16 +467,16 @@ Les architectures `arm64` et `amd64` sont prises en charge (sauf pour les images
 | {{ img.id }} {{ img.osversion }} | {{ img.gemcv }} | ```{{ img.tag }}``` | {{ img.arm64 }} | {{ img.amd64 }} |
 {% endfor %}
 
-Les adresses ci-dessus correspondent aux images [Docker Hub](https://hub.docker.com/r/gemc/gemc), publiées dans le
-cadre du programme [Docker-Sponsored Open Source](https://www.docker.com/community/open-source/application/), qui
-autorise les téléchargements anonymes illimités. Ces images sont des copies de la compilation de référence sur
+Les adresses ci-dessus désignent les images [Docker Hub](https://hub.docker.com/r/gemc/gemc), publiées dans le cadre
+du programme [Docker-Sponsored Open Source](https://www.docker.com/community/open-source/application/), qui autorise
+un nombre illimité de téléchargements anonymes. Ces images sont des copies de référence de celles produites sur
 [GitHub Container Registry](https://github.com/gemc/src/pkgs/container/src) : les deux registres proposent des
-contenus et des étiquettes identiques. Pour télécharger depuis GHCR, remplacez le préfixe `docker.io/gemc/gemc:` par
-`ghcr.io/gemc/src:` et conservez la même étiquette, par exemple `ghcr.io/gemc/src:dev-ubuntu-24.04`.
+contenus et des étiquettes identiques. Pour les télécharger depuis GHCR, remplacez le préfixe `docker.io/gemc/gemc:`
+par `ghcr.io/gemc/src:` en conservant la même étiquette, par exemple `ghcr.io/gemc/src:dev-ubuntu-24.04`.
 
 Il est recommandé de monter un répertoire local pour enregistrer et conserver votre travail.
 À titre d'illustration, les commandes ci-dessous associent le chemin du conteneur `{{ page.docker_remote_mount }}`
-au répertoire local `{{ page.docker_local_mount }}` et utilisent l'image `{{ site.data.docker.images[0].tag }}`.
+à `{{ page.docker_local_mount }}` et utilisent l'image `{{ site.data.docker.images[0].tag }}`.
 
 [^1]: Sur un Mac Apple Silicon, ajoutez l'option `--platform linux/amd64` à la commande `docker run` pour utiliser les
 images `archlinux amd64`.
@@ -500,8 +506,8 @@ GEO_FLAGS=(-e GEOMETRY=1920x1200)
 docker run -it --rm -v {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} $VPORTS $VNC_BIND $VNC_PASS $GEO_FLAGS {{ site.data.docker.images[0].tag }}
 ```
 
-Ouvrez ensuite [`http://localhost:6080/vnc.html`](http://localhost:6080/vnc.html) dans votre navigateur pour accéder à
-l'interface graphique.
+Ouvrez ensuite [`http://localhost:6080/vnc.html`](http://localhost:6080/vnc.html) dans votre navigateur pour accéder
+à l'interface graphique.
 
 <br/>
 
@@ -510,14 +516,14 @@ l'interface graphique.
 ## Exécuter avec Apptainer
 
 Les hôtes Linux peuvent utiliser `apptainer` (anciennement `singularity`) pour exécuter des conteneurs Docker.
-Vous pouvez l'utiliser avec les images Docker ci-dessus. Son fonctionnement est similaire à celui de Docker, mais
-le script du point d'entrée doit être chargé explicitement dans le shell.
+Vous pouvez l'utiliser avec les images Docker ci-dessus. Il fonctionne de manière similaire à Docker, mais le
+script du point d'entrée doit être chargé explicitement dans le shell courant.
 
 ```
 apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} docker://{{ site.data.docker.images[0].tag }} bash
 ```
 
-Puis :
+Ensuite :
 
 ```
 source /usr/local/bin/docker-entrypoint.sh
@@ -536,15 +542,15 @@ gemc -v
 <blockquote class="doc-important" markdown="1">
 **Remarque**
 
-Apptainer utilise un répertoire de cache par défaut pour stocker les images. S'il est plein, placez les
-répertoires de cache et de fichiers temporaires à un emplacement disposant de suffisamment d'espace disque.
-Par exemple, définissez `sim_cache` de façon à désigner un emplacement disposant de suffisamment d'espace :
+Apptainer utilise un répertoire de cache par défaut pour stocker les images. S'il est plein, placez le cache et les
+répertoires temporaires à un emplacement disposant de suffisamment d'espace disque.
+Par exemple, faites pointer `sim_cache` vers un emplacement disposant de suffisamment d'espace :
 
 ```shell
 	export sif_cache=/path/to/$USER/cache
 ```
 
-puis définissez ces variables :
+définissez ensuite ces variables :
 
 ```shell
 	export APPTAINER_CACHEDIR=$sif_cache/apptainer-cache
@@ -567,7 +573,7 @@ et relancez apptainer.
 <br/>
 
 Les installations par archive binaire ne nécessitent que les paquets d'exécution requis par l'exécutable `gemc` et
-les outils utilisés pour télécharger et décompresser l'archive. ROOT est volontairement exclu de cette liste.
+les outils permettant de télécharger et de décompresser l'archive. ROOT est délibérément exclu de cette liste.
 
 <br/>
 
@@ -692,13 +698,14 @@ tab7_content=btab7
 
     - expat : 2.0.1 ou une version ultérieure
     - zlib : 1.2.3 ou une version ultérieure
-    - [Qt6](https://www.qt.io) : 6.4.2 ou une version ultérieure (requis pour l'interface graphique) ; SVG fournit les
-      icônes de la barre d'outils et Charts active l'Analyzer de l'interface graphique, mais ces deux modules sont facultatifs
-    - [ROOT](https://root.cern) : 6.36.04 ou une version ultérieure (facultatif, requis pour les sorties ROOT)
+    - [Qt6](https://www.qt.io) : 6.4.2 ou une version ultérieure (requis pour l'interface graphique) ; SVG fournit
+      les icônes de la barre d'outils et Charts active l'Analyzer de l'interface graphique, mais les deux modules
+      sont facultatifs
+    - [ROOT](https://root.cern) : 6.36.04 ou une version ultérieure (facultatif, requis pour la sortie ROOT)
 
 <br/>
 
-Commandes d'installation en une ligne des paquets et dépendances de base sur macOS et quelques distributions Linux courantes :
+Commandes d'installation en une ligne pour les paquets de base et les dépendances sur macOS et quelques distributions Linux courantes :
 
 <br/>
 
@@ -779,13 +786,13 @@ liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 ```shell
 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata \
 git make cmake g++ gdb valgrind libcrypt-dev libexpat1-dev zlib1g zlib1g-dev \
-libmysqlclient-dev libsqlite3-dev python3-dev python3-venv ninja-build \
+libmariadb-dev libsqlite3-dev python3-dev python3-venv ninja-build \
 libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxpm-dev libxft-dev \
 libxt-dev libxmu-dev libxrender-dev xvfb x11-xserver-utils \
 bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
 ca-certificates psmisc procps mailcap net-tools rsync patch bash-completion python3-numpy \
 xterm x11vnc openbox tint2 dbus-x11 fonts-dejavu-core \
-qt6-base-dev libqt6opengl6 libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
+qt6-base-dev libqt6opengl6-dev libqt6openglwidgets6 qt6-base-dev-tools libqt6svg6 qt6-svg-dev \
 qt6-charts-dev qt6-l10n-tools qt6-translations-l10n \
 liblz4-dev liblzma-dev libzstd-dev \
 liblsan0 libasan8 libubsan1 libtsan2 libtbb12
@@ -843,7 +850,7 @@ tab7_content=tab7
 
 <br/>
 
-- Bibliothèques externes, compilées depuis les sources selon le même standard C++ que GEMC (C++20 pour GEMC 0.5 ou une version ultérieure) :
+- Bibliothèques externes, compilées à partir des sources selon la même norme C++ que GEMC (C++20 pour GEMC 0.5 ou une version ultérieure) :
 
     - [CLHEP](https://proj-clhep.web.cern.ch/proj-clhep/) : 2.4.6.0 ou une version ultérieure
     - [Xerces-C](https://xerces.apache.org/xerces-c/) : 3.2 ou une version ultérieure

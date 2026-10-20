@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<html lang="{{ site.active_lang | default: page.lang | default: site.lang | default: 'en' }}">
 
 {%- include head.html -%}
 
@@ -21,6 +21,10 @@
 <!-- SimpleJekyllSearch library -->
 <script src="https://unpkg.com/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script>
 
+{%- assign search_no_results = site.data.ui_strings.search_no_results | default: 'No results found' -%}
+{%- capture search_no_results_html -%}
+<li class="no-results">{{ search_no_results | escape }}</li>
+{%- endcapture -%}
 
 <script>
 	document.addEventListener('DOMContentLoaded', function () {
@@ -34,7 +38,7 @@
 			resultsContainer: resultsContainer,
 			json: '{{ "/search.json" | relative_url }}?v={{ site.time | date: "%s" }}',
 			searchResultTemplate: '<li><a href="{url}">{title}</a></li>',
-			noResultsText: '<li class="no-results">{{ site.data.ui_strings.search_no_results }}</li>',
+			noResultsText: {{ search_no_results_html | jsonify }},
 			limit: 10,
 
 			// 🔴 make it strict: match only when the string appears
@@ -62,7 +66,7 @@
 	});
 </script>
 
-<script src="/home/assets/copyCode.js"></script>
+<script src="{{ '/assets/copyCode.js' | relative_url }}"></script>
 
 <script>
   window.MathJax = {

@@ -180,6 +180,18 @@ discover related options without scanning the full reference. Use
 The generated [Options Reference](/home/documentation/api/options_reference)
 contains links to the detailed help output for every option and switch.
 
+## Unknown Options
+
+**Upcoming with the next release.**
+
+GEMC validates every command-line token before acting on any early-exit flag, so a
+misspelled option or switch fails with a clear error and a `Did you mean -X?`
+suggestion instead of being silently ignored. The typo is reported even when it
+appears next to `-v`, `-h`, `help`, or `search`, and GEMC exits without running.
+
+GNU-style long forms are accepted as aliases of the single-dash form: a leading
+`--` is normalized to `-`, so `--language=fr` resolves to `-language=fr`.
+
 ## Examples
 
 ### Basic Run
