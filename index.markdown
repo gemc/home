@@ -73,29 +73,42 @@ For **CLAS12 simulations**, use the [GEMC2 clas12Tags repository](https://github
 
 ## Database-driven Geant4 simulations with a Python API
 
-**GEMC** is a Python-friendly wrapper around [Geant4](https://geant4.web.cern.ch) that eliminates the C++/Geant4
-learning curve. Users build complete detector systems in Python: geometry, materials, and digitization. The
-API automatically populates the databases that GEMC uses to run the full simulation pipeline.
+<!-- Upcoming with the next release: revised introduction. -->
 
-Highlights:
+**GEMC** is a database-driven [Geant4](https://geant4.web.cern.ch) application for detector and
+radiation-transport simulations. Its Python API lets you define complex detector setups without writing Geant4
+code.
 
-- Python API to create geometry and materials
-- Geometry imports from ASCII, SQLite, GDML, and CAD mesh files
+Detector descriptions stay separate from the executable: you create them in Python, store them in
+ASCII or SQLite databases, and GEMC loads them at run time to execute the Geant4 simulation.
+
+<br/>
+
+## Highlights
+
+- Python-first detector definitions
+- Geometry preview and VTK export with [`pyvista`](https://pyvista.org)
+- ASCII, SQLite databases
+- Geometry imports from GDML and CAD files
+- Interactive Geant4/Qt visualization and off-screen image generation
 - Built-in sensitive detectors: %%flux%%, %%dosimeter%%, %%particle_counter%%, and %%gPhotonDetector%%
-- Output formats: ASCII, CSV, JSON, and [ROOT](https://root.cern)
-- Built-in Python `analyzer` module for reading and plotting simulation output
-- [`pyvista`](https://pyvista.org) geometry visualization
+- Simulation output in ASCII, CSV, JSON, and [ROOT](https://root.cern)
+- Event generation from the GUI, command-line, YAML and LUND files
+- Magnetic-field support, including multipoles field and ascii maps
+- A Python `analyzer` module for reading and plotting simulation output (CSV, ROOT)
 - Geometry variations and run-number-dependent configurations
-- CI-tested builds and Docker deployment
 
-<br/><br/>
+The goal is to help users prototype detector systems without writing a custom Geant4 application,
+while C++ plugins support custom detector response, magnetic fields, event generators, and output formats.
+
+
+<br/>
 
 ## Try GEMC
 
 No installation needed. Click a badge to launch a live **JupyterLab** session in your browser:
 
 {% assign visible_examples = site.data.examples | where: "display", true %}
-
 
 <table class="zebra compact-table">
   <tbody>
