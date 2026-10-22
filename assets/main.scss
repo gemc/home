@@ -474,6 +474,24 @@ table.zebra tbody tr:nth-child(even) td {
   background: var(--table-zebra-even);
 }
 
+table.ci-badges {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.ci-badges th,
+table.ci-badges td {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--table-zebra-border);
+  background: transparent;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table.ci-badges thead th {
+  background: var(--table-zebra-head);
+}
+
 .csv-preview-wrap {
   margin: 1rem 0 1.25rem;
   overflow-x: auto;

@@ -3,67 +3,6 @@ layout: default
 permalink: /
 ---
 
-[test]: https://github.com/gemc/src/actions/workflows/test.yml
-
-[test-badge]: https://github.com/gemc/src/actions/workflows/test.yml/badge.svg
-
-[deploy]: https://github.com/gemc/src/actions/workflows/deploy.yml
-
-[deploy-badge]: https://github.com/gemc/src/actions/workflows/deploy.yml/badge.svg
-
-[DockerHub]: https://hub.docker.com/r/gemc/gemc
-
-[DockerHub-badge]: https://img.shields.io/docker/pulls/gemc/gemc.svg
-
-[Docs]: https://github.com/gemc/src/actions/workflows/doxygen.yml
-
-[Docs-badge]: https://github.com/gemc/src/actions/workflows/doxygen.yml/badge.svg
-
-[Nightly]: https://github.com/gemc/src/actions/workflows/dev_release.yml
-
-[Nightly-badge]: https://github.com/gemc/src/actions/workflows/dev_release.yml/badge.svg
-
-[Site]: https://github.com/gemc/home/actions/workflows/jekyll.yml
-
-[Site-badge]: https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg
-
-[Sanitize]: https://github.com/gemc/src/actions/workflows/sanitize.yml
-
-[Sanitize-badge]: https://github.com/gemc/src/actions/workflows/sanitize.yml/badge.svg
-
-[CodeQL]: https://github.com/gemc/src/actions/workflows/codeql.yml
-
-[CodeQL-badge]: https://github.com/gemc/src/actions/workflows/codeql.yml/badge.svg
-
-[Binary-Tarballs]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml
-
-[Binary-Tarballs-badge]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml/badge.svg
-
-[macOS-Tarball]: https://github.com/gemc/src/actions/workflows/macos_tarball.yml
-
-[macOS-Tarball-badge]: https://github.com/gemc/src/actions/workflows/macos_tarball.yml/badge.svg
-
-[Release-Tarballs]: https://github.com/gemc/src/actions/workflows/release_tarballs.yml
-
-[Release-Tarballs-badge]: https://github.com/gemc/src/actions/workflows/release_tarballs.yml/badge.svg?event=release
-
-[PyPI]: https://pypi.org/project/pygemc/
-
-[PyPI-badge]: https://img.shields.io/pypi/v/pygemc.svg?cacheSeconds=300
-
-[PyGemc-Nightly]: https://github.com/gemc/pygemc/actions/workflows/dev_release.yml
-
-[PyGemc-Nightly-badge]: https://github.com/gemc/pygemc/actions/workflows/dev_release.yml/badge.svg
-
-[PyGemc-Publish]: https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml
-
-[PyGemc-Publish-badge]: https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml/badge.svg
-
-[PyGemc-Tests]: https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml
-
-[PyGemc-Tests-badge]: https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml/badge.svg
-
-
 {% include gemc-logo.svg %}
 
 <small>This site documents **GEMC** version 3 and later.
@@ -291,30 +230,92 @@ with a variation string or run number in the configuration file or command-line 
 GEMC is built, tested, and deployed as Docker images by GitHub CI on several platforms and on both ARM64 and AMD64
 architectures.
 
-**gemc**
-
-{:.zebra}
-
-| Tests      | [![test][test-badge]][test]                                  |
-| Sanitizer  | [![Sanitize][Sanitize-badge]][Sanitize]                      |
-| CodeQL | [![CodeQL][CodeQL-badge]][CodeQL]                            |
-| Image Deploy | [![deploy][deploy-badge]][deploy]                            |
-| Binary Tarballs | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] |
-| macOS Tarball | [![macOS Tarball][macOS-Tarball-badge]][macOS-Tarball]       |
-| Nightly Release | [![Nightly][Nightly-badge]][Nightly]                         |
-| Homepage | [![Site][Site-badge]][Site]                                  |
-| Docker Pulls | [![Docker Pulls][DockerHub-badge]][DockerHub]                |
-| Doxygen | [![Docs][Docs-badge]][Docs]                                  |
-| Release Tarballs | [![Release Tarballs][Release-Tarballs-badge]][Release-Tarballs] |
-
-**pygemc**
-
-{:.zebra}
-
-| Nightly Dev Release | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
-| Publish to PyPI     | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
-| Tests | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]               |
-| PyPI | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
+<table class="ci-badges">
+  <thead>
+    <tr>
+      <th width="33%">Quality</th>
+      <th width="34%">Deploy</th>
+      <th width="33%">Docs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://github.com/gemc/src/actions/workflows/test.yml">
+          <img alt="Test" src="https://github.com/gemc/src/actions/workflows/test.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/sanitize.yml">
+          <img alt="Sanitize" src="https://github.com/gemc/src/actions/workflows/sanitize.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/codeql.yml">
+          <img alt="CodeQL" src="https://github.com/gemc/src/actions/workflows/codeql.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/thread_scaling.yml">
+          <img alt="Thread Scaling"
+               src="https://github.com/gemc/src/actions/workflows/thread_scaling.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/valgrind_profile.yml">
+          <img alt="Valgrind Profile"
+               src="https://github.com/gemc/src/actions/workflows/valgrind_profile.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml">
+          <img alt="pygemc tests"
+               src="https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml/badge.svg">
+        </a><br/>
+        <a href="https://hub.docker.com/r/gemc/gemc">
+          <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/gemc/gemc.svg">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://github.com/gemc/src/actions/workflows/deploy.yml">
+          <img alt="Deploy" src="https://github.com/gemc/src/actions/workflows/deploy.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/binary_tarballs.yml">
+          <img alt="Binary Tarballs"
+               src="https://github.com/gemc/src/actions/workflows/binary_tarballs.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/release_tarballs.yml">
+          <img alt="Release Tarballs"
+               src="https://github.com/gemc/src/actions/workflows/release_tarballs.yml/badge.svg?event=release">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/macos_tarball.yml">
+          <img alt="macOS Tarball"
+               src="https://github.com/gemc/src/actions/workflows/macos_tarball.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/dev_release.yml">
+          <img alt="Nightly gemc Release"
+               src="https://github.com/gemc/src/actions/workflows/dev_release.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml">
+          <img alt="Publish PyPI"
+               src="https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/pygemc/actions/workflows/dev_release.yml">
+          <img alt="Nightly pygemc Release"
+               src="https://github.com/gemc/pygemc/actions/workflows/dev_release.yml/badge.svg">
+        </a><br/>
+        <a href="https://pypi.org/project/pygemc/">
+          <img alt="pygemc PyPI" src="https://img.shields.io/pypi/v/pygemc.svg?cacheSeconds=300">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://gemc.github.io/home/">
+          <img alt="GEMC documentation" src="https://img.shields.io/badge/docs-gemc.github.io-blue.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/doxygen.yml">
+          <img alt="Doxygen" src="https://github.com/gemc/src/actions/workflows/doxygen.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/home/actions/workflows/jekyll.yml">
+          <img alt="Homepage" src="https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/binder-tutorials/actions/workflows/publish-image.yml">
+          <img alt="Publish Jupyter Image"
+               src="https://github.com/gemc/binder-tutorials/actions/workflows/publish-image.yml/badge.svg">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <br/><br/>
 

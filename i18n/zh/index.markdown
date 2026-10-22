@@ -73,31 +73,43 @@ human_reviewed: false
 
 <br/>
 
-## 数据库驱动的 Geant4 模拟，提供 Python API
+## 由数据库驱动、提供 Python API 的 Geant4 模拟
 
-**GEMC** 是对 [Geant4](https://geant4.web.cern.ch) 的 Python 友好封装，免去了学习 C++/Geant4
-的门槛。用户可以用 Python 构建完整的探测器系统，包括几何、材料和数字化。该
-API 会自动填充 GEMC 运行完整模拟流程所需的数据库。
+<!-- Upcoming with the next release: revised introduction. -->
 
-主要特性：
+**GEMC** 是一个由数据库驱动的 [Geant4](https://geant4.web.cern.ch) 应用程序，用于探测器和
+辐射输运模拟。其 Python API 让用户无需编写 Geant4 代码即可定义复杂的探测器装置。
 
-- 用于创建几何和材料的 Python API
-- 支持从 ASCII、SQLite、GDML 和 CAD 网格文件导入几何
+探测器描述与可执行程序彼此独立：用户在 Python 中创建探测器描述，将其存储在
+ASCII 或 SQLite 数据库中，GEMC 在运行时加载这些描述以执行 Geant4 模拟。
+
+<br/>
+
+## 主要特性
+
+- 以 Python 为主要方式定义探测器
+- 借助 [`pyvista`](https://pyvista.org) 进行几何预览与 VTK 导出
+- ASCII、SQLite 数据库
+- 从 GDML 和 CAD 文件导入几何
+- 交互式 Geant4/Qt 可视化与离屏图像生成
 - 内置灵敏探测器：%%flux%%、%%dosimeter%%、%%particle_counter%% 和 %%gPhotonDetector%%
-- 输出格式：ASCII、CSV、JSON 和 [ROOT](https://root.cern)
-- 内置 Python `analyzer` 模块，用于读取模拟输出并绘图
-- [`pyvista`](https://pyvista.org) 几何可视化
-- 几何变体和随运行编号变化的配置
-- 经过 CI 测试的构建以及 Docker 部署
+- 以 ASCII、CSV、JSON 和 [ROOT](https://root.cern) 格式输出模拟结果
+- 通过 GUI、命令行、YAML 和 LUND 文件生成事件
+- 磁场支持，包括多极磁场和 ASCII 磁场图
+- 用于读取和绘制模拟输出（CSV、ROOT）的 Python `analyzer` 模块
+- 几何变体以及随运行编号变化的配置
 
-<br/><br/>
+其目标是帮助用户无需编写自定义 Geant4 应用程序即可构建探测器系统原型，
+同时通过 C++ 插件支持自定义探测器响应、磁场、事件生成器和输出格式。
+
+
+<br/>
 
 ## 试用 GEMC
 
-无需安装。点击徽章即可在浏览器中启动一个在线 **JupyterLab** 会话：
+无需安装。点击徽章即可在浏览器中启动一个在线交互式 **JupyterLab** 会话：
 
 {% assign visible_examples = site.data.examples | where: "display", true %}
-
 
 <table class="zebra compact-table">
   <tbody>
@@ -118,7 +130,7 @@ API 会自动填充 GEMC 运行完整模拟流程所需的数据库。
 
 ### 容器镜像
 
-若要在本地或 HPC 上运行 JupyterLab 会话，请使用预构建的多架构镜像：
+若要在本地或高性能计算（HPC）环境中运行 JupyterLab 会话，请使用预构建的多架构镜像：
 
 ```shell
 # Docker
@@ -133,7 +145,7 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 
 ## 交互式 3D 展示
 
-使用鼠标滚轮旋转相机，或在每个缩略图内使用方向键。点击标题链接查看
+使用鼠标滚轮旋转相机，或在各缩略图内使用方向键。点击标题链接查看
 文档。
 
 {% assign gallery_examples = site.data.examples | where: "gallery", true %}
@@ -157,8 +169,8 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 ## `pygemc`：Python API
 
 GEMC 的 Python API `pygemc` 提供几何与材料数据库构建器、`pyvista` 几何可视化、
-`gemc-system-template` 和 `gemc-analyzer`。该分析器可以读取 GEMC 的 CSV 和 ROOT 输出，并根据
-所选变量绘制直方图。
+`gemc-system-template` 和 `gemc-analyzer`。该分析工具可以读取 GEMC 的 CSV 和 ROOT 输出，并根据选定的变量绘制
+直方图。
 
 {% include figure.html
 src="/assets/images/gemc_showcase.gif"
@@ -171,8 +183,8 @@ on the liquid hydrogen target.<br/>
 The total deposited energy is plotted with the `analyzer` module."
 %}
 
-下面的代码片段定义了靶下游的灵敏通量平面。每当一条生成的径迹穿过
-该几何体时，GEMC 都会记录一次 %%flux%% 命中。
+下面的代码片段定义了位于靶下游的灵敏通量平面。每当一条生成的径迹
+穿过该几何体时，GEMC 便记录一次 %%flux%% 命中。
 
 ```python
 # Place a thin scoring plane downstream of the target.
@@ -199,7 +211,7 @@ gvolume.publish(cfg)
 
 ## 数据库
 
-探测器定义存储在数据库中。典型的工作流程只有一个需要用户编写的步骤：
+探测器定义存储在数据库中。典型的工作流程只有一个步骤需要用户编写：
 
 {% include figure.html
 src="/assets/images/gemcArchitecture.svg"
@@ -216,16 +228,16 @@ and streams the output data (Steps 2–5).
 
 > [!NOTE]
 > 运行模拟不需要事先了解 C++ 或 Geant4。
-> 具备基础的 Python 知识有助于组织复杂的配置。
-> 用户还可以**定义自己的硬件仿真例程**。在这种情况下，具备基础的 C++ 知识
-> 有助于实现复杂的数字化处理。
+> 具备基本的 Python 知识有助于组织复杂的装置。
+> 用户还可以**定义自己的硬件仿真例程**。在这种情况下，具备基本的 C++ 知识有助于
+> 实现复杂的数字化处理。
 
 <br/><br/>
 
 ## 几何变体
 
-同一个探测器可以在多个实验中复用，并进行组件位置调整、
-材料更换或几何体增删等配置更改。
+同一个探测器可以在多个实验中复用，并根据需要调整配置，例如移动组件、
+更换材料，或增删几何体。
 GEMC 通过 %%variation%% 字符串和/或 %%run%% 编号支持这些几何版本，以适应不同的
 模拟
 配置。
@@ -268,7 +280,7 @@ with a variation string or run number in the configuration file or command-line 
 </div>
 
 <p class="news-links">
-  <a href="{{ "/news/" | relative_url }}">全部动态</a>
+  <a href="{{ "/news/" | relative_url }}">所有动态</a>
   ·
   <a href="{{ "/feed.xml" | relative_url }}">RSS 订阅</a>
 </p>
@@ -277,39 +289,39 @@ with a variation string or run number in the configuration file or command-line 
 
 ## 持续集成
 
-GitHub CI 在多个平台以及 ARM64 和 AMD64 两种
-架构上构建、测试 GEMC，并将其部署为 Docker 镜像。
+GEMC 通过 GitHub CI 在多个平台以及 ARM64 和 AMD64
+两种架构上构建、测试，并以 Docker 镜像的形式部署。
 
 **gemc**
 
 {:.zebra}
 
-| 测试      | [![测试][test-badge]][test]                                  |
-| Sanitizer 检查  | [![Sanitizer 检查][Sanitize-badge]][Sanitize]                      |
+| 测试      | [![test][test-badge]][test]                                  |
+| 运行时错误检测  | [![Sanitize][Sanitize-badge]][Sanitize]                      |
 | CodeQL | [![CodeQL][CodeQL-badge]][CodeQL]                            |
-| 镜像部署 | [![部署][deploy-badge]][deploy]                            |
-| 二进制 tar 包 | [![二进制 tar 包][Binary-Tarballs-badge]][Binary-Tarballs] |
-| macOS tar 包 | [![macOS tar 包][macOS-Tarball-badge]][macOS-Tarball]       |
-| 每夜发布 | [![每夜发布][Nightly-badge]][Nightly]                         |
-| 主页 | [![网站][Site-badge]][Site]                                  |
-| Docker 拉取次数 | [![Docker 拉取次数][DockerHub-badge]][DockerHub]                |
-| Doxygen | [![文档][Docs-badge]][Docs]                                  |
-| 发布版 tar 包 | [![发布版 tar 包][Release-Tarballs-badge]][Release-Tarballs] |
+| 镜像部署 | [![deploy][deploy-badge]][deploy]                            |
+| 二进制 tar 归档包 | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] |
+| macOS tar 归档包 | [![macOS Tarball][macOS-Tarball-badge]][macOS-Tarball]       |
+| 每夜发布 | [![Nightly][Nightly-badge]][Nightly]                         |
+| 主页 | [![Site][Site-badge]][Site]                                  |
+| Docker 拉取次数 | [![Docker Pulls][DockerHub-badge]][DockerHub]                |
+| Doxygen | [![Docs][Docs-badge]][Docs]                                  |
+| 发行版 tar 归档包 | [![Release Tarballs][Release-Tarballs-badge]][Release-Tarballs] |
 
 **pygemc**
 
 {:.zebra}
 
-| 每夜开发版发布 | [![每夜开发版发布][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
-| 发布到 PyPI     | [![发布到 PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
-| 测试 | [![pygemc 测试][PyGemc-Tests-badge]][PyGemc-Tests]               |
+| 每夜开发版发布 | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
+| 发布到 PyPI     | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
+| 测试 | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]               |
 | PyPI | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
 
 <br/><br/>
 
 ## 参考文献
 
-如果使用 GEMC，请务必引用以下论文：
+如果您使用了 GEMC，请务必引用以下论文：
 
 > M. Ungaro and the CLAS Collaboration, "The CLAS12 Geant4 simulation," *Nuclear Instruments and
 > Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated
@@ -348,8 +360,8 @@ M. Ungaro and the CLAS Collaboration,
 ## 源代码与许可证
 
 [GEMC 源代码](https://github.com/gemc/src) 采用
-[Apache 许可证 2.0 版](/home/license/)；署名信息及
-第三方致谢请参见 [NOTICE](/home/license/#notice)。该软件还依赖采用各自许可证的第三方组件，
+[Apache 许可证 2.0 版](/home/license/) 授权；关于署名和
+第三方致谢，请参阅 [NOTICE](/home/license/#notice)。本软件还依赖于单独授权的第三方组件，
 包括 Geant4、CLHEP、Qt、ROOT、SQLite 和 Assimp。
 
 <br/><br/>

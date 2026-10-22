@@ -68,36 +68,49 @@ human_reviewed: false
 
 {% include gemc-logo.svg %}
 
-<small>本サイトは **GEMC** バージョン 3 以降を対象としたドキュメントです。
-**CLAS12 シミュレーション**には [GEMC2 clas12Tags リポジトリ](https://github.com/gemc/clas12Tags) を使用してください。</small>
+<small>本サイトは **GEMC** バージョン3以降のドキュメントです。
+**CLAS12シミュレーション**には、[GEMC2 clas12Tagsリポジトリ](https://github.com/gemc/clas12Tags)を使用してください。</small>
 
 <br/>
 
-## Python API によるデータベース駆動型 Geant4 シミュレーション
+## Python APIによるデータベース駆動型Geant4シミュレーション
 
-**GEMC** は [Geant4](https://geant4.web.cern.ch) を Python から使いやすくするラッパーで、C++/Geant4 の学習を不要にします。
-ユーザーは、ジオメトリ、材料、デジタイゼーションを含む検出器システム全体を Python で構築できます。
-API は、GEMC がシミュレーションパイプライン全体の実行に使用するデータベースに、データを自動的に格納します。
+<!-- Upcoming with the next release: revised introduction. -->
 
-主な特長:
+**GEMC** は、検出器および放射線輸送のシミュレーションを行う、
+データベース駆動型の[Geant4](https://geant4.web.cern.ch)アプリケーションです。
+Python APIを使うと、Geant4コードを書かずに複雑な検出器構成を定義できます。
 
-- ジオメトリと材料を作成する Python API
-- ASCII、SQLite、GDML、CAD メッシュファイルからのジオメトリインポート
-- 組み込みの有感検出器: %%flux%%、%%dosimeter%%、%%particle_counter%%、%%gPhotonDetector%%
-- 出力形式: ASCII、CSV、JSON、[ROOT](https://root.cern)
-- シミュレーション出力の読み込みとプロットを行う組み込み Python `analyzer` モジュール
-- [`pyvista`](https://pyvista.org) によるジオメトリ可視化
-- ジオメトリのバリエーションとラン番号依存の設定
-- CI でテストされたビルドと Docker デプロイ
+検出器の記述は実行ファイルから分離されています。Pythonで作成し、
+ASCIIまたはSQLiteデータベースに保存すると、GEMCが実行時に読み込んでGeant4シミュレーションを実行します。
 
-<br/><br/>
+<br/>
 
-## GEMC を試す
+## 主な特長
 
-インストールは不要です。バッジをクリックすると、ブラウザ上で **JupyterLab** の対話型セッションが起動します:
+- Pythonを中心とした検出器定義
+- [`pyvista`](https://pyvista.org)によるジオメトリのプレビューとVTKへのエクスポート
+- ASCIIおよびSQLiteデータベース
+- GDMLおよびCADファイルからのジオメトリのインポート
+- Geant4/Qtによる対話的な可視化とオフスクリーン画像生成
+- 組み込みの有感検出器：%%flux%%、%%dosimeter%%、%%particle_counter%%、%%gPhotonDetector%%
+- ASCII、CSV、JSON、[ROOT](https://root.cern)形式でのシミュレーション出力
+- GUI、コマンドライン、YAMLおよびLUNDファイルからのイベント生成
+- 多重極磁場やASCII形式の磁場マップを含む磁場サポート
+- シミュレーション出力（CSV、ROOT）の読み込みとプロットを行うPythonの`analyzer`モジュール
+- ジオメトリのバリエーションとラン番号に応じた設定
+
+GEMCは、独自のGeant4アプリケーションを書かずに検出器システムの試作を行えるよう支援することを目指しています。
+C++プラグインにより、独自の検出器応答、磁場、イベント生成器、出力形式にも対応できます。
+
+
+<br/>
+
+## GEMCを試す
+
+インストールは不要です。バッジをクリックすると、ブラウザ上で **JupyterLab** セッションを起動できます：
 
 {% assign visible_examples = site.data.examples | where: "display", true %}
-
 
 <table class="zebra compact-table">
   <tbody>
@@ -118,7 +131,7 @@ API は、GEMC がシミュレーションパイプライン全体の実行に�
 
 ### コンテナイメージ
 
-ローカルまたは HPC 上での JupyterLab セッションには、事前ビルド済みのマルチアーキテクチャイメージを使用します:
+ローカル環境またはHPC環境でのJupyterLabセッションには、ビルド済みのマルチアーキテクチャイメージを使用してください：
 
 ```shell
 # Docker
@@ -131,10 +144,10 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 
 <br/><br/>
 
-## インタラクティブ 3D ギャラリー
+## インタラクティブ3Dギャラリー
 
-各サムネイル内でマウスホイールまたは矢印キーを使ってカメラを回転できます。タイトルのリンクをクリックすると
-ドキュメントが表示されます。
+各サムネイル内で、マウスホイールまたは矢印キーを使ってカメラを回転できます。
+タイトルのリンクをクリックすると、ドキュメントが表示されます。
 
 {% assign gallery_examples = site.data.examples | where: "gallery", true %}
 
@@ -154,11 +167,11 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 
 <br/><br/>
 
-## `pygemc`: Python API
+## `pygemc`：Python API
 
-GEMC の Python API である `pygemc` は、ジオメトリと材料のデータベースビルダー、`pyvista` によるジオメトリ可視化、
-`gemc-system-template`、`gemc-analyzer` を提供します。アナライザーは GEMC の CSV および ROOT 出力を読み込み、
-選択した変数のヒストグラムをプロットできます。
+GEMCのPython APIである`pygemc`は、ジオメトリおよび物質のデータベース作成機能、
+`pyvista`によるジオメトリの可視化、`gemc-system-template`、`gemc-analyzer`を提供します。
+解析ツールはGEMCのCSVおよびROOT出力を読み込み、選択した変数のヒストグラムを描画できます。
 
 {% include figure.html
 src="/assets/images/gemc_showcase.gif"
@@ -171,8 +184,8 @@ on the liquid hydrogen target.<br/>
 The total deposited energy is plotted with the `analyzer` module."
 %}
 
-以下の抜粋は、ターゲット下流にある有感なフラックス測定面を定義しています。GEMC は、生成されたトラックが
-このボリュームを通過するたびに %%flux%% ヒットを記録します。
+以下のコード抜粋では、標的の下流にある有感なフラックス検出面を定義しています。
+生成されたトラックがこのボリュームを横切るたびに、GEMCは %%flux%% ヒットを記録します。
 
 ```python
 # Place a thin scoring plane downstream of the target.
@@ -199,7 +212,7 @@ gvolume.publish(cfg)
 
 ## データベース
 
-検出器の定義はデータベースに保存されます。典型的なワークフローでは、ユーザーが記述する手順は 1 つです:
+検出器定義はデータベースに保存されます。標準的なワークフローでは、ユーザーが記述を行うのは1つのステップです：
 
 {% include figure.html
 src="/assets/images/gemcArchitecture.svg"
@@ -215,20 +228,19 @@ and streams the output data (Steps 2–5).
 
 
 > [!NOTE]
-> シミュレーションの実行に、C++ や Geant4 の事前知識は必要ありません。
-> 基本的な Python の知識があると、複雑なセットアップを整理するのに役立ちます。
-> ユーザーは**独自のハードウェアエミュレーションルーチンを定義**することもできます。この場合、
-> 複雑なデジタイゼーションを実装するには、基本的な C++ の知識があると役立ちます。
+> シミュレーションの実行に、C++やGeant4の事前知識は必要ありません。
+> 基本的なPythonの知識があると、複雑な構成を整理するのに役立ちます。
+> ユーザーは **独自のハードウェアエミュレーションルーチンを定義する** こともできます。
+> この場合、複雑なデジタイゼーション処理には基本的なC++の知識が役立ちます。
 
 <br/><br/>
 
 ## ジオメトリのバリエーション
 
-1 つの検出器を、コンポーネントの位置変更、材料の変更、
-ボリュームの追加・削除といった設定変更を加えながら、複数の実験で再利用できます。
-GEMC は、%%variation%% 文字列および／または %%run%% 番号を用いてこうしたジオメトリのバージョンをサポートし、
-さまざまなシミュレーションの
-セットアップに対応します。
+検出器は、構成要素の位置の変更、物質の変更、ボリュームの追加や削除といった設定変更を加えることで、
+複数の実験で再利用できます。
+GEMCは、%%variation%% 文字列や %%run%% 番号を用いてこれらのジオメトリのバージョンに対応し、
+さまざまなシミュレーション構成に適応できます。
 
 {% include figure.html
 src="/assets/images/clas12v.gif"
@@ -270,46 +282,46 @@ with a variation string or run number in the configuration file or command-line 
 <p class="news-links">
   <a href="{{ "/news/" | relative_url }}">すべてのニュース</a>
   ·
-  <a href="{{ "/feed.xml" | relative_url }}">RSS フィード</a>
+  <a href="{{ "/feed.xml" | relative_url }}">RSSフィード</a>
 </p>
 
 <br/><br/>
 
 ## 継続的インテグレーション
 
-GEMC は、GitHub CI によって複数のプラットフォームと ARM64、AMD64 の両アーキテクチャでビルドおよびテストされ、
-Docker イメージとしてデプロイされます。
+GEMCは、GitHub CIにより、複数のプラットフォームとARM64およびAMD64の両アーキテクチャで
+ビルドとテストが行われ、Dockerイメージとしてデプロイされます。
 
 **gemc**
 
 {:.zebra}
 
-| テスト      | [![test][test-badge]][test]                                  |
-| サニタイザー  | [![Sanitize][Sanitize-badge]][Sanitize]                      |
-| CodeQL | [![CodeQL][CodeQL-badge]][CodeQL]                            |
-| イメージデプロイ | [![deploy][deploy-badge]][deploy]                            |
-| バイナリ tar アーカイブ | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] |
-| macOS tar アーカイブ | [![macOS Tarball][macOS-Tarball-badge]][macOS-Tarball]       |
-| ナイトリーリリース | [![Nightly][Nightly-badge]][Nightly]                         |
-| ホームページ | [![Site][Site-badge]][Site]                                  |
-| Docker プル数 | [![Docker Pulls][DockerHub-badge]][DockerHub]                |
-| Doxygen | [![Docs][Docs-badge]][Docs]                                  |
-| リリース tar アーカイブ | [![Release Tarballs][Release-Tarballs-badge]][Release-Tarballs] |
+| テスト | [![テスト][test-badge]][test] |
+| サニタイザー | [![サニタイザー][Sanitize-badge]][Sanitize] |
+| CodeQL | [![CodeQL][CodeQL-badge]][CodeQL] |
+| イメージのデプロイ | [![デプロイ][deploy-badge]][deploy] |
+| バイナリのtarアーカイブ | [![バイナリのtarアーカイブ][Binary-Tarballs-badge]][Binary-Tarballs] |
+| macOS用tarアーカイブ | [![macOS用tarアーカイブ][macOS-Tarball-badge]][macOS-Tarball] |
+| ナイトリーリリース | [![ナイトリー][Nightly-badge]][Nightly] |
+| ホームページ | [![サイト][Site-badge]][Site] |
+| Dockerプル数 | [![Dockerプル数][DockerHub-badge]][DockerHub] |
+| Doxygen | [![ドキュメント][Docs-badge]][Docs] |
+| リリースのtarアーカイブ | [![リリースのtarアーカイブ][Release-Tarballs-badge]][Release-Tarballs] |
 
 **pygemc**
 
 {:.zebra}
 
-| ナイトリー開発リリース | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
-| PyPI への公開     | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
-| テスト | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]               |
-| PyPI | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
+| 開発版ナイトリーリリース | [![開発版ナイトリーリリース][PyGemc-Nightly-badge]][PyGemc-Nightly] |
+| PyPIへの公開 | [![PyPIへの公開][PyGemc-Publish-badge]][PyGemc-Publish] |
+| テスト | [![pygemcテスト][PyGemc-Tests-badge]][PyGemc-Tests] |
+| PyPI | [![pygemc PyPI][PyPI-badge]][PyPI] |
 
 <br/><br/>
 
 ## 参考文献
 
-GEMC を使用する場合は、必ず以下の論文を引用してください:
+GEMCを使用する場合は、必ず以下の論文を引用してください：
 
 > M. Ungaro and the CLAS Collaboration, "The CLAS12 Geant4 simulation," *Nuclear Instruments and
 > Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated
@@ -347,10 +359,10 @@ M. Ungaro and the CLAS Collaboration,
 
 ## ソースコードとライセンス
 
-[GEMC ソースコード](https://github.com/gemc/src) は
-[Apache ライセンス、バージョン 2.0](/home/license/) の下でライセンスされています。帰属表示とサードパーティへの
-謝辞については [NOTICE](/home/license/#notice) を参照してください。本ソフトウェアは、Geant4、CLHEP、Qt、ROOT、
-SQLite、Assimp を含む、個別にライセンスされたサードパーティコンポーネントにも依存しています。
+[GEMCのソースコード](https://github.com/gemc/src)は、
+[Apache License, Version 2.0](/home/license/)に基づいて提供されています。帰属表示と
+サードパーティへの謝辞については、[NOTICE](/home/license/#notice)を参照してください。
+本ソフトウェアは、Geant4、CLHEP、Qt、ROOT、SQLite、Assimpなど、個別のライセンスが適用されるサードパーティ製コンポーネントにも依存しています。
 
 <br/><br/>
 
