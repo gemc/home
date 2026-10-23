@@ -16,7 +16,8 @@ gemc counter.yaml -gui
 The window is divided into three zones:
 
 - **Top bar** — run controls and event counters.
-- **Left button bar** — six icon buttons that select the active page.
+- **Left button bar** — six icon buttons that select the active page (a seventh **Physics** page is
+  upcoming with the next release).
 - **Right content area** — the page selected by the left bar.
 
 <br/>
@@ -76,6 +77,8 @@ caption="Display Utilities tab: add scene decorations, scale bars, frames, event
 
 - **Scene Decorations** — add scale bars, axes, event IDs, dates, Geant4 logos, frames, and decoration colors.
 - **Scene Text** — add 2D or 3D annotation text with position, layout, color, unit, size, and pixel offsets.
+- **XR Server** — *Upcoming with the next release:* open the Geant4 XR driver and export one event with its
+  tracks for extended-reality (XR) viewing.
 
 <br/>
 
@@ -135,6 +138,11 @@ The **Properties** panel on the right shows the selected volume's opacity and sy
 
 All changes are applied to the Geant4 visualization immediately — no reload is required.
 
+*Upcoming with the next release:* select several rows with Cmd/Ctrl-click and Shift-click, then press
+**Space** to hide the selected group if any selected row is visible, or show it when all are hidden (checkbox
+child propagation is preserved). A **Draw Logical Overlap within <volume>** action draws the selected volume's
+logical overlaps in a separate viewer.
+
 **Example workflow — inspect a single volume:**
 
 1. Navigate to the **Volumes** page.
@@ -185,3 +193,22 @@ caption="Generator page: edit particles, multiplicity, momentum spread, angular 
 
 The Analyzer discovers numeric true-information and digitized variables during a GUI run, then draws
 interactive 1D or 2D histograms. See the [GUI Analyzer guide](/home/documentation/gui/analyzer).
+
+<br/>
+
+### Physics
+
+**Upcoming with the next release.**
+
+The Physics page, below Analyzer, selects and tunes the Geant4 physics without leaving the GUI. Changes apply
+between runs.
+
+- Searchable dropdowns choose the reference physics list and optional electromagnetic replacement.
+- Generator-style tabs add physics constructors such as `G4OpticalPhysics`.
+- A **production range cut** field sets the global secondary-production cut; see the
+  [`production_cut`](/home/documentation/api/options/production_cut) option.
+- Process checkboxes, grouped by category, activate or deactivate individual processes. Transportation stays
+  enabled, and combined processes share a single checkbox.
+
+Changing the reference list preserves the existing electromagnetic constructor, while changing the
+electromagnetic model requires a restart.

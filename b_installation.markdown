@@ -76,7 +76,14 @@ these tools and catalogs. GUI language is detected automatically, with an option
 <br/>
 
 `pygemc` is available from [PyPI](https://pypi.org/project/pygemc/).
-Use a virtual environment for direct `pip` installs:
+Use Python 3.10-3.14 in a virtual environment for direct `pip` installs. On macOS, use
+`brew install python@3.14` and select `python3.14` instead of an unversioned `python3` when creating it.
+
+Upcoming with the next release: pygemc declares Python `>=3.10,<3.15`. Its Meson subproject manages
+both Python environments for GEMC and CLAS12 systems, selects a supported installed interpreter,
+and installs the dependencies during `meson install`. `pymeshlab` remains required.
+
+Create and activate the environment:
 
 ```shell
 python3 -m venv ~/venv/pygemc

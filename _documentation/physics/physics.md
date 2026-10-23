@@ -37,6 +37,19 @@ The option can be composed by:
  - "**QGSP_BIC_PEN + G4OpticalPhysics + G4RadioactiveDecayPhysics**" will use the **QGSP_BIC** module,    replace its e.m. physics with the **G4EmPenelopePhysics**, and add G4OpticalPhysics and G4RadioactiveDecayPhysics
 
 <br/>
+### Production cuts and process control
+
+**Upcoming with the next release.**
+
+Set the global secondary-production range cut (in millimeters) for gamma, e-, e+, and proton with the
+[`production_cut`](/home/documentation/api/options/production_cut) option. By default, GEMC keeps the selected
+physics list's cuts; this is a range cut, not a tracking-energy threshold.
+
+In the GUI, the **Physics** page selects the reference list, adds physics constructors, edits the production
+cut, and activates or deactivates individual processes between runs. See the
+[GUI Quickstart](/home/documentation/gui/gui_quickstart#physics).
+
+<br/>
 ### Geant4 Version Name: geant4-11-04-patch-01 [MT]  (13-March-2026)
 
 <br/>

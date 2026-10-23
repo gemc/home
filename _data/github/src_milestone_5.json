@@ -1,6 +1,6 @@
 {
   "closed_at": null,
-  "closed_issues": 1,
+  "closed_issues": 3,
   "created_at": "2026-08-18T18:12:54Z",
   "creator": {
     "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -23,16 +23,16 @@
     "url": "https://api.github.com/users/maureeungaro",
     "user_view_type": "public"
   },
-  "description": "- Physics list selector\n- Original Track ID\n- Scorer\n- Time dependent geometry evolution\n- Multi-language support",
+  "description": "- Physics list selector\n- Original Track ID\n- Scorer\n- Time dependent geometry evolution\n- Multi-language support\n- Virtual reality Xr driver support - for G4VR",
   "due_on": "2026-12-15T00:00:00Z",
   "html_url": "https://github.com/gemc/src/milestone/5",
   "id": 17360315,
   "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
   "node_id": "MI_kwDODkwbjc4BCOW7",
   "number": 5,
-  "open_issues": 7,
+  "open_issues": 6,
   "state": "open",
   "title": "GEMC Version 0.6",
-  "updated_at": "2026-10-21T15:59:18Z",
+  "updated_at": "2026-10-23T14:12:17Z",
   "url": "https://api.github.com/repos/gemc/src/milestones/5"
 }

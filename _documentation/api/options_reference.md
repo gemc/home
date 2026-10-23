@@ -53,6 +53,7 @@ This page is generated from `gemc -h`. Click each item for help.<br/><br/>
 | [`splash_time`](/home/documentation/api/options/splash_time) | `<value>` | splash display time in seconds |
 | [`splash_scale`](/home/documentation/api/options/splash_scale) | `<value>` | splash image scale factor |
 | [`phys_list`](/home/documentation/api/options/phys_list) | `<value>` | Select Physics List |
+| [`production_cut`](/home/documentation/api/options/production_cut) | `<value>` | Production range cut in millimeters |
 | [`log_every`](/home/documentation/api/options/log_every) | `<value>` | log module: print event progress and average rate every N events per thread |
 | [`no_digitized`](/home/documentation/api/options/no_digitized) | `<value>` | detectors for which digitization is disabled |
 | [`no_true_info`](/home/documentation/api/options/no_true_info) | `<value>` | detectors for which true-information output is disabled |

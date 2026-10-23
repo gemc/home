@@ -177,6 +177,9 @@ Each match is printed with its detailed help, so `search` is a quick way to
 discover related options without scanning the full reference. Use
 `gemc help <value>` afterwards for the detailed help of a single option.
 
+**Upcoming with the next release:** `search` also matches the detailed help, the schema keys and their
+descriptions, and the default values, so both `gemc search driver` and `gemc search OGL` find %%g4view%%.
+
 The generated [Options Reference](/home/documentation/api/options_reference)
 contains links to the detailed help output for every option and switch.
 
