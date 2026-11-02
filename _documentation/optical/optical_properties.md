@@ -182,6 +182,42 @@ Maps to the Geant4 property %%RAYLEIGH%%
 
 <br/>
 
+## Mie scattering
+
+**Upcoming with the next release.**
+
+Mie scattering models the strongly forward-peaked scattering off particles comparable in size to the
+photon wavelength, such as the SiO₂ clusters in aerogel radiators. Geant4 describes it with the
+Henyey-Greenstein phase function, parameterised by a scattering length and up to three anisotropy
+constants.
+
+`mie` is the energy-dependent Mie scattering length, carrying length units like `absorptionLength`:
+
+```python
+mat.photonEnergy = "2.0*eV 3.0*eV"
+mat.mie          = "15.12*cm 15.12*cm"
+```
+
+Maps to the Geant4 property %%MIEHG%%.
+
+Three optional scalar fields tune the phase function:
+
+* `mieforward` (%%MIEHG_FORWARD%%): anisotropy of the forward-scattering component.
+* `miebackward` (%%MIEHG_BACKWARD%%): anisotropy of the backward-scattering component.
+* `mieratio` (%%MIEHG_FORWARD_RATIO%%): fraction of scattering carried by the forward component.
+
+```python
+mat.mieforward  = 0.999
+mat.miebackward = 1
+mat.mieratio    = 1
+```
+
+Each scalar is written only when set, so a material may define the Mie scattering length alone and
+let Geant4 apply its defaults for the phase-function constants. Like the other optical properties,
+Mie scattering requires `G4OpticalPhysics` in the physics list (see below).
+
+<br/>
+
 
 ## Physics list requirement
 

@@ -11,7 +11,16 @@
 
 <main class="page-content" aria-label="Content">
 	<div class="wrapper">
-		{{ content }}
+		{%- comment -%}Keep generated translation links usable until their next refresh.{%- endcomment -%}
+		{%- capture old_profile_link -%}href="{{ '/profile/' | relative_url }}"{%- endcapture -%}
+		{%- capture old_projects_link -%}href="{{ '/projects/' | relative_url }}"{%- endcapture -%}
+		{%- capture biography_link -%}
+			{% static_href %}href="{{ '/' | relative_url }}#biography-and-documents"{% endstatic_href %}
+		{%- endcapture -%}
+		{%- capture projects_link -%}
+			{% static_href %}href="{{ '/' | relative_url }}#what-i-work-on"{% endstatic_href %}
+		{%- endcapture -%}
+		{{ content | replace: old_profile_link, biography_link | replace: old_projects_link, projects_link }}
 	</div>
 </main>
 

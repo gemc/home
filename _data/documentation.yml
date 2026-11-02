@@ -15,6 +15,10 @@
   category: "API"
   link: "/home/documentation/api/analyzer"
 
+- title: "build_cad"
+  category: "API"
+  link: "/home/documentation/geometry/cad_imports#build-cad"
+
 - title: "Cure Mesh"
   category: "API"
   link: "/home/documentation/api/cure_mesh"
