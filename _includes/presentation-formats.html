@@ -1,0 +1,25 @@
+{%- assign presentation = include.presentation -%}
+{%- assign baseurl = page.p_baseurl -%}
+{%- assign last_character = baseurl | slice: -1, 1 -%}
+{%- if last_character == '/' -%}
+  {%- assign baseurl_length = baseurl | size | minus: 1 -%}
+  {%- assign baseurl = baseurl | slice: 0, baseurl_length -%}
+{%- endif -%}
+{%- assign separator = '' -%}
+{%- if presentation.pdf == 'yes' -%}
+  <a href="{{ baseurl }}/{{ presentation.filename }}.pdf" target="_blank">PDF</a>
+  {%- assign separator = ', ' -%}
+{%- elsif presentation.pdf == 'no_animation' -%}
+  <a href="{{ baseurl }}/no_pdf_animation.pdf" target="_blank">PDF</a>
+  {%- assign separator = ', ' -%}
+{%- elsif presentation.pdf contains '://' -%}
+  <a href="{{ presentation.pdf }}" target="_blank">PDF</a>
+  {%- assign separator = ', ' -%}
+{%- endif -%}
+{%- if presentation.key == 'yes' -%}
+  {{ separator }}<a href="{{ baseurl }}/{{ presentation.filename }}.key" target="_blank">KEY</a>
+  {%- assign separator = ', ' -%}
+{%- endif -%}
+{%- if presentation.pptx == 'yes' -%}
+  {{ separator }}<a href="{{ baseurl }}/{{ presentation.filename }}.pptx" target="_blank">PPTX</a>
+{%- endif -%}

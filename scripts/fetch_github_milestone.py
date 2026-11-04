@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import ssl
 import sys
 import urllib.error
 import urllib.parse
@@ -11,6 +12,18 @@ from pathlib import Path
 
 
 API_BASE = "https://api.github.com"
+
+
+def build_ssl_context():
+    # Python 3.14 (OpenSSL 4.x) enables VERIFY_X509_STRICT by default, which rejects legacy roots in
+    # the trust store that lack an Authority Key Identifier. Keep full chain and hostname verification
+    # but drop the strict flag so those otherwise-valid CA bundles still work.
+    context = ssl.create_default_context()
+    context.verify_flags &= ~ssl.VERIFY_X509_STRICT
+    return context
+
+
+SSL_CONTEXT = build_ssl_context()
 
 
 def github_get(url, token=None):
@@ -25,7 +38,7 @@ def github_get(url, token=None):
     request = urllib.request.Request(url, headers=headers)
 
     try:
-        with urllib.request.urlopen(request) as response:
+        with urllib.request.urlopen(request, context=SSL_CONTEXT) as response:
             body = response.read().decode("utf-8")
             data = json.loads(body)
             link = response.headers.get("Link")
