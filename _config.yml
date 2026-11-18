@@ -20,6 +20,12 @@
 # For customization check https://github.com/jekyll/minima/blob/master/README.md
 
 title: Home
+# Explicit header navigation. Upcoming with the next release.
+header_permalinks:
+  - /installation/
+  - /examples/
+  - /documentation/
+  - /news/
 author: Maurizio Ungaro
 email: ungaro@jlab.org
 description: >- # this means to ignore newlines until "baseurl:"

@@ -2,7 +2,7 @@
 {%- assign search_aria_label = site.data.ui_strings.search_aria_label | default: 'Search this site' -%}
 <header class="site-header" role="banner">
 	<div class="wrapper">
-		<a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+		<a class="site-title" rel="author" href="{{ "/" | relative_url }}">Home</a>
 
 		<nav class="site-nav">
 			<input type="checkbox" id="nav-trigger" class="nav-trigger"/>
@@ -15,7 +15,8 @@
 			</label>
 
 			<div class="trigger">
-				{%- for my_page in site.pages -%}
+				{%- for permalink in site.header_permalinks -%}
+				{%- assign my_page = site.pages | where: "permalink", permalink | first -%}
 				{%- if my_page.nav_exclude != true and my_page.title and my_page.permalink != "/404.html" -%}
 				<a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.title | escape }}</a>
 				{%- endif -%}
