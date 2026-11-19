@@ -84,6 +84,8 @@
     "issue_field_values": [],
     "labels": [
       {
+        "archived_at": null,
+        "archived_by": null,
         "color": "a2eeef",
         "default": true,
         "description": "New feature or request",
@@ -96,7 +98,7 @@
     "labels_url": "https://api.github.com/repos/gemc/src/issues/87/labels{/name}",
     "locked": false,
     "milestone": {
-      "closed_at": null,
+      "closed_at": "2026-05-29T20:36:39Z",
       "closed_issues": 5,
       "created_at": "2026-05-13T13:18:26Z",
       "creator": {
@@ -128,9 +130,9 @@
       "node_id": "MI_kwDODkwbjc4A8sNz",
       "number": 1,
       "open_issues": 0,
-      "state": "open",
+      "state": "closed",
       "title": "GEMC Version 0.2",
-      "updated_at": "2026-05-20T14:17:35Z",
+      "updated_at": "2026-05-29T20:36:39Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/1"
     },
     "node_id": "I_kwDODkwbjc8AAAABCK4Rzw",
@@ -278,6 +280,8 @@
     "issue_field_values": [],
     "labels": [
       {
+        "archived_at": null,
+        "archived_by": null,
         "color": "a2eeef",
         "default": true,
         "description": "New feature or request",
@@ -290,7 +294,7 @@
     "labels_url": "https://api.github.com/repos/gemc/src/issues/83/labels{/name}",
     "locked": false,
     "milestone": {
-      "closed_at": null,
+      "closed_at": "2026-05-29T20:36:39Z",
       "closed_issues": 5,
       "created_at": "2026-05-13T13:18:26Z",
       "creator": {
@@ -322,9 +326,9 @@
       "node_id": "MI_kwDODkwbjc4A8sNz",
       "number": 1,
       "open_issues": 0,
-      "state": "open",
+      "state": "closed",
       "title": "GEMC Version 0.2",
-      "updated_at": "2026-05-20T14:17:35Z",
+      "updated_at": "2026-05-29T20:36:39Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/1"
     },
     "node_id": "I_kwDODkwbjc8AAAABBwhQXQ",
@@ -472,6 +476,8 @@
     "issue_field_values": [],
     "labels": [
       {
+        "archived_at": null,
+        "archived_by": null,
         "color": "a2eeef",
         "default": true,
         "description": "New feature or request",
@@ -484,7 +490,7 @@
     "labels_url": "https://api.github.com/repos/gemc/src/issues/82/labels{/name}",
     "locked": false,
     "milestone": {
-      "closed_at": null,
+      "closed_at": "2026-05-29T20:36:39Z",
       "closed_issues": 5,
       "created_at": "2026-05-13T13:18:26Z",
       "creator": {
@@ -516,9 +522,9 @@
       "node_id": "MI_kwDODkwbjc4A8sNz",
       "number": 1,
       "open_issues": 0,
-      "state": "open",
+      "state": "closed",
       "title": "GEMC Version 0.2",
-      "updated_at": "2026-05-20T14:17:35Z",
+      "updated_at": "2026-05-29T20:36:39Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/1"
     },
     "node_id": "I_kwDODkwbjc8AAAABBwhNfw",
@@ -627,7 +633,7 @@
         "user_view_type": "public"
       }
     ],
-    "author_association": "NONE",
+    "author_association": "COLLABORATOR",
     "body": "# GEMC Source Fix for Cherenkov Test\n\nDate: 2026-05-06\n\n## Conclusion\nThe Cherenkov test failure is in GEMC source, not the CO2 geometry.\n\nTwo GEMC source changes are needed:\n- Attach parsed optical material properties to the Geant4 `G4Material`.\n- Actually honor the `recordZeroEdep` switch in digitization, so zero-energy optical photon steps are recorded.\n\n## Why\n`GMaterial` already parses `photonEnergy`, `indexOfRefraction`, and `absorptionLength`, but `G4World::createG4Material` only builds density/composition. It never creates a `G4MaterialPropertiesTable`, so Geant4 optical physics has no `RINDEX` table and cannot produce Cherenkov photons from GEMC materials.\n\nAfter that is fixed, optical photons are produced but still skipped unless `recordZeroEdep` is wired into `GDynamicDigitization`. Optical photons have zero deposited energy in the flux panel, so the default skip rule drops them.\n\nGEMC writes optical photons with `pid == -22`, not `pid == 0`.\n\n## Patch\nApply these changes in `https://github.com/gemc/src`.\n\nIn `g4system/g4world.cc`:\n\n```diff\n+#include \"G4MaterialPropertiesTable.hh\"\n```\n\nAfter the material composition is built in `G4World::createG4Material` and before `return true;`:\n\n```cpp\nauto photonEnergy = gmaterial->getPhotonEnergy();\nif (!photonEnergy.empty()) {\n    auto* materialPropertiesTable = new G4MaterialPropertiesTable();\n    bool hasOpticalProperties = false;\n\n    auto addProperty = [&](const char* propertyName, const std::vector<double>& values) {\n        if (values.empty()) { return; }\n        if (values.size() != photonEnergy.size()) {\n            log->error(ERR_GMATERIALOPTICALPROPERTYMISMATCH,\n                       \"material <\", materialName, \"> optical property <\", propertyName, \"> has \",\n                       values.size(), \" entries but photonEnergy has \", photonEnergy.size());\n        }\n        materialPropertiesTable->AddProperty(propertyName, photonEnergy, values);\n        hasOpticalProperties = true;\n    };\n\n    addProperty(\"RINDEX\", gmaterial->getIndexOfRefraction());\n    addProperty(\"ABSLENGTH\", gmaterial->getAbsorptionLength());\n    addProperty(\"RAYLEIGH\", gmaterial->getRayleigh());\n\n    if (hasOpticalProperties) {\n        g4materialsMap[materialName]->SetMaterialPropertiesTable(materialPropertiesTable);\n        log->info(2, \"Attached optical material properties table to material <\", materialName, \">\");\n    }\n    else {\n        delete materialPropertiesTable;\n    }\n}\n```\n\nIn `gdynamicDigitization/gdynamicdigitization.h`:\n\n```diff\n explicit GDynamicDigitization(const std::shared_ptr<GOptions>& g) : GBase(g, GDIGITIZATION_LOGGER) {\n+    recordZeroEdep = g->getSwitch(\"recordZeroEdep\");\n }\n```\n\n## Validation\nSource checkout tested at `src/gemc`, commit `abe982a`, built inside the GEMC3 Apptainer environment.\n\nPatched 1000-electron center-axis run:\n- Input: `tests/cherenkov/cherenkov.yaml`\n- Beam: `1000` electrons, `1 GeV`, center axis\n- GEMC binary: `src/gemc/build/gemc`\n- Output: `tests/cherenkov/results_src_checkout_1000/cherenkov_co2_t0.root`\n- Analysis: `tests/cherenkov/results_src_checkout_1000/analysis`\n\nResult:\n- `events_with_flux_entries`: `1000`\n- `total_flux_hits`: `82275`\n- `optical_photon_pid`: `-22`\n- `total_optical_photon_hits`: `82250`\n\nImpact: GEMC ASCII/SQLite materials with optical fields become usable by Geant4 optical physics, and zero-energy optical photon flux hits can be persisted when `recordZeroEdep` is enabled.\n",
     "closed_at": "2026-05-12T14:10:03Z",
     "closed_by": {
@@ -666,6 +672,8 @@
     "issue_field_values": [],
     "labels": [
       {
+        "archived_at": null,
+        "archived_by": null,
         "color": "d73a4a",
         "default": true,
         "description": "Something isn't working",
@@ -678,7 +686,7 @@
     "labels_url": "https://api.github.com/repos/gemc/src/issues/81/labels{/name}",
     "locked": false,
     "milestone": {
-      "closed_at": null,
+      "closed_at": "2026-05-29T20:36:39Z",
       "closed_issues": 5,
       "created_at": "2026-05-13T13:18:26Z",
       "creator": {
@@ -710,9 +718,9 @@
       "node_id": "MI_kwDODkwbjc4A8sNz",
       "number": 1,
       "open_issues": 0,
-      "state": "open",
+      "state": "closed",
       "title": "GEMC Version 0.2",
-      "updated_at": "2026-05-20T14:17:35Z",
+      "updated_at": "2026-05-29T20:36:39Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/1"
     },
     "node_id": "I_kwDODkwbjc8AAAABBtfa9w",
@@ -777,8 +785,50 @@
   },
   {
     "active_lock_reason": null,
-    "assignee": null,
-    "assignees": [],
+    "assignee": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
+    "assignees": [
+      {
+        "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+        "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+        "followers_url": "https://api.github.com/users/maureeungaro/followers",
+        "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+        "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+        "gravatar_id": "",
+        "html_url": "https://github.com/maureeungaro",
+        "id": 7451841,
+        "login": "maureeungaro",
+        "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+        "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+        "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+        "repos_url": "https://api.github.com/users/maureeungaro/repos",
+        "site_admin": false,
+        "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+        "type": "User",
+        "url": "https://api.github.com/users/maureeungaro",
+        "user_view_type": "public"
+      }
+    ],
     "author_association": "CONTRIBUTOR",
     "body": null,
     "closed_at": "2026-05-09T15:38:20Z",
@@ -818,6 +868,8 @@
     "issue_field_values": [],
     "labels": [
       {
+        "archived_at": null,
+        "archived_by": null,
         "color": "a2eeef",
         "default": true,
         "description": "New feature or request",
@@ -830,7 +882,7 @@
     "labels_url": "https://api.github.com/repos/gemc/src/issues/79/labels{/name}",
     "locked": false,
     "milestone": {
-      "closed_at": null,
+      "closed_at": "2026-05-29T20:36:39Z",
       "closed_issues": 5,
       "created_at": "2026-05-13T13:18:26Z",
       "creator": {
@@ -862,9 +914,9 @@
       "node_id": "MI_kwDODkwbjc4A8sNz",
       "number": 1,
       "open_issues": 0,
-      "state": "open",
+      "state": "closed",
       "title": "GEMC Version 0.2",
-      "updated_at": "2026-05-20T14:17:35Z",
+      "updated_at": "2026-05-29T20:36:39Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/1"
     },
     "node_id": "I_kwDODkwbjc8AAAABBGmWog",
@@ -903,7 +955,7 @@
       "node_id": "IT_kwDOAMwCa84AGjnX",
       "updated_at": "2024-10-08T09:35:31Z"
     },
-    "updated_at": "2026-05-13T19:38:45Z",
+    "updated_at": "2026-06-06T16:32:45Z",
     "url": "https://api.github.com/repos/gemc/src/issues/79",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
