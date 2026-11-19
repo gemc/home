@@ -68,8 +68,28 @@
     ],
     "author_association": "COLLABORATOR",
     "body": "Type-0 1 GeV row exported p=1 and cm vertex coordinates.\n\nConvert source-only Lund records from GeV/cm into the same internal momentum/length units as propagated records.\n\nValidation: Mixed tracked/untracked rows, zero momentum, negative vertices and angles, consistent generated banks in JSON/CSV/ROOT. Regression failed against the original implementation and passed with the focused fix. Combined source build/install and all 44 affected regressions passed. The 32-example sweep retained its 19/32 baseline with no new failing examples.\n\nCloses gemc/src#190.\n\nVerification on 2026-11-15: all 44 selected affected regressions passed again on the combined nine-fix source. Each issue also has a separate failing-original/passing-fixed regression. These PR branches each contain only their own fix; shared-file conflicts may need resolving as other fixes merge. No clean full-project-suite claim: the broader source-example baseline remains 19/32, with no newly failing examples in the combined sweep.\n",
-    "closed_at": null,
-    "closed_by": null,
+    "closed_at": "2026-11-19T21:21:56Z",
+    "closed_by": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
     "comments": 0,
     "comments_url": "https://api.github.com/repos/gemc/src/issues/198/comments",
     "created_at": "2026-11-15T23:18:49Z",
@@ -95,7 +115,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -125,10 +145,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "PR_kwDODkwbjc8AAAABPZdlqQ",
@@ -137,7 +157,7 @@
     "pull_request": {
       "diff_url": "https://github.com/gemc/src/pull/198.diff",
       "html_url": "https://github.com/gemc/src/pull/198",
-      "merged_at": null,
+      "merged_at": "2026-11-19T21:21:56Z",
       "patch_url": "https://github.com/gemc/src/pull/198.patch",
       "url": "https://api.github.com/repos/gemc/src/pulls/198"
     },
@@ -154,12 +174,12 @@
       "url": "https://api.github.com/repos/gemc/src/issues/198/reactions"
     },
     "repository_url": "https://api.github.com/repos/gemc/src",
-    "state": "open",
+    "state": "closed",
     "state_reason": null,
     "timeline_url": "https://api.github.com/repos/gemc/src/issues/198/timeline",
     "title": "fix: normalize untracked Lund generated-particle units",
     "type": null,
-    "updated_at": "2026-11-19T20:31:02Z",
+    "updated_at": "2026-11-19T21:21:56Z",
     "url": "https://api.github.com/repos/gemc/src/issues/198",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/6391402?v=4",
@@ -299,7 +319,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -329,10 +349,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "PR_kwDODkwbjc8AAAABPZdklg",
@@ -482,7 +502,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -512,10 +532,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "PR_kwDODkwbjc8AAAABPZdjeg",
@@ -665,7 +685,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -695,10 +715,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "PR_kwDODkwbjc8AAAABPZdimA",
@@ -859,7 +879,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -889,10 +909,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "PR_kwDODkwbjc8AAAABPZdhig",
@@ -995,8 +1015,28 @@
     ],
     "author_association": "COLLABORATOR",
     "body": "# Generated Lund records mix GeV and cm with MeV and mm depending on particle tracking type\n\nAt commit `db22b3c1b0a4209401d92961cad78c1838f4c56f`, otherwise identical Lund rows have different output units according to whether they are propagated.\n\n## Reproduction\n\n```bash\ncat > particles.lund <<'EOF'\n2 1 1 0 0 0 0 0 0 0\n\n1 -1 0 11 0 0 0 0 1 1.00000013 0.000511 1 2 3\n2 -1 1 11 0 0 0 0 1 1.00000013 0.000511 1 2 3\nEOF\ngemc -n=1 -nthreads=1 '-gparticlefile=[{format: lund, filename: particles.lund}]' '-gstreamer=[{format: json, filename: particles}]'\npython3 - <<'PY'\nimport json\ndata = json.load(open('particles_t0.json'))\nprint(data['events'][0]['generated']['generated'])\nPY\n```\n\nBoth inputs specify momentum 1 GeV and vertex `(1,2,3)` cm. Observed in the shared generated bank:\n\n| Type | p | vx | vy | vz |\n| --- | ---: | ---: | ---: | ---: |\n| 0 | 1 | 1 | 2 | 3 |\n| 1 | 1000 | 10 | 20 | 30 |\n\nExpected: both rows use the same internal units, MeV and mm, regardless of tracking type.\n\n## Cause and impact\n\n[make_record_from_lund](https://github.com/gemc/src/blob/db22b3c1b0a4209401d92961cad78c1838f4c56f/gemc/gparticle/readers/gparticle_lund_reader.cc#L167-L178) returns raw momentum and vertices. The propagated-particle path converts GeV/cm to internal units, then the primary action combines both kinds of record into one bank. Streamers serialize the values directly.\n\nThis changes the interpretation of generated kinematics by factors of 1000 in momentum and 10 in position. Please apply the same conversions in the untracked-record path and add a mixed-type input regression check.\n\nEnvironment: Linux x86_64, Geant4 11.4.3. Existing Lund support issue [#87](https://github.com/gemc/src/issues/87) is related background, not a report of this unit mismatch.\n\n## Build and environment\n\n- Source commit: `db22b3c1b0a4209401d92961cad78c1838f4c56f`.\n- Container: `ghcr.io/gemc/src:dev-almalinux-10`, OCI index digest `sha256:61d5a0518f5bb3f90ef669d4def27567844530150dd72ee90e8ecaf9a085f503`.\n- OS: AlmaLinux 10.2, Linux x86_64.\n- GCC 14.3.1; Geant4 11.4.3; Meson 1.12.1; Python 3.12.15; ROOT 6.40.04.\n- Verification: reproduced on 2026-11-13 using a fresh source build of the commit above, with its own installed plugins selected explicitly. The build and installation succeeded.\n\nWithin the initialized container, the source build uses:\n\n```bash\nmeson setup build --prefix=\"$PWD/install\"\nmeson compile -C build\nmeson install -C build\nexport GEMC_PREFIX=\"$PWD/install\"\nexport PATH=\"$GEMC_PREFIX/bin:$PATH\"\nexport LD_LIBRARY_PATH=\"$GEMC_PREFIX/lib:${LD_LIBRARY_PATH:-}\"\nexport GEMC_PLUGIN_PATH=\"$GEMC_PREFIX/lib\"\n```\n\nThe Geant4 pkg-config files must be available to Meson. Run the reproduction in a fresh working directory after initializing these runtime paths. Example-based reproductions require the installed example database generated by the standard installation.\n",
-    "closed_at": null,
-    "closed_by": null,
+    "closed_at": "2026-11-19T21:21:58Z",
+    "closed_by": {
+      "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
+      "events_url": "https://api.github.com/users/maureeungaro/events{/privacy}",
+      "followers_url": "https://api.github.com/users/maureeungaro/followers",
+      "following_url": "https://api.github.com/users/maureeungaro/following{/other_user}",
+      "gists_url": "https://api.github.com/users/maureeungaro/gists{/gist_id}",
+      "gravatar_id": "",
+      "html_url": "https://github.com/maureeungaro",
+      "id": 7451841,
+      "login": "maureeungaro",
+      "node_id": "MDQ6VXNlcjc0NTE4NDE=",
+      "organizations_url": "https://api.github.com/users/maureeungaro/orgs",
+      "received_events_url": "https://api.github.com/users/maureeungaro/received_events",
+      "repos_url": "https://api.github.com/users/maureeungaro/repos",
+      "site_admin": false,
+      "starred_url": "https://api.github.com/users/maureeungaro/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/maureeungaro/subscriptions",
+      "type": "User",
+      "url": "https://api.github.com/users/maureeungaro",
+      "user_view_type": "public"
+    },
     "comments": 0,
     "comments_url": "https://api.github.com/repos/gemc/src/issues/190/comments",
     "created_at": "2026-11-13T23:00:25Z",
@@ -1027,7 +1067,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1057,10 +1097,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc8AAAABfF6oJA",
@@ -1080,8 +1120,8 @@
       "url": "https://api.github.com/repos/gemc/src/issues/190/reactions"
     },
     "repository_url": "https://api.github.com/repos/gemc/src",
-    "state": "open",
-    "state_reason": null,
+    "state": "closed",
+    "state_reason": "completed",
     "sub_issues_summary": {
       "completed": 0,
       "percent_completed": 0,
@@ -1099,7 +1139,7 @@
       "node_id": "IT_kwDOAMwCa84AGjnT",
       "updated_at": "2024-07-26T10:30:03Z"
     },
-    "updated_at": "2026-11-19T20:26:47Z",
+    "updated_at": "2026-11-19T21:21:58Z",
     "url": "https://api.github.com/repos/gemc/src/issues/190",
     "user": {
       "avatar_url": "https://avatars.githubusercontent.com/u/6391402?v=4",
@@ -1223,7 +1263,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1253,10 +1293,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc8AAAABfF6myA",
@@ -1399,7 +1439,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1429,10 +1469,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc8AAAABfF6liw",
@@ -1583,7 +1623,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1613,10 +1653,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc8AAAABfF6kSA",
@@ -1770,7 +1810,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1800,10 +1840,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc8AAAABfF6ixQ",
@@ -1968,7 +2008,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -1998,10 +2038,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc8AAAABfFy5OA",
@@ -2155,7 +2195,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -2185,10 +2225,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc8AAAABZKDdrQ",
@@ -2362,7 +2402,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -2392,10 +2432,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc8AAAABV3qyaA",
@@ -2558,7 +2598,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -2588,10 +2628,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc8AAAABIPL0xA",
@@ -2714,7 +2754,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -2744,10 +2784,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc8AAAABKDLPJA",
@@ -2890,7 +2930,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -2920,10 +2960,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc8AAAABE4kvNA",
@@ -3032,7 +3072,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -3062,10 +3102,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc8AAAABBC1Z-Q",
@@ -3199,7 +3239,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -3229,10 +3269,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc7Rgm1d",
@@ -3406,7 +3446,7 @@
     "locked": false,
     "milestone": {
       "closed_at": null,
-      "closed_issues": 13,
+      "closed_issues": 15,
       "created_at": "2026-08-18T18:12:54Z",
       "creator": {
         "avatar_url": "https://avatars.githubusercontent.com/u/7451841?v=4",
@@ -3436,10 +3476,10 @@
       "labels_url": "https://api.github.com/repos/gemc/src/milestones/5/labels",
       "node_id": "MI_kwDODkwbjc4BCOW7",
       "number": 5,
-      "open_issues": 6,
+      "open_issues": 4,
       "state": "open",
       "title": "GEMC Version 0.6",
-      "updated_at": "2026-11-19T20:26:48Z",
+      "updated_at": "2026-11-19T21:21:59Z",
       "url": "https://api.github.com/repos/gemc/src/milestones/5"
     },
     "node_id": "I_kwDODkwbjc6eW7K8",
