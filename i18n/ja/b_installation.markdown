@@ -45,40 +45,47 @@ human_reviewed: false
 
 <br/>
 
-[ストリーミングリードアウト](/home/documentation/sro/plugins/)には、GEMC 0.5 の SRO インターフェイスと、
-同じ GEMC インストール環境に対して再ビルドされた実験用プラグインが必要です。FT-Cal の JLAB エンコーダは
-`clas12-systems` に属しており、`pygemc` だけをインストールしてもネイティブの SRO 実装は提供されません。
+[ストリーミングリードアウト](/home/documentation/sro/plugins/)には、GEMC 0.5 の SRO インターフェースと、同じ GEMC
+インストール環境を使用して再ビルドした実験用プラグインが必要です。FT-Cal の JLAB エンコーダは
+`clas12-systems` に属します。`pygemc` 単体をインストールしても、ネイティブの SRO 実装は提供されません。
 
-[頂点・角度の例](/home/examples/basic/generator_manipulations)
-には、11 個のステアリングカードと準備済みの Analyzer プロットが含まれています。GEMC 0.5 以降を使用してください。
-GUI プロットには Qt Charts が必要です。これらのバッチシミュレーションと CSV チェックは Qt Charts なしでも動作します。
+[生成頂点と角度の例](/home/examples/basic/generator_manipulations)には、
+11 個のステアリングカードと作成済みの Analyzer プロットが含まれます。GEMC 0.5 以降を使用してください。GUI のプロットには
+Qt Charts が必要です。これらの例のバッチシミュレーションと CSV チェックは Qt Charts なしでも動作します。
 
-次のリリースで導入予定: Qt Linguist ツールがビルド時に GUI の翻訳カタログをコンパイルし、Qt の翻訳データが
-標準ダイアログをローカライズします。以下のパッケージコマンドには両方が含まれています。Homebrew の Qt は
-これらのツールとカタログを提供します。GUI の言語は自動検出され、必要に応じて `-language=<code>` で指定できます。
+次のリリースで導入予定: Qt Linguist ツールがビルド時に GUI の言語カタログをコンパイルし、Qt の
+翻訳データが標準ダイアログをローカライズします。以下のパッケージコマンドには両方が含まれます。Homebrew の Qt は
+これらのツールとカタログを提供します。GUI の言語は自動検出され、オプションの `-language=<code>` で変更できます。
 
 ## 目次
 
-- [Python API をインストールする](#install-the-python-api)
-- [コンパイル済みバイナリ配布物をダウンロードする](#download-a-precompiled-binary-distribution)
-- [ソースからビルドする](#build-from-source)
-- [Docker コンテナで実行する](#run-in-a-docker-container)
-- [Apptainer を使って実行する](#run-using-apptainer)
+- [Python API のインストール](#install-the-python-api)
+- [コンパイル済みバイナリ配布物のダウンロード](#download-a-precompiled-binary-distribution)
+- [ソースからのビルド](#build-from-source)
+- [Docker コンテナでの実行](#run-in-a-docker-container)
+- [Apptainer を使った実行](#run-using-apptainer)
 
 - *付録*:
-  - [バイナリインストールのためのソフトウェア要件](#software-prerequisites-for-binary-installation)
-  - [GEMC ビルドのためのソフトウェア要件と Geant4 の
+  - [バイナリインストールに必要なソフトウェア](#software-prerequisites-for-binary-installation)
+  - [GEMC のビルドに必要なソフトウェアと Geant4 の
     インストール](#software-prerequisites-and-geant4-installation-for-the-gemc-build)
   - [サポート対象およびテスト済みのプラットフォーム](#supported-and-tested-platforms)
 
 <br/><br/>
 
-## Python API をインストールする
+## Python API のインストール
 
 <br/>
 
 `pygemc` は [PyPI](https://pypi.org/project/pygemc/) から入手できます。
-直接 `pip` でインストールする場合は仮想環境を使用してください:
+`pip` で直接インストールする場合は、仮想環境内で Python 3.10〜3.14 を使用してください。macOS では、
+`brew install python@3.14` を実行し、仮想環境の作成時にバージョン指定のない `python3` ではなく `python3.14` を使用します。
+
+次のリリースで導入予定: pygemc は、対応する Python バージョンを `>=3.10,<3.15` として宣言します。Meson サブプロジェクトが
+GEMC と CLAS12 検出器システムの両方の Python 環境を管理し、インストール済みの対応インタプリタを選択して、
+`meson install` の実行時に依存パッケージをインストールします。`pymeshlab` は引き続き必須です。
+
+環境を作成して有効化します:
 
 ```shell
 python3 -m venv ~/venv/pygemc
@@ -86,32 +93,32 @@ source ~/venv/pygemc/bin/activate
 python -m pip install pygemc
 ```
 
-PyVista の VTK エクスポートで使用されるオプションの Jupyter モジュールは、次のコマンドでインストールできます:
+PyVista の VTK エクスポートで使用するオプションの Jupyter モジュールは、次のコマンドでインストールできます:
 
 ```shell
 python -m pip install "pygemc[jupyter]"
 ```
 
-ROOT ファイルの解析に必要なオプションの依存パッケージは、次のコマンドでインストールできます:
+オプションの ROOT ファイル解析用の依存パッケージは、次のコマンドでインストールできます:
 
 ```shell
 python -m pip install "pygemc[root]"
 ```
 
-[PyPI](https://pypi.org/project/pygemc/) からのインストールでは `gemc` 実行ファイルはインストールされませんが、
-ジオメトリの作成・可視化や結果の解析は可能です。
+[PyPI](https://pypi.org/project/pygemc/) からのインストールには `gemc` 実行ファイルは含まれませんが、
+ジオメトリの作成や可視化、結果の解析には使用できます。
 
 <br/>
 
-## コンパイル済みバイナリ配布物をダウンロードする
+## コンパイル済みバイナリ配布物のダウンロード
 
-バイナリの tarball には `gemc` 実行ファイルと例が含まれます（`pygemc` は含まれません）。Linux ビルドは
-`amd64` と `arm64` 向けに提供され、macOS ビルドは Apple Silicon（`arm64`）ネイティブです。
+バイナリ tarball には `gemc` 実行ファイルとサンプルが含まれます（ただし `pygemc` は含まれません）。Linux ビルドは
+`amd64` および `arm64` 向けに提供されます。macOS ビルドは Apple Silicon（`arm64`）ネイティブです。
 
-tarball を展開する前に、必ず[バイナリインストールのためのソフトウェア要件](#software-prerequisites-for-binary-installation)
+tarball を展開する前に、必ず[バイナリインストールに必要なソフトウェア](#software-prerequisites-for-binary-installation)
 を確認してください。
 
-まず、インストール先ディレクトリを選択します:
+まずインストールディレクトリを選びます:
 
 ```shell
 gemc_home=/path/to/gemc
@@ -120,7 +127,7 @@ cd "$gemc_home"
 ```
 
 次に、お使いの Linux ディストリビューションと CPU アーキテクチャに一致するタブのコマンドを使用します。
-これにより、GEMC と Geant4 data ファイルがインストールされます。
+これにより GEMC と Geant4 data ファイルがインストールされます。
 
 {% capture tab1 %}
 
@@ -245,8 +252,8 @@ tar -xzf "$archive" -C "$gemc_home" --strip-components=1
 
 {% capture tab12 %}
 
-macOS のアセット名にはビルドホストの macOS および Clang のバージョンが含まれるため、正確な名前は時期によって変わります。
-`{{ page.binary_tag }}` リリースから名前を取得し、ダウンロードして展開してください:
+macOS のアセット名にはビルドホストの macOS と Clang のバージョンが含まれるため、正確な名前は時期によって変わります。
+`{{ page.binary_tag }}` リリースから該当する名前を取得し、ダウンロードして展開してください:
 
 ```shell
 archive=$(curl -sL https://api.github.com/repos/gemc/src/releases/tags/{{ page.binary_tag }} \
@@ -302,13 +309,13 @@ tab12_content=tab12
 
 <br/>
 インストール後、GEMC 環境ファイルを source コマンドで読み込みます。すべてのシェルで利用できるようにするには、
-この行を `.bashrc` または `.zshrc` に追加します:
+次の行を `.bashrc` または `.zshrc` に追加してください:
 
 ```shell
 source /path/to/gemc/gemc.env
 ```
 
-インストールを確認するために、いくつかのチェックを実行します:
+次のチェックを実行してインストールを検証します:
 
 ```shell
 gemc -v
@@ -319,16 +326,16 @@ test_gdata_event_verbose
 
 <br/>
 
-## ソースからビルドする
+## ソースからのビルド
 
-GEMC をビルドするには Geant4 が必要です。要件の全リストについては、付録の
-[GEMC ビルドのためのソフトウェア要件と Geant4 の
+GEMC をビルドするには Geant4 が必要です。要件の完全な一覧については、付録の
+[GEMC のビルドに必要なソフトウェアと Geant4 の
 インストール](#software-prerequisites-and-geant4-installation-for-the-gemc-build)
 を確認してください。
 
 <br/>
 
-### 1. ソースを入手する
+### 1. ソースの取得
 
 コードをダウンロードします:
 
@@ -343,7 +350,7 @@ cd src
 {% endcapture %}
 
 {% capture tab2 %}
-ナイトリー開発版をビルドするためにリポジトリをクローンします:
+ナイトリー開発版をビルドするには、リポジトリをクローンします:
 
 ```shell
 git clone --depth=1 {{ page.repo_link }}
@@ -370,48 +377,48 @@ tab2_content=tab2
 
 <br/>
 
-### 2. ビルドを構成して GEMC をインストールする
+### 2. ビルドの設定と GEMC のインストール
 
 GEMC のコンパイルとインストールには [Meson](https://mesonbuild.com) ビルドシステムを使用します。
 
-**setup** フェーズでは、必要な依存関係を確認し、外部ライブラリを取得します。
+**setup** フェーズでは、必要な依存関係をチェックし、外部ライブラリを取得します。
 ここでは `build` ディレクトリを使用します。
 
 ```shell
 meson setup build --prefix=/path/to/install/gemc
 ```
 
-**install** フェーズでは、GEMC をビルドしてインストールします。ここでは、ビルド時の出力を抑えるために `-q` を使用します。
+**install** フェーズでは GEMC をビルドしてインストールします。ここでは `-q` を使ってビルド時の出力を抑えます。
 
 ```shell
 meson install -C build -q
 ```
 
-必要に応じて、インストール後に `meson test -C build` を実行して、構成済みの GEMC ビルドをテストできます。
+必要に応じて、インストール後に `meson test -C build` を実行して、設定済みの GEMC ビルドをテストできます。
 
 <br/>
 
 ### ビルドオプション
 
 - setup オプション `-Droot=enabled` は ROOT サポートを追加します（システムに ROOT がインストールされている必要があります）。
-- setup オプション `-Di_test=true` は、テストで GUI インターフェイスを有効にします。
-- 詳細な出力を得るには、ビルド時またはテスト時に `-v` を使用します。
-- ビルドディレクトリを消去してやり直すには、`rm -rf build` を使用してから setup を再実行します。
-- コンパイル時のスレッド数を設定するには `-jN` を使用します。
+- setup オプション `-Di_test=true` は、テストで GUI インターフェースを有効にします。
+- ビルド／テスト時に `-v` を使うと詳細な出力が得られます。
+- ビルドディレクトリを削除してやり直すには、`rm -rf build` を実行してから setup を再度実行します。
+- `-jN` を使うとコンパイル時のスレッド数を設定できます。
 
 <br/>
 
-### インストール後の作業
+### インストール後の設定
 
-次の行をシェル設定ファイル（例: `~/.bashrc` または `~/.zshrc`）に追加します:
+シェル設定ファイル（例: `~/.bashrc` または `~/.zshrc`）に次の行を追加してください:
 
 ```shell
 export PATH=/path/to/install/gemc/bin:/path/to/install/gemc/python_env/bin:$PATH
 ```
 
-2 番目の PATH エントリは、同梱の Python 仮想環境を追加し、`python3` がその仮想環境の
-インタープリタを指すようにします。これにより、スクリプト内で `import pygemc`
-が利用できるようになります。
+2 つ目の PATH エントリは、同梱の Python 仮想環境を追加します。これにより `python3` が
+仮想環境のインタプリタを指すようになり、スクリプト内で `import pygemc` を
+使用できるようになります。
 
 インストールされたシミュレータと Python ツールを次のコマンドで確認します:
 
@@ -424,16 +431,16 @@ gemc-analyzer --help
 
 <br/>
 
-### ソースからの CLAS12 検出器システム
+### ソースからの CLAS12 検出器システムのビルド
 
 CLAS12 検出器システム
-（[`clas12-systems`](https://github.com/gemc/clas12-systems)）0.3 は、同じ Meson の手順でビルドでき、
-GEMC の事前インストールが不要になりました。Geant4 のみを用意した環境（例えば
-[`g4install`](https://github.com/gemc/g4install) の Docker イメージ）では、ビルド時に `gemc`
-サブプロジェクトから GEMC を自動的にコンパイルし、同じインストール先プレフィックスにインストールするため、
-検出器のジオメトリとプラグインを一からインストールできます。Geant4 だけは事前に必要です（ビルド対象にはなりません）。
-使用する GEMC は、明示的な `-Duse-gemc-location=<dir>`、`PATH`/pkg-config で見つかるインストール済みの GEMC、
-ソースからビルドするサブプロジェクト、の順に優先して選択されます。
+([`clas12-systems`](https://github.com/gemc/clas12-systems)) 0.3 は、同じ Meson の手順でビルドでき、
+GEMC の事前インストールは不要になりました。Geant4 のみを導入した環境（例えば
+[`g4install`](https://github.com/gemc/g4install) Docker イメージ）では、ビルド時に
+`gemc` サブプロジェクトから GEMC を自動的にコンパイルし、同じインストールプレフィックスに配置します。このため、検出器のジオメトリとプラグインを
+一からインストールできます。Geant4 だけは事前にインストールされている必要があります（この手順ではビルドされません）。使用する GEMC は、
+明示的な `-Duse-gemc-location=<dir>`、`PATH`/pkg-config で見つかるインストール済みの GEMC、
+ソースからビルドするサブプロジェクトの順に優先して選択されます。
 
 ```shell
 git clone --depth=1 --branch {{ page.latest_ctag }} https://github.com/gemc/clas12-systems
@@ -443,16 +450,16 @@ meson compile -C build
 meson install -C build
 ```
 
-次のリリースで導入予定: インストール済みの GEMC を使用してビルドする場合、CLAS12 のビルド時に
-`pygemc` とそのコマンドラインツールも `python_env` 配下にインストールまたは更新され、
-GEMC を単独でインストールした場合と同じディレクトリ構成になります。
+次のリリースで導入予定: インストール済みの GEMC を使用してビルドする場合、CLAS12 のビルドでも
+`python_env` 配下に `pygemc` とそのコマンドラインツールをインストールまたは更新し、GEMC を単独でインストールした場合と
+同じディレクトリ構成にします。
 
 
 <br/><br/>
 
-## Docker コンテナで実行する
+## Docker コンテナでの実行
 
-Docker を使って GEMC を実行できます。利用可能なイメージを以下に示します。
+Docker を使って GEMC を実行できます。利用可能なイメージは以下のとおりです。
 `arm64` と `amd64` の両方がサポートされています（`amd64` のみの Arch Linux イメージを除く [^1]）。
 
 {:.zebra}
@@ -463,19 +470,19 @@ Docker を使って GEMC を実行できます。利用可能なイメージを�
 | {{ img.id }} {{ img.osversion }} | {{ img.gemcv }} | ```{{ img.tag }}``` | {{ img.arm64 }} | {{ img.amd64 }} |
 {% endfor %}
 
-上記のアドレスは、[Docker Hub](https://hub.docker.com/r/gemc/gemc) のイメージを指します。これらは
-[Docker-Sponsored Open Source](https://www.docker.com/community/open-source/application/) プログラムで公開されており、
-匿名で無制限にプルできます。正規の
-[GitHub Container Registry](https://github.com/gemc/src/pkgs/container/src) ビルドのミラーであるため、
-2 つのレジストリの内容とタグは同一です。代わりに GHCR からプルするには、`docker.io/gemc/gemc:`
-プレフィックスを `ghcr.io/gemc/src:` に置き換え、同じタグを使用してください。例えば `ghcr.io/gemc/src:dev-ubuntu-24.04` です。
+上記のアドレスは [Docker Hub](https://hub.docker.com/r/gemc/gemc) のイメージで、
+[Docker-Sponsored Open Source](https://www.docker.com/community/open-source/application/) プログラムを通じて公開されており、
+匿名での無制限のプルが可能です。これらは配布元である
+[GitHub Container Registry](https://github.com/gemc/src/pkgs/container/src) のビルドをミラーしたもので、両レジストリの
+内容とタグは同一です。GHCR からプルするには、`docker.io/gemc/gemc:` プレフィックスを
+`ghcr.io/gemc/src:` に置き換え、タグはそのまま使用します。例: `ghcr.io/gemc/src:dev-ubuntu-24.04`。
 
-作業内容を保存・保管するために、ローカルディレクトリをバインドすることをおすすめします。
+作業内容を保存・保管するために、ローカルディレクトリをバインドすることを推奨します。
 例として、以下のコマンドはコンテナパス `{{ page.docker_remote_mount }}` を
 `{{ page.docker_local_mount }}` にバインドし、イメージ `{{ site.data.docker.images[0].tag }}` を使用します。
 
-[^1]: Apple Silicon Mac で `archlinux amd64` イメージを使用する場合は、`docker run` コマンドに
-`--platform linux/amd64` オプションを追加してください。
+[^1]: Apple Silicon Mac で使用する場合、`docker run` コマンドに `--platform linux/amd64` オプションを追加すると、
+`archlinux amd64` イメージを使用できます。
 
 <br/>
 
@@ -487,9 +494,9 @@ docker run -it --rm -v {{ page.docker_local_mount }}:{{ page.docker_remote_mount
 
 <br/>
 
-### ブラウザのグラフィカルインターフェイス
+### ブラウザでのグラフィカルインターフェース
 
-対話型セッションで便利に使える変数を設定します。パスワードはご自身で選んでください:
+対話型セッションで使用する以下の変数を設定します。パスワードは自分で決めてください:
 
 ```shell
 VPORTS=(-p 6080:6080 -p 5900:5900)
@@ -502,24 +509,24 @@ GEO_FLAGS=(-e GEOMETRY=1920x1200)
 docker run -it --rm -v {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} $VPORTS $VNC_BIND $VNC_PASS $GEO_FLAGS {{ site.data.docker.images[0].tag }}
 ```
 
-次に、ブラウザで [`http://localhost:6080/vnc.html`](http://localhost:6080/vnc.html) にアクセスして、
-グラフィカルインターフェイスを使用します。
+その後、ブラウザで [`http://localhost:6080/vnc.html`](http://localhost:6080/vnc.html) にアクセスして、
+グラフィカルインターフェースを使用します。
 
 <br/>
 
 
 
-## Apptainer を使って実行する
+## Apptainer を使った実行
 
-Linux ホストでは、`apptainer`（旧称 `singularity`）を使って Docker コンテナを実行できます。
-上記の Docker イメージを使用できます。Docker と同様に実行できますが、エントリポイントを明示的に
+Linux ホストでは `apptainer`（旧称 `singularity`）を使って Docker コンテナを実行できます。
+上記の Docker イメージで使用できます。Docker と同様に実行できますが、エントリポイントを明示的に
 source コマンドで読み込む必要があります。
 
 ```
 apptainer exec --cleanenv --bind {{ page.docker_local_mount }}:{{ page.docker_remote_mount}} docker://{{ site.data.docker.images[0].tag }} bash
 ```
 
-次に:
+続いて、次のコマンドを実行します:
 
 ```
 source /usr/local/bin/docker-entrypoint.sh
@@ -529,8 +536,8 @@ gemc -v
 <br/>
 
 > [!WARNING]
-> リモートホスト経由で接続する場合、Apptainer ではグラフィカルインターフェイス、特に OpenGL ウィンドウが
-> 正しく動作しないことがあります。
+> リモートホスト経由で接続している場合、グラフィカルインターフェース、特に OpenGL ウィンドウは、
+> Apptainer で正しく動作しないことがあります。
 
 
 <br/>
@@ -538,9 +545,9 @@ gemc -v
 <blockquote class="doc-important" markdown="1">
 **注記**
 
-Apptainer はイメージを保存するためにデフォルトのキャッシュディレクトリを使用します。空き容量がなくなった場合は、
-キャッシュディレクトリと一時ディレクトリを、十分なディスク容量のある場所に設定してください。
-例えば、`sim_cache` を十分な容量のある場所に設定します:
+Apptainer はイメージの保存にデフォルトのキャッシュディレクトリを使用します。空き容量がなくなった場合は、
+キャッシュディレクトリと一時ディレクトリを十分なディスク空き容量のある場所に設定してください。
+例えば、`sim_cache` を十分な空き容量のある場所に設定します:
 
 ```shell
 	export sif_cache=/path/to/$USER/cache
@@ -554,7 +561,7 @@ Apptainer はイメージを保存するためにデフォルトのキャッシ�
 	export TMPDIR=$sif_cache/apptainer-tmp
 ```
 
-その後、Apptainer を再度実行します。
+その後、apptainer を再度実行します。
 </blockquote>
 
 
@@ -564,12 +571,12 @@ Apptainer はイメージを保存するためにデフォルトのキャッシ�
 
 <br/>
 
-## バイナリインストールのためのソフトウェア要件
+## バイナリインストールに必要なソフトウェア
 
 <br/>
 
-バイナリ tarball のインストールには、`gemc` 実行ファイルが必要とするランタイムパッケージと、アーカイブを
-ダウンロードして展開するためのツールのみが必要です。ROOT は意図的にこのリストから除外されています。
+バイナリ tarball からのインストールには、`gemc` 実行ファイルが必要とするランタイムパッケージと、
+アーカイブをダウンロードして展開するためのツールのみが必要です。ROOT は意図的にこの一覧に含めていません。
 
 <br/>
 
@@ -640,7 +647,7 @@ libx11 libxext libxmu libxt mesa qt6-base qt6-svg qt6-charts qt6-translations tb
 
 {% capture btab7 %}
 
-バイナリは Homebrew の Qt、SQLite、expat、zlib、TBB にリンクされています。XQuartz は可視化で使用される
+バイナリは Homebrew の Qt、SQLite、expat、zlib、TBB にリンクされています。XQuartz は、可視化で使用する
 X11/OpenGL ランタイムを提供します。
 
 ```shell
@@ -677,14 +684,14 @@ tab7_content=btab7
 
 <br/>
 
-## GEMC ビルドのためのソフトウェア要件と Geant4 のインストール
+## GEMC のビルドに必要なソフトウェアと Geant4 のインストール
 
 <br/>
 
 - ビルドツールとコンパイラ:
 
-    - GEMC 0.5 以降で必要な C++20 に対応した C++ コンパイラと標準ライブラリ — GCC 11+、Clang 13+、または
-      Apple Clang 14+。サポート対象のすべてのプラットフォームには、要件を満たすコンパイラが既に付属しています
+    - GEMC 0.5 以降で使用する C++20 に対応した C++ コンパイラと標準ライブラリ — GCC 11 以降、Clang 13 以降、または
+      Apple Clang 14 以降。サポート対象のすべてのプラットフォームには、要件を満たすコンパイラが既に同梱されています
     - [CMake](https://cmake.org) 3.16 以降
     - [Meson](https://mesonbuild.com) 1.10.1 以降
 
@@ -695,12 +702,12 @@ tab7_content=btab7
     - expat: 2.0.1 以上
     - zlib: 1.2.3 以上
     - [Qt6](https://www.qt.io): 6.4.2 以上（GUI に必要）。SVG はツールバーのアイコンを提供し、Charts は
-      GUI Analyzer を有効にしますが、どちらのモジュールもオプションです
-    - [ROOT](https://root.cern): 6.36.04 以上（オプション、ROOT 出力に必要）
+      GUI の Analyzer を有効にしますが、どちらのモジュールもオプションです
+    - [ROOT](https://root.cern): 6.36.04 以上（オプション。ROOT 出力に必要）
 
 <br/>
 
-macOS および一部の主要な Linux ディストリビューションで、基本パッケージと依存パッケージをインストールするための 1 行コマンド:
+macOS および主要な Linux ディストリビューションで基本パッケージと依存パッケージをインストールするためのコマンド:
 
 <br/>
 
@@ -781,7 +788,7 @@ liblsan0 libasan8 libubsan1 libtsan2 libtbb12
 ```shell
 DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata \
 git make cmake g++ gdb valgrind libcrypt-dev libexpat1-dev zlib1g zlib1g-dev \
-libmariadb-dev libsqlite3-dev python3-dev python3-venv ninja-build \
+libmysqlclient-dev libsqlite3-dev python3-dev python3-venv ninja-build \
 libgl1-mesa-dev libglu1-mesa-dev libx11-dev libxpm-dev libxft-dev \
 libxt-dev libxmu-dev libxrender-dev xvfb x11-xserver-utils \
 bzip2 wget curl nano bash zsh hostname gedit environment-modules pv which \
@@ -845,7 +852,7 @@ tab7_content=tab7
 
 <br/>
 
-- 外部ライブラリ（GEMC と同じ C++ 標準に準拠してソースからコンパイルします。GEMC 0.5 以降は C++20）:
+- 外部ライブラリ。GEMC と同じ C++ 規格（GEMC 0.5 以降は C++20）を使用してソースからコンパイルします:
 
     - [CLHEP](https://proj-clhep.web.cern.ch/proj-clhep/): 2.4.6.0 以上
     - [Xerces-C](https://xerces.apache.org/xerces-c/): 3.2 以上
@@ -854,9 +861,9 @@ tab7_content=tab7
 <br/>
 
 > [!IMPORTANT]
-> GEMC は `CLHEP`/`Xerces-C`/`Geant4` の任意のカスタムインストールを使用できますが、
-> **Geant4 のインストールには [g4install](https://github.com/gemc/g4install) リポジトリの使用をおすすめします**。
-> このリポジトリは、複数の Geant4 バージョンを共存させる仕組みとインストールスクリプトを提供します。
+> GEMC は任意のカスタムインストールの `CLHEP`/`Xerces-C`/`Geant4` を使用できますが、
+> **Geant4 のインストールには [g4install](https://github.com/gemc/g4install) リポジトリの使用を推奨します**。
+> 複数バージョンの Geant4 を共存させる仕組みと、インストールスクリプトが提供されているためです。
 
 <br/>
 
