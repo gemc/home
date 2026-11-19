@@ -5,110 +5,49 @@ lang: ja
 human_reviewed: false
 ---
 
-[test]: https://github.com/gemc/src/actions/workflows/test.yml
-
-[test-badge]: https://github.com/gemc/src/actions/workflows/test.yml/badge.svg
-
-[deploy]: https://github.com/gemc/src/actions/workflows/deploy.yml
-
-[deploy-badge]: https://github.com/gemc/src/actions/workflows/deploy.yml/badge.svg
-
-[DockerHub]: https://hub.docker.com/r/gemc/gemc
-
-[DockerHub-badge]: https://img.shields.io/docker/pulls/gemc/gemc.svg
-
-[Docs]: https://github.com/gemc/src/actions/workflows/doxygen.yml
-
-[Docs-badge]: https://github.com/gemc/src/actions/workflows/doxygen.yml/badge.svg
-
-[Nightly]: https://github.com/gemc/src/actions/workflows/dev_release.yml
-
-[Nightly-badge]: https://github.com/gemc/src/actions/workflows/dev_release.yml/badge.svg
-
-[Site]: https://github.com/gemc/home/actions/workflows/jekyll.yml
-
-[Site-badge]: https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg
-
-[Sanitize]: https://github.com/gemc/src/actions/workflows/sanitize.yml
-
-[Sanitize-badge]: https://github.com/gemc/src/actions/workflows/sanitize.yml/badge.svg
-
-[CodeQL]: https://github.com/gemc/src/actions/workflows/codeql.yml
-
-[CodeQL-badge]: https://github.com/gemc/src/actions/workflows/codeql.yml/badge.svg
-
-[Binary-Tarballs]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml
-
-[Binary-Tarballs-badge]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml/badge.svg
-
-[macOS-Tarball]: https://github.com/gemc/src/actions/workflows/macos_tarball.yml
-
-[macOS-Tarball-badge]: https://github.com/gemc/src/actions/workflows/macos_tarball.yml/badge.svg
-
-[Release-Tarballs]: https://github.com/gemc/src/actions/workflows/release_tarballs.yml
-
-[Release-Tarballs-badge]: https://github.com/gemc/src/actions/workflows/release_tarballs.yml/badge.svg?event=release
-
-[PyPI]: https://pypi.org/project/pygemc/
-
-[PyPI-badge]: https://img.shields.io/pypi/v/pygemc.svg?cacheSeconds=300
-
-[PyGemc-Nightly]: https://github.com/gemc/pygemc/actions/workflows/dev_release.yml
-
-[PyGemc-Nightly-badge]: https://github.com/gemc/pygemc/actions/workflows/dev_release.yml/badge.svg
-
-[PyGemc-Publish]: https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml
-
-[PyGemc-Publish-badge]: https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml/badge.svg
-
-[PyGemc-Tests]: https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml
-
-[PyGemc-Tests-badge]: https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml/badge.svg
-
-
 {% include gemc-logo.svg %}
 
-<small>本サイトは **GEMC** バージョン3以降のドキュメントです。
-**CLAS12シミュレーション**には、[GEMC2 clas12Tagsリポジトリ](https://github.com/gemc/clas12Tags)を使用してください。</small>
+<small>このサイトは **GEMC** バージョン 3 以降のドキュメントです。
+**CLAS12 シミュレーション**には [GEMC2 clas12Tags リポジトリ](https://github.com/gemc/clas12Tags) を使用してください。</small>
 
 <br/>
 
-## Python APIによるデータベース駆動型Geant4シミュレーション
+## Python API によるデータベース駆動型 Geant4 シミュレーション
 
 <!-- Upcoming with the next release: revised introduction. -->
 
-**GEMC** は、検出器および放射線輸送のシミュレーションを行う、
-データベース駆動型の[Geant4](https://geant4.web.cern.ch)アプリケーションです。
-Python APIを使うと、Geant4コードを書かずに複雑な検出器構成を定義できます。
+**GEMC** は、検出器および放射線輸送シミュレーションのための、データベース駆動型の
+[Geant4](https://geant4.web.cern.ch) アプリケーションです。その Python API により、Geant4 のコードを書くことなく
+複雑な検出器構成を定義できます。
 
-検出器の記述は実行ファイルから分離されています。Pythonで作成し、
-ASCIIまたはSQLiteデータベースに保存すると、GEMCが実行時に読み込んでGeant4シミュレーションを実行します。
+検出器の記述は実行ファイルから分離されています。ユーザーは Python で検出器の記述を作成し、
+ASCII または SQLite データベースに保存します。GEMC は実行時にそれらを読み込み、Geant4 シミュレーションを実行します。
 
 <br/>
 
 ## 主な特長
 
-- Pythonを中心とした検出器定義
-- [`pyvista`](https://pyvista.org)によるジオメトリのプレビューとVTKへのエクスポート
-- ASCIIおよびSQLiteデータベース
-- GDMLおよびCADファイルからのジオメトリのインポート
-- Geant4/Qtによる対話的な可視化とオフスクリーン画像生成
-- 組み込みの有感検出器：%%flux%%、%%dosimeter%%、%%particle_counter%%、%%gPhotonDetector%%
-- ASCII、CSV、JSON、[ROOT](https://root.cern)形式でのシミュレーション出力
-- GUI、コマンドライン、YAMLおよびLUNDファイルからのイベント生成
-- 多重極磁場やASCII形式の磁場マップを含む磁場サポート
-- シミュレーション出力（CSV、ROOT）の読み込みとプロットを行うPythonの`analyzer`モジュール
-- ジオメトリのバリエーションとラン番号に応じた設定
+- Python を中心とした検出器定義
+- [`pyvista`](https://pyvista.org) によるジオメトリのプレビューと VTK エクスポート
+- ASCII、SQLite データベース
+- GDML および CAD ファイルからのジオメトリインポート
+- インタラクティブな Geant4/Qt ビジュアライゼーションとオフスクリーン画像生成
+- 組み込みの有感検出器: %%flux%%、%%dosimeter%%、%%particle_counter%%、%%gPhotonDetector%%
+- ASCII、CSV、JSON、[ROOT](https://root.cern) 形式でのシミュレーション出力
+- GUI、コマンドライン、YAML、LUND ファイルからのイベント生成
+- 多重極磁場および ASCII マップを含む磁場サポート
+- シミュレーション出力（CSV、ROOT）を読み込んでプロットする Python `analyzer` モジュール
+- ジオメトリのバリエーションおよびラン番号に依存した構成
 
-GEMCは、独自のGeant4アプリケーションを書かずに検出器システムの試作を行えるよう支援することを目指しています。
-C++プラグインにより、独自の検出器応答、磁場、イベント生成器、出力形式にも対応できます。
+カスタムの Geant4 アプリケーションを書かずに検出器システムの試作を行えるよう、ユーザーを支援することが目的です。
+また、C++ プラグインにより、検出器応答、磁場、イベントジェネレータ、出力形式をカスタマイズできます。
 
 
 <br/>
 
-## GEMCを試す
+## GEMC を試す
 
-インストールは不要です。バッジをクリックすると、ブラウザ上で **JupyterLab** セッションを起動できます：
+インストールは不要です。バッジをクリックすると、ブラウザ上でライブの **JupyterLab** セッションが起動します。
 
 {% assign visible_examples = site.data.examples | where: "display", true %}
 
@@ -131,7 +70,7 @@ C++プラグインにより、独自の検出器応答、磁場、イベント�
 
 ### コンテナイメージ
 
-ローカル環境またはHPC環境でのJupyterLabセッションには、ビルド済みのマルチアーキテクチャイメージを使用してください：
+ローカルまたは HPC 上での JupyterLab セッションには、ビルド済みのマルチアーキテクチャイメージを使用してください。
 
 ```shell
 # Docker
@@ -144,10 +83,10 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 
 <br/><br/>
 
-## インタラクティブ3Dギャラリー
+## インタラクティブ 3D ギャラリー
 
-各サムネイル内で、マウスホイールまたは矢印キーを使ってカメラを回転できます。
-タイトルのリンクをクリックすると、ドキュメントが表示されます。
+各サムネイル内でマウスホイールまたは矢印キーを使ってカメラを回転できます。ドキュメントを見るにはタイトルの
+リンクをクリックしてください。
 
 {% assign gallery_examples = site.data.examples | where: "gallery", true %}
 
@@ -167,11 +106,11 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 
 <br/><br/>
 
-## `pygemc`：Python API
+## `pygemc`: Python API
 
-GEMCのPython APIである`pygemc`は、ジオメトリおよび物質のデータベース作成機能、
-`pyvista`によるジオメトリの可視化、`gemc-system-template`、`gemc-analyzer`を提供します。
-解析ツールはGEMCのCSVおよびROOT出力を読み込み、選択した変数のヒストグラムを描画できます。
+GEMC の Python API である `pygemc` は、ジオメトリおよび材料のデータベースビルダー、`pyvista` による
+ジオメトリ可視化、`gemc-system-template`、`gemc-analyzer` を提供します。この解析ツールは GEMC の CSV および ROOT 出力を
+読み込み、選択した変数のヒストグラムをプロットできます。
 
 {% include figure.html
 src="/assets/images/gemc_showcase.gif"
@@ -184,8 +123,8 @@ on the liquid hydrogen target.<br/>
 The total deposited energy is plotted with the `analyzer` module."
 %}
 
-以下のコード抜粋では、標的の下流にある有感なフラックス検出面を定義しています。
-生成されたトラックがこのボリュームを横切るたびに、GEMCは %%flux%% ヒットを記録します。
+以下の抜粋は、ターゲットの下流にあるフラックス検出用の有感平面を定義しています。GEMC は、生成されたトラックがこの
+ボリュームを横切るたびに %%flux%% ヒットを記録します。
 
 ```python
 # Place a thin scoring plane downstream of the target.
@@ -212,7 +151,7 @@ gvolume.publish(cfg)
 
 ## データベース
 
-検出器定義はデータベースに保存されます。標準的なワークフローでは、ユーザーが記述を行うのは1つのステップです：
+検出器の定義はデータベースに保存されます。典型的なワークフローでユーザーが記述を行うステップは 1 つです。
 
 {% include figure.html
 src="/assets/images/gemcArchitecture.svg"
@@ -228,19 +167,19 @@ and streams the output data (Steps 2–5).
 
 
 > [!NOTE]
-> シミュレーションの実行に、C++やGeant4の事前知識は必要ありません。
-> 基本的なPythonの知識があると、複雑な構成を整理するのに役立ちます。
-> ユーザーは **独自のハードウェアエミュレーションルーチンを定義する** こともできます。
-> この場合、複雑なデジタイゼーション処理には基本的なC++の知識が役立ちます。
+> シミュレーションの実行に、C++ や Geant4 の事前知識は必要ありません。
+> 複雑な構成を整理するには、基本的な Python の知識が役立ちます。
+> ユーザーは**独自のハードウェアエミュレーションルーチンを定義する**こともできます。この場合、複雑な
+> デジタイゼーションには基本的な C++ の知識が役立ちます。
 
 <br/><br/>
 
 ## ジオメトリのバリエーション
 
-検出器は、構成要素の位置の変更、物質の変更、ボリュームの追加や削除といった設定変更を加えることで、
-複数の実験で再利用できます。
-GEMCは、%%variation%% 文字列や %%run%% 番号を用いてこれらのジオメトリのバージョンに対応し、
-さまざまなシミュレーション構成に適応できます。
+検出器は複数の実験間で再利用でき、コンポーネントの位置変更、材料の変更、ボリュームの追加・削除といった構成変更を
+加えられます。
+GEMC は %%variation%% 文字列や %%run%% 番号を用いてこれらのジオメトリバージョンをサポートし、
+さまざまなシミュレーション構成に対応します。
 
 {% include figure.html
 src="/assets/images/clas12v.gif"
@@ -282,46 +221,108 @@ with a variation string or run number in the configuration file or command-line 
 <p class="news-links">
   <a href="{{ "/news/" | relative_url }}">すべてのニュース</a>
   ·
-  <a href="{{ "/feed.xml" | relative_url }}">RSSフィード</a>
+  <a href="{{ "/feed.xml" | relative_url }}">RSS フィード</a>
 </p>
 
 <br/><br/>
 
 ## 継続的インテグレーション
 
-GEMCは、GitHub CIにより、複数のプラットフォームとARM64およびAMD64の両アーキテクチャで
-ビルドとテストが行われ、Dockerイメージとしてデプロイされます。
+GEMC は、GitHub CI により複数のプラットフォーム上で、ARM64 と AMD64 の両アーキテクチャ向けに
+ビルド、テストされ、Docker イメージとしてデプロイされます。
 
-**gemc**
-
-{:.zebra}
-
-| テスト | [![テスト][test-badge]][test] |
-| サニタイザー | [![サニタイザー][Sanitize-badge]][Sanitize] |
-| CodeQL | [![CodeQL][CodeQL-badge]][CodeQL] |
-| イメージのデプロイ | [![デプロイ][deploy-badge]][deploy] |
-| バイナリのtarアーカイブ | [![バイナリのtarアーカイブ][Binary-Tarballs-badge]][Binary-Tarballs] |
-| macOS用tarアーカイブ | [![macOS用tarアーカイブ][macOS-Tarball-badge]][macOS-Tarball] |
-| ナイトリーリリース | [![ナイトリー][Nightly-badge]][Nightly] |
-| ホームページ | [![サイト][Site-badge]][Site] |
-| Dockerプル数 | [![Dockerプル数][DockerHub-badge]][DockerHub] |
-| Doxygen | [![ドキュメント][Docs-badge]][Docs] |
-| リリースのtarアーカイブ | [![リリースのtarアーカイブ][Release-Tarballs-badge]][Release-Tarballs] |
-
-**pygemc**
-
-{:.zebra}
-
-| 開発版ナイトリーリリース | [![開発版ナイトリーリリース][PyGemc-Nightly-badge]][PyGemc-Nightly] |
-| PyPIへの公開 | [![PyPIへの公開][PyGemc-Publish-badge]][PyGemc-Publish] |
-| テスト | [![pygemcテスト][PyGemc-Tests-badge]][PyGemc-Tests] |
-| PyPI | [![pygemc PyPI][PyPI-badge]][PyPI] |
+<table class="ci-badges">
+  <thead>
+    <tr>
+      <th width="33%">品質</th>
+      <th width="34%">デプロイ</th>
+      <th width="33%">ドキュメント</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://github.com/gemc/src/actions/workflows/test.yml">
+          <img alt="Test" src="https://github.com/gemc/src/actions/workflows/test.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/sanitize.yml">
+          <img alt="Sanitize" src="https://github.com/gemc/src/actions/workflows/sanitize.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/codeql.yml">
+          <img alt="CodeQL" src="https://github.com/gemc/src/actions/workflows/codeql.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/thread_scaling.yml">
+          <img alt="Thread Scaling"
+               src="https://github.com/gemc/src/actions/workflows/thread_scaling.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/valgrind_profile.yml">
+          <img alt="Valgrind Profile"
+               src="https://github.com/gemc/src/actions/workflows/valgrind_profile.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml">
+          <img alt="pygemc tests"
+               src="https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml/badge.svg">
+        </a><br/>
+        <a href="https://hub.docker.com/r/gemc/gemc">
+          <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/gemc/gemc.svg">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://github.com/gemc/src/actions/workflows/deploy.yml">
+          <img alt="Deploy" src="https://github.com/gemc/src/actions/workflows/deploy.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/binary_tarballs.yml">
+          <img alt="Binary Tarballs"
+               src="https://github.com/gemc/src/actions/workflows/binary_tarballs.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/release_tarballs.yml">
+          <img alt="Release Tarballs"
+               src="https://github.com/gemc/src/actions/workflows/release_tarballs.yml/badge.svg?event=release">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/macos_tarball.yml">
+          <img alt="macOS Tarball"
+               src="https://github.com/gemc/src/actions/workflows/macos_tarball.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/dev_release.yml">
+          <img alt="Nightly gemc Release"
+               src="https://github.com/gemc/src/actions/workflows/dev_release.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml">
+          <img alt="Publish PyPI"
+               src="https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/pygemc/actions/workflows/dev_release.yml">
+          <img alt="Nightly pygemc Release"
+               src="https://github.com/gemc/pygemc/actions/workflows/dev_release.yml/badge.svg">
+        </a><br/>
+        <a href="https://pypi.org/project/pygemc/">
+          <img alt="pygemc PyPI" src="https://img.shields.io/pypi/v/pygemc.svg?cacheSeconds=300">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://gemc.github.io/home/">
+          <img alt="GEMC documentation" src="https://img.shields.io/badge/docs-gemc.github.io-blue.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/doxygen.yml">
+          <img alt="Doxygen" src="https://github.com/gemc/src/actions/workflows/doxygen.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/home/actions/workflows/jekyll.yml">
+          <img alt="Homepage" src="https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/binder-tutorials/actions/workflows/publish-image.yml">
+          <img alt="Publish Jupyter Image"
+               src="https://github.com/gemc/binder-tutorials/actions/workflows/publish-image.yml/badge.svg">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <br/><br/>
 
 ## 参考文献
 
-GEMCを使用する場合は、必ず以下の論文を引用してください：
+GEMC を使用する場合は、必ず以下の論文を引用してください。
 
 > M. Ungaro and the CLAS Collaboration, "The CLAS12 Geant4 simulation," *Nuclear Instruments and
 > Methods in Physics Research Section A: Accelerators, Spectrometers, Detectors and Associated
@@ -359,10 +360,10 @@ M. Ungaro and the CLAS Collaboration,
 
 ## ソースコードとライセンス
 
-[GEMCのソースコード](https://github.com/gemc/src)は、
-[Apache License, Version 2.0](/home/license/)に基づいて提供されています。帰属表示と
-サードパーティへの謝辞については、[NOTICE](/home/license/#notice)を参照してください。
-本ソフトウェアは、Geant4、CLHEP、Qt、ROOT、SQLite、Assimpなど、個別のライセンスが適用されるサードパーティ製コンポーネントにも依存しています。
+[GEMC ソースコード](https://github.com/gemc/src) は
+[Apache License, Version 2.0](/home/license/) の下でライセンスされています。帰属表示およびサードパーティへの
+謝辞については [NOTICE](/home/license/#notice) を参照してください。本ソフトウェアはまた、Geant4、CLHEP、Qt、
+ROOT、SQLite、Assimp など、個別にライセンスされたサードパーティコンポーネントにも依存しています。
 
 <br/><br/>
 

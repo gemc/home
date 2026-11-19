@@ -5,6 +5,7 @@ gem "jekyll", "~> 3.10.0"
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 gem "minima"
 gem "base64"
+gem "cgi"
 gem "logger" # Add this proactively to avoid future errors with Ruby 3.5+
 gem "csv", require: false
 gem "bigdecimal", require: false

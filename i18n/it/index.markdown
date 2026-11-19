@@ -5,71 +5,10 @@ lang: it
 human_reviewed: false
 ---
 
-[test]: https://github.com/gemc/src/actions/workflows/test.yml
-
-[test-badge]: https://github.com/gemc/src/actions/workflows/test.yml/badge.svg
-
-[deploy]: https://github.com/gemc/src/actions/workflows/deploy.yml
-
-[deploy-badge]: https://github.com/gemc/src/actions/workflows/deploy.yml/badge.svg
-
-[DockerHub]: https://hub.docker.com/r/gemc/gemc
-
-[DockerHub-badge]: https://img.shields.io/docker/pulls/gemc/gemc.svg
-
-[Docs]: https://github.com/gemc/src/actions/workflows/doxygen.yml
-
-[Docs-badge]: https://github.com/gemc/src/actions/workflows/doxygen.yml/badge.svg
-
-[Nightly]: https://github.com/gemc/src/actions/workflows/dev_release.yml
-
-[Nightly-badge]: https://github.com/gemc/src/actions/workflows/dev_release.yml/badge.svg
-
-[Site]: https://github.com/gemc/home/actions/workflows/jekyll.yml
-
-[Site-badge]: https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg
-
-[Sanitize]: https://github.com/gemc/src/actions/workflows/sanitize.yml
-
-[Sanitize-badge]: https://github.com/gemc/src/actions/workflows/sanitize.yml/badge.svg
-
-[CodeQL]: https://github.com/gemc/src/actions/workflows/codeql.yml
-
-[CodeQL-badge]: https://github.com/gemc/src/actions/workflows/codeql.yml/badge.svg
-
-[Binary-Tarballs]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml
-
-[Binary-Tarballs-badge]: https://github.com/gemc/src/actions/workflows/binary_tarballs.yml/badge.svg
-
-[macOS-Tarball]: https://github.com/gemc/src/actions/workflows/macos_tarball.yml
-
-[macOS-Tarball-badge]: https://github.com/gemc/src/actions/workflows/macos_tarball.yml/badge.svg
-
-[Release-Tarballs]: https://github.com/gemc/src/actions/workflows/release_tarballs.yml
-
-[Release-Tarballs-badge]: https://github.com/gemc/src/actions/workflows/release_tarballs.yml/badge.svg?event=release
-
-[PyPI]: https://pypi.org/project/pygemc/
-
-[PyPI-badge]: https://img.shields.io/pypi/v/pygemc.svg?cacheSeconds=300
-
-[PyGemc-Nightly]: https://github.com/gemc/pygemc/actions/workflows/dev_release.yml
-
-[PyGemc-Nightly-badge]: https://github.com/gemc/pygemc/actions/workflows/dev_release.yml/badge.svg
-
-[PyGemc-Publish]: https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml
-
-[PyGemc-Publish-badge]: https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml/badge.svg
-
-[PyGemc-Tests]: https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml
-
-[PyGemc-Tests-badge]: https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml/badge.svg
-
-
 {% include gemc-logo.svg %}
 
 <small>Questo sito documenta **GEMC** versione 3 e successive.
-Per le **simulazioni CLAS12**, usa il [repository GEMC2 clas12Tags](https://github.com/gemc/clas12Tags).</small>
+Per le **simulazioni CLAS12**, usa il [repository clas12Tags di GEMC2](https://github.com/gemc/clas12Tags).</small>
 
 <br/>
 
@@ -77,18 +16,18 @@ Per le **simulazioni CLAS12**, usa il [repository GEMC2 clas12Tags](https://gith
 
 <!-- Upcoming with the next release: revised introduction. -->
 
-**GEMC** è un'applicazione [Geant4](https://geant4.web.cern.ch) basata su database per simulazioni di rivelatori e
-di trasporto della radiazione. La sua API Python permette di definire configurazioni complesse di rivelatori
+**GEMC** è un'applicazione [Geant4](https://geant4.web.cern.ch) basata su database per simulazioni di rivelatori
+e del trasporto di radiazioni. La sua API Python permette di definire configurazioni complesse di rivelatori
 senza scrivere codice Geant4.
 
-Le descrizioni dei rivelatori restano separate dall'eseguibile: le crei in Python, le memorizzi in
-database ASCII o SQLite e GEMC le carica durante l'esecuzione per eseguire la simulazione Geant4.
+Le descrizioni dei rivelatori restano separate dall'eseguibile: le crei in Python, le memorizzi in database
+ASCII o SQLite e GEMC le carica durante l'esecuzione per eseguire la simulazione Geant4.
 
 <br/>
 
-## In evidenza
+## Caratteristiche principali
 
-- Definizioni dei rivelatori incentrate su Python
+- Definizione dei rivelatori principalmente in Python
 - Anteprima della geometria ed esportazione VTK con [`pyvista`](https://pyvista.org)
 - Database ASCII e SQLite
 - Importazione di geometrie da file GDML e CAD
@@ -96,20 +35,20 @@ database ASCII o SQLite e GEMC le carica durante l'esecuzione per eseguire la si
 - Rivelatori sensibili integrati: %%flux%%, %%dosimeter%%, %%particle_counter%% e %%gPhotonDetector%%
 - Output della simulazione in ASCII, CSV, JSON e [ROOT](https://root.cern)
 - Generazione di eventi dalla GUI, dalla riga di comando e da file YAML e LUND
-- Supporto per i campi magnetici, inclusi campi multipolari e mappe ASCII
+- Supporto per campi magnetici, inclusi campi multipolari e mappe ASCII
 - Un modulo Python `analyzer` per leggere e rappresentare graficamente l'output della simulazione (CSV, ROOT)
-- Variazioni della geometria e configurazioni dipendenti dal numero di run
+- Varianti della geometria e configurazioni dipendenti dal numero di run
 
-L'obiettivo è aiutare gli utenti a prototipare sistemi di rivelatori senza scrivere un'applicazione Geant4
-personalizzata, mentre i plugin C++ consentono di personalizzare la risposta dei rivelatori, i campi magnetici,
-i generatori di eventi e i formati di output.
+L'obiettivo è aiutare gli utenti a realizzare prototipi di sistemi di rivelatori senza scrivere un'applicazione
+Geant4 personalizzata, mentre i plugin C++ consentono di personalizzare la risposta dei rivelatori, i campi
+magnetici, i generatori di eventi e i formati di output.
 
 
 <br/>
 
 ## Prova GEMC
 
-Non serve alcuna installazione. Clicca su un badge per avviare una sessione **JupyterLab** nel tuo browser:
+Non serve alcuna installazione. Clicca su un badge per avviare una sessione **JupyterLab** nel browser:
 
 {% assign visible_examples = site.data.examples | where: "display", true %}
 
@@ -132,7 +71,7 @@ Non serve alcuna installazione. Clicca su un badge per avviare una sessione **Ju
 
 ### Immagine del container
 
-Per una sessione JupyterLab locale o su un sistema HPC, usa l'immagine multiarchitettura già pronta:
+Per una sessione JupyterLab locale o su un sistema HPC, usa l'immagine multiarchitettura precompilata:
 
 ```shell
 # Docker
@@ -147,8 +86,8 @@ apptainer exec gemc-binder-tutorials.sif jupyter lab --ip=0.0.0.0 --no-browser
 
 ## Galleria 3D interattiva
 
-Ruota la telecamera con la rotellina del mouse o usa i tasti freccia all'interno di ogni miniatura. Clicca sul
-titolo per consultare la documentazione.
+Ruota la vista con la rotellina del mouse oppure usa i tasti freccia all'interno di ogni miniatura. Clicca sul
+link del titolo per consultare la documentazione.
 
 {% assign gallery_examples = site.data.examples | where: "gallery", true %}
 
@@ -170,9 +109,9 @@ titolo per consultare la documentazione.
 
 ## `pygemc`: l'API Python
 
-L'API Python di GEMC, `pygemc`, fornisce strumenti per creare database di geometrie e materiali, visualizzare
-la geometria con `pyvista`, oltre a `gemc-system-template` e `gemc-analyzer`. Lo strumento di analisi può leggere
-l'output CSV e ROOT di GEMC e tracciare istogrammi delle variabili selezionate.
+L'API Python di GEMC, `pygemc`, offre strumenti per creare database di geometrie e materiali, visualizzare
+la geometria con `pyvista` e usare `gemc-system-template` e `gemc-analyzer`. Il modulo di analisi può leggere
+l'output GEMC in formato CSV e ROOT e tracciare istogrammi delle variabili selezionate.
 
 {% include figure.html
 src="/assets/images/gemc_showcase.gif"
@@ -185,8 +124,8 @@ on the liquid hydrogen target.<br/>
 The total deposited energy is plotted with the `analyzer` module."
 %}
 
-L'estratto seguente definisce il piano sensibile di flusso a valle del bersaglio. GEMC registra un hit %%flux%%
-ogni volta che una traccia generata attraversa questo volume.
+L'estratto seguente definisce il piano sensibile per la misura del flusso a valle del bersaglio. GEMC registra
+un hit %%flux%% ogni volta che una traccia generata attraversa questo volume.
 
 ```python
 # Place a thin scoring plane downstream of the target.
@@ -213,7 +152,7 @@ gvolume.publish(cfg)
 
 ## Database
 
-Le definizioni dei rivelatori sono memorizzate in database. Un tipico flusso di lavoro prevede un passaggio
+Le definizioni dei rivelatori sono memorizzate nei database. Un flusso di lavoro tipico prevede una sola fase
 a cura dell'utente:
 
 {% include figure.html
@@ -230,19 +169,19 @@ and streams the output data (Steps 2–5).
 
 
 > [!NOTE]
-> L'esecuzione delle simulazioni non richiede conoscenze pregresse di C++ o Geant4.
+> L'esecuzione delle simulazioni non richiede alcuna conoscenza pregressa di C++ o Geant4.
 > Una conoscenza di base di Python aiuta a organizzare configurazioni complesse.
 > Gli utenti possono anche **definire le proprie routine di emulazione dell'hardware**. In questo caso,
-> una conoscenza di base del C++ è utile per le digitizzazioni complesse.
+> una conoscenza di base di C++ è utile per implementare digitizzazioni complesse.
 
 <br/><br/>
 
-## Variazioni della geometria
+## Varianti della geometria
 
-Un rivelatore può essere riutilizzato in più esperimenti, con modifiche alla configurazione come spostamenti
-dei componenti, cambi di materiale o aggiunte e rimozioni di volumi.
-GEMC supporta queste versioni della geometria usando stringhe %%variation%% e/o numeri %%run%% per adattarsi a
-diverse configurazioni di
+Un rivelatore può essere riutilizzato in diversi esperimenti, modificandone la configurazione tramite
+spostamenti di componenti, cambi di materiale oppure aggiunta e rimozione di volumi.
+GEMC supporta queste versioni della geometria usando stringhe %%variation%% e/o numeri %%run%% per adattarsi
+a diverse configurazioni di
 simulazione.
 
 {% include figure.html
@@ -292,33 +231,95 @@ with a variation string or run number in the configuration file or command-line 
 
 ## Integrazione continua
 
-GEMC viene compilato, testato e distribuito come immagini Docker da GitHub CI su diverse piattaforme e su entrambe
-le architetture ARM64 e AMD64.
+GEMC viene compilato, testato e distribuito sotto forma di immagini Docker da GitHub CI su diverse piattaforme
+e su entrambe le architetture ARM64 e AMD64.
 
-**gemc**
-
-{:.zebra}
-
-| Test       | [![test][test-badge]][test]                                  |
-| Sanitizer  | [![Sanitize][Sanitize-badge]][Sanitize]                      |
-| CodeQL | [![CodeQL][CodeQL-badge]][CodeQL]                            |
-| Distribuzione delle immagini | [![deploy][deploy-badge]][deploy]                            |
-| Tarball dei binari | [![Binary Tarballs][Binary-Tarballs-badge]][Binary-Tarballs] |
-| Tarball per macOS | [![macOS Tarball][macOS-Tarball-badge]][macOS-Tarball]       |
-| Release notturna | [![Nightly][Nightly-badge]][Nightly]                         |
-| Pagina iniziale | [![Site][Site-badge]][Site]                                  |
-| Pull Docker | [![Docker Pulls][DockerHub-badge]][DockerHub]                |
-| Doxygen | [![Docs][Docs-badge]][Docs]                                  |
-| Tarball delle release | [![Release Tarballs][Release-Tarballs-badge]][Release-Tarballs] |
-
-**pygemc**
-
-{:.zebra}
-
-| Release di sviluppo notturna | [![Nightly Dev Release][PyGemc-Nightly-badge]][PyGemc-Nightly]   |
-| Pubblicazione su PyPI     | [![Publish PyPI][PyGemc-Publish-badge]][PyGemc-Publish]          |
-| Test | [![pygemc tests][PyGemc-Tests-badge]][PyGemc-Tests]               |
-| PyPI | [![pygemc PyPI][PyPI-badge]][PyPI]                               |
+<table class="ci-badges">
+  <thead>
+    <tr>
+      <th width="33%">Qualità</th>
+      <th width="34%">Distribuzione</th>
+      <th width="33%">Documentazione</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://github.com/gemc/src/actions/workflows/test.yml">
+          <img alt="Test" src="https://github.com/gemc/src/actions/workflows/test.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/sanitize.yml">
+          <img alt="Sanitize" src="https://github.com/gemc/src/actions/workflows/sanitize.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/codeql.yml">
+          <img alt="CodeQL" src="https://github.com/gemc/src/actions/workflows/codeql.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/thread_scaling.yml">
+          <img alt="Thread Scaling"
+               src="https://github.com/gemc/src/actions/workflows/thread_scaling.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/valgrind_profile.yml">
+          <img alt="Valgrind Profile"
+               src="https://github.com/gemc/src/actions/workflows/valgrind_profile.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml">
+          <img alt="pygemc tests"
+               src="https://github.com/gemc/pygemc/actions/workflows/pygemc_tests.yml/badge.svg">
+        </a><br/>
+        <a href="https://hub.docker.com/r/gemc/gemc">
+          <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/gemc/gemc.svg">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://github.com/gemc/src/actions/workflows/deploy.yml">
+          <img alt="Deploy" src="https://github.com/gemc/src/actions/workflows/deploy.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/binary_tarballs.yml">
+          <img alt="Binary Tarballs"
+               src="https://github.com/gemc/src/actions/workflows/binary_tarballs.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/release_tarballs.yml">
+          <img alt="Release Tarballs"
+               src="https://github.com/gemc/src/actions/workflows/release_tarballs.yml/badge.svg?event=release">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/macos_tarball.yml">
+          <img alt="macOS Tarball"
+               src="https://github.com/gemc/src/actions/workflows/macos_tarball.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/dev_release.yml">
+          <img alt="Nightly gemc Release"
+               src="https://github.com/gemc/src/actions/workflows/dev_release.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml">
+          <img alt="Publish PyPI"
+               src="https://github.com/gemc/pygemc/actions/workflows/publish_pypi.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/pygemc/actions/workflows/dev_release.yml">
+          <img alt="Nightly pygemc Release"
+               src="https://github.com/gemc/pygemc/actions/workflows/dev_release.yml/badge.svg">
+        </a><br/>
+        <a href="https://pypi.org/project/pygemc/">
+          <img alt="pygemc PyPI" src="https://img.shields.io/pypi/v/pygemc.svg?cacheSeconds=300">
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://gemc.github.io/home/">
+          <img alt="GEMC documentation" src="https://img.shields.io/badge/docs-gemc.github.io-blue.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/src/actions/workflows/doxygen.yml">
+          <img alt="Doxygen" src="https://github.com/gemc/src/actions/workflows/doxygen.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/home/actions/workflows/jekyll.yml">
+          <img alt="Homepage" src="https://github.com/gemc/home/actions/workflows/jekyll.yml/badge.svg">
+        </a><br/>
+        <a href="https://github.com/gemc/binder-tutorials/actions/workflows/publish-image.yml">
+          <img alt="Publish Jupyter Image"
+               src="https://github.com/gemc/binder-tutorials/actions/workflows/publish-image.yml/badge.svg">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <br/><br/>
 
@@ -364,8 +365,8 @@ M. Ungaro and the CLAS Collaboration,
 
 Il [codice sorgente di GEMC](https://github.com/gemc/src) è distribuito secondo i termini della
 [Licenza Apache, versione 2.0](/home/license/); consulta [NOTICE](/home/license/#notice) per le attribuzioni e i
-riconoscimenti relativi a terze parti. Il software dipende inoltre da componenti di terze parti con licenze separate,
-tra cui Geant4, CLHEP, Qt, ROOT, SQLite e Assimp.
+riconoscimenti relativi a terze parti. Il software dipende inoltre da componenti di terze parti con licenze
+separate, tra cui Geant4, CLHEP, Qt, ROOT, SQLite e Assimp.
 
 <br/><br/>
 
